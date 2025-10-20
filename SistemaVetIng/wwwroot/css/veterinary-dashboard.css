@@ -268,7 +268,10 @@
     background-color: green;
     color: white;
 }
-
+v1-badge-orange {
+    background-color: #ff8d00;
+    color: white;
+}
 .v1-badge-yellow {
     background-color: #e8b800;
     color: white;
@@ -685,3 +688,22 @@
         background-color: #ff0000;
         border-color: #ff0000;
     }
+
+.v1-btn-ausente {
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    background-color: #4454ff;
+    color: white;
+    border: 1px solid #4454ff;
+}
+
+.v1-btn-ausente {
+    background-color: #0300ff;
+    border-color: #0300ff;
+}

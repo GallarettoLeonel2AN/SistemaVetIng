@@ -130,6 +130,13 @@
                                                 <i class="fas fa-calendar-times"></i> Cancelar
                                             </button>
                                         </form>
+                                        <form asp-controller="Turno" asp-action="MarcarNoAsistio" method="post" onsubmit="return confirm('¿Confirmar que el cliente no asistió a este turno?');" style="display: inline-block; margin-left: 5px;">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="turnoId" value="@turno.Id" />
+                                            <button type="submit" class="v1-btn-ausente">
+                                                <i class="fas fa-user-slash"></i> Ausente
+                                            </button>
+                                        </form>
                                     }
                                     </div>
                                     <div class="v1-appointment-badges">
@@ -138,7 +145,7 @@
                                             <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
                                         }
 
-                                        <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" ? "v1-badge-red" : "v1-badge-gray"))) ">
+                                    <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" ? "v1-badge-red" : (turno.Estado == "No Asistió" ? "v1-badge-orange" : "v1-badge-gray")))) ">
                                             @turno.Estado
                                         </span>
                                     </div>

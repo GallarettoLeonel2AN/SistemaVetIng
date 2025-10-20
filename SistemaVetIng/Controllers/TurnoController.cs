@@ -177,5 +177,40 @@ namespace SistemaVetIng.Controllers
             return RedirectToAction("PaginaPrincipal", "Veterinario");
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Veterinario")]
+        public async Task<IActionResult> MarcarNoAsistio(int turnoId)
+        {
+            var turno = await _turnoService.ObtenerPorIdConDatosAsync(turnoId); 
+
+            if (turno == null)
+            {
+                _toastNotification.AddErrorToastMessage("Turno no encontrado.");
+                return RedirectToAction("PaginaPrincipal", "Veterinario");
+            }
+
+            if (turno.Estado != "Pendiente")
+            {
+                _toastNotification.AddWarningToastMessage($"El turno ya está en estado '{turno.Estado}'.");
+                return RedirectToAction("PaginaPrincipal", "Veterinario");
+            }
+
+            turno.Estado = "No Asistió";
+
+            try
+            {
+                _turnoService.Actualizar(turno);
+                await _turnoService.Guardar();
+                _toastNotification.AddInfoToastMessage("Turno marcado como 'No Asistió'.");
+            }
+            catch (Exception ex)
+            {
+                _toastNotification.AddErrorToastMessage("Error al actualizar el estado del turno.");
+            }
+
+            return RedirectToAction("PaginaPrincipal", "Veterinario");
+        }
     }
 }
