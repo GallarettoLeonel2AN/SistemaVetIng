@@ -3,6 +3,7 @@ using SistemaVetIng.Models;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
+using System.Security.Claims;
 
 namespace SistemaVetIng.Servicios.Implementacion
 {
@@ -111,6 +112,46 @@ namespace SistemaVetIng.Servicios.Implementacion
         public async Task Guardar()
         {
             await _turnoRepository.Guardar();
+        }
+
+        public async Task<(bool success, string message)> CancelarTurnoAsync(int turnoId, ClaimsPrincipal user)
+        {
+            var turno = await _turnoRepository.ObtenerPorIdConDatosAsync(turnoId); 
+
+            if (turno == null)
+            {
+                return (false, "El turno que intentas cancelar no existe.");
+            }
+
+            // Solo se pueden cancelar turnos pendientes.
+            if (turno.Estado != "Pendiente")
+            {
+                return (false, $"No se puede cancelar un turno que está en estado '{turno.Estado}'.");
+            }
+
+            // Validación de Permiso 
+            var usuarioIdString = user.FindFirstValue(ClaimTypes.NameIdentifier);
+            int.TryParse(usuarioIdString, out int usuarioId);
+
+            // Si el usuario es un Cliente, verifica que sea SU turno.
+            if (user.IsInRole("Cliente") && turno.Cliente?.UsuarioId != usuarioId)
+            {
+                return (false, "No tienes permiso para cancelar este turno.");
+            }
+
+            // Cambio de estado
+            turno.Estado = "Cancelado";
+
+            try
+            {
+                Actualizar(turno);
+                await _turnoRepository.Guardar();
+                return (true, "Turno cancelado con éxito.");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Ocurrió un error al intentar cancelar el turno.");
+            }
         }
     }
 }

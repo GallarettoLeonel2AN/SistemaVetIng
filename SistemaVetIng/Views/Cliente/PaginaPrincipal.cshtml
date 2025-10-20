@@ -123,6 +123,16 @@
                                             <p class="v1-appointment-pet">Mascota: @(turno.Mascota?.Nombre ?? "Mascota Eliminada")</p>
                                         }
                                     </div>
+                                    @if (turno.Estado == "Pendiente")
+                                    {
+                                        <form asp-controller="Turno" asp-action="CancelarTurnoCliente" method="post" onsubmit="return confirm('¿Estás seguro de que deseas cancelar este turno?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="turnoId" value="@turno.Id" />
+                                            <button type="submit" class="v1-btn-cancelar">
+                                                <i class="fas fa-times-circle"></i> Cancelar
+                                            </button>
+                                        </form>
+                                    }
                                 </div>
                                 <div class="v1-appointment-badges">
 
@@ -138,7 +148,9 @@
                                             No especificó Motivo
                                         </span>
                                     }
-                                    <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : turno.Estado == "Pendiente" ? "v1-badge-yellow" : "v1-badge-gray")">@turno.Estado</span>
+                                    <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" ? "v1-badge-red" : "v1-badge-gray"))) ">
+                                        @turno.Estado
+                                    </span>
                                 </div>
                             </div>
                         }

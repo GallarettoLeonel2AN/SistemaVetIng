@@ -85,8 +85,9 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="v1-chart-and-list-container">
+        <section id="turnos" class="v1-section">
                 <div class="v1-card v1-appointment-list-card">
                     <div class="v1-card-header">
                         <h3 class="v1-card-title">Citas de Hoy (@Model.CitasDeHoy.Count)</h3>
@@ -115,18 +116,6 @@
 
                                             <p class="v1-appointment-owner">Cliente: @turno.NombreCliente</p>
                                         </div>
-                                    </div>
-                                    <div class="v1-appointment-badges">
-                                        @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                                        {
-                                            <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
-                                        }
-
-                                        <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : turno.Estado == "Pendiente" ? "v1-badge-yellow" : "v1-badge-gray")">
-                                            @turno.Estado
-                                        </span>
-                                    </div>
-
                                     @if (turno.Estado == "Pendiente")
                                     {
                                         <div class="v1-appointment-actions">
@@ -134,7 +123,25 @@
                                                 <i class="fa-solid fa-file-waveform"></i> Registrar Atención
                                             </a>
                                         </div>
+                                        <form asp-controller="Turno" asp-action="CancelarTurnoAdmin" method="post" onsubmit="return confirm('¿Estás seguro de cancelar este turno?');" style="display: inline-block; margin-left: 5px;">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="turnoId" value="@turno.Id" />
+                                            <button type="submit" class="v1-btn-cancelar">
+                                                <i class="fas fa-calendar-times"></i> Cancelar
+                                            </button>
+                                        </form>
                                     }
+                                    </div>
+                                    <div class="v1-appointment-badges">
+                                        @if (!string.IsNullOrWhiteSpace(turno.Motivo))
+                                        {
+                                            <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
+                                        }
+
+                                        <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" ? "v1-badge-red" : "v1-badge-gray"))) ">
+                                            @turno.Estado
+                                        </span>
+                                    </div>
                                 </div>
                             }
                         }
@@ -144,8 +151,6 @@
                         }
                     </div>
                 </div>
-            </div>
-
         </section>
 
         <section id="clientes" class="v1-section">

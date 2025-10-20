@@ -1,5 +1,6 @@
 ﻿using SistemaVetIng.Models;
 using SistemaVetIng.ViewsModels;
+using System.Security.Claims;
 
 namespace SistemaVetIng.Servicios.Interfaces
 {
@@ -13,5 +14,6 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<Turno> ObtenerPorIdConDatosAsync(int id);
         void Actualizar(Turno turno);
         Task Guardar();
+        Task<(bool success, string message)> CancelarTurnoAsync(int turnoId, ClaimsPrincipal user);
     }
 }

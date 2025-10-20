@@ -6,7 +6,7 @@
     --v1-card-bg: var(--card-bg);
     --v1-text-primary: var(--text-color-light);
     --v1-text-secondary: rgba(255, 255, 255, 0.7);
-    --v1-text-danger: var(--error-color);
+    --v1-text-danger: #ff1515;
     --v1-badge-secondary-bg: var(--input-bg);
     --v1-badge-secondary-text: var(--text-color-light);
     --v1-badge-green-bg: var(--accent-color);
@@ -15,13 +15,13 @@
     --v1-badge-yellow-text: #333;
     --v1-badge-gray-bg: #383838;
     --v1-badge-gray-text: #a0a0a0;
-    --history-bg: #121212; /* Fondo principal casi negro */
-    --history-card-bg: #1e1e1e; /* Fondo de las tarjetas, gris muy oscuro */
-    --history-header-bg: #2a2a2a; /* Fondo para cabeceras/pies, un poco más claro */
-    --history-border: #444444; /* Color de bordes y separadores */
-    --history-text-primary: #e0e0e0; /* Texto principal, blanco suave */
-    --history-text-secondary: #9e9e9e; /* Texto secundario (etiquetas, descripciones) */
-    --history-tag-border: #555555; /* Borde para las etiquetas */
+    --history-bg: #121212; 
+    --history-card-bg: #1e1e1e;
+    --history-header-bg: #2a2a2a; 
+    --history-border: #444444;
+    --history-text-primary: #e0e0e0;
+    --history-text-secondary: #9e9e9e;
+    --history-tag-border: #555555; 
 }
 
 /* -- Estilos del Contenedor Principal -- */
@@ -168,17 +168,12 @@
 }
 
 .v1-report-value {
-    /* Aumenta el tamaño de la fuente para que se destaque más */
+
     font-size: 2rem;
-    /* Mantiene el peso de la fuente en negrita para una mejor visibilidad */
     font-weight: 700;
-    /* Utiliza un color principal para la marca */
     color: var(--primary-color);
-    /* Asegura que el número esté sobre otros elementos */
     z-index: 1;
-    /* Posicionamiento para control preciso del diseño */
     position: relative;
-    /* Añade una sombra de texto sutil para darle profundidad y un toque de elegancia */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -271,14 +266,17 @@
 
 .v1-badge-green {
     background-color: green;
-    color: var(--v1-badge-green-text);
+    color: white;
 }
 
 .v1-badge-yellow {
     background-color: #e8b800;
-    color: var(--v1-badge-yellow-text);
+    color: white;
 }
-
+.v1-badge-red {
+    background-color: #ff3131;
+    color:white;
+}
 .v1-badge-gray {
     background-color: var(--v1-badge-gray-bg);
     color: var(--v1-badge-gray-text);
@@ -296,13 +294,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1rem;
-    background-color: var(--bg-medium); /* Uso de un color de tu paleta */
+    background-color: var(--bg-medium); 
     border-radius: 0.5rem;
     transition: background-color 0.2s ease;
 }
 
     .v1-list-item:hover {
-        background-color: rgba(92, 103, 255, 0.08); /* Uso de tu color primario con opacidad */
+        background-color: rgba(92, 103, 255, 0.08);
     }
 
 .v1-list-info {
@@ -433,8 +431,8 @@
     border: 1px solid var(--v1-secondary);
     border-radius: 0.5rem;
     transition: border-color 0.2s;
-    background-color: var(--input-bg); /* Uso de un color de tu paleta */
-    color: var(--text-color-light); /* Uso de un color de tu paleta */
+    background-color: var(--input-bg); 
+    color: var(--text-color-light); 
 }
 
     .v1-input:focus {
@@ -540,7 +538,7 @@
 }
 
     .history-header .fa-calendar-alt {
-        color: var(--history-text-secondary); /* Icono con color secundario */
+        color: var(--history-text-secondary); 
     }
 
     .history-header div {
@@ -576,7 +574,7 @@
         gap: 0.5rem;
         margin: 0 0 1rem 0;
         font-size: 1.1rem;
-        color: var(--history-text-primary); /* Título de sección con color principal */
+        color: var(--history-text-primary); 
     }
 
         .history-section h4 .fas {
@@ -625,13 +623,13 @@
 }
 
 .tag-item {
-    background-color: transparent; /* Fondo transparente */
-    color: var(--history-text-secondary); /* Texto con color secundario */
+    background-color: transparent; 
+    color: var(--history-text-secondary); 
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.9rem;
     font-weight: 500;
-    border: 1px solid var(--history-tag-border); /* Borde sutil */
+    border: 1px solid var(--history-tag-border); 
 }
 
 /* Pie de la tarjeta (Costo Total) */
@@ -668,4 +666,22 @@
     .empty-state .fas {
         margin-bottom: 1rem;
         color: var(--history-header-bg);
+    }
+
+.v1-btn-cancelar {
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    background-color: #ff3131;
+    color: white;
+    border: 1px solid #ff3131;
+}
+    .v1-btn-cancelar:hover {
+        background-color: #ff0000;
+        border-color: #ff0000;
     }

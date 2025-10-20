@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using SistemaVetIng.Models.Indentity;
@@ -136,5 +137,45 @@ namespace SistemaVetIng.Controllers
             var horarios = await _turnoService.GetHorariosDisponiblesAsync(fechaSeleccionada);
             return Json(horarios);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Cliente")] 
+        public async Task<IActionResult> CancelarTurnoCliente(int turnoId)
+        {
+            var (success, message) = await _turnoService.CancelarTurnoAsync(turnoId, User);
+
+            if (success)
+            {
+                _toastNotification.AddSuccessToastMessage(message);
+            }
+            else
+            {
+                _toastNotification.AddErrorToastMessage(message);
+            }
+
+            return RedirectToAction("PaginaPrincipal", "Cliente");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Veterinario")]
+        public async Task<IActionResult> CancelarTurnoAdmin(int turnoId)
+        {
+            var (success, message) = await _turnoService.CancelarTurnoAsync(turnoId, User);
+
+            if (success)
+            {
+                _toastNotification.AddSuccessToastMessage(message);
+            }
+            else
+            {
+                _toastNotification.AddErrorToastMessage(message);
+            }
+
+            return RedirectToAction("PaginaPrincipal", "Veterinario");
+        }
+
     }
 }

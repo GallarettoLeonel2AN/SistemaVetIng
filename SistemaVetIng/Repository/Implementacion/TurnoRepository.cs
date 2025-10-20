@@ -18,7 +18,8 @@ namespace SistemaVetIng.Repository.Implementacion
         {
             var fechaSinHora = fecha.Date;
             return await _context.Turnos
-                                 .Where(t => t.Fecha.Date == fechaSinHora).ToListAsync();
+                .Where(t => t.Fecha.Date == fechaSinHora && t.Estado == "Pendiente")
+                .ToListAsync();
         }
 
         public async Task AgregarTurno(Turno turno)

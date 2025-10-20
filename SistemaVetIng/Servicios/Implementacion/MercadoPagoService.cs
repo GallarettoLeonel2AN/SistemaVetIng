@@ -10,7 +10,7 @@ namespace SistemaVetIng.Servicios.Implementacion
     public class MercadoPagoService : IMercadoPagoService
     {
         // Asume que la URL base de tu proyecto es localhost
-        private const string BaseUrl = "https://localhost:7001"; // Cambia el puerto si el tuyo es diferente
+        private const string BaseUrl = "https://localhost:7207"; 
 
         public async Task<string> CrearPreferenciaDePago(int idReferencia, decimal costoTotal, string clienteEmail, long clienteDocumento, string clienteNombre, string clienteApellido)
         {
