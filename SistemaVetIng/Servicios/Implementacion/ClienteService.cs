@@ -4,6 +4,7 @@ using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Implementacion
 {
@@ -141,6 +142,13 @@ namespace SistemaVetIng.Servicios.Implementacion
             }
 
             return await ObtenerPorIdUsuario(usuario.Id);
+        }
+        #endregion
+
+        #region PAGINACION
+        public async Task<IPagedList<Cliente>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
+        {
+            return await _clienteRepository.ListarPaginadoAsync(pageNumber, pageSize, busqueda);
         }
         #endregion
     }

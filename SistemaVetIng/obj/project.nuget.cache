@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j3Hfv7AQ++A=",
+  "dgSpecHash": "05S5h0X+4OU=",
   "success": true,
   "projectFilePath": "C:\\Users\\ulipv\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
   "expectedPackageFiles": [
@@ -204,7 +204,10 @@
     "C:\\Users\\ulipv\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\ulipv\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\ulipv\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\ulipv\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\ulipv\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\ulipv\\.nuget\\packages\\x.pagedlist\\10.5.9\\x.pagedlist.10.5.9.nupkg.sha512",
+    "C:\\Users\\ulipv\\.nuget\\packages\\x.pagedlist.ef\\10.5.7\\x.pagedlist.ef.10.5.7.nupkg.sha512",
+    "C:\\Users\\ulipv\\.nuget\\packages\\x.pagedlist.mvc.core\\10.5.9\\x.pagedlist.mvc.core.10.5.9.nupkg.sha512"
   ],
   "logs": []
 }

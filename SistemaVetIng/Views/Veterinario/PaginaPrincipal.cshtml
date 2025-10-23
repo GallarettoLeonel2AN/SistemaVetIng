@@ -1,4 +1,5 @@
-﻿@model SistemaVetIng.ViewsModels.VeterinarioPaginaPrincipalViewModel
+﻿@using X.PagedList.Mvc.Core
+@model SistemaVetIng.ViewsModels.VeterinarioPaginaPrincipalViewModel
 @{
     ViewData["Title"] = "VetIng - Veterinario";
     Layout = null;
@@ -166,10 +167,11 @@
                 <a asp-controller="Cliente" asp-action="RegistrarCliente" class="v1-btn v1-btn-primary">
                     <i class="fa-solid fa-plus"></i> Registrar Nuevo
                 </a>
+
                 <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
                     <div class="v1-input-group">
                         <i class="fa-solid fa-search v1-input-icon"></i>
-                        <input type="text" id="busquedaCliente" name="busquedaCliente" placeholder="Buscar por DNI" class="v1-input" />
+                        <input type="text" id="busquedaCliente" name="busquedaCliente" placeholder="Buscar por DNI, Nombre..." class="v1-input" value="@Context.Request.Query["busquedaCliente"]" />
                     </div>
                 </form>
             </div>
@@ -195,6 +197,7 @@
                                 <div class="v1-list-actions">
                                     <a asp-controller="Cliente" asp-action="ModificarCliente" asp-route-id="@cliente.Id" class="v1-btn v1-btn-ghost"><i class="fa-solid fa-edit"></i></a>
                                     <form asp-controller="Cliente" asp-action="EliminarCliente" asp-route-id="@cliente.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este cliente?');" style="display:inline;">
+                                        @Html.AntiForgeryToken() 
                                         <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </div>
@@ -203,7 +206,38 @@
                     }
                     else
                     {
-                        <div class="v1-empty-state">No hay clientes registrados.</div>
+                        <div class="v1-empty-state">
+                            @if (!string.IsNullOrEmpty(Context.Request.Query["busquedaCliente"]))
+                            {
+                                <span>No se encontraron clientes que coincidan con "@Context.Request.Query["busquedaCliente"]".</span>
+                            }
+                            else
+                            {
+                                <span>No hay clientes registrados.</span>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="v1-card-footer pagination-container">
+                    @if (Model.PaginacionClientes != null && Model.PaginacionClientes.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.PaginacionClientes, page => Url.Action("PaginaPrincipal", "Veterinario",
+                        new { page, busquedaCliente = Context.Request.Query["busquedaCliente"], busquedaMascota = Context.Request.Query["busquedaMascota"] }),
+                                        new PagedListRenderOptions
+                                        {
+                                            LiElementClasses = new string[] { "page-item" },
+                                            PageClasses = new string[] { "page-link" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
+                                        })
+                                        }
+                    else if (Model.PaginacionClientes != null)
+                    {
+                        <p class="text-muted text-center">Mostrando @Model.PaginacionClientes.TotalItemCount @(Model.PaginacionClientes.TotalItemCount == 1 ? "cliente" : "clientes")</p>
                     }
                 </div>
             </div>

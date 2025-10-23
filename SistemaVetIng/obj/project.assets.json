@@ -3766,6 +3766,43 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "X.PagedList/10.5.9": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/X.PagedList.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/X.PagedList.dll": {}
+        }
+      },
+      "X.PagedList.EF/10.5.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.10",
+          "X.PagedList": "10.5.7"
+        },
+        "compile": {
+          "lib/net8.0/X.PagedList.EF.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/X.PagedList.EF.dll": {}
+        }
+      },
+      "X.PagedList.Mvc.Core/10.5.9": {
+        "type": "package",
+        "dependencies": {
+          "X.PagedList": "10.5.9"
+        },
+        "compile": {
+          "lib/net8.0/X.PagedList.Mvc.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/X.PagedList.Mvc.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -11019,6 +11056,56 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "X.PagedList/10.5.9": {
+      "sha512": "iwrGkIQn/puv4kNe23GVSPtpvKf5bl1aSbhIoWAhrl5LnvEmTwkGftlxSEFlgInVmMx1cb8Q7ivJPqxJtw7TAg==",
+      "type": "package",
+      "path": "x.pagedlist/10.5.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net6.0/X.PagedList.dll",
+        "lib/net8.0/X.PagedList.dll",
+        "lib/netstandard2.0/X.PagedList.dll",
+        "x-pagedlist.png",
+        "x.pagedlist.10.5.9.nupkg.sha512",
+        "x.pagedlist.nuspec"
+      ]
+    },
+    "X.PagedList.EF/10.5.7": {
+      "sha512": "hHM3tzvhNHxJhQNH2ZVCPUCtnGFecljxLW9xHX94H5r/S/MgDJ20sHlty/i1TI0l2FiS8A03/oMXZBDrrpNoGg==",
+      "type": "package",
+      "path": "x.pagedlist.ef/10.5.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net6.0/X.PagedList.EF.dll",
+        "lib/net7.0/X.PagedList.EF.dll",
+        "lib/net8.0/X.PagedList.EF.dll",
+        "x-pagedlist.png",
+        "x.pagedlist.ef.10.5.7.nupkg.sha512",
+        "x.pagedlist.ef.nuspec"
+      ]
+    },
+    "X.PagedList.Mvc.Core/10.5.9": {
+      "sha512": "LhZwvTyUtn+BYVVc4ERCfZeK+br76nPQy8GTXg4pL9jOazusAUNiGkKBRFL/owOgAdTRKPLtHj+pBfZup7weyg==",
+      "type": "package",
+      "path": "x.pagedlist.mvc.core/10.5.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net6.0/X.PagedList.Mvc.Core.dll",
+        "lib/net8.0/X.PagedList.Mvc.Core.dll",
+        "x-pagedlist.png",
+        "x.pagedlist.mvc.core.10.5.9.nupkg.sha512",
+        "x.pagedlist.mvc.core.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -11032,6 +11119,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.6",
       "NToastNotify >= 8.0.0",
+      "X.PagedList.EF >= 10.5.7",
+      "X.PagedList.Mvc.Core >= 10.5.9",
       "mercadopago-sdk >= 2.10.0"
     ]
   },
@@ -11124,6 +11213,14 @@
           "NToastNotify": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "X.PagedList.EF": {
+            "target": "Package",
+            "version": "[10.5.7, )"
+          },
+          "X.PagedList.Mvc.Core": {
+            "target": "Package",
+            "version": "[10.5.9, )"
           },
           "mercadopago-sdk": {
             "target": "Package",

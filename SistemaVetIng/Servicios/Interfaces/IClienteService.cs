@@ -1,5 +1,6 @@
 ﻿using SistemaVetIng.Models;
 using SistemaVetIng.ViewsModels;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Interfaces
 {
@@ -13,5 +14,6 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<IEnumerable<Cliente>> FiltrarPorBusqueda(string busqueda);
         Task<Cliente> ObtenerClientePorUserNameAsync(string userName);
         Task<Cliente> ObtenerPorIdUsuario(int id);
+        Task<IPagedList<Cliente>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
     }
 }

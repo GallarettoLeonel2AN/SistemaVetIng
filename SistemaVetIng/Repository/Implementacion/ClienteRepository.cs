@@ -2,6 +2,9 @@
 using SistemaVetIng.Data;
 using SistemaVetIng.Models;
 using SistemaVetIng.Repository.Interfaces;
+using X.PagedList;
+using X.PagedList.EF;
+
 
 namespace SistemaVetIng.Repository.Implementacion
 {
@@ -40,6 +43,24 @@ namespace SistemaVetIng.Repository.Implementacion
         {
             return await _context.Clientes.FirstOrDefaultAsync(c => c.UsuarioId == Usuario);
 
+        }
+
+        public async Task<IPagedList<Cliente>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
+        {
+            var query = _context.Clientes.Include(c => c.Usuario).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(busqueda))
+            {
+                query = query.Where(c => c.Nombre.Contains(busqueda) ||
+                                         c.Apellido.Contains(busqueda) ||
+                                         (c.Usuario != null && c.Usuario.Email.Contains(busqueda)));
+            }
+
+            // Ordenar antes de paginar
+            query = query.OrderBy(c => c.Apellido).ThenBy(c => c.Nombre);
+
+            // Aplicar paginacion
+            return await query.ToPagedListAsync(pageNumber, pageSize);
         }
     }
 }

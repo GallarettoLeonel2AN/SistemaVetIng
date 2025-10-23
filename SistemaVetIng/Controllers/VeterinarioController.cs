@@ -5,6 +5,7 @@ using NToastNotify;
 using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
+using X.PagedList;
 
 namespace SistemaVetIng.Controllers
 {
@@ -34,26 +35,31 @@ namespace SistemaVetIng.Controllers
         #region PAGINA PRINCIPAL
         [HttpGet]
         public async Task<IActionResult> PaginaPrincipal(string busquedaCliente = null,
-            string busquedaMascota = null)
+                                                      string busquedaMascota = null,
+                                                      int page = 1)
         {
+            var viewModel = new VeterinarioPaginaPrincipalViewModel(); 
+            int pageSizeClientes = 2; 
 
-            var viewModel = new VeterinarioPaginaPrincipalViewModel();
-            var clientes = string.IsNullOrWhiteSpace(busquedaCliente)
-            ? await _clienteService.ListarTodo()
-            : await _clienteService.FiltrarPorBusqueda(busquedaCliente);
-            viewModel.Clientes = clientes.Select(c => new ClienteViewModel
+            // CARGA DE CLIENTES
+            var clientesPaginados = await _clienteService.ListarPaginadoAsync(page, pageSizeClientes, busquedaCliente);
+
+            viewModel.Clientes = clientesPaginados.Select(c => new ClienteViewModel
             {
                 Id = c.Id,
                 NombreCompleto = $"{c.Nombre} {c.Apellido}",
                 Telefono = c.Telefono,
                 NombreUsuario = c.Usuario?.Email,
                 DNI = c.Dni
-            }).ToList();
+            }).ToList(); 
+          
+            viewModel.PaginacionClientes = clientesPaginados; 
 
-            // Cargar Mascotas en las tablas
+            // CARGA DE MASCOTAS
             var mascotas = string.IsNullOrWhiteSpace(busquedaMascota)
-            ? await _mascotaService.ListarTodo()
-            : await _mascotaService.FiltrarPorBusqueda(busquedaMascota);
+                ? await _mascotaService.ListarTodo()
+                : await _mascotaService.FiltrarPorBusqueda(busquedaMascota); 
+
             viewModel.Mascotas = mascotas.Select(m => new MascotaListViewModel
             {
                 Id = m.Id,
@@ -61,12 +67,12 @@ namespace SistemaVetIng.Controllers
                 Especie = m.Especie,
                 Sexo = m.Sexo,
                 Raza = m.Raza,
-                EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.Month < m.FechaNacimiento.Month || (DateTime.Today.Month == m.FechaNacimiento.Month && DateTime.Today.Day < m.FechaNacimiento.Day) ? 1 : 0),
+                EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.DayOfYear < m.FechaNacimiento.DayOfYear ? 1 : 0), 
                 NombreDueno = $"{m.Propietario?.Nombre} {m.Propietario?.Apellido}",
                 ClienteId = m.Propietario?.Id ?? 0
             }).ToList();
 
-            // Cargar Listado de Turnos para la fecha actual
+            // CARGA DE CITAS DE HOY
             var turnosDeHoy = await _turnoService.ObtenerTurnosPorFechaAsync(DateTime.Today);
 
             viewModel.CitasDeHoy = turnosDeHoy.Select(t => new TurnoViewModel

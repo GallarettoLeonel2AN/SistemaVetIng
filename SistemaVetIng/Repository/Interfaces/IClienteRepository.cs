@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using X.PagedList;
 
 namespace SistemaVetIng.Repository.Interfaces
 {
@@ -6,11 +7,10 @@ namespace SistemaVetIng.Repository.Interfaces
     {
         Task Agregar(Cliente entity);
 
-
         void Eliminar(Cliente entity);
 
-
         Task Guardar();
+
         Task<IEnumerable<Cliente>> ListarTodo();
 
         void Modificar(Cliente entity);
@@ -18,5 +18,7 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<Cliente> ObtenerPorId(int id);
 
         Task<Cliente> ObtenerPorIdUsuario(int UsuarioId);
+
+        Task<IPagedList<Cliente>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
     }
 }

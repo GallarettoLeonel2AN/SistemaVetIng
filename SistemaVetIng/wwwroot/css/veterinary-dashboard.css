@@ -707,3 +707,60 @@ v1-badge-orange {
     background-color: #0300ff;
     border-color: #0300ff;
 }
+
+/* Paginacion */
+
+.pagination-container {
+    padding: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0 3px;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: #4299e1; 
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+    .page-link:hover {
+        background-color: #ebf8ff;
+        color: #2b6cb0;
+    }
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #4299e1;
+    border-color: #4299e1;
+}
+
+.page-item.disabled .page-link {
+    color: #a0aec0;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #e2e8f0;
+}
+
+.text-muted {
+    color: #718096;
+}
+
+.text-center {
+    text-align: center;
+}
