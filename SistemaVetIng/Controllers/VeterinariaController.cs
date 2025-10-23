@@ -45,11 +45,13 @@ namespace SistemaVetIng.Controllers
             string busquedaCliente = null,
             string busquedaMascota = null,
             int page = 1,
-            int pageMascota = 1)
+            int pageMascota = 1,
+            int pageVet = 1)
         {
             var viewModel = new VeterinariaPaginaPrincipalViewModel();
             int pageSizeClientes = 3;
             int pageSizeMascotas = 3;
+            int pageSizeVeterinarios = 3;
 
 
             //  Cargar ConfiguracionHoraria
@@ -79,19 +81,20 @@ namespace SistemaVetIng.Controllers
             }
 
 
-            //  Cargar Veterinario
-            var veterinarios = string.IsNullOrWhiteSpace(busquedaVeterinario)
-                ? await _veterinarioService.ListarTodo()
-                : await _veterinarioService.FiltrarPorBusqueda(busquedaVeterinario);
-            viewModel.Veterinarios = veterinarios.Select(p => new VeterinarioViewModel
+            // Cargar Veterinarios en las tablas
+            var veterinariosPaginados = await _veterinarioService.ListarPaginadoAsync(pageVet, pageSizeVeterinarios, busquedaVeterinario);
+
+            viewModel.Veterinarios = veterinariosPaginados.Select(v => new VeterinarioViewModel
             {
-                Id = p.Id,
-                NombreCompleto = $"{p.Nombre} {p.Apellido}",
-                Telefono = p.Telefono,
-                NombreUsuario = p.Usuario?.Email,
-                Direccion = p.Direccion,
-                Matricula = p.Matricula,
-            }).ToList();
+                Id = v.Id,
+                NombreCompleto = $"{v.Nombre} {v.Apellido}",
+                Telefono = v.Telefono,
+                NombreUsuario = v.Usuario?.Email,
+                Direccion = v.Direccion,
+                Matricula = v.Matricula,
+            }).ToList(); 
+
+            viewModel.PaginacionVeterinarios = veterinariosPaginados; 
 
 
             // Cargar Clientes en las tablas

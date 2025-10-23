@@ -301,53 +301,96 @@
             </div>
         </section>
 
-        <section id="veterinarios" class="v1-section">
-            <h2 class="v1-section-title">Gestión de Veterinarios</h2>
-            <div class="v1-section-actions">
-                <a asp-controller="Veterinario" asp-action="RegistrarVeterinario" class="v1-btn v1-btn-primary">
-                    <i class="fa-solid fa-plus"></i> Registrar Nuevo
-                </a>
-                <form asp-controller="Veterinaria" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
-                    <div class="v1-input-group">
-                        <i class="fa-solid fa-search v1-input-icon"></i>
-                        <input type="text" id="busquedaVeterinario" name="busquedaVeterinario" placeholder="Buscar por nombre" class="v1-input" />
-                    </div>
-                </form>
+
+
+       <section id="veterinarios" class="v1-section">
+        <h2 class="v1-section-title">Gestión de Veterinarios</h2>
+        <div class="v1-section-actions">
+        <a asp-controller="Veterinario" asp-action="RegistrarVeterinario" class="v1-btn v1-btn-primary">
+            <i class="fa-solid fa-plus"></i> Registrar Nuevo
+        </a>
+        <form asp-controller="Veterinaria" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
+            <div class="v1-input-group">
+                <i class="fa-solid fa-search v1-input-icon"></i>
+                <input type="text" id="busquedaVeterinario" name="busquedaVeterinario" placeholder="Buscar por Nombre, Matrícula..." class="v1-input" value="@Context.Request.Query["busquedaVeterinario"]" />
+        
             </div>
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Lista de Veterinarios</h3>
-                </div>
-                <div class="v1-card-content v1-list-content">
-                    @if (Model.Veterinarios != null && Model.Veterinarios.Any())
-                    {
-                        @foreach (var veterinario in Model.Veterinarios)
-                        {
-                            <div class="v1-list-item">
-                                <div class="v1-list-info">
-                                    <div class="v1-avatar">@(veterinario.NombreCompleto.Split(' ').FirstOrDefault()?.FirstOrDefault())@(veterinario.NombreCompleto.Split(' ').LastOrDefault()?.FirstOrDefault())</div>
-                                    <div>
-                                        <p class="v1-list-name">Dr. @veterinario.NombreCompleto</p>
-                                        <p class="v1-list-subtext">Matrícula: @veterinario.Matricula</p>
-                                        <p class="v1-list-subtext-small">Telefono: @veterinario.Telefono</p>
-                                    </div>
-                                </div>
-                                <div class="v1-list-actions">
-                                    <a asp-controller="Veterinario" asp-action="ModificarVeterinario" asp-route-id="@veterinario.Id" class="v1-btn v1-btn-ghost"><i class="fa-solid fa-edit"></i></a>
-                                    <form asp-controller="Veterinario" asp-action="EliminarVeterinario" asp-route-id="@veterinario.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este veterinario?');" style="display:inline;">
-                                        <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger"><i class="fa-solid fa-trash"></i></button>
-                                    </form>
-                                </div>
+        </form>
+    </div>
+    <div class="v1-card">
+        <div class="v1-card-header">
+            <h3 class="v1-card-title">Lista de Veterinarios</h3>
+        </div>
+        <div class="v1-card-content v1-list-content">
+            @if (Model.Veterinarios != null && Model.Veterinarios.Any())
+            {
+                @foreach (var veterinario in Model.Veterinarios) 
+                {
+                    <div class="v1-list-item">
+                        <div class="v1-list-info">
+                            <div class="v1-avatar">@(veterinario.NombreCompleto.Split(' ').FirstOrDefault()?.FirstOrDefault())@(veterinario.NombreCompleto.Split(' ').LastOrDefault()?.FirstOrDefault())</div>
+                            <div>
+                                <p class="v1-list-name">Dr. @veterinario.NombreCompleto</p>
+                                <p class="v1-list-subtext">Matrícula: @veterinario.Matricula</p>
+                                <p class="v1-list-subtext-small">Teléfono: @veterinario.Telefono</p>
+                                <p class="v1-list-subtext-small">Usuario: @veterinario.NombreUsuario</p>
                             </div>
-                        }
+                        </div>
+                        <div class="v1-list-actions">
+                            <a asp-controller="Veterinario" asp-action="ModificarVeterinario" asp-route-id="@veterinario.Id" class="v1-btn v1-btn-ghost" title="Editar Veterinario"><i class="fa-solid fa-edit"></i></a>
+                            <form asp-controller="Veterinario" asp-action="EliminarVeterinario" asp-route-id="@veterinario.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este veterinario?');" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger" title="Eliminar Veterinario"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="v1-empty-state">
+                    @if (!string.IsNullOrEmpty(Context.Request.Query["busquedaVeterinario"]))
+                    {
+                        <span>No se encontraron veterinarios que coincidan con "@Context.Request.Query["busquedaVeterinario"]".</span>
                     }
                     else
                     {
-                        <div class="v1-empty-state">No hay veterinarios registrados.</div>
+                        <span>No hay veterinarios registrados.</span>
                     }
                 </div>
-            </div>
-        </section>
+            }
+        </div>
+
+        <div class="v1-card-footer pagination-container"> 
+            @if (Model.PaginacionVeterinarios != null && Model.PaginacionVeterinarios.PageCount > 1) 
+            {
+                @Html.PagedListPager(Model.PaginacionVeterinarios, pageVet => Url.Action("PaginaPrincipal", "Veterinaria",
+                    new { 
+                        page = Context.Request.Query["page"], 
+                        busquedaCliente = Context.Request.Query["busquedaCliente"],
+                        pageMascota = Context.Request.Query["pageMascota"], 
+                        busquedaMascota = Context.Request.Query["busquedaMascota"],
+                        pageVet,
+                        busquedaVeterinario = Context.Request.Query["busquedaVeterinario"] 
+                    }),
+                    new PagedListRenderOptions
+                    {
+                            LiElementClasses = new string[] { "page-item" },
+                                            PageClasses = new string[] { "page-link" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
+                    })
+            }
+             else if(Model.PaginacionVeterinarios != null)
+            {
+                 <p class="text-muted text-center">Mostrando @Model.PaginacionVeterinarios.TotalItemCount @(Model.PaginacionVeterinarios.TotalItemCount == 1 ? "veterinario" : "veterinarios")</p>
+            }
+        </div>
+    </div>
+</section>
 
         <section id="clientes" class="v1-section">
             <h2 class="v1-section-title">Gestión de Clientes</h2>

@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SistemaVetIng.Models;
 using SistemaVetIng.Models.Indentity;
+using SistemaVetIng.Repository.Implementacion;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Implementacion
 {
     public class VeterinarioService : IVeterinarioService
     {
-        private readonly IGeneralRepository<Veterinario> _veterinarioRepository;
+        private readonly IVeterinarioRepository _veterinarioRepository;
         private readonly UserManager<Usuario> _userManager;
 
-        public VeterinarioService(IGeneralRepository<Veterinario> veterinarioRepository, UserManager<Usuario> userManager)
+        public VeterinarioService(IVeterinarioRepository veterinarioRepository, UserManager<Usuario> userManager)
         {
             _veterinarioRepository = veterinarioRepository;
             _userManager = userManager;
@@ -119,6 +121,11 @@ namespace SistemaVetIng.Servicios.Implementacion
             }
 
             return veterinarios;
+        }
+
+        public async Task<IPagedList<Veterinario>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
+        {
+            return await _veterinarioRepository.ListarPaginadoAsync(pageNumber, pageSize, busqueda);
         }
     }
 }
