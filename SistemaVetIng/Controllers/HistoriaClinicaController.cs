@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
+using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
+using SistemaVetIng.ViewsModels;
 
 
 namespace SistemaVetIng.Controllers
@@ -11,20 +13,16 @@ namespace SistemaVetIng.Controllers
     {
         private readonly IHistoriaClinicaService _historiaClinicaService;
         private readonly IToastNotification _toastNotification;
-        public HistoriaClinicaController(IHistoriaClinicaService historiaClinicaService, IToastNotification toastNotification)
+        private readonly IClienteService _clienteService;
+        public HistoriaClinicaController(IHistoriaClinicaService historiaClinicaService,
+            IToastNotification toastNotification,
+            IClienteService clienteService)
         {
             _historiaClinicaService = historiaClinicaService;
             _toastNotification = toastNotification;
+            _clienteService = clienteService;
         }
 
-        #region LISTADO CLIENTES
-        public async Task<IActionResult> ListaClientesParaSeguimiento(string searchString)
-        {
-            var clientesList = await _historiaClinicaService.GetClientesParaSeguimiento(searchString);
-            ViewBag.SearchString = searchString;
-            return View(clientesList);
-        }
-        #endregion
 
         #region LISTADO MASCOTAS DEL CLIENTE
         public async Task<IActionResult> MascotasCliente(int clienteId)
@@ -34,7 +32,7 @@ namespace SistemaVetIng.Controllers
             if (cliente == null)
             {
                 _toastNotification.AddErrorToastMessage("El cliente no existe!");
-                return RedirectToAction(nameof(ListaClientesParaSeguimiento));
+                return RedirectToAction(nameof(BuscarClienteParaSeguimiento));
             }
 
             return View(cliente);
@@ -48,7 +46,7 @@ namespace SistemaVetIng.Controllers
 
             if (mascota == null)
             {
-                return RedirectToAction(nameof(ListaClientesParaSeguimiento));
+                return RedirectToAction(nameof(BuscarClienteParaSeguimiento));
             }
             if (mascota.HistoriaClinica == null)
             {
@@ -56,6 +54,24 @@ namespace SistemaVetIng.Controllers
             }
 
             return View(mascota);
+        }
+        #endregion
+
+        #region BUSCAR CLIENTE PARA SEGUIMIENTOS
+        [HttpGet]
+        public async Task<IActionResult> BuscarClienteParaSeguimiento(string busquedaCliente = null, int page = 1)
+        {
+            int pageSize = 10;
+
+            var clientesPaginados = await _clienteService.ListarPaginadoAsync(page, pageSize, busquedaCliente);
+
+            var viewModel = new ListadoClientesViewModel
+            {
+                ClientesPaginados = clientesPaginados,
+                BusquedaActual = busquedaCliente
+            };
+
+            return View(viewModel);
         }
         #endregion
     }

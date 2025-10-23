@@ -1,8 +1,10 @@
-﻿@model List<SistemaVetIng.Models.Cliente>
+﻿@model SistemaVetIng.ViewsModels.ListadoClientesViewModel
+@using X.PagedList.Mvc.Core; 
+@using X.PagedList; 
 
 @{
     ViewData["Title"] = "Buscar Cliente para Seguimiento Clínico";
-    Layout = null;
+    Layout = null; 
 
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
@@ -18,6 +20,7 @@
     <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <header class="main-header">
         <a href="#" class="logo">
@@ -33,7 +36,17 @@
         <section class="v1-section">
             <h1 class="v1-section-title">Buscar Cliente para Seguimiento Clínico</h1>
 
-            @if (Model != null && Model.Any())
+            <div class="search-container">
+                <form asp-action="BuscarClienteParaSeguimiento" method="get" class="v1-search-form">
+                    <div class="v1-input-group">
+                        <i class="fa-solid fa-search v1-input-icon"></i>
+                        <input type="text" name="busquedaCliente" placeholder="Buscar por Nombre, Apellido, DNI..." class="v1-input" value="@Model.BusquedaActual" />
+                    </div>
+                </form>
+            </div>
+
+
+            @if (Model.ClientesPaginados != null && Model.ClientesPaginados.Any())
             {
                 <div class="table-container">
                     <table class="table responsive-table">
@@ -47,7 +60,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var cliente in Model)
+
+                            @foreach (var cliente in Model.ClientesPaginados)
                             {
                                 <tr>
                                     <td data-label="Nombre:">@cliente.Nombre</td>
@@ -55,7 +69,8 @@
                                     <td data-label="DNI:">@cliente.Dni</td>
                                     <td data-label="Teléfono:">@cliente.Telefono</td>
                                     <td data-label="Acción:" class="text-center">
-                                        <a asp-action="MascotasCliente" asp-route-clienteId="@cliente.Id" class="btnModificar">
+
+                                        <a asp-controller="HistoriaClinica" asp-action="MascotasCliente" asp-route-clienteId="@cliente.Id" class="btnModificar">
                                             <i class="fas fa-paw"></i> Ver Mascotas
                                         </a>
                                     </td>
@@ -64,20 +79,49 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="v1-card-footer pagination-container">
+                    @if (Model.ClientesPaginados != null && Model.ClientesPaginados.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.ClientesPaginados, page => Url.Action("BuscarClienteParaSeguimiento",
+                        new { page, busquedaCliente = Model.BusquedaActual }),
+                                new PagedListRenderOptions
+                                {
+                                    LiElementClasses = new string[] { "page-item" },
+                                    PageClasses = new string[] { "page-link" },
+                                    DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                    DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                    ContainerDivClasses = new[] { "pagination justify-content-center" }
+                                })
+                                }
+                    else if (Model.ClientesPaginados != null)
+                    {
+                        <p class="text-muted text-center">Mostrando @Model.ClientesPaginados.TotalItemCount @(Model.ClientesPaginados.TotalItemCount == 1 ? "cliente" : "clientes")</p>
+                    }
+                </div>
+
             }
             else
             {
-                <div class="custom-alert alert-info">No se encontraron clientes.</div>
+                <div class="custom-alert alert-info">
+                    @if (!string.IsNullOrEmpty(Model.BusquedaActual))
+                    {
+                        <span>No se encontraron clientes que coincidan con "@Model.BusquedaActual".</span>
+                    }
+                    else
+                    {
+                        <span>No hay clientes registrados.</span>
+                    }
+                </div>
             }
         </section>
     </main>
 
     <footer class="main-footer">
         <div class="footer-col footer-info">
-            <div class="footer-logo-container">
-                <i class="fa-solid fa-paw footer-logo-icon"></i>
-                <h3 class="footer-brand">VetIng Software</h3>
-            </div>
+            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
             <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
             <div class="footer-social-icons">
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>

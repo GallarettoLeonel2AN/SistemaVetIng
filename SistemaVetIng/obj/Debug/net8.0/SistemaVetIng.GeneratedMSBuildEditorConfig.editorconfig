@@ -76,12 +76,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/HistoriaClinica/DetalleHistoriaClinica.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWFDbGluaWNhXERldGFsbGVIaXN0b3JpYUNsaW5pY2EuY3NodG1s
+[C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/HistoriaClinica/BuscarClienteParaSeguimiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWFDbGluaWNhXEJ1c2NhckNsaWVudGVQYXJhU2VndWltaWVudG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/HistoriaClinica/ListaClientesParaSeguimiento.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWFDbGluaWNhXExpc3RhQ2xpZW50ZXNQYXJhU2VndWltaWVudG8uY3NodG1s
+[C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/HistoriaClinica/DetalleHistoriaClinica.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWFDbGluaWNhXERldGFsbGVIaXN0b3JpYUNsaW5pY2EuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/HistoriaClinica/MascotasCliente.cshtml]
