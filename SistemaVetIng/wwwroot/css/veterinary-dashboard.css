@@ -731,29 +731,28 @@ v1-badge-orange {
     display: block;
     padding: 0.5rem 0.75rem;
     color: #4299e1; 
-    background-color: #fff;
-    border: 1px solid #e2e8f0;
+    background-color: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     text-decoration: none;
     border-radius: 0.25rem;
     transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
     .page-link:hover {
-        background-color: #ebf8ff;
-        color: #2b6cb0;
+        background-color: #4454ff;
+        color: white;
     }
 
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #4299e1;
-    border-color: #4299e1;
+    background-color: #4454ff;
 }
 
 .page-item.disabled .page-link {
     color: #a0aec0;
     pointer-events: none;
-    background-color: #fff;
+    background-color: #444444;
     border-color: #e2e8f0;
 }
 

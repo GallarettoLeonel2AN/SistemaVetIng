@@ -12,7 +12,7 @@ using SistemaVetIng.Data;
 namespace SistemaVetIng.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251023155553_Primera")]
+    [Migration("20251023195015_Primera")]
     partial class Primera
     {
         /// <inheritdoc />

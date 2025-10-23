@@ -43,9 +43,11 @@ namespace SistemaVetIng.Controllers
         public async Task<IActionResult> PaginaPrincipal(
             string busquedaVeterinario = null,
             string busquedaCliente = null,
-            string busquedaMascota = null)
+            string busquedaMascota = null,
+            int page = 1)
         {
             var viewModel = new VeterinariaPaginaPrincipalViewModel();
+            int pageSizeClientes = 2;
 
             //  Cargar ConfiguracionHoraria
 
@@ -88,11 +90,12 @@ namespace SistemaVetIng.Controllers
                 Matricula = p.Matricula,
             }).ToList();
 
+
             // Cargar Clientes en las tablas
-            var clientes = string.IsNullOrWhiteSpace(busquedaCliente)
-                ? await _clienteService.ListarTodo()
-                : await _clienteService.FiltrarPorBusqueda(busquedaCliente);
-            viewModel.Clientes = clientes.Select(c => new ClienteViewModel
+
+            var clientesPaginados = await _clienteService.ListarPaginadoAsync(page, pageSizeClientes, busquedaCliente);
+
+            viewModel.Clientes = clientesPaginados.Select(c => new ClienteViewModel
             {
                 Id = c.Id,
                 NombreCompleto = $"{c.Nombre} {c.Apellido}",
@@ -100,6 +103,9 @@ namespace SistemaVetIng.Controllers
                 NombreUsuario = c.Usuario?.Email,
                 DNI = c.Dni
             }).ToList();
+
+            viewModel.PaginacionClientes = clientesPaginados;
+
 
             // Cargar Mascotas en las tablas
             var mascotas = string.IsNullOrWhiteSpace(busquedaMascota)

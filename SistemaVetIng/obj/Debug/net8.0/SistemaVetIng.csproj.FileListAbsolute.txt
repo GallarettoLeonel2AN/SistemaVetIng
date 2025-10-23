@@ -2410,3 +2410,7 @@ C:\Users\ulipv\Source\Repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\Sistema
 C:\Users\ulipv\Source\Repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\SistemaVetIng.genruntimeconfig.cache
 C:\Users\ulipv\Source\Repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\ref\SistemaVetIng.dll
 C:\Users\ulipv\Source\Repos\SistemaVetIng\SistemaVetIng\bin\Debug\net8.0\X.PagedList.EF.dll
+C:\Users\Ulises\Source\Repos\SistemaVetIng\SistemaVetIng\bin\Debug\net8.0\MercadoPago.dll
+C:\Users\Ulises\Source\Repos\SistemaVetIng\SistemaVetIng\bin\Debug\net8.0\X.PagedList.dll
+C:\Users\Ulises\Source\Repos\SistemaVetIng\SistemaVetIng\bin\Debug\net8.0\X.PagedList.EF.dll
+C:\Users\Ulises\Source\Repos\SistemaVetIng\SistemaVetIng\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll

@@ -1,10 +1,12 @@
 ﻿using SistemaVetIng.Models;
+using X.PagedList;
 
 namespace SistemaVetIng.ViewsModels
 {
     public class VeterinariaPaginaPrincipalViewModel
     {
         public List<VeterinarioViewModel> Veterinarios { get; set; }
+        public IPagedList PaginacionClientes { get; set; }
         public ConfiguracionVeterinariaViewModel ConfiguracionTurnos { get; set; }
         public List<ClienteViewModel> Clientes { get; set; } 
         public List<MascotaListViewModel> Mascotas { get; set; }

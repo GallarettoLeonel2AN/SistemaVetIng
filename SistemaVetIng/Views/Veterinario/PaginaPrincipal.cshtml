@@ -223,7 +223,7 @@
                     @if (Model.PaginacionClientes != null && Model.PaginacionClientes.PageCount > 1)
                     {
                         @Html.PagedListPager(Model.PaginacionClientes, page => Url.Action("PaginaPrincipal", "Veterinario",
-                        new { page, busquedaCliente = Context.Request.Query["busquedaCliente"], busquedaMascota = Context.Request.Query["busquedaMascota"] }),
+                        new { page, busquedaCliente = Context.Request.Query["busquedaCliente"]}),
                                         new PagedListRenderOptions
                                         {
                                             LiElementClasses = new string[] { "page-item" },

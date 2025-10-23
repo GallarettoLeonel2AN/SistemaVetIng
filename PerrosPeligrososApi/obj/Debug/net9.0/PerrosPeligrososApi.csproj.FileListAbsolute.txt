@@ -4891,3 +4891,4 @@ C:\Users\ulipv\Source\Repos\SistemaVetIng\PerrosPeligrososApi\obj\Debug\net9.0\r
 C:\Users\ulipv\Source\Repos\SistemaVetIng\PerrosPeligrososApi\obj\Debug\net9.0\PerrosPeligrososApi.pdb
 C:\Users\ulipv\Source\Repos\SistemaVetIng\PerrosPeligrososApi\obj\Debug\net9.0\PerrosPeligrososApi.genruntimeconfig.cache
 C:\Users\ulipv\Source\Repos\SistemaVetIng\PerrosPeligrososApi\obj\Debug\net9.0\ref\PerrosPeligrososApi.dll
+C:\Users\Ulises\Source\Repos\SistemaVetIng\PerrosPeligrososApi\bin\Debug\net9.0\MercadoPago.dll
