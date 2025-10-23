@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using X.PagedList;
 
 namespace SistemaVetIng.Repository.Interfaces
 {
@@ -12,5 +13,6 @@ namespace SistemaVetIng.Repository.Interfaces
         void Eliminar(Mascota entity);
         Task<Mascota> ObtenerMascotaChipPorId(int id);
         Task<IEnumerable<Mascota>> ListarMascotasPorClienteId(int clienteId);
+        Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
     }
 }

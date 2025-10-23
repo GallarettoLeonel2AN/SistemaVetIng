@@ -6,6 +6,7 @@ using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 using System.Text;
 using System.Text.Json;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Implementacion
 {
@@ -382,6 +383,12 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _mascotaRepository.ListarMascotasPorClienteId(clienteId);
         }
+
+        public async Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
+        {
+            return await _mascotaRepository.ListarPaginadoAsync(pageNumber, pageSize, busqueda);
+        }
+
 
 
         #region API PERROSPELIGROSOS

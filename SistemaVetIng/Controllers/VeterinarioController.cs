@@ -34,12 +34,15 @@ namespace SistemaVetIng.Controllers
 
         #region PAGINA PRINCIPAL
         [HttpGet]
-        public async Task<IActionResult> PaginaPrincipal(string busquedaCliente = null,
-                                                      string busquedaMascota = null,
-                                                      int page = 1)
+        public async Task<IActionResult> PaginaPrincipal(
+            string busquedaCliente = null,
+            string busquedaMascota = null,
+            int page = 1,
+            int pageMascota = 1)
         {
             var viewModel = new VeterinarioPaginaPrincipalViewModel(); 
-            int pageSizeClientes = 2; 
+            int pageSizeClientes = 3; 
+            int pageSizeMascotas = 3; 
 
             // CARGA DE CLIENTES
             var clientesPaginados = await _clienteService.ListarPaginadoAsync(page, pageSizeClientes, busquedaCliente);
@@ -53,24 +56,27 @@ namespace SistemaVetIng.Controllers
                 DNI = c.Dni
             }).ToList(); 
           
-            viewModel.PaginacionClientes = clientesPaginados; 
+            viewModel.PaginacionClientes = clientesPaginados;
 
-            // CARGA DE MASCOTAS
-            var mascotas = string.IsNullOrWhiteSpace(busquedaMascota)
-                ? await _mascotaService.ListarTodo()
-                : await _mascotaService.FiltrarPorBusqueda(busquedaMascota); 
+            // CARGA DE MASCOTAS 
+            
+            var mascotasPaginadas = await _mascotaService.ListarPaginadoAsync(pageMascota, pageSizeMascotas, busquedaMascota);
 
-            viewModel.Mascotas = mascotas.Select(m => new MascotaListViewModel
+            viewModel.Mascotas = mascotasPaginadas.Select(m => new MascotaListViewModel
             {
                 Id = m.Id,
                 NombreMascota = m.Nombre,
                 Especie = m.Especie,
                 Sexo = m.Sexo,
                 Raza = m.Raza,
-                EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.DayOfYear < m.FechaNacimiento.DayOfYear ? 1 : 0), 
+                EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.DayOfYear < m.FechaNacimiento.DayOfYear ? 1 : 0),
                 NombreDueno = $"{m.Propietario?.Nombre} {m.Propietario?.Apellido}",
                 ClienteId = m.Propietario?.Id ?? 0
-            }).ToList();
+            }).ToList(); 
+
+
+            viewModel.PaginacionMascotas = mascotasPaginadas; 
+
 
             // CARGA DE CITAS DE HOY
             var turnosDeHoy = await _turnoService.ObtenerTurnosPorFechaAsync(DateTime.Today);

@@ -1,5 +1,6 @@
 ﻿using SistemaVetIng.Models;
 using SistemaVetIng.ViewsModels;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Interfaces
 {
@@ -14,5 +15,6 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<IEnumerable<Mascota>> ListarMascotasPorClienteId(int clienteId);
         Task<IEnumerable<MascotaListViewModel>> ObtenerMascotasPorClienteUserNameAsync(string userName);
         Task<MascotaDetalleViewModel> ObtenerDetalleConHistorial(int mascotaId);
+        Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
     }
 }

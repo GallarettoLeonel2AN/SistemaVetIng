@@ -44,10 +44,13 @@ namespace SistemaVetIng.Controllers
             string busquedaVeterinario = null,
             string busquedaCliente = null,
             string busquedaMascota = null,
-            int page = 1)
+            int page = 1,
+            int pageMascota = 1)
         {
             var viewModel = new VeterinariaPaginaPrincipalViewModel();
-            int pageSizeClientes = 2;
+            int pageSizeClientes = 3;
+            int pageSizeMascotas = 3;
+
 
             //  Cargar ConfiguracionHoraria
 
@@ -108,20 +111,23 @@ namespace SistemaVetIng.Controllers
 
 
             // Cargar Mascotas en las tablas
-            var mascotas = string.IsNullOrWhiteSpace(busquedaMascota)
-                ? await _mascotaService.ListarTodo()
-                : await _mascotaService.FiltrarPorBusqueda(busquedaMascota);
-            viewModel.Mascotas = mascotas.Select(m => new MascotaListViewModel
+
+            var mascotasPaginadas = await _mascotaService.ListarPaginadoAsync(pageMascota, pageSizeMascotas, busquedaMascota);
+
+            viewModel.Mascotas = mascotasPaginadas.Select(m => new MascotaListViewModel
             {
                 Id = m.Id,
                 NombreMascota = m.Nombre,
                 Especie = m.Especie,
                 Sexo = m.Sexo,
                 Raza = m.Raza,
-                EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.Month < m.FechaNacimiento.Month || (DateTime.Today.Month == m.FechaNacimiento.Month && DateTime.Today.Day < m.FechaNacimiento.Day) ? 1 : 0),
+                EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.DayOfYear < m.FechaNacimiento.DayOfYear ? 1 : 0),
                 NombreDueno = $"{m.Propietario?.Nombre} {m.Propietario?.Apellido}",
                 ClienteId = m.Propietario?.Id ?? 0
             }).ToList();
+
+
+            viewModel.PaginacionMascotas = mascotasPaginadas;
 
 
             // Cargar Listado de Turnos para la fecha actual
@@ -143,7 +149,7 @@ namespace SistemaVetIng.Controllers
             // Hardcoded de datos para Reportes Analíticos 
             viewModel.CantidadPerrosPeligrosos = 5;
 
-            var razaMayorDemanda = mascotas
+            var razaMayorDemanda = mascotasPaginadas
                  .GroupBy(m => m.Raza)
                  .OrderByDescending(g => g.Count())
                  .Select(g => g.Key)

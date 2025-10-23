@@ -243,55 +243,105 @@
             </div>
         </section>
 
-        <section id="mascotas" class="v1-section">
-            <h2 class="v1-section-title">Gestión de Mascotas</h2>
-            <div class="v1-section-actions">
-                <a asp-controller="Mascota" asp-action="RegistrarMascota" class="v1-btn v1-btn-primary">
-                    <i class="fa-solid fa-plus"></i> Registrar Nueva
-                </a>
-                <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
-                    <div class="v1-input-group">
-                        <i class="fa-solid fa-search v1-input-icon"></i>
-                        <input type="text" id="busquedaMascota" name="busquedaMascota" placeholder="Buscar por DNI del dueño" class="v1-input" />
-                    </div>
-                </form>
+
+
+     <section id="mascotas" class="v1-section">
+    <h2 class="v1-section-title">Gestión de Mascotas</h2>
+    <div class="v1-section-actions">
+         <a asp-controller="Mascota" asp-action="RegistrarMascota" class="v1-btn v1-btn-primary">
+            <i class="fa-solid fa-plus"></i> Registrar Nueva
+        </a> 
+        
+        <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
+            <div class="v1-input-group">
+                <i class="fa-solid fa-search v1-input-icon"></i>
+                <input type="text" id="busquedaMascota" name="busquedaMascota" placeholder="Buscar por Nombre, Raza, Dueño..." class="v1-input" value="@Context.Request.Query["busquedaMascota"]" />
             </div>
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Registro de Mascotas</h3>
-                </div>
-                <div class="v1-card-content v1-list-content">
-                    @if (Model.Mascotas != null && Model.Mascotas.Any())
-                    {
-                        @foreach (var mascota in Model.Mascotas)
-                        {
-                            <div class="v1-list-item">
-                                <div class="v1-list-info">
-                                    <div class="v1-pet-icon-bg">
-                                        <i class="fa-solid fa-heart v1-pet-icon"></i>
-                                    </div>
-                                    <div>
-                                        <p class="v1-list-name">@mascota.NombreMascota</p>
-                                        <p class="v1-list-subtext">@mascota.Especie &bull; @mascota.Raza</p>
-                                        <p class="v1-list-subtext-small">Propietario: @mascota.NombreDueno</p>
-                                    </div>
-                                </div>
-                                <div class="v1-list-actions">
-                                    <a asp-controller="Mascota" asp-action="ModificarMascota" asp-route-id="@mascota.Id" class="v1-btn v1-btn-ghost"><i class="fa-solid fa-edit"></i></a>
-                                    <form asp-controller="Mascota" asp-action="EliminarMascota" asp-route-id="@mascota.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a esta mascota?');" style="display:inline;">
-                                        <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger"><i class="fa-solid fa-trash"></i></button>
-                                    </form>
-                                </div>
+        </form>
+    </div>
+    <div class="v1-card">
+        <div class="v1-card-header">
+            <h3 class="v1-card-title">Registro de Mascotas</h3>
+        </div>
+        <div class="v1-card-content v1-list-content">
+            @if (Model.Mascotas != null && Model.Mascotas.Any())
+            {
+                @foreach (var mascota in Model.Mascotas) 
+                {
+                    <div class="v1-list-item">
+                        <div class="v1-list-info">
+                            <div class="v1-pet-icon-bg"> 
+                                @if (mascota.Especie.ToLower().Contains("canino") || mascota.Especie.ToLower().Contains("perro")) {
+                                    <i class="fa-solid fa-dog v1-pet-icon"></i>
+                                } else if (mascota.Especie.ToLower().Contains("felino") || mascota.Especie.ToLower().Contains("gato")) {
+                                    <i class="fa-solid fa-cat v1-pet-icon"></i>
+                                } else {
+                                    <i class="fa-solid fa-paw v1-pet-icon"></i> 
+                                }
                             </div>
-                        }
+                            <div>
+                                <p class="v1-list-name">@mascota.NombreMascota</p>
+                                <p class="v1-list-subtext">@mascota.Especie &bull; @mascota.Raza (@mascota.Sexo)</p>
+                                <p class="v1-list-subtext-small">Edad: @mascota.EdadAnios @(mascota.EdadAnios == 1 ? "año" : "años")</p>
+                                <p class="v1-list-subtext-small">Propietario: @mascota.NombreDueno</p>
+                            </div>
+                        </div>
+                        <div class="v1-list-actions">
+                             <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@mascota.Id" class="v1-btn v1-btn-ghost" title="Ver Historia Clínica">
+                                 <i class="fa-solid fa-notes-medical"></i>
+                             </a>
+                            <a asp-controller="Mascota" asp-action="ModificarMascota" asp-route-id="@mascota.Id" class="v1-btn v1-btn-ghost" title="Editar Mascota"><i class="fa-solid fa-edit"></i></a>
+                            <form asp-controller="Mascota" asp-action="EliminarMascota" asp-route-id="@mascota.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a esta mascota?');" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger" title="Eliminar Mascota"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="v1-empty-state">
+                    @if (!string.IsNullOrEmpty(Context.Request.Query["busquedaMascota"]))
+                    {
+                        <span>No se encontraron mascotas que coincidan con "@Context.Request.Query["busquedaMascota"]".</span>
                     }
                     else
                     {
-                        <div class="v1-empty-state">No hay mascotas registradas.</div>
+                        <span>No hay mascotas registradas.</span>
                     }
                 </div>
-            </div>
-        </section>
+            }
+        </div>
+
+        <div class="v1-card-footer pagination-container"> 
+            @if (Model.PaginacionMascotas != null && Model.PaginacionMascotas.PageCount > 1) 
+            {
+                @Html.PagedListPager(Model.PaginacionMascotas, pageMascota => Url.Action("PaginaPrincipal", "Veterinario",
+                    new { 
+                        page = Context.Request.Query["page"], 
+                        busquedaCliente = Context.Request.Query["busquedaCliente"],
+                        pageMascota,
+                        busquedaMascota = Context.Request.Query["busquedaMascota"] 
+                    }),
+                    new PagedListRenderOptions
+                    {
+                          LiElementClasses = new string[] { "page-item" },
+                                            PageClasses = new string[] { "page-link" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
+                    })
+            }
+            else if(Model.PaginacionMascotas != null)
+            {
+                 <p class="text-muted text-center">Mostrando @Model.PaginacionMascotas.TotalItemCount @(Model.PaginacionMascotas.TotalItemCount == 1 ? "mascota" : "mascotas")</p>
+            }
+        </div>
+    </div>
+</section>
 
         <section id="seguimiento-clinico" class="v1-section">
             <h2 class="v1-section-title">Seguimiento Clínico</h2>

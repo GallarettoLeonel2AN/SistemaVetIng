@@ -7,6 +7,7 @@ namespace SistemaVetIng.ViewsModels
     {
         public List<VeterinarioViewModel> Veterinarios { get; set; }
         public IPagedList PaginacionClientes { get; set; }
+        public IPagedList PaginacionMascotas { get; set; }
         public ConfiguracionVeterinariaViewModel ConfiguracionTurnos { get; set; }
         public List<ClienteViewModel> Clientes { get; set; } 
         public List<MascotaListViewModel> Mascotas { get; set; }
