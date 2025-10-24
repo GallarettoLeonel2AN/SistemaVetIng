@@ -1,4 +1,5 @@
-﻿@model SistemaVetIng.ViewsModels.ClientePaginaPrincipalViewModel
+﻿@using X.PagedList.Mvc.Core
+@model SistemaVetIng.ViewsModels.ClientePaginaPrincipalViewModel
 @{
     ViewData["Title"] = "VetIng - Cliente";
     Layout = null;
@@ -91,80 +92,115 @@
         </section>
 
        
-        <section id="turnos" class="v1-section">
-            <h2 class="v1-section-title">Mis Turnos</h2>
-            <div class="v1-section-actions">
-                <a asp-controller="Turno" asp-action="ReservarTurno" class="v1-btn v1-btn-primary">
-                    <i class="fa-solid fa-plus"></i> Reservar Turno
-                </a>
-            </div>
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Turnos</h3>
-                </div>
-                <div class="v1-card-content v1-appointment-list-content">
-                    @if (Model.Turnos != null && Model.Turnos.Any())
-                    {
-                        @foreach (var turno in Model.Turnos)
-                        {
-                            <div class="v1-appointment-item @(turno.Estado != "Pendiente" ? "appointment-inactive" : "")">
-                                <div class="v1-appointment-info">
-                                    <i class="fa-regular fa-clock v1-appointment-icon"></i>
-                                    <div>
-                                        <p class="v1-appointment-time">@turno.Fecha.ToString("dd/MM/yyyy")</p>
-                                        <p class="v1-appointment-time">@turno.Horario.ToString(@"hh\:mm") hs</p>
+       <section id="turnos" class="v1-section">
+    <h2 class="v1-section-title">Mis Turnos</h2>
 
-                                        @if (turno.PrimeraCita)
-                                        {
-                                            <p class="v1-appointment-pet">Primera Cita</p>
-                                        }
-                                        else
-                                        {
-                                            <p class="v1-appointment-pet">Mascota: @(turno.Mascota?.Nombre ?? "Mascota Eliminada")</p>
-                                        }
-                                    </div>    
-                                </div>
-                                <div class="v1-appointment-badges">
+    <div class="v1-section-actions"> 
+        <a asp-controller="Turno" asp-action="ReservarTurno" class="v1-btn v1-btn-primary">
+            <i class="fa-solid fa-plus"></i> Reservar Turno
+        </a>
 
-                                    @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                                    {
-                                        <span class="v1-badge v1-badge-secondary">
-                                            Motivo: @turno.Motivo
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="v1-badge v1-badge-secondary">
-                                            No especificó Motivo
-                                        </span>
-                                    }
-                                    <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" || turno.Estado == "No Asistió" ? "v1-badge-red" : "v1-badge-gray"))) ">
-                                        @turno.Estado
-                                    </span>
-                                    @if (turno.Estado == "Pendiente")
-                                    {
-                                        <form asp-controller="Turno" asp-action="CancelarTurnoCliente" method="post" onsubmit="return confirm('¿Estás seguro de que deseas cancelar este turno?');">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="turnoId" value="@turno.Id" />
-                                            <button type="submit" class="v1-btn-cancelar">
-                                                <i class="fas fa-times-circle"></i> Cancelar
-                                            </button>
-                                        </form>
-                                    }
+        <form asp-action="PaginaPrincipal" method="get" class="v1-search-form" style="margin-left: auto;"> 
+            <div class="v1-input-group">
+                <i class="fa-solid fa-search v1-input-icon"></i>
+                <input type="text" name="busquedaTurno" placeholder="Buscar por Mascota" class="v1-input" value="@Model.BusquedaTurnoActual" />
               
-                                </div>
-                               
+            </div>
+        </form>
+    </div>
+
+    <div class="v1-card">
+        <div class="v1-card-header">
+            <h3 class="v1-card-title">Historial de Turnos</h3>
+        </div>
+        <div class="v1-card-content v1-appointment-list-content">
+            @if (Model.Turnos != null && Model.Turnos.Any())
+            {
+                @foreach (var turno in Model.Turnos) 
+                {
+                    <div class="v1-appointment-item @(turno.Estado != "Pendiente" ? "appointment-inactive" : "")">
+                        <div class="v1-appointment-info">
+                            <i class="fa-regular fa-clock v1-appointment-icon"></i>
+                            <div>
+                                <p class="v1-appointment-time">@turno.Fecha.ToString("dd/MM/yyyy")</p>
+                                <p class="v1-appointment-time">@turno.Horario.ToString(@"hh\:mm") hs</p>
+                                @if (turno.PrimeraCita && turno.Mascota == null)
+                                {
+                                    <p class="v1-appointment-pet">Primera Cita</p>
+                                }
+                                else
+                                {
+                                    <p class="v1-appointment-pet">Mascota: @(turno.Mascota?.Nombre ?? "N/A")</p>
+                                }
                             </div>
-                        }
+                        </div>
+                        <div class="v1-appointment-badges">
+                            @if (!string.IsNullOrWhiteSpace(turno.Motivo))
+                            {
+                                <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
+                            }
+                            @{
+                                string badgeClass = turno.Estado switch {
+                                     "Finalizado" => "v1-badge-green",
+                                     "Pendiente" => "v1-badge-yellow",
+                                     "Cancelado" => "v1-badge-red",
+                                     "No Asistió" => "v1-badge-gray",
+                                     _ => "v1-badge-gray"
+                                 };
+                            }
+                           <span class="v1-badge @badgeClass">@turno.Estado</span>
+
+                           @if (turno.Estado == "Pendiente")
+                           {
+                                    <form asp-controller="Turno" asp-action="CancelarTurnoCliente" method="post" onsubmit="return confirm('¿Estás seguro de que deseas cancelar este turno?');">
+                                     @Html.AntiForgeryToken()
+                                     <input type="hidden" name="turnoId" value="@turno.Id" />
+                                     <button type="submit" class="v1-btn-cancelar">
+                                         <i class="fas fa-times-circle"></i> Cancelar
+                                     </button>
+                                 </form>
+                           }
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="v1-empty-state">
+                    @if (!string.IsNullOrEmpty(Model.BusquedaTurnoActual))
+                    {
+                        <span>No se encontraron turnos que coincidan con "@Model.BusquedaTurnoActual".</span>
                     }
                     else
                     {
-                        <div class="v1-empty-state">No tienes turnos programados.</div>
+                        <span>No tienes turnos registrados.</span>
                     }
                 </div>
-            </div>
-        </section>
+            }
+        </div>
 
+        <div class="v1-card-footer pagination-container">
+            @if (Model.PaginacionTurnos != null && Model.PaginacionTurnos.PageCount > 1)
+            {
+                @Html.PagedListPager(Model.PaginacionTurnos, page => Url.Action("PaginaPrincipal",
+                    new { page, busquedaTurno = Model.BusquedaTurnoActual }),
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" },
+                        ContainerDivClasses = new[] { "pagination justify-content-center" },
+                        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                        DisplayLinkToNextPage = PagedListDisplayMode.Always
+                    })
+            }
+             else if(Model.PaginacionTurnos != null)
+            {
+                 <p class="text-muted text-center" style="margin:0;">Mostrando @Model.PaginacionTurnos.TotalItemCount @(Model.PaginacionTurnos.TotalItemCount == 1 ? "turno" : "turnos")</p>
+            }
+        </div>
+    </div>
+</section>
        
         <section id="mascotas" class="v1-section">
             <h2 class="v1-section-title">Mis Mascotas</h2>

@@ -4,6 +4,7 @@ using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 using System.Security.Claims;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Implementacion
 {
@@ -152,6 +153,11 @@ namespace SistemaVetIng.Servicios.Implementacion
             {
                 return (false, "Ocurrió un error al intentar cancelar el turno.");
             }
+        }
+
+        public async Task<IPagedList<Turno>> ListarPaginadoPorClienteAsync(int clienteId, int pageNumber, int pageSize, string busqueda = null)
+        {
+            return await _turnoRepository.ListarPaginadoPorClienteAsync(clienteId, pageNumber, pageSize, busqueda);
         }
     }
 }

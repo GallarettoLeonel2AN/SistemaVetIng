@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using X.PagedList;
 
 namespace SistemaVetIng.Repository.Interfaces
 {
@@ -12,5 +13,6 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<IEnumerable<Turno>> ObtenerTurnosPorFechaAsync(DateTime fecha);
         Task<Turno> ObtenerPorIdConDatosAsync(int id);
         void Actualizar(Turno turno);
+        Task<IPagedList<Turno>> ListarPaginadoPorClienteAsync(int clienteId, int pageNumber, int pageSize, string busqueda = null);
     }
 }

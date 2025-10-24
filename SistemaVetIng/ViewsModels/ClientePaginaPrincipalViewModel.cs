@@ -1,4 +1,6 @@
-﻿namespace SistemaVetIng.ViewsModels
+﻿using X.PagedList;
+
+namespace SistemaVetIng.ViewsModels
 {
     public class ClientePaginaPrincipalViewModel
     {
@@ -6,8 +8,10 @@
         public List<MascotaListViewModel> Mascotas { get; set; }
         public ClienteViewModel Cliente { get; set; }
         public List<TurnoViewModel> Turnos { get; set; }
-        public List<AtencionDetalleViewModel> PagosPendientes { get; set; } 
-        
+        public List<AtencionDetalleViewModel> PagosPendientes { get; set; }
+        public IPagedList PaginacionTurnos { get; set; }
+        public string BusquedaTurnoActual { get; set; }
+
         // Reportes simulados / indicadores
 
         // Reportes simulados / indicadores

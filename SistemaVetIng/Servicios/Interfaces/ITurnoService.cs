@@ -1,6 +1,7 @@
 ﻿using SistemaVetIng.Models;
 using SistemaVetIng.ViewsModels;
 using System.Security.Claims;
+using X.PagedList;
 
 namespace SistemaVetIng.Servicios.Interfaces
 {
@@ -15,5 +16,6 @@ namespace SistemaVetIng.Servicios.Interfaces
         void Actualizar(Turno turno);
         Task Guardar();
         Task<(bool success, string message)> CancelarTurnoAsync(int turnoId, ClaimsPrincipal user);
+        Task<IPagedList<Turno>> ListarPaginadoPorClienteAsync(int clienteId, int pageNumber, int pageSize, string busqueda = null);
     }
 }
