@@ -1,0 +1,59 @@
+﻿@model SistemaVetIng.ViewsModels.VacunaViewModel
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Modificar Vacuna: " + Model.Nombre + " - Lote: " + Model.Lote;
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-warning">Modificar Vacuna de Catálogo</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <form asp-action="Modificar" method="post">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Lote" class="control-label"></label>
+                        <input asp-for="Lote" class="form-control" />
+                        <span asp-validation-for="Lote" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="Precio" class="control-label"></label>
+                        <input asp-for="Precio" class="form-control" type="number" step="0.01" min="0.01" value="@Model.Precio.ToString(CultureInfo.InvariantCulture)" />
+                        <span asp-validation-for="Precio" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-between">
+                        <button type="submit" class="btn btn-warning btn-lg">
+                            <i class="fas fa-edit"></i> Guardar Cambios
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-arrow-left"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

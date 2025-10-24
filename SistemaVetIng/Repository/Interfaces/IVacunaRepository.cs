@@ -2,9 +2,10 @@
 
 namespace SistemaVetIng.Repository.Interfaces
 {
-    public interface IVacunaRepository
+    public interface IVacunaRepository : IGeneralRepository<Vacuna>
     {
-        Task<IEnumerable<Vacuna>> ListarTodoAsync();
+
+     
         Task<Vacuna> ObtenerPorIdAsync(int id);
 
         Task<IEnumerable<Vacuna>> ObtenerPorIdsAsync(List<int> ids);

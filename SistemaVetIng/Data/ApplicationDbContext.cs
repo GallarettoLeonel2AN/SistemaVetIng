@@ -32,14 +32,7 @@ namespace SistemaVetIng.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Seed para Vacunas
-            modelBuilder.Entity<Vacuna>().HasData(
-                new Vacuna { Id = 1, Nombre = "Vacuna Antirrábica", Lote = "Lote-A123", Precio = 2500.00m, FechaAplicacion = DateTime.MinValue },
-                new Vacuna { Id = 2, Nombre = "Vacuna Quíntuple Canina", Lote = "Lote-B456", Precio = 3200.00m, FechaAplicacion = DateTime.MinValue },
-                new Vacuna { Id = 3, Nombre = "Vacuna Triple Felina", Lote = "Lote-C789", Precio = 2800.00m, FechaAplicacion = DateTime.MinValue },
-                new Vacuna { Id = 4, Nombre = "Vacuna de la Tos de las Perreras", Lote = "Lote-D012", Precio = 2000.00m, FechaAplicacion = DateTime.MinValue }
-            );
-
+          
             // Seed para Estudios
             modelBuilder.Entity<Estudio>().HasData(
                 new Estudio { Id = 1, Nombre = "Análisis de sangre completo", Precio = 4500.00m, Informe = null, },

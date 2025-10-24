@@ -14,10 +14,25 @@ namespace SistemaVetIng.Repository.Implementacion
             _context = context;
         }
 
-        public async Task<IEnumerable<Vacuna>> ListarTodoAsync()
+
+        public async Task Agregar(Vacuna entity) => await _context.Vacunas.AddAsync(entity);
+
+        public async Task Guardar() => await _context.SaveChangesAsync();
+
+        public async Task<IEnumerable<Vacuna>> ListarTodo() =>
+            await _context.Vacunas.OrderBy(v => v.Nombre).ThenBy(v => v.Lote).ToListAsync();
+
+        public void Modificar(Vacuna entity)
         {
-            return await _context.Vacunas.ToListAsync();
+            _context.Vacunas.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
         }
+
+        public async Task<Vacuna> ObtenerPorId(int id) =>
+            await _context.Vacunas.FirstOrDefaultAsync(v => v.Id == id);
+
+        public void Eliminar(Vacuna entity) => _context.Vacunas.Remove(entity);
+
 
         public async Task<Vacuna> ObtenerPorIdAsync(int id)
         {

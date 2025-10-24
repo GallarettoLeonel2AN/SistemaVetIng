@@ -98,8 +98,8 @@ namespace SistemaVetIng.Controllers
         public async Task<IActionResult> RegistrarAtencionConTurno(int turnoId)
         {
 
-            var todasLasVacunas = await _vacunaService.ListarTodoAsync();
-            var todosLosEstudios = await _estudioService.ListarTodoAsync();
+            var todasLasVacunas = await _vacunaService.ListarTodo();
+            var todosLosEstudios = await _estudioService.ListarTodo();
 
 
             var turno = await _turnoService.ObtenerPorIdConDatosAsync(turnoId);
@@ -142,8 +142,8 @@ namespace SistemaVetIng.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrarAtencionConTurno(AtencionPorTurnoViewModel model)
         {
-            var todasLasVacunas = await _vacunaService.ListarTodoAsync();
-            var todosLosEstudios = await _estudioService.ListarTodoAsync();
+            var todasLasVacunas = await _vacunaService.ListarTodo();
+            var todosLosEstudios = await _estudioService.ListarTodo();
 
             if (!ModelState.IsValid)
             {

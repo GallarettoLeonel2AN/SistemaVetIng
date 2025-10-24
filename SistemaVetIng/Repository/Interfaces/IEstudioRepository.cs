@@ -2,9 +2,9 @@
 
 namespace SistemaVetIng.Repository.Interfaces
 {
-    public interface IEstudioRepository
+    public interface IEstudioRepository : IGeneralRepository<Estudio>
     {
-        Task<IEnumerable<Estudio>> ListarTodoAsync();
+        
         Task<Estudio> ObtenerPorIdAsync(int id);
         Task<IEnumerable<Estudio>> ObtenerPorIdsAsync(List<int> ids);
     }
