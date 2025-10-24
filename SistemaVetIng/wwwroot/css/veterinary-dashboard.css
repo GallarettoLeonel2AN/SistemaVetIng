@@ -698,15 +698,15 @@ v1-badge-orange {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    background-color: #4454ff;
+    background-color: #ff3131;
     color: white;
-    border: 1px solid #4454ff;
+    border: 1px solid #ff3131;
 }
 
-.v1-btn-ausente {
-    background-color: #0300ff;
-    border-color: #0300ff;
-}
+    .v1-btn-ausente:hover {
+        background-color: #ff0000;
+        border-color: #ff0000;
+    }
 
 /* Paginacion */
 
@@ -763,3 +763,79 @@ v1-badge-orange {
 .text-center {
     text-align: center;
 }
+
+.agenda-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+    .agenda-table th, .agenda-table td {
+        padding: 0.75rem 1rem;
+        border: 1px solid #333;
+        text-align: left;
+    }
+
+    .agenda-table thead {
+        background-color: #444444;
+    }
+
+    .agenda-table th {
+        font-weight: 600;
+    }
+
+    .agenda-table tbody tr:nth-child(even) {
+        background-color: #444444;
+    }
+
+.badge-status {
+    padding: 0.3em 0.6em;
+    border-radius: 0.25rem;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #333;
+}
+
+.status-pendiente {
+    background-color: #ffc107;
+    color: wheat;
+}
+
+.status-finalizado {
+    background-color: #28a745;
+    color: wheat;
+}
+
+.status-cancelado {
+    background-color: #ff3131;
+    color: wheat;
+}
+
+.status-no-asistio {
+    background-color: #ff3131;
+    color:wheat;
+}
+
+.date-selector-form {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+body.dark-mode .agenda-table {
+    border-color: #1e1e1e;
+}
+
+    body.dark-mode .agenda-table th, body.dark-mode .agenda-table td {
+        border-color: #1e1e1e;
+        color: var(--history-text-primary);
+    }
+
+    body.dark-mode .agenda-table thead {
+        background-color: var(--history-header-bg);
+    }
+
+    body.dark-mode .agenda-table tbody tr:nth-child(even) {
+        background-color: var(--history-card-bg);
+    }

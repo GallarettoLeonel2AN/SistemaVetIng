@@ -159,9 +159,12 @@
             <div class="v1-chart-and-list-container-flex">
                 <div class="v1-card v1-appointment-list-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Citas de Hoy (@Model.CitasDeHoy.Count)</h3>
-                        <p class="v1-card-description">Citas programadas para el @DateTime.Today.ToString("dd/MM/yyyy")</p>
+                        <h3 class="v1-card-title">Citas programadas para el @DateTime.Today.ToString("dd/MM/yyyy")</h3>
+                              <a asp-controller="Turno" asp-action="TurnosPorDiaSeleccionado" class="v1-btn v1-btn-primary">
+                            <i class="fa-solid fa-calendar"></i> Ver Todos los Turnos
+                          </a>    
                     </div>
+
                     <div class="v1-card-content v1-appointment-list-content">
 
                         @if (Model.CitasDeHoy.Any())
@@ -187,14 +190,21 @@
                                         </div>
                                     </div>
                                     <div class="v1-appointment-badges">
-                                        @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                                        {
-                                            <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
-                                        }
-
-                                        <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : turno.Estado == "Pendiente" ? "v1-badge-yellow" : "v1-badge-gray")">
-                                            @turno.Estado
+                                         @if (!string.IsNullOrWhiteSpace(turno.Motivo))
+                                    {
+                                        <span class="v1-badge v1-badge-secondary">
+                                            Motivo: @turno.Motivo
                                         </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="v1-badge v1-badge-secondary">
+                                            No especificó Motivo
+                                        </span>
+                                    }
+                                       <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" || turno.Estado == "No Asistió" ? "v1-badge-red" : "v1-badge-gray"))) ">
+                                        @turno.Estado
+                                    </span>
                                     </div>
                                 </div>
                             }

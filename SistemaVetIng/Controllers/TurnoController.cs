@@ -212,5 +212,34 @@ namespace SistemaVetIng.Controllers
 
             return RedirectToAction("PaginaPrincipal", "Veterinario");
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> TurnosPorDiaSeleccionado(DateTime? fechaSeleccionada)
+        {
+            DateTime fecha = fechaSeleccionada ?? DateTime.Now;
+
+            var turnos = await _turnoService.ObtenerTurnosPorFechaAsync(fecha);
+
+            var viewModel = new TurnosPorDiaViewModel
+            {
+                FechaSeleccionada = fecha,
+                TurnosDelDia = turnos.Select(t => new TurnoViewModel
+                {
+                    Id = t.Id,
+                    Horario = t.Horario,
+                    Motivo = t.Motivo,
+                    Estado = t.Estado,
+                    PrimeraCita = t.PrimeraCita,
+                    NombreMascota = t.Mascota?.Nombre, 
+                    NombreCliente = $"{t.Cliente?.Nombre} {t.Cliente?.Apellido}", 
+                    ClienteId = t.ClienteId, 
+                    MascotaId = t.MascotaId 
+                }).OrderBy(tpd => tpd.Horario).ToList()
+            };
+
+            return View(viewModel);
+        } 
+
     }
 }

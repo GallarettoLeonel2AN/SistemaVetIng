@@ -132,6 +132,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9cUmVzZXJ2YXJUdXJuby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/Turno/TurnosPorDiaSeleccionado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9cVHVybm9zUG9yRGlhU2VsZWNjaW9uYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/Veterinaria/GuardarConfiguracion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmV0ZXJpbmFyaWFcR3VhcmRhckNvbmZpZ3VyYWNpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

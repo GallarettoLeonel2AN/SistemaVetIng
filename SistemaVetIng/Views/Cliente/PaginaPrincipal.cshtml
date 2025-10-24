@@ -148,7 +148,7 @@
                                             No especificó Motivo
                                         </span>
                                     }
-                                    <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" ? "v1-badge-red" : "v1-badge-gray"))) ">
+                                    <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" || turno.Estado == "No Asistió" ? "v1-badge-red" : "v1-badge-gray"))) ">
                                         @turno.Estado
                                     </span>
                                 </div>
