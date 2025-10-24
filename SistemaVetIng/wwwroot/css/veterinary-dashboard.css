@@ -839,3 +839,18 @@ body.dark-mode .agenda-table {
     body.dark-mode .agenda-table tbody tr:nth-child(even) {
         background-color: var(--history-card-bg);
     }
+
+
+.v1-appointment-item.appointment-inactive {
+    background-color: rgba(92, 103, 255, 0);
+    opacity: 0.6; 
+}
+
+    .v1-appointment-item.appointment-inactive .v1-appointment-time,
+    .v1-appointment-item.appointment-inactive .v1-appointment-pet {
+        color: var(--history-text-secondary, #a0aec0); 
+    }
+
+    .v1-appointment-item.appointment-inactive .v1-appointment-icon {
+        color: var(--history-text-secondary, #a0aec0);
+    }

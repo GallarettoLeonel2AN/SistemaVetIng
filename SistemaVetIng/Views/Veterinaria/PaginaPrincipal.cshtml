@@ -26,7 +26,8 @@
         <nav class="main-nav">
             <ul class="nav-list">
                 <li><a class="nav-link" href="#resumen">Resumen</a></li>
-                <li><a class="nav-link" href="#configuracion-turnos">Turnos</a></li>
+                <li><a class="nav-link" href="#turnos">Turnos</a></li>
+                <li><a class="nav-link" href="#configuracion-turnos">Horarios</a></li>
                 <li><a class="nav-link" href="#veterinarios">Veterinarios</a></li>
                 <li><a class="nav-link" href="#clientes">Clientes</a></li>
                 <li><a class="nav-link" href="#mascotas">Mascotas</a></li>
@@ -156,6 +157,10 @@
                    
                 </div>               
                 </div>
+                </section>
+
+           <section id="turnos" class="v1-section">
+            <h2 class="v1-section-title">Turnos</h2>
             <div class="v1-chart-and-list-container-flex">
                 <div class="v1-card v1-appointment-list-card">
                     <div class="v1-card-header">
@@ -219,7 +224,7 @@
         </section>
 
         <section id="configuracion-turnos" class="v1-section">
-            <h2 class="v1-section-title">Configuración de Turnos</h2>
+            <h2 class="v1-section-title">Configuración de Horarios</h2>
             <div class="v1-section-actions">
                 <a asp-controller="Veterinaria" asp-action="GuardarConfiguracion" class="v1-btn v1-btn-primary">
                     <i class="fas fa-cog"></i> Agregar/Modificar Configuración
