@@ -5,6 +5,7 @@ using NToastNotify;
 using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
+using System.Security.Claims;
 using X.PagedList;
 
 namespace SistemaVetIng.Controllers
@@ -17,19 +18,22 @@ namespace SistemaVetIng.Controllers
         private readonly IClienteService _clienteService;
         private readonly IMascotaService _mascotaService;
         private readonly ITurnoService _turnoService;
+        private readonly IAtencionVeterinariaService _atencionVeterinariaService;
 
         public VeterinarioController(
             IVeterinarioService veterinarioService,
             IToastNotification toastNotification,
             IClienteService clienteService,
             IMascotaService mascotaService,
-            ITurnoService turnoService)
+            ITurnoService turnoService,
+            IAtencionVeterinariaService atencionVeterinariaService)
         {
             _veterinarioService = veterinarioService;
             _toastNotification = toastNotification;
             _clienteService = clienteService;
             _mascotaService = mascotaService;
             _turnoService = turnoService;
+            _atencionVeterinariaService = atencionVeterinariaService;
         }
 
         #region PAGINA PRINCIPAL
@@ -91,6 +95,27 @@ namespace SistemaVetIng.Controllers
                 NombreMascota = t.Mascota?.Nombre,
                 NombreCliente = $"{t.Cliente?.Nombre} {t.Cliente?.Apellido}"
             }).ToList();
+
+
+            // Obtener ID del veterinario logueado
+            var usuarioIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdString, out int usuarioIdNumerico))
+            {
+                return Unauthorized("No se pudo obtener el ID del usuario.");
+            }
+            var veterinarioLogueado = await _veterinarioService.ObtenerPorIdUsuario(usuarioIdNumerico); 
+            if (veterinarioLogueado == null)
+            {
+                return NotFound("No se encontró un perfil de veterinario para este usuario.");
+            }
+
+            int veterinarioId = veterinarioLogueado.Id;
+
+
+            // Datos para Reportes dashboard
+            viewModel.CantidadCitasHoy = await _turnoService.ContarTurnosParaFechaAsync(DateTime.Today);
+            viewModel.CantidadAtencionesPorVeterinario = await _atencionVeterinariaService.CantidadAtencionesPorVeterinario(veterinarioId);
+            viewModel.MascotaMasFrecuentePorVeterinario = await _atencionVeterinariaService.ObtenerMascotaMasFrecuentePorVeterinario(veterinarioId);
 
             return View(viewModel);
         }

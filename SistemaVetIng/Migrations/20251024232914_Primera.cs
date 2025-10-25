@@ -479,7 +479,6 @@ namespace SistemaVetIng.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lote = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaAplicacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AtencionVeterinariaId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -503,17 +502,6 @@ namespace SistemaVetIng.Migrations
                     { 3, null, null, "Análisis de orina", 2000.00m },
                     { 4, null, null, "Ecografía abdominal", 7500.00m },
                     { 5, null, null, "Estudio parasitológico", 1800.00m }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Vacunas",
-                columns: new[] { "Id", "AtencionVeterinariaId", "FechaAplicacion", "Lote", "Nombre", "Precio" },
-                values: new object[,]
-                {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lote-A123", "Vacuna Antirrábica", 2500.00m },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lote-B456", "Vacuna Quíntuple Canina", 3200.00m },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lote-C789", "Vacuna Triple Felina", 2800.00m },
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lote-D012", "Vacuna de la Tos de las Perreras", 2000.00m }
                 });
 
             migrationBuilder.CreateIndex(

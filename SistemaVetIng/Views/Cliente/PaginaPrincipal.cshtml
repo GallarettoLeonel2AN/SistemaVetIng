@@ -46,12 +46,11 @@
             <div class="v1-card-grid">
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Turnos de Hoy</h3>
+                        <h3 class="v1-card-title">Turnos</h3>
                         <i class="fa-regular fa-calendar-days v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        @*<div class="v1-card-value">@Model.CantidadTurnosHoy</div>*@ 
-                        <div class="v1-card-value">5</div>
+                      <div class="v1-card-value">@Model.CantidadCitasHoy</div>
                         <p class="v1-card-description">Agendados para hoy</p>
                     </div>
                 </div>
@@ -61,8 +60,7 @@
                         <i class="fa-solid fa-clock v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        @*<div class="v1-card-value">@Model.CantidadTurnosPendientes</div>*@
-                        <div class="v1-card-value">1</div>
+                        <div class="v1-card-value">@Model.CantidadTurnosPendientesPorCliente</div>
                         <p class="v1-card-description">Reservados para los próximos dias</p>
                     </div>
                 </div>
@@ -72,8 +70,7 @@
                         <i class="fa-solid fa-heart v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        @*<div class="v1-card-value">@Model.CantidadMascotas</div>*@
-                        <div class="v1-card-value">2</div>
+                        <div class="v1-card-value">@Model.CantidadMascotasPorCliente</div>
                         <p class="v1-card-description">Registradas en VetIng</p>
                     </div>
                 </div>
@@ -83,9 +80,8 @@
                         <i class="fa-solid fa-credit-card v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        @*<div class="v1-card-value">$@Model.TotalPagosPendientes.ToString("N2")</div>*@
-                        <div class="v1-card-value">2</div>
-                        <p class="v1-card-description">En espera de confirmación</p>
+                        <div class="v1-card-value">@Model.CantidadPagosPendientes</div>
+                        <p class="v1-card-description">En espera de pago</p>
                     </div>
                 </div>
             </div>

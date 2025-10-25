@@ -62,5 +62,10 @@ namespace SistemaVetIng.Repository.Implementacion
             // Aplicar paginacion
             return await query.ToPagedListAsync(pageNumber, pageSize);
         }
+
+        public async Task<int> ContarTotalClientesAsync()
+        {
+            return await _context.Clientes.CountAsync();
+        }
     }
 }

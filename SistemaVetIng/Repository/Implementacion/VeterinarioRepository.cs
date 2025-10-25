@@ -22,6 +22,13 @@ public class VeterinarioRepository : IVeterinarioRepository
         => await _context.Veterinarios.Include(v => v.Usuario) .FirstOrDefaultAsync(v => v.Id == id);
 
 
+    public async Task<Veterinario> ObtenerPorIdUsuario(int Usuario)
+    {
+        return await _context.Veterinarios.FirstOrDefaultAsync(c => c.UsuarioId == Usuario);
+
+    }
+
+
     public async Task Agregar(Veterinario entity)
         => await _context.Veterinarios.AddAsync(entity);
 

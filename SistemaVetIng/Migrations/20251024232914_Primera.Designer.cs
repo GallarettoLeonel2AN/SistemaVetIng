@@ -12,8 +12,8 @@ using SistemaVetIng.Data;
 namespace SistemaVetIng.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251024222543_Vacunas_Estudios")]
-    partial class Vacunas_Estudios
+    [Migration("20251024232914_Primera")]
+    partial class Primera
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

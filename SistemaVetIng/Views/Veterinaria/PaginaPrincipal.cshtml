@@ -46,118 +46,90 @@
     <main class="v1-main-dashboard">
 
         <section id="resumen" class="v1-section">
-            <h2 class="v1-section-title">Resumen del Panel</h2>
-            <div class="v1-card-grid">
+    <h2 class="v1-section-title">Resumen del Panel</h2>
+    <div class="v1-card-grid">
+        <div class="v1-card">
+            <div class="v1-card-header">
+                <h3 class="v1-card-title">Citas para Hoy</h3>
+                <i class="fa-regular fa-calendar-days v1-card-icon"></i>
+            </div>
+            <div class="v1-card-content">
+                <div class="v1-card-value">@Model.CantidadCitasHoy</div>
+            </div>
+        </div>
+        <div class="v1-card">
+             <div class="v1-card-header">
+                <h3 class="v1-card-title">Clientes Registrados</h3>
+                <i class="fa-solid fa-users v1-card-icon"></i>
+            </div>
+            <div class="v1-card-content">
+                <div class="v1-card-value">@Model.CantidadClientesActivos</div>
+            </div>
+        </div>
+        <div class="v1-card">
+            <div class="v1-card-header">
+                <h3 class="v1-card-title">Mascotas Registradas</h3>
+                <i class="fa-solid fa-heart v1-card-icon"></i>
+            </div>
+            <div class="v1-card-content">
+                <div class="v1-card-value">@Model.CantidadMascotasRegistradas</div>
+            </div>
+        </div>
+        <div class="v1-card">
+            <div class="v1-card-header">
+                <h3 class="v1-card-title">Facturado en @DateTime.Now.ToString("MMMM")</h3> 
+                <i class="fa-regular fa-file-lines v1-card-icon"></i>
+            </div>
+            <div class="v1-card-content">
+                <div class="v1-card-value">$ @Model.IngresosMensuales.ToString("N0")</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="v1-chart-and-list-container-flex">
+        <div class="v1-card v1-chart-card">
+            <div class="v1-card-header">
+                <h3 class="v1-card-title">Reportes Analíticos</h3>
+            </div>
+            <div class="v1-card-content v1-card-grid-reports">
                 <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Citas Hoy</h3>
-                        <i class="fa-regular fa-calendar-days v1-card-icon"></i>
+                     <div class="v1-card-header">
+                        <h3 class="v1-card-title">Cant. Perros Peligrosos</h3>
+                        <i class="fa-solid fa-dog v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.CantidadCitasHoy *@
-                            28
-                        </div>
-                        <p class="v1-card-description">+12 desde ayer</p>
+                        <div class="v1-card-value">@Model.CantidadPerrosPeligrosos</div>
+                        <p class="v1-card-description">Registrados</p>
                     </div>
                 </div>
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Clientes Activos</h3>
-                        <i class="fa-solid fa-users v1-card-icon"></i>
+                        <h3 class="v1-card-title">Vacuna más frecuente</h3>
+                        <i class="fa-solid fa-syringe v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.CantidadClientesActivos *@
-                            154
-                        </div>
-                        <p class="v1-card-description">+7 este mes</p>
+                        <div class="v1-card-value">@Model.VacunaMasFrecuenteNombre</div>
                     </div>
                 </div>
                 <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Mascotas Registradas</h3>
-                        <i class="fa-solid fa-heart v1-card-icon"></i>
+                     <div class="v1-card-header">
+                        <h3 class="v1-card-title">Estudio más solicitado</h3>
+                        <i class="fa-solid fa-magnifying-glass v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.CantidadMascotasRegistradas *@
-                            312
-                        </div>
-                        <p class="v1-card-description">+11 este mes</p>
-                    </div>
-                </div>
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Ingresos Mensuales</h3>
-                        <i class="fa-regular fa-file-lines v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.IngresosMensuales.ToString("N0") *@
-                            $18,500
-                        </div>
-                        <p class="v1-card-description">+15% vs mes anterior</p>
+                        <div class="v1-card-value">@Model.EstudioMasSolicitadoNombre</div>
+                        <p class="v1-card-description">@Model.PrecioEstudioMasSolicitado?.ToString("C0")</p> 
                     </div>
                 </div>
             </div>
-            <div class="v1-chart-and-list-container-flex">
-                <div class="v1-card v1-chart-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Reportes Analíticos</h3>
-                    </div>
-                    <div class="v1-card-content v1-card-grid-reports">
-                     
-                        <div class="v1-card">
-                            <div class="v1-card-header">
-                                <h3 class="v1-card-title">Cant. Perros Peligrosos</h3>
-                                <i class="fa-solid fa-dog v1-card-icon"></i>
-                            </div>
-                            <div class="v1-card-content">
-                                <div class="v1-card-value">
-                                    5
-                                </div>
-                                <p class="v1-card-description">API Provincial</p>
-                            </div>
-                        </div>
-
-          
-                        <div class="v1-card">
-                            <div class="v1-card-header">
-                                <h3 class="v1-card-title">Vacuna más frecuente</h3>
-                                <i class="fa-solid fa-syringe v1-card-icon"></i>
-                            </div>
-                            <div class="v1-card-content">
-                                <div class="v1-card-value">
-                                    Parvovirus
-                                </div>
-                                <p class="v1-card-description">Lote-B456</p>
-                            </div>
-                        </div>
-
-
-                        <div class="v1-card">
-                            <div class="v1-card-header">
-                                <h3 class="v1-card-title">Estudio más solicitado</h3>
-                                <i class="fa-solid fa-magnifying-glass v1-card-icon"></i>
-                            </div>
-                            <div class="v1-card-content">
-                                <div class="v1-card-value">
-                                    Ecografía
-                                </div>
-                                <p class="v1-card-description">$15.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-centrar">
-                         <a asp-controller="Dashboard" asp-action="Dashboard" class="v1-btn v1-btn-primary">
-                        <i class="fa-solid fa-chart-simple"></i>Ver todos los reportes
-                    </a>
-                    </div>
-                   
-                </div>               
-                </div>
-                </section>
+             <div class="btn-centrar">
+                 <a asp-controller="Dashboard" asp-action="Dashboard" class="v1-btn v1-btn-primary">
+                    <i class="fa-solid fa-chart-simple"></i>Ver todos los reportes
+                </a>
+             </div>
+        </div>
+    </div>
+</section>
 
            <section id="turnos" class="v1-section">
             <h2 class="v1-section-title">Turnos</h2>

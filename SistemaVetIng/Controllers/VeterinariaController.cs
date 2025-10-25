@@ -18,6 +18,7 @@ namespace SistemaVetIng.Controllers
         private readonly IClienteService _clienteService;
         private readonly IMascotaService _mascotaService;
         private readonly ITurnoService _turnoService;
+        private readonly IAtencionVeterinariaService _atencionVeterinariaService;
         
 
         public VeterinariaController(
@@ -26,7 +27,8 @@ namespace SistemaVetIng.Controllers
             IMascotaService mascotaService,
             IClienteService clienteService,
             IVeterinarioService veterinarioService,
-            ITurnoService turnoService
+            ITurnoService turnoService,
+            IAtencionVeterinariaService atencionVeterinariaService
             )
         {
             _mascotaService = mascotaService;
@@ -35,7 +37,7 @@ namespace SistemaVetIng.Controllers
             _veterinariaConfigService = service;
             _toastNotification = toastNotification;
             _turnoService = turnoService;
-           
+            _atencionVeterinariaService = atencionVeterinariaService;
         }
 
         #region PAGINA PRINCIPAL
@@ -82,6 +84,7 @@ namespace SistemaVetIng.Controllers
 
 
             // Cargar Veterinarios en las tablas
+
             var veterinariosPaginados = await _veterinarioService.ListarPaginadoAsync(pageVet, pageSizeVeterinarios, busquedaVeterinario);
 
             viewModel.Veterinarios = veterinariosPaginados.Select(v => new VeterinarioViewModel
@@ -149,18 +152,20 @@ namespace SistemaVetIng.Controllers
 
 
 
-            // Hardcoded de datos para Reportes Analíticos 
-            viewModel.CantidadPerrosPeligrosos = 5;
+            // Preparamos datos para reportes dashboard
 
-            var razaMayorDemanda = mascotasPaginadas
-                 .GroupBy(m => m.Raza)
-                 .OrderByDescending(g => g.Count())
-                 .Select(g => g.Key)
-                 .FirstOrDefault();
+            viewModel.CantidadCitasHoy = await _turnoService.ContarTurnosParaFechaAsync(DateTime.Today);
+            viewModel.CantidadClientesActivos = await _clienteService.ContarTotalClientesAsync();
+            viewModel.CantidadMascotasRegistradas = await _mascotaService.ContarTotalMascotasAsync();
+            viewModel.IngresosMensuales = await _atencionVeterinariaService.SumarCostosAtencionesMesActualAsync();
+            viewModel.CantidadPerrosPeligrosos = await _mascotaService.ContarPerrosPeligrososAsync();
 
-            viewModel.RazaMayorDemanda = razaMayorDemanda;
-            viewModel.IngresosMensualesEstimados = 1500.00m;
-            viewModel.IngresosDiariosEstimados = 5000.00m;
+            var (vacunaNombre, _) = await _atencionVeterinariaService.ObtenerVacunaMasFrecuenteAsync(); 
+            viewModel.VacunaMasFrecuenteNombre = vacunaNombre ?? "N/A";
+
+            var (estudioNombre, estudioPrecio) = await _atencionVeterinariaService.ObtenerEstudioMasSolicitadoAsync();
+            viewModel.EstudioMasSolicitadoNombre = estudioNombre ?? "N/A";
+            viewModel.PrecioEstudioMasSolicitado = estudioPrecio;
 
             return View(viewModel);
         }

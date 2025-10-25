@@ -97,19 +97,6 @@ namespace SistemaVetIng.Servicios.Implementacion
                 ClienteId = m.Propietario?.Id ?? 0
             }).ToList();
 
-
-            viewModel.CantidadPerrosPeligrosos = 5;
-
-            var razaMayorDemanda = mascotas
-                 .GroupBy(m => m.Raza)
-                 .OrderByDescending(g => g.Count())
-                 .Select(g => g.Key)
-                 .FirstOrDefault();
-
-            viewModel.RazaMayorDemanda = razaMayorDemanda;
-            viewModel.IngresosMensualesEstimados = 1500.00m;
-            viewModel.IngresosDiariosEstimados = 5000.00m;
-
             return viewModel;
         }
     }

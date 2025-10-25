@@ -27,28 +27,20 @@ namespace SistemaVetIng.Repository.Implementacion
 
         public async Task<AtencionVeterinaria> ObtenerAtencionConCliente(int idAtencion)
         {
-            // Navegamos por la cadena: Atencion -> HistoriaClinica -> Mascota -> Cliente
             return await _context.AtencionesVeterinarias
                 .Include(a => a.HistoriaClinica)
                     .ThenInclude(hc => hc.Mascota)
-                        .ThenInclude(m => m.Propietario) // Asumo que el cliente se llama Propietario en la entidad Mascota
+                        .ThenInclude(m => m.Propietario)
                         .ThenInclude(p => p.Usuario)
                 .FirstOrDefaultAsync(a => a.Id == idAtencion);
         }
         public async Task<List<AtencionVeterinaria>> ObtenerAtencionesPendientesPorCliente(int clienteId)
         {
-            // NOTA: Asumo que en tu modelo de AtencionVeterinaria tienes la propiedad EstadoDePago.
-            // Si no la tienes, DEBES agregarla a la entidad AtencionVeterinaria en tu modelo.
             const string ESTADO_PENDIENTE = "Pendiente";
 
-            // 1. Buscamos las Historias Clínicas de las Mascotas que pertenecen a este Cliente.
-            // 2. Buscamos las Atenciones asociadas a esas Historias Clínicas.
-            // 3. Filtramos por el estado de pago "Pendiente".
-
             return await _context.AtencionesVeterinarias
-                .Include(a => a.HistoriaClinica) // Necesario para acceder a la Mascota
-                    .ThenInclude(hc => hc.Mascota) // Necesario para acceder al Nombre de la Mascota
-                                                   // La Mascota del cliente debe coincidir con la Mascota de la Historia Clínica
+                .Include(a => a.HistoriaClinica) 
+                .ThenInclude(hc => hc.Mascota)   
                 .Where(a => a.HistoriaClinica.Mascota.ClienteId == clienteId)
                 // Filtramos por el estado que indica que falta el pago
                 //.Where(a => a.EstadoDePago == ESTADO_PENDIENTE)
@@ -102,6 +94,74 @@ namespace SistemaVetIng.Repository.Implementacion
         public async Task<HistoriaClinica> GetHistoriaClinicaPorId(int id)
         {
             return await _context.HistoriasClinicas.FindAsync(id);
+        }
+
+        public async Task<int> CantidadAtencionesPorVeterinario(int id)
+        {
+            return await _context.AtencionesVeterinarias.Where(v => v.VeterinarioId == id).CountAsync();
+        }
+
+        public async Task<decimal> SumarCostosAtencionesMesActualAsync()
+        {
+            var hoy = DateTime.Today;
+            var primerDiaMes = new DateTime(hoy.Year, hoy.Month, 1);
+            var ultimoDiaMes = primerDiaMes.AddMonths(1).AddDays(-1);
+
+            return await _context.AtencionesVeterinarias
+                                 .Where(a => a.Fecha >= primerDiaMes && a.Fecha <= ultimoDiaMes)
+                                 .SumAsync(a => a.CostoTotal);
+        }
+
+        public async Task<(string Nombre, string Lote)> ObtenerVacunaMasFrecuenteAsync()
+        {
+            var vacunaInfo = await _context.AtencionesVeterinarias
+                .SelectMany(a => a.Vacunas) 
+                .GroupBy(v => new { v.Id, v.Nombre, v.Lote }) // agrupa 
+                .Select(g => new { VacunaId = g.Key.Id, Nombre = g.Key.Nombre, Lote = g.Key.Lote, Count = g.Count() }) // Cuenta cuantas veces aparece cada una
+                .OrderByDescending(x => x.Count) // ordena por mas frecuente
+                .FirstOrDefaultAsync(); // tomamos la primera
+
+            return vacunaInfo != null ? (vacunaInfo.Nombre, vacunaInfo.Lote) : (null, null);
+        }
+
+        public async Task<(string Nombre, decimal Precio)> ObtenerEstudioMasSolicitadoAsync()
+        {
+            var estudioInfo = await _context.AtencionesVeterinarias
+                .SelectMany(a => a.EstudiosComplementarios)
+                .GroupBy(e => new { e.Id, e.Nombre, e.Precio })
+                .Select(g => new { EstudioId = g.Key.Id, Nombre = g.Key.Nombre, Precio = g.Key.Precio, Count = g.Count() })
+                .OrderByDescending(x => x.Count)
+                .FirstOrDefaultAsync();
+
+            return estudioInfo != null ? (estudioInfo.Nombre, estudioInfo.Precio) : (null, 0m); // Devuelve 0 si no hay
+        }
+
+        public async Task<Mascota> ObtenerMascotaMasFrecuentePorVeterinario(int idVeterinario)
+        {
+            var atencionesDelVeterinario = _context.AtencionesVeterinarias
+                .Where(a => a.VeterinarioId == idVeterinario);
+
+            var mascotaIdMasFrecuente = await atencionesDelVeterinario
+                .GroupBy(a => a.HistoriaClinica.MascotaId) 
+                .Select(g => new { MascotaId = g.Key, Count = g.Count() }) 
+                .OrderByDescending(x => x.Count) 
+                .Select(x => x.MascotaId) 
+                .FirstOrDefaultAsync(); 
+
+            if (mascotaIdMasFrecuente == 0)
+            {
+                return null;
+            }
+
+            return await _context.Mascotas.FindAsync(mascotaIdMasFrecuente);
+        }
+
+        public async Task<int> CantidadPagosPendientes(int idCliente)
+        {
+            return await _context.AtencionesVeterinarias
+                .Where(a => a.HistoriaClinica.Mascota.Propietario.Id == idCliente && a.Abonado == false)
+                .CountAsync();
+         
         }
     }
 }

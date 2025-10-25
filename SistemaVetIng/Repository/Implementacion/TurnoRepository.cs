@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using SistemaVetIng.Data;
 using SistemaVetIng.Models;
 using SistemaVetIng.Repository.Interfaces;
@@ -90,6 +91,19 @@ namespace SistemaVetIng.Repository.Implementacion
             query = query.OrderByDescending(t => t.Fecha).ThenBy(t => t.Horario);
 
             return await query.ToPagedListAsync(pageNumber, pageSize);
+        }
+
+        public async Task<int> ContarTurnosParaFechaAsync(DateTime fecha)
+        {
+            return await _context.Turnos
+                                 .CountAsync(t => t.Fecha.Date == fecha.Date);
+        }
+
+        public async Task<int> CantidadTurnosPendientesPorCliente(int idCliente)
+        {
+            return await _context.Turnos
+                .Where(c => c.ClienteId == idCliente && c.Estado == "Pendiente")
+                .CountAsync();
         }
     }
 }

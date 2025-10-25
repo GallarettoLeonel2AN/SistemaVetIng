@@ -14,11 +14,15 @@ namespace SistemaVetIng.ViewsModels
         public List<MascotaListViewModel> Mascotas { get; set; }
         public List<TurnoViewModel> CitasDeHoy { get; set; } = new List<TurnoViewModel>();
 
-        // Propiedades para los reportes analíticos simulados
+        // Propiedades para Cards de Reportes
+        public int CantidadCitasHoy { get; set; }
+        public int CantidadClientesActivos { get; set; } 
+        public int CantidadMascotasRegistradas { get; set; }
+        public decimal IngresosMensuales { get; set; } 
         public int CantidadPerrosPeligrosos { get; set; }
-        public string RazaMayorDemanda { get; set; } 
-        public decimal IngresosMensualesEstimados { get; set; } 
-        public decimal IngresosDiariosEstimados { get; set; } 
+        public string VacunaMasFrecuenteNombre { get; set; }
+        public string EstudioMasSolicitadoNombre { get; set; }
+        public decimal? PrecioEstudioMasSolicitado { get; set; } // Nullable por si no hay estudios
 
         public VeterinariaPaginaPrincipalViewModel()
         {

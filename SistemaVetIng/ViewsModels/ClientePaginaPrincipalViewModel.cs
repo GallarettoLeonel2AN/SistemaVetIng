@@ -12,12 +12,12 @@ namespace SistemaVetIng.ViewsModels
         public IPagedList PaginacionTurnos { get; set; }
         public string BusquedaTurnoActual { get; set; }
 
-        // Reportes simulados / indicadores
 
-        // Reportes simulados / indicadores
-        public int CantidadTurnosReservados { get; set; }
-        public int CantidadTurnosCancelados { get; set; }
-        public string VeterinarioMasFrecuente { get; set; }
+        // Reportes Dashboard
+        public int CantidadCitasHoy { get; set; }
+        public int CantidadTurnosPendientesPorCliente { get; set; }
+        public int CantidadMascotasPorCliente { get; set; }
+        public int CantidadPagosPendientes { get; set; }
 
         public HistoriaClinicaViewModel HistoriaClinicas { get; set; } 
 

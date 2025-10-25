@@ -384,9 +384,24 @@ namespace SistemaVetIng.Servicios.Implementacion
             return await _mascotaRepository.ListarMascotasPorClienteId(clienteId);
         }
 
+        public async Task<int> ContarTotalMascotasPorClienteAsync(int idCliente)
+        {
+            return await _mascotaRepository.ContarTotalMascotasPorClienteAsync(idCliente);
+        }
+
         public async Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
         {
             return await _mascotaRepository.ListarPaginadoAsync(pageNumber, pageSize, busqueda);
+        }
+
+        public async Task<int> ContarTotalMascotasAsync()
+        {
+            return await _mascotaRepository.ContarTotalMascotasAsync();
+        }
+
+        public async Task<int> ContarPerrosPeligrososAsync()
+        {
+            return await _mascotaRepository.ContarPerrosPeligrososAsync();
         }
 
 

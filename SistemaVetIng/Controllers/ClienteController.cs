@@ -38,6 +38,7 @@ namespace SistemaVetIng.Controllers
         [HttpGet]
         public async Task<IActionResult> PaginaPrincipal(string busquedaTurno = null, int page = 1)
         {
+
             var usuarioIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (!int.TryParse(usuarioIdString, out int usuarioIdNumerico))
@@ -87,6 +88,29 @@ namespace SistemaVetIng.Controllers
                     Mascota = t.Mascota, 
                 }).ToList(); 
             }
+
+
+            // Obtener ID del usuario logueado
+            var usuarioIdString2 = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdString2, out int usuarioIdNumerico2))
+            {
+                return Unauthorized("No se pudo obtener el ID del usuario.");
+            }
+            var clienteLogueado = await _clienteService.ObtenerPorIdUsuario(usuarioIdNumerico2);
+            if (clienteLogueado == null)
+            {
+                return NotFound("No se encontró un perfil de cliente para este usuario.");
+            }
+
+            int clienteId = clienteLogueado.Id;
+
+
+            // Datos para Reportes Dashboard
+
+            viewModel.CantidadCitasHoy = await _turnoService.ContarTurnosParaFechaAsync(DateTime.Today);
+            viewModel.CantidadTurnosPendientesPorCliente = await _turnoService.CantidadTurnosPendientesPorCliente(clienteId);
+            viewModel.CantidadMascotasPorCliente = await _mascotaService.ContarTotalMascotasPorClienteAsync(clienteId);
+            viewModel.CantidadPagosPendientes = await _atencionVeterinariaService.CantidadPagosPendientes(clienteId);
 
             return View(viewModel);
         }

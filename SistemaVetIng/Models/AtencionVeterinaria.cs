@@ -15,5 +15,6 @@
         public float PesoMascota { get; set; }
         public int HistoriaClinicaId { get; set; }
         public HistoriaClinica HistoriaClinica { get; set; }
+        public bool Abonado { get; set; }
     }
 }

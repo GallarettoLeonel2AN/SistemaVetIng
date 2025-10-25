@@ -133,6 +133,9 @@ namespace SistemaVetIng.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Abonado")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("CostoTotal")
                         .HasColumnType("decimal(18,2)");
 

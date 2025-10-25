@@ -16,5 +16,10 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<IEnumerable<MascotaListViewModel>> ObtenerMascotasPorClienteUserNameAsync(string userName);
         Task<MascotaDetalleViewModel> ObtenerDetalleConHistorial(int mascotaId);
         Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
+        Task<int> ContarTotalMascotasAsync();
+        Task<int> ContarPerrosPeligrososAsync();
+
+        Task<int> ContarTotalMascotasPorClienteAsync(int idCliente);
+
     }
 }

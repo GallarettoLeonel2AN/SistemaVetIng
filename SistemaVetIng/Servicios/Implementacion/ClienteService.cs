@@ -151,5 +151,11 @@ namespace SistemaVetIng.Servicios.Implementacion
             return await _clienteRepository.ListarPaginadoAsync(pageNumber, pageSize, busqueda);
         }
         #endregion
+
+
+        public async Task<int> ContarTotalClientesAsync()
+        {
+            return await _clienteRepository.ContarTotalClientesAsync();
+        }
     }
 }

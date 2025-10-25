@@ -53,36 +53,34 @@
                     </div>
                     <div class="v1-card-content">
                         <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.CantidadCitasHoy *@
-                            5
+                           @Model.CantidadCitasHoy
                         </div>
-                        <p class="v1-card-description">+2 desde ayer</p>
                     </div>
                 </div>
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Pacientes Atendidos</h3>
+                        <h3 class="v1-card-title">Mascotas Atendidas</h3>
                         <i class="fa-solid fa-paw v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
                         <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.CantidadMascotasAtendidas *@
-                            12
+                            @Model.CantidadAtencionesPorVeterinario
                         </div>
-                        <p class="v1-card-description">+3 nuevas este mes</p>
                     </div>
                 </div>
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Ingresos Propios</h3>
+                        <h3 class="v1-card-title">Mascota mas Frecuente</h3>
                         <i class="fa-solid fa-file-invoice-dollar v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
                         <div class="v1-card-value">
-                            @* Reemplaza este valor estático con @Model.IngresosMensuales.ToString("N0") *@
-                            $1.250
+                            @Model.MascotaMasFrecuentePorVeterinario.Nombre
                         </div>
-                        <p class="v1-card-description">+8% vs mes anterior</p>
+                        <p class="v1-card-description">
+                            @Model.MascotaMasFrecuentePorVeterinario.Especie
+                            @Model.MascotaMasFrecuentePorVeterinario.Raza
+                         </p>
                     </div>
                 </div>
             </div>

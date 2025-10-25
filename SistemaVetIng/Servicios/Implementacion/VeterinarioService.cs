@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SistemaVetIng.Models;
 using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Repository.Implementacion;
@@ -101,6 +102,12 @@ namespace SistemaVetIng.Servicios.Implementacion
         public async Task<Veterinario> ObtenerPorId(int id)
         {
             return await _veterinarioRepository.ObtenerPorId(id);
+        }
+
+        public async Task<Veterinario> ObtenerPorIdUsuario(int id)
+        {
+            return await _veterinarioRepository.ObtenerPorIdUsuario(id);
+
         }
 
         public async Task<IEnumerable<Veterinario>> ListarTodo()

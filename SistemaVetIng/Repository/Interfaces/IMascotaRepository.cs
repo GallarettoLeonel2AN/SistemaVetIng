@@ -14,5 +14,8 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<Mascota> ObtenerMascotaChipPorId(int id);
         Task<IEnumerable<Mascota>> ListarMascotasPorClienteId(int clienteId);
         Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
+        Task<int> ContarTotalMascotasAsync();
+        Task<int> ContarPerrosPeligrososAsync();
+        Task<int> ContarTotalMascotasPorClienteAsync(int idCliente);
     }
 }

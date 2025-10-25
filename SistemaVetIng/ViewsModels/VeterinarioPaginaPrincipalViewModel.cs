@@ -1,4 +1,5 @@
-﻿using X.PagedList;
+﻿using SistemaVetIng.Models;
+using X.PagedList;
 
 namespace SistemaVetIng.ViewsModels
 {
@@ -9,6 +10,9 @@ namespace SistemaVetIng.ViewsModels
         public List<TurnoViewModel> CitasDeHoy { get; set; } = new List<TurnoViewModel>();
         public IPagedList PaginacionClientes { get; set; }
         public IPagedList PaginacionMascotas { get; set; }
+        public int CantidadCitasHoy { get; set; }
+        public int CantidadAtencionesPorVeterinario{ get; set; }
+        public Mascota MascotaMasFrecuentePorVeterinario { get; set; }
         public VeterinarioPaginaPrincipalViewModel()
         {
             Clientes = new List<ClienteViewModel>();

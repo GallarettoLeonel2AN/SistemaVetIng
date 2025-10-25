@@ -17,5 +17,12 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<AtencionVeterinaria> ObtenerPorId(int id);
         Task SaveChangesAsync();
         Task<HistoriaClinica> GetHistoriaClinicaPorId(int id);
+
+        Task<decimal> SumarCostosAtencionesMesActualAsync();
+        Task<(string Nombre, string Lote)> ObtenerVacunaMasFrecuenteAsync();
+        Task<(string Nombre, decimal Precio)> ObtenerEstudioMasSolicitadoAsync();
+        Task<int> CantidadAtencionesPorVeterinario(int id);
+        Task<Mascota> ObtenerMascotaMasFrecuentePorVeterinario(int idVeterinario);
+        Task<int> CantidadPagosPendientes(int idCliente);
     }
 }

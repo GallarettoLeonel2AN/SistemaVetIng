@@ -39,7 +39,6 @@ namespace SistemaVetIng.Repository.Implementacion
 
         public async Task<Mascota> ObtenerMascotaChipPorId(int id)
         {
-            // Usa Include para cargar la entidad relacionada Chip.
             return await _context.Mascotas.Include(m => m.Chip).FirstOrDefaultAsync(m => m.Id == id);
         }
 
@@ -67,5 +66,20 @@ namespace SistemaVetIng.Repository.Implementacion
 
             return await query.ToPagedListAsync(pageNumber, pageSize);
         }
+
+        public async Task<int> ContarTotalMascotasAsync()
+        {
+            return await _context.Mascotas.CountAsync();
+        }
+        public async Task<int> ContarTotalMascotasPorClienteAsync(int idCliente)
+        {
+            return await _context.Mascotas
+                .Where(m => m.ClienteId == idCliente)
+                .CountAsync();
+        }
+        public async Task<int> ContarPerrosPeligrososAsync()
+        {
+            return await _context.Mascotas.CountAsync(m => m.RazaPeligrosa);
+        } 
     }
 }
