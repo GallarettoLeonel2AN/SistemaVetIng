@@ -1,634 +1,614 @@
 ﻿$(document).ready(function () {
 
-    let rendimientoChart;
-    let serviciosChart;
-    let especiesChart;
-    let ingresosChart;
+    // Instancias de Chart.js
+    let turnosStatusChart = null;
+    let atencionesVetChart = null;
+    let serviciosChart = null;
+    let especiesChart = null;
+    let ingresosChart = null;
 
-    // --- Variables de Estado para el DRILL-DOWN de INGRESOS (3 NIVELES) ---
-    let currentIngresosLevel = 1; // 1: Anual, 2: Mensual, 3: Semanal
-    let selectedAnio = null;
-    let selectedMes = null;
+    // Drill state - ingresos
+    let currentIngresosLevel = 1; // 1: anual, 2: mensual, 3: semanal
+    let selectedAnioData = null;
+    let selectedMesData = null;
 
-    // Estado para el Drill Down de Rendimiento: Nivel 1 = Vets; Nivel 2 = Turnos del Vet seleccionado
-    let currentDrillDownLevel = 1;
-    let selectedVeterinarioId = null;
+    // Drill state - turnos
+    let currentTurnosLevel = 1;
 
+    // ---------- Utilidades ----------
+    function safeNumber(val) {
+        return (val === null || val === undefined) ? 0 : Number(val);
+    }
 
-    // 1. DIBUJO DE GRÁFICOS (Funciones de renderizado)
+    function clearCanvasMessage(canvasId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
 
+    function drawCanvasMessage(canvasId, message) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        if (canvas && canvas.getContext) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const dpr = window.devicePixelRatio || 1;
+            const width = canvas.width;
+            const height = canvas.height;
+            ctx.save();
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#6b7280";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(message, width / 2, height / 2);
+            ctx.restore();
+        }
+    }
 
-    /**
-     * Dibuja el gráfico de Rendimiento de Turnos por Veterinario (Drill Down Nivel 1).
-     * @param {Array} data - Lista de objetos TurnosPorVeterinarioData.
-     */
-    function renderRendimientoChart(data) {
-        const ctx = document.getElementById('chartRendimiento').getContext('2d');
-
-        if (rendimientoChart) {
-            rendimientoChart.destroy();
+    // ============================
+    // ESTADOS DE TURNOS - Nivel 1
+    // ============================
+    function renderTurnosStatusChart(data) {
+        const canvasId = 'chartRendimiento';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`Canvas ${canvasId} no encontrado.`);
+            return;
         }
 
-        const labels = data.map(item => item.nombreVeterinario);
-        const finalizados = data.map(item => item.finalizados);
-        const cancelados = data.map(item => item.cancelados);
-        const pendientes = data.map(item => item.pendientes);
+        // destruir previos
+        if (turnosStatusChart) { turnosStatusChart.destroy(); turnosStatusChart = null; }
+        if (atencionesVetChart) { atencionesVetChart.destroy(); atencionesVetChart = null; }
 
-        rendimientoChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Finalizados',
-                        data: finalizados,
-                        backgroundColor: '#4CAF50', // Verde
-                        stack: 'stack1'
-                    },
-                    {
-                        label: 'Pendientes',
-                        data: pendientes,
-                        backgroundColor: '#FFC107', // Amarillo
-                        stack: 'stack1'
-                    },
-                    {
-                        label: 'Cancelados',
-                        data: cancelados,
-                        backgroundColor: '#F44336', // Rojo
-                        stack: 'stack1'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        stacked: true,
-                    },
-                    y: {
-                        stacked: true,
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Turnos Totales por Veterinario'
-                    }
-                },
-                // Lógica de CLICK para el Drill Down
-                onClick: (e) => {
-                    const points = rendimientoChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
-                    if (points.length) {
-                        const firstPoint = points[0];
-                        const index = firstPoint.index;
-                        const vetData = data[index];
+        currentTurnosLevel = 1;
 
-                        // Si estamos en el Nivel 1 (Vets), hacemos Drill Down
-                        if (currentDrillDownLevel === 1) {
-                            // Simulamos el paso a Nivel 2 . LUEGO LLAMAREMOS A AJAX
-                            handleDrillDownToLevel2(vetData.veterinarioId, vetData.nombreVeterinario);
+        const labels = ['Pendientes', 'Finalizados', 'Cancelados', 'No Asistió'];
+        const counts = [
+            safeNumber(data.totalTurnosPendientes),
+            safeNumber(data.totalTurnosFinalizados),
+            safeNumber(data.totalTurnosCancelados),
+            safeNumber(data.totalTurnosNoAsistio)
+        ];
+
+        const colors = ['#FFC107', '#4CAF50', '#F44336', '#6c757d'];
+
+        // Si todos cero -> mensaje
+        if (counts.every(c => c === 0)) {
+            drawCanvasMessage(canvasId, "No hay turnos para mostrar.");
+            return;
+        }
+
+        try {
+            turnosStatusChart = new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Cantidad de Turnos',
+                        data: counts,
+                        backgroundColor: colors
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: { x: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Distribución de Turnos por Estado (Total Histórico)' }
+                    },
+                    onClick: (evt) => {
+                        if (!turnosStatusChart) return;
+                        const points = turnosStatusChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                        if (points.length) {
+                            const idx = points[0].index;
+                            const labelClicked = labels[idx];
+                            if (labelClicked === 'Finalizados') {
+                                handleTurnosDrillDownToLevel2();
+                            }
                         }
                     }
                 }
-            }
-        });
-
-        // Ocultar el botón "Volver" en el Nivel 1
-        $('#drillUpButton').hide();
-        $('#drillDownTitle').text('Rendimiento de Turnos por Veterinario (Nivel 1)');
+            });
+            $('#drillUpButton').hide();
+            $('#drillDownTitle').text('Distribución de Turnos por Estado');
+        } catch (err) {
+            console.error("Error renderTurnosStatusChart:", err);
+            drawCanvasMessage(canvasId, "Error al generar el gráfico de turnos.");
+        }
     }
 
-
-    /**
-     * Dibuja el gráfico de Servicios Más Solicitados.
-     * @param {Array} data - Lista de objetos ServicioCountData.
-     */
-    function renderServiciosChart(data) {
-        const ctx = document.getElementById('chartServicios').getContext('2d');
-
-        if (serviciosChart) {
-            serviciosChart.destroy();
+    // ============================
+    // TURNOS FINALIZADOS POR VETERINARIOS - Nivel 2
+    // ============================
+    function renderAtencionesPorVeterinarioChart(data) {
+        const canvasId = 'chartRendimiento';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error('Canvas para atenciones vet no encontrado.');
+            return;
         }
 
-        serviciosChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: data.map(item => item.nombreServicio),
-                datasets: [{
-                    label: 'Cantidad de Solicitudes',
-                    data: data.map(item => item.cantidadSolicitudes),
-                    backgroundColor: ['#008CBA', '#4CAF50', '#F44336', '#FFC107', '#9C27B0'],
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Distribución de Servicios (Vacunas y Estudios)'
+        if (atencionesVetChart) { atencionesVetChart.destroy(); atencionesVetChart = null; }
+        if (turnosStatusChart) { turnosStatusChart.destroy(); turnosStatusChart = null; }
+
+        currentTurnosLevel = 2;
+
+        if (!Array.isArray(data) || data.length === 0) {
+            drawCanvasMessage(canvasId, "No hay datos de atenciones por veterinario.");
+            return;
+        }
+
+        // ordenar por cantidad desc
+        data.sort((a, b) => (b.cantidadAtenciones || 0) - (a.cantidadAtenciones || 0));
+
+        const labels = data.map(d => d.nombreVeterinario || "Sin Nombre");
+        const counts = data.map(d => safeNumber(d.cantidadAtenciones));
+        const backgroundColors = ['#4299E1', '#48BB78', '#F56565', '#ED8936', '#9F7AEA', '#38B2AC'];
+
+        try {
+            atencionesVetChart = new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Atenciones Realizadas',
+                        data: counts,
+                        backgroundColor: backgroundColors.slice(0, counts.length)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Atenciones Realizadas por Veterinario (Histórico)' }
                     }
                 }
-            }
-        });
+            });
+            $('#drillUpButton').show();
+            $('#drillDownTitle').text('Atenciones por Veterinario');
+        } catch (err) {
+            console.error("Error renderAtencionesPorVeterinarioChart:", err);
+            drawCanvasMessage(canvasId, "Error al generar gráfico de atenciones.");
+        }
     }
 
-    /**
-     * Dibuja el gráfico de Distribución por Especie (Gráfico faltante).
-     * @param {Array} data - Lista de objetos EspecieCountData.
-     */
-    function renderEspeciesChart(data) {
-        const ctx = document.getElementById('chartEspecies').getContext('2d');
+    // ============================
+    // TOP SERVICIOS (VACUNAS Y ESTUDIOS) 
+    // ============================
+    function renderServiciosChart(data) {
+        const canvasId = 'chartServicios';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) { console.error('chartServicios no encontrado'); return; }
 
-        if (especiesChart) {
-            especiesChart.destroy();
+        if (serviciosChart) { serviciosChart.destroy(); serviciosChart = null; }
+
+        if (!Array.isArray(data) || data.length === 0) {
+            drawCanvasMessage(canvasId, "No hay datos de servicios.");
+            return;
         }
 
-        // Colores base para las especies
+        const labels = data.map(d => d.nombreServicio || 'Sin Nombre');
+        const values = data.map(d => safeNumber(d.cantidadSolicitudes));
+        const backgroundColors = ['#4299E1', '#48BB78', '#F56565', '#ED8936', '#9F7AEA', '#38B2AC', '#ECC94B'];
+
+        try {
+            serviciosChart = new Chart(canvas.getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Solicitudes',
+                        data: values,
+                        backgroundColor: backgroundColors.slice(0, values.length),
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Top Servicios (Histórico)' },
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        } catch (err) {
+            console.error("Error renderServiciosChart:", err);
+            drawCanvasMessage(canvasId, "Error al generar el gráfico de servicios.");
+        }
+    }
+
+    // ============================
+    // TOP ESPECIES GRAFICO DE DONA
+    // ============================
+    function renderEspeciesChart(data) {
+        const canvasId = 'chartEspecies';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) { console.error('chartEspecies no encontrado'); return; }
+
+        if (especiesChart) { especiesChart.destroy(); especiesChart = null; }
+
+        if (!Array.isArray(data) || data.length === 0) {
+            drawCanvasMessage(canvasId, "No hay mascotas registradas.");
+            return;
+        }
+
+        const labels = data.map(d => d.especie || 'Sin Especie');
+        const values = data.map(d => safeNumber(d.cantidad));
         const colors = [
             'rgba(75, 192, 192, 0.8)',
             'rgba(255, 159, 64, 0.8)',
             'rgba(153, 102, 255, 0.8)',
-            'rgba(255, 99, 132, 0.8)'
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 206, 86, 0.8)'
         ];
 
-        especiesChart = new Chart(ctx, {
-            type: 'doughnut', // Gráfico de Dona para distribución
-            data: {
-                labels: data.map(item => item.especie),
-                datasets: [{
-                    label: 'Mascotas por Especie',
-                    data: data.map(item => item.cantidad),
-                    backgroundColor: colors.slice(0, data.length),
-                    hoverOffset: 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Distribución por Especie de Mascotas'
-                    }
+        try {
+            especiesChart = new Chart(canvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Mascotas',
+                        data: values,
+                        backgroundColor: colors.slice(0, values.length),
+                        hoverOffset: 8
+                    }]
                 },
-                // Lógica de CLICK para el Drill Down de Razas
-                onClick: (e) => {
-                    const points = especiesChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
-                    if (points.length) {
-                        const firstPoint = points[0];
-                        const index = firstPoint.index;
-                        const especieSeleccionada = data[index].especie;
-
-                        // Aquí vamos a hacer la llamada AJAX para obtener las razas de esa especie
-                        updateRazasList(especieSeleccionada);
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Distribución por Especie' },
+                        legend: { position: 'bottom' }
+                    },
+                    onClick: (evt) => {
+                        if (!especiesChart) return;
+                        const points = especiesChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                        if (points.length) {
+                            const idx = points[0].index;
+                            const especieSeleccionada = labels[idx];
+                            updateRazasList(especieSeleccionada);
+                        }
                     }
                 }
-            }
-        });
+            });
+        } catch (err) {
+            console.error("Error renderEspeciesChart:", err);
+            drawCanvasMessage(canvasId, "Error al generar el gráfico de especies.");
+        }
     }
 
-
-    // LÓGICA DE INGRESO: Nivel 1 (Anual) -> Nivel 2 (Mensual) -> Nivel 3 (Semanal)
-
-    /**
-     * Dibuja el gráfico de Ingresos: Nivel 1 (Anual).
-     * @param {Array} data - Lista de objetos IngresosAnualesData.
-     */
+    // ============================
+    // INGRESOS - Nivel 1 (Anual)
+    // ============================
     function renderIngresosNivel1Chart(data) {
-        const ctx = document.getElementById('chartIngresosMensuales').getContext('2d');
+        const canvasId = 'chartIngresosMensuales';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) { console.error('chartIngresosMensuales no encontrado'); return; }
 
-        if (ingresosChart) {
-            ingresosChart.destroy();
+        if (ingresosChart) { ingresosChart.destroy(); ingresosChart = null; }
+
+        if (!Array.isArray(data) || data.length === 0) {
+            drawCanvasMessage(canvasId, "No hay datos de ingresos.");
+            return;
         }
 
-        currentIngresosLevel = 1;
+        
+        const labels = data.map(d => d.anio || d.Anio || '—');
+        const values = data.map(d => safeNumber(d.ingresoRealAnual ?? d.IngresoRealAnual ?? 0));
+        const metas = data.map(d => safeNumber(d.metaAnual ?? d.MetaAnual ?? 0));
 
-        const labels = data.map(d => d.anio);
-        const ingresosReales = data.map(d => d.ingresoRealAnual);
-        const metas = data.map(d => d.metaAnual);
+        const backgroundColors = values.map((val, i) => {
+            const estado = (data[i].estadoSemaforo || data[i].EstadoSemaforo || null);
+            if (estado) {
+                const e = estado.toString().toLowerCase();
+                if (e === 'verde') return '#22c55e';
+                if (e === 'amarillo') return '#facc15'; 
+                if (e === 'rojo') return '#ef4444';
+            }
 
-        const backgroundColors = data.map(d => {
-            if (d.estadoSemaforo === 'verde') return 'rgba(76, 175, 80, 0.8)'; // Verde
-            if (d.estadoSemaforo === 'amarillo') return 'rgba(255, 193, 7, 0.8)'; // Amarillo
-            return 'rgba(244, 67, 54, 0.8)'; // Rojo
+            const meta = metas[i] || 0;
+            if (meta > 0) {
+                if (val >= meta) return '#22c55e';
+                if (val >= meta * 0.8) return '#facc15';
+            }
+            return '#ef4444';
         });
 
-        ingresosChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Ingreso Real',
-                        data: ingresosReales,
-                        backgroundColor: backgroundColors,
-                        yAxisID: 'y'
+        try {
+            ingresosChart = new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Ingreso Real',
+                            data: values,
+                            backgroundColor: backgroundColors
+                        },
+                        {
+                            label: 'Meta Anual',
+                            data: metas,
+                            type: 'line',
+                            borderColor: '#2563eb',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            borderDash: [6, 4],
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: true },
+                        title: { display: true, text: 'Ingresos por Año' }
                     },
-                    {
-                        type: 'line',
-                        label: 'Meta Anual',
-                        data: metas,
-                        borderColor: 'rgb(255, 99, 132)',
-                        borderWidth: 3,
-                        fill: false,
-                        pointRadius: 5,
-                        yAxisID: 'y'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function (value) {
-                                return '$' + value.toLocaleString();
+                    onClick: (evt) => {
+                        const points = ingresosChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                        if (points.length) {
+                            const idx = points[0].index;
+                            selectedAnioData = data[idx];
+                            currentIngresosLevel = 2;
+                            // si hay ingresosMensuales, renderizarlos
+                            if (selectedAnioData && selectedAnioData.ingresosMensuales && selectedAnioData.ingresosMensuales.length > 0) {
+                                renderIngresosNivel2Chart(selectedAnioData.ingresosMensuales);
+                                $('#ingresosDrillUpButton').show();
+                                $('#ingresosDrillDownTitle').text ? $('#ingresosDrillDownTitle').text(`Ingreso ${selectedAnioData.anio}`) : null;
+                            } else {
+                                drawCanvasMessage(canvasId, "No hay datos mensuales para el año seleccionado.");
                             }
                         }
                     }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                    },
-                    title: {
-                        display: true,
-                        text: 'Rendimiento de Ingresos: Visión Anual'
-                    }
-                },
-                onClick: (e) => {
-                    const points = ingresosChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
-                    if (points.length) {
-                        const index = points[0].index;
-                        selectedAnio = data[index].anio;
-
-                        // PASO AL NIVEL 2: MESES
-                        handleIngresosDrillDownToLevel2(data[index].ingresosMensuales);
-                    }
                 }
-            }
-        });
-        $('#ingresosDrillUpButton').hide();
-        $('#ingresosDrillDownTitle').text('Rendimiento de Ingresos: Visión Anual');
+            });
+            $('#ingresosDrillUpButton').hide();
+            $('#ingresosDrillDownTitle').text ? $('#ingresosDrillDownTitle').text('Rendimiento de Ingresos: Visión Anual') : null;
+        } catch (err) {
+            console.error("Error renderIngresosNivel1Chart:", err);
+            drawCanvasMessage(canvasId, "Error al generar gráfico de ingresos anuales.");
+        }
     }
 
-    /**
-     * Dibuja el gráfico de Ingresos: Nivel 2 (Mensual).
-     * @param {Array} data - Lista de objetos IngresosMensualesData.
-     */
+    // ============================
+    // INGRESOS - Nivel 2 (Mensual)
+    // ============================
     function renderIngresosNivel2Chart(data) {
-        const ctx = document.getElementById('chartIngresosMensuales').getContext('2d');
-        if (ingresosChart) { ingresosChart.destroy(); }
+        const canvasId = 'chartIngresosMensuales';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) { console.error('chartIngresosMensuales no encontrado'); return; }
 
-        currentIngresosLevel = 2;
+        if (ingresosChart) { ingresosChart.destroy(); ingresosChart = null; }
 
-        const labels = data.map(d => d.mes);
-        const ingresosReales = data.map(d => d.ingresoRealMensual);
-        const metas = data.map(d => d.metaMensual);
+        if (!Array.isArray(data) || data.length === 0) {
+            drawCanvasMessage(canvasId, "No hay datos mensuales.");
+            return;
+        }
 
-        // Mapeo para colores de barras según el estado del semáforo
-        const backgroundColors = data.map(d => {
-            if (d.estadoSemaforo === 'verde') return 'rgba(76, 175, 80, 0.8)'; // Verde
-            if (d.estadoSemaforo === 'amarillo') return 'rgba(255, 193, 7, 0.8)'; // Amarillo
-            return 'rgba(244, 67, 54, 0.8)'; // Rojo
+        const labels = data.map(d => d.nombreMes || (`Mes ${d.mesNumero || '—'}`));
+        const values = data.map(d => safeNumber(d.ingresoRealMensual ?? d.IngresoRealMensual ?? 0));
+        const metas = data.map(d => safeNumber(d.metaMensual ?? d.MetaMensual ?? 0));
+
+        const backgroundColors = values.map((val, i) => {
+            const estado = (data[i].estadoSemaforo || data[i].EstadoSemaforo || null);
+            if (estado) {
+                const e = estado.toString().toLowerCase();
+                if (e === 'verde') return '#22c55e';
+                if (e === 'amarillo') return '#9ca3af';
+                if (e === 'rojo') return '#ef4444';
+            }
+            const meta = metas[i] || 0;
+            if (meta > 0) {
+                if (val >= meta) return '#22c55e';
+                if (val >= meta * 0.8) return '#9ca3af';
+            }
+            return '#ef4444';
         });
 
-        ingresosChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Ingreso Real',
-                        data: ingresosReales,
-                        backgroundColor: backgroundColors,
-                        yAxisID: 'y'
+        try {
+            ingresosChart = new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Ingreso Mensual',
+                            data: values,
+                            backgroundColor: backgroundColors
+                        },
+                        {
+                            label: 'Meta Mensual',
+                            data: metas,
+                            type: 'line',
+                            borderColor: '#2563eb',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            borderDash: [6, 4],
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: true },
+                        title: { display: true, text: 'Ingresos Mensuales' }
                     },
-                    {
-                        type: 'line',
-                        label: 'Meta Mensual',
-                        data: metas,
-                        borderColor: 'rgb(0, 140, 186)',
-                        borderWidth: 3,
-                        fill: false,
-                        pointRadius: 0,
-                        yAxisID: 'y'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function (value) { return '$' + value.toLocaleString(); }
+                    onClick: (evt) => {
+                        const points = ingresosChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+                        if (points.length) {
+                            const idx = points[0].index;
+                            selectedMesData = data[idx];
+                            currentIngresosLevel = 3;
+                            if (selectedMesData && selectedMesData.ingresosSemanales && selectedMesData.ingresosSemanales.length > 0) {
+                                renderIngresosNivel3Chart(selectedMesData.ingresosSemanales);
+                                $('#ingresosDrillUpButton').show();
+                            } else {
+                                drawCanvasMessage(canvasId, "No hay datos semanales para el mes seleccionado.");
+                            }
                         }
                     }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: `Ingresos Mensuales de ${selectedAnio}`
-                    }
-                },
-                onClick: (e) => {
-                    const points = ingresosChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
-                    if (points.length) {
-                        const index = points[0].index;
-                        selectedMes = data[index].mes;
-
-                        // PASO AL NIVEL 3: SEMANAS
-                        handleIngresosDrillDownToLevel3(data[index].ingresosSemanales);
-                    }
                 }
-            }
-        });
-        $('#ingresosDrillUpButton').show();
-        $('#ingresosDrillDownTitle').text(`Ingresos Mensuales de ${selectedAnio}`);
+            });
+            $('#ingresosDrillUpButton').show();
+        } catch (err) {
+            console.error("Error renderIngresosNivel2Chart:", err);
+            drawCanvasMessage(canvasId, "Error al generar gráfico mensual de ingresos.");
+        }
     }
 
-    /**
-     * Dibuja el gráfico de Ingresos: Nivel 3 (Semanal).
-     * @param {Array} data - Lista de objetos IngresosSemanalesData.
-     */
+    // ============================
+    // INGRESOS - Nivel 3 (Semanal)
+    // ============================
     function renderIngresosNivel3Chart(data) {
-        const ctx = document.getElementById('chartIngresosMensuales').getContext('2d');
-        if (ingresosChart) { ingresosChart.destroy(); }
+        const canvasId = 'chartIngresosMensuales';
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) { console.error('chartIngresosMensuales no encontrado'); return; }
+        if (ingresosChart) { ingresosChart.destroy(); ingresosChart = null; }
 
-        currentIngresosLevel = 3;
+        if (!Array.isArray(data) || data.length === 0) {
+            drawCanvasMessage(canvasId, "No hay datos semanales.");
+            return;
+        }
 
-        const labels = data.map(item => item.semana);
-        const ingresos = data.map(item => item.ingresoRealSemanal);
-        const metas = data.map(item => item.metaSemanal);
+        const labels = data.map(d => d.semana || '—');
+        const values = data.map(d => safeNumber(d.ingresoRealSemanal ?? d.IngresoRealSemanal ?? 0));
 
-        const backgroundColors = data.map(d => {
-            if (d.estadoSemaforo === 'verde') return 'rgba(76, 175, 80, 0.8)'; // Verde
-            if (d.estadoSemaforo === 'amarillo') return 'rgba(255, 193, 7, 0.8)'; // Amarillo
-            return 'rgba(244, 67, 54, 0.8)'; // Rojo
-        });
-
-
-        ingresosChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Ingresos Reales',
-                        data: ingresos,
-                        backgroundColor: backgroundColors,
-                        yAxisID: 'y'
-                    },
-                    {
-                        type: 'line',
-                        label: 'Meta Semanal',
-                        data: metas,
-                        borderColor: 'rgb(255, 99, 132)',
-                        borderWidth: 2,
+        try {
+            ingresosChart = new Chart(canvas.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Ingreso Semanal',
+                        data: values,
                         fill: false,
-                        pointRadius: 0,
-                        yAxisID: 'y'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function (value) { return '$' + value.toLocaleString(); }
-                        }
-                    }
+                        tension: 0.3,
+                        borderWidth: 2
+                    }]
                 },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: `Ingresos Semanales de ${selectedMes} (${selectedAnio})`
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Ingresos Semanales' }
                     }
                 }
-            }
-        });
-        $('#ingresosDrillDownTitle').text(`Ingresos Semanales de ${selectedMes} (${selectedAnio})`);
-    }
-
-
-    // 2. LÓGICA DE INTERACCIÓN (Filtros y Drill Down)
-
-    // Lógica de Rendimiento de Vets (handleDrillDownToLevel2, renderTurnosDetalleChart, handleDrillUp)
-
-    /**
-     *  Transición al Drill Down Nivel 2: Turnos de un Vet específico.
-     */
-    function handleDrillDownToLevel2(vetId, vetName) {
-        selectedVeterinarioId = vetId;
-        currentDrillDownLevel = 2;
-
-        // --- SIMULACIÓN DE DATOS (aca hariamos la llamada AJAX) ---
-        const level2Data = [
-            { nombreVeterinario: 'Semana 1', finalizados: 30, cancelados: 5, pendientes: 1 },
-            { nombreVeterinario: 'Semana 2', finalizados: 35, cancelados: 2, pendientes: 2 },
-            { nombreVeterinario: 'Semana 3', finalizados: 25, cancelados: 7, pendientes: 0 },
-            { nombreVeterinario: 'Semana 4', finalizados: 40, cancelados: 1, pendientes: 0 }
-        ];
-
-        // Redibujamos el gráfico
-        renderTurnosDetalleChart(level2Data, vetName);
-
-        // Mostrar el botón "Volver"
-        $('#drillUpButton').show();
-    }
-
-    /**
-     * Dibuja el gráfico de detalle (Nivel 2) para un veterinario.
-     */
-    function renderTurnosDetalleChart(data, vetName) {
-        const ctx = document.getElementById('chartRendimiento').getContext('2d');
-
-        if (rendimientoChart) {
-            rendimientoChart.destroy();
-        }
-
-        const labels = data.map(item => item.nombreVeterinario);
-        const finalizados = data.map(item => item.finalizados);
-
-        rendimientoChart = new Chart(ctx, {
-            type: 'line', // Usamos línea para ver la tendencia de las semanas
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Turnos Finalizados',
-                        data: finalizados,
-                        borderColor: '#008CBA',
-                        backgroundColor: 'rgba(0, 140, 186, 0.2)',
-                        fill: true,
-                        tension: 0.4
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: `Detalle de Turnos Finalizados para: ${vetName}`
-                    }
-                }
-            }
-        });
-
-        $('#drillDownTitle').text(`Detalle Semanal - ${vetName} (Nivel 2)`);
-    }
-
-    /**
-     * Transición de vuelta al Drill Down Nivel 1 (Vets).
-     */
-    function handleDrillUp() {
-        if (currentDrillDownLevel > 1) {
-            currentDrillDownLevel = 1;
-            selectedVeterinarioId = null;
-            // Recargamos los datos base. Usamos initialRendimientoData que viene del ViewModel.
-            renderRendimientoChart(initialRendimientoData);
+            });
+            $('#ingresosDrillUpButton').show();
+        } catch (err) {
+            console.error("Error renderIngresosNivel3Chart:", err);
+            drawCanvasMessage(canvasId, "Error al generar gráfico semanal de ingresos.");
         }
     }
 
-    // Asignar evento al botón "Volver (Drill Up)"
-    $('#drillUpButton').on('click', handleDrillUp);
+    // ============================
+    // RAZAS - Actualizar lista (CUANDO SE HACE CLICK EN ESPECIE GRAFICO DE DONAS)
+    // ============================
+ 
+    function updateRazasList(especie) {
 
-
-    // Lógica de Navegación de Ingresos (Drill Up)
-
-    /**
-     * Transición al Drill Down Nivel 2: Meses.
-     * @param {Array} monthlyData - Lista de objetos IngresosMensualesData.
-     */
-    function handleIngresosDrillDownToLevel2(monthlyData) {
-        renderIngresosNivel2Chart(monthlyData);
+        if (typeof initialEspeciesData === 'undefined' || !Array.isArray(initialEspeciesData)) {
+            $('#drillDownRazas').html('<div class="v1-empty-state small">Datos de razas no disponibles.</div>');
+            return;
+        }
+        const found = initialEspeciesData.find(e => (e.especie || '').toString().toLowerCase() === (especie || '').toString().toLowerCase());
+        if (!found || !found.razas || found.razas.length === 0) {
+            $('#drillDownRazas').html('<div class="v1-empty-state small">No hay razas registradas para esta especie.</div>');
+            return;
+        }
+        // construyo lista simple
+        const listHtml = found.razas.map(r => `<div class="v1-list-item"><div>${r.nombre}</div><div class="v1-badge">${r.cantidad}</div></div>`).join('');
+        $('#drillDownRazas').html(listHtml);
     }
 
-    /**
-     * Transición al Drill Down Nivel 3: Semanas.
-     * @param {Array} weeklyData - Lista de objetos IngresosSemanalesData.
-     */
-    function handleIngresosDrillDownToLevel3(weeklyData) {
-        renderIngresosNivel3Chart(weeklyData);
+    // ============================
+    // Drill handlers
+    // ============================
+    function handleTurnosDrillDownToLevel2() {
+        if (typeof initialAtencionesVetData !== 'undefined' && Array.isArray(initialAtencionesVetData) && initialAtencionesVetData.length > 0) {
+            renderAtencionesPorVeterinarioChart(initialAtencionesVetData);
+        } else {
+            drawCanvasMessage('chartRendimiento', 'No hay datos detallados de atenciones.');
+        }
     }
 
-    /**
-     * Maneja la transición de vuelta a los niveles superiores.
-     */
+    function handleTurnosDrillUp() {
+        if (currentTurnosLevel === 2) {
+            if (typeof initialTurnosStatusData !== 'undefined') {
+                renderTurnosStatusChart(initialTurnosStatusData);
+            } else {
+                drawCanvasMessage('chartRendimiento', 'Error al volver.');
+            }
+        }
+    }
+    $('#drillUpButton').on('click', handleTurnosDrillUp);
+
     function handleIngresosDrillUp() {
-        // En el Nivel 3 (Semanal), volvemos al Nivel 2 (Mensual)
         if (currentIngresosLevel === 3) {
-            const anioData = initialIngresosAnualesData.find(d => d.anio === selectedAnio);
-            if (anioData) {
-                renderIngresosNivel2Chart(anioData.ingresosMensuales);
+            // volver a mensual
+            if (selectedAnioData && selectedAnioData.ingresosMensuales) {
+                renderIngresosNivel2Chart(selectedAnioData.ingresosMensuales);
+                currentIngresosLevel = 2;
+            } else {
+                renderIngresosNivel1Chart(initialIngresosAnualesData);
+                currentIngresosLevel = 1;
             }
-            // En el Nivel 2 (Mensual), volvemos al Nivel 1 (Anual)
         } else if (currentIngresosLevel === 2) {
-            selectedAnio = null;
-            selectedMes = null;
+            selectedAnioData = null;
+            selectedMesData = null;
             renderIngresosNivel1Chart(initialIngresosAnualesData);
+            currentIngresosLevel = 1;
+            $('#ingresosDrillUpButton').hide();
         }
-        // Si es Nivel 1, el botón está oculto por renderIngresosNivel1Chart
     }
-
-    // Asignar evento al botón "Volver (Drill Up)" específico de Ingresos
     $('#ingresosDrillUpButton').on('click', handleIngresosDrillUp);
 
-
-    //Simulación de Razas
-    /**
-     * Actualización de la lista de razas basada en la especie seleccionada
-     */
-    function updateRazasList(especie) {
-        let html = '';
-
-        // Simulación de datos de Razas (Aca luego hacemos llamada a ajax)
-        const mockRazas = {
-            'Canino': [
-                { raza: 'Ovejero Alemán', count: 45 },
-                { raza: 'Labrador', count: 30 },
-                { raza: 'Mestizo', count: 20 }
-            ],
-            'Felino': [
-                { raza: 'Siamés', count: 15 },
-                { raza: 'Persa', count: 10 },
-                { raza: 'Común Europeo', count: 50 }
-            ],
-            'Exótico': [
-                { raza: 'Conejo', count: 10 },
-                { raza: 'Hámster', count: 5 }
-            ]
-        };
-
-        const razasData = mockRazas[especie] || [{ raza: 'No hay datos de razas', count: 0 }];
-
-        razasData.forEach(item => {
-            html += `<div class="v1-list-item">
-                        <span>${item.raza}</span>
-                        <span class="v1-badge">${item.count}</span>
-                    </div>`;
-        });
-
-        $('#drillDownRazas').html(html);
-    }
-
-
-
-    //  CARGA DE DATOS INICIAL
-
+    // ============================
+    // Carga inicial
+    // ============================
     function loadDashboardData() {
-        console.log("Cargando datos del Dashboard desde el ViewModel...");
-
-        // 1. Rendimiento de Turnos (Drill Down Nivel 1)
-        renderRendimientoChart(initialRendimientoData);
-
-        // 2. Servicios Más Solicitados
-        renderServiciosChart(initialServiciosData);
-
-        // 3. Gráfico de Especies
-        renderEspeciesChart(initialEspeciesData);
-
-        // 4. Actualizamos la Ausencia para el semáforo
-        updateKpiSemaforo(initialTasaAusencia);
-
-        // 5. Gráfico de Ingresos
-        renderIngresosNivel1Chart(initialIngresosAnualesData);
-    }
-
-    // Implementación simple de la semaforización
-    function updateKpiSemaforo(tasa) {
-        const card = $('#kpi-ausencia-card');
-        card.removeClass('indicator-rojo indicator-amarillo indicator-verde');
-
-        // Rojo (>15%) | Amarillo (5-15%) | Verde (<5%)
-        if (tasa > 0.15) {
-            card.addClass('indicator-rojo');
-        } else if (tasa >= 0.05) {
-            card.addClass('indicator-amarillo');
+        // Turnos
+        if (typeof initialTurnosStatusData !== 'undefined' && initialTurnosStatusData) {
+            renderTurnosStatusChart(initialTurnosStatusData);
         } else {
-            card.addClass('indicator-verde');
+            drawCanvasMessage('chartRendimiento', 'No se pudieron cargar los datos de turnos.');
+        }
+
+        // Servicios
+        if (typeof initialServiciosData !== 'undefined' && Array.isArray(initialServiciosData) && initialServiciosData.length > 0) {
+            renderServiciosChart(initialServiciosData);
+        } else {
+            drawCanvasMessage('chartServicios', 'No hay datos de servicios.');
+        }
+
+        // Especies
+        if (typeof initialEspeciesData !== 'undefined' && Array.isArray(initialEspeciesData) && initialEspeciesData.length > 0) {
+            renderEspeciesChart(initialEspeciesData);
+        } else {
+            drawCanvasMessage('chartEspecies', 'No hay mascotas registradas.');
+        }
+
+        // Ingresos
+        if (typeof initialIngresosAnualesData !== 'undefined' && Array.isArray(initialIngresosAnualesData) && initialIngresosAnualesData.length > 0) {
+            renderIngresosNivel1Chart(initialIngresosAnualesData);
+        } else {
+            drawCanvasMessage('chartIngresosMensuales', 'No hay datos de ingresos.');
         }
     }
 
-    // Iniciar la carga de datos al cargar la página
     loadDashboardData();
-
 });

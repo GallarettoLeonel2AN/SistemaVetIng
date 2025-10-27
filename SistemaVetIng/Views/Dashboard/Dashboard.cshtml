@@ -1,8 +1,13 @@
 ﻿@model SistemaVetIng.ViewsModels.DashboardViewModel
+@using System.Text.Json;
+@using System.Globalization;
+
 @{
     ViewData["Title"] = "VetIng - Dashboard de Reportes";
     Layout = null;
+    var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 }
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,9 +22,9 @@
     <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
 </head>
-
-<body>
+<body class="dark-mode">
     <header class="main-header">
         <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
         <nav class="main-nav">
@@ -39,125 +44,121 @@
 
     <main class="v1-main-dashboard">
 
-
         <section id="dashboard-inicio" class="v1-section">
             <h2 class="v1-section-title">Dashboard Analítico de Gestión</h2>
 
             <div class="v1-card-grid">
-                <div class="v1-card kpi-card kpi-ausencia" id="kpi-ausencia-card">
+
+                <div class="v1-card kpi-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Citas de hoy</h3>
-                        <i class="fa-solid fa-calendar-times v1-card-icon"></i>
+                        <h3 class="v1-card-title">Atenciones Realizadas</h3>
+                        <i class="fa-solid fa-notes-medical v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div id="tasaAusenciaValue" class="v1-card-value">
-                           12
+                        <div class="v1-card-value">@Model.TotalAtencionesRealizadas</div>
+                        <p class="v1-card-description">Históricamente</p>
+                    </div>
+                </div>
+
+                <div class="v1-card kpi-card indicator-@(Model.EstadoSemaforoAusencia?.ToLower() ?? "rojo")" id="kpi-ausencia-card">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Porcentaje de Ausencia</h3>
+                        <i class="fa-solid fa-user-slash v1-card-icon"></i>
+                    </div>
+                    <div class="v1-card-content">
+                        <div class="v1-card-value">
+                            @($"{Model.PorcentajeAusencia.ToString("N1")}%")
                         </div>
-                        <p class="v1-card-description" id="tasaAusenciaRef">
-                            +12 desde ayer
+                        <p class="v1-card-description">sobre turnos finalizados o ausentes</p>
+                    </div>
+                </div>
+
+                <div class="v1-card kpi-card">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Total de Turnos</h3>
+                        <i class="fa-solid fa-calendar-check v1-card-icon"></i>
+                    </div>
+                    <div class="v1-card-content">
+                        <div class="v1-card-value">@Model.TotalCantidadDeTurnos</div>
+                        <p class="v1-card-description">Registrados</p>
+                    </div>
+                </div>
+
+                <div class="v1-card kpi-card">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Cliente más Frecuente</h3>
+                        <i class="fa-solid fa-star v1-card-icon"></i>
+                    </div>
+                    <div class="v1-card-content">
+                        <div class="v1-card-value">
+                            @{
+                                var cliente = Model.ClienteMasFrecuente;
+                                if (cliente != null)
+                                {
+                                    @($"{cliente.Nombre} {cliente.Apellido}")
+                                }
+                                else
+                                {
+                                    @:N/A
+                                }
+                            }
+                        </div>
+                        <p class="v1-card-description">
+                            Usuario: @(Model.ClienteMasFrecuente?.Usuario?.Email ?? "-")
                         </p>
                     </div>
                 </div>
-
-                <div class="v1-card kpi-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Ingresos del día</h3>
-                        <i class="fa-solid fa-money-bill-wave v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            $4.500
-                        </div>
-                        <p class="v1-card-description">+20% vs ayer </p>
-                    </div>
-                </div>
-
-                <div class="v1-card kpi-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Mascotas Registradas</h3>
-                        <i class="fa-solid fa-bone v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            312
-                        </div>
-                        <p class="v1-card-description">+20 este mes</p>
-                    </div>
-                </div>
-
-                <div class="v1-card kpi-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Clientes Registrados</h3>
-                        <i class="fa-solid fa-user v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            312
-                        </div>
-                        <p class="v1-card-description">+20 este mes</p>
-                    </div>
-                </div>
-
             </div>
 
             <div class="v1-chart-and-list-container dashboard-main-charts">
-                    <div class="v1-card v1-chart-card v1-col-8">
-                        <div class="v1-card-header">
-                            <h3 class="v1-card-title" id="ingresosDrillDownTitle">Rendimiento de Ingresos: Visión Anual</h3>
-
-                            <button id="ingresosDrillUpButton" class="v1-btn v1-btn-ghost" style="display:none;">
-                                <i class="fa-solid fa-arrow-up"></i> Volver (Nivel Superior)
-                            </button>
+                <div class="v1-card v1-chart-card v1-col-8">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title" id="ingresosDrillDownTitle">Rendimiento de Ingresos: Visión Anual</h3>
+                        <button id="ingresosDrillUpButton" class="v1-btn v1-btn-ghost" style="display:none;">
+                            <i class="fa-solid fa-arrow-up"></i> Volver
+                        </button>
+                    </div>
+                    <div class="v1-card-content">
+                        <div style="height: 400px;">
+                            <canvas id="chartIngresosMensuales"></canvas>
                         </div>
-                        <div class="v1-card-content">
-                            <div style="height: 400px;">
-                                <canvas id="chartIngresosMensuales"></canvas>
-                            </div>
-                        </div>
-                     </div>
+                    </div>
+                </div>
 
                 <div class="v1-card v1-metrics-card v1-col-12 v1-col-lg-4">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Métricas Clave (Acumulado)</h3>
+                        <h3 class="v1-card-title">Métricas Clave (Histórico)</h3>
                     </div>
                     <div class="v1-card-content v1-info-grid" style="grid-template-columns: 1fr;">
-
                         <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-money-bill-trend-up v1-card-icon"></i> Ingreso Real Total:</strong>
-                            <span class="v1-text-success">@* @string.Format("{0:C0}", Model.IngresoTotalReal) *@ $1.6M</span>
+                            <strong><i class="fa-solid fa-money-bill-trend-up v1-card-icon"></i> Ingreso Total:</strong>
+                            <span class="v1-text-success">@Model.TotalIngresosHistoricos.ToString("C0", new CultureInfo("es-AR"))</span>
                         </div>
-
                         <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-bullseye v1-card-icon"></i> Meta Proyectada:</strong>
-                            <span class="v1-text-primary">@* @string.Format("{0:C0}", Model.MetaTotal) *@ $1.8M</span>
+                            <strong><i class="fa-solid fa-hand-holding-dollar v1-card-icon"></i> Ingreso Prom./Atención:</strong>
+                            <span class="v1-text-info">@Model.IngresoPromedioPorAtencion.ToString("C0", new CultureInfo("es-AR"))</span>
                         </div>
-
                         <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-gauge-high v1-card-icon"></i> Cumplimiento:</strong>
-                            <span class="v1-text-warning">@* @string.Format("{0:P1}", Model.PorcentajeCumplimiento) *@ 88.9%</span>
+                            <strong><i class="fa-solid fa-users v1-card-icon"></i> Clientes Totales:</strong>
+                            <span class="v1-text-primary">@Model.TotalClientes</span>
                         </div>
-
                         <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-calendar-alt v1-card-icon"></i> Promedio Mensual:</strong>
-                            <span class="v1-text-info">@* @string.Format("{0:C0}", Model.PromedioMensual) *@ $133K</span>
+                            <strong><i class="fa-solid fa-microchip v1-card-icon"></i> Mascotas con Chip:</strong>
+                            <span class="v1-text-warning">@Model.MascotasConChipCount de @Model.TotalMascotas</span>
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
-
             <div class="v1-chart-and-list-container dashboard-main-charts">
-
                 <div class="v1-card v1-chart-card v1-col-8">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title" id="drillDownTitle">Rendimiento de Turnos por Veterinario (Nivel 1)</h3>
+                        <h3 class="v1-card-title" id="drillDownTitle">Distribución de Turnos por Estado</h3>
                         <button id="drillUpButton" class="v1-btn v1-btn-ghost" style="display:none;"><i class="fa-solid fa-arrow-up"></i> Volver </button>
                     </div>
                     <div class="v1-card-content">
                         <div style="height: 400px;">
-                            <canvas id="chartRendimiento"></canvas>
+                            <canvas id="chartRendimiento"></canvas> 
                         </div>
                     </div>
                 </div>
@@ -174,15 +175,13 @@
                 </div>
             </div>
 
-
-
             <div class="v1-chart-and-list-container dashboard-bottom-row">
                 <div class="v1-card v1-chart-card v1-col-4">
                     <div class="v1-card-header">
                         <h3 class="v1-card-title">Distribución por Especie</h3>
                     </div>
                     <div class="v1-card-content">
-                        <div style="height: 450px;">
+                        <div style="height: 400px;">
                             <canvas id="chartEspecies"></canvas>
                         </div>
                     </div>
@@ -190,127 +189,58 @@
 
                 <div class="v1-card v1-col-8">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Análisis de Razas y Perros Peligrosos</h3>
+                        <h3 class="v1-card-title">Análisis de Razas</h3>
                     </div>
-                    <div class="v1-card-content v1-info-grid" style="grid-template-columns: repeat(3, 1fr);">
-                        <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-exclamation-triangle" style="color: #ed3535;"></i> Peligrosos:</strong>
-                            <span class="v1-text-danger">@* @Model.PeligrososCount *@ 18</span>
-                        </div>
-                        <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-dog v1-card-icon"></i> No Peligrosos:</strong>
-                            <span class="v1-text-primary">@* @Model.NoPeligrososCount *@ 140</span>
-                        </div>
-                        <div class="v1-info-item">
-                            <strong><i class="fa-solid fa-star" style="color:#FFD43B;"></i> Raza Frecuente:</strong>
-                            <span>@* @Model.RazaMayorDemanda *@ Ovejero Alemán</span>
-                        </div>
-                    </div>
-                    <div class="centrar">
-                        <h3 class="v1-card-title centrar">Top Razas por Especie Seleccionada:</h3>
+                    <div class="v1-card-content">
+                        <div class="v1-info-grid" style="grid-template-columns: 1fr; gap: 0.8rem;">
+                            <div class="v1-info-item">
+                                <strong><i class="fa-solid fa-dog v1-card-icon"></i> Total Mascotas:</strong>
+                                <span class="v1-text-primary">@Model.TotalMascotas</span>
                             </div>
-                    <div id="drillDownRazas" class="v1-list-content">
-                        <div class="v1-empty-state">Seleccione una especie en el gráfico de torta para ver el detalle.</div>
+                            <div class="v1-info-item">
+                                <strong><i class="fa-solid fa-dog v1-card-icon"></i> Perros Peligrosos:</strong>
+                                <span class="v1-text-info">@Model.PerrosPeligrosos</span>
+                            </div>
+                        </div>
+                        <hr style="margin: 1rem 0;">
+                        <h4 class="v1-card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">Top Razas (por Especie):</h4>
+                        <div id="drillDownRazas" class="v1-list-content" style="max-height: 200px; overflow-y: auto;">
+                            <div class="v1-empty-state small">Seleccione una especie en el gráfico para ver detalle.</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-
     <footer class="main-footer">
-        <div class="footer-col footer-info">
-            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
-            <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
-            <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
         <div class="footer-bottom">
             <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
         </div>
     </footer>
 
-
     <script>
+        // Datos Nivel 1 Gráfico Turnos
+        const initialTurnosStatusData = {
+            totalTurnosPendientes: @Model.TotalTurnosPendientes,
+            totalTurnosFinalizados: @Model.TotalTurnosFinalizados,
+            totalTurnosCancelados: @Model.TotalTurnosCancelados,
+            totalTurnosNoAsistio: @Model.TotalTurnosNoAsistio
+        };
+        // Datos Nivel 2 Gráfico Turnos (Atenciones por Vet)
+        const initialAtencionesVetData = @Html.Raw(JsonSerializer.Serialize(Model.AtencionesPorVeterinario, jsonOptions));
 
-          const initialRendimientoData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
-                        Model.RendimientoVeterinarios,
-                        new System.Text.Json.JsonSerializerOptions { PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase }
-                ));
+        // Otros Gráficos
+        const initialServiciosData = @Html.Raw(JsonSerializer.Serialize(Model.TopServicios, jsonOptions));
+        const initialEspeciesData = @Html.Raw(JsonSerializer.Serialize(Model.DistribucionEspecies, jsonOptions));
+        const initialIngresosAnualesData = @Html.Raw(JsonSerializer.Serialize(Model.IngresosAnuales, jsonOptions));
 
-        const initialServiciosData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
-                        Model.TopServicios,
-                        new System.Text.Json.JsonSerializerOptions { PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase }
-                ));
-
-        const initialEspeciesData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
-                        Model.DistribucionEspecies,
-                        new System.Text.Json.JsonSerializerOptions { PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase }
-                ));
-
-        const initialIngresosAnualesData  = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
-            Model.IngresosAnuales,
-            new System.Text.Json.JsonSerializerOptions { PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase }
-        ));
-        const initialTasaAusencia = @Model.TasaAusencia.ToString(System.Globalization.CultureInfo.InvariantCulture);
     </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <script src="~/js/dashboard.js" asp-append-version="true"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
-
-    <script>
-        // Lógica de Semaforización
-        $(document).ready(function() {
-            // Usamos la variable @(Model.TasaAusencia * 100).ToString("F1")% para leer el valor del DOM.
-            const tasaText = $('#tasaAusenciaValue').text().trim();
-            const tasa = parseFloat(tasaText.replace('%', '')) / 100;
-            const card = $('#kpi-ausencia-card');
-
-            card.removeClass('indicator-rojo indicator-amarillo indicator-verde');
-
-            if (tasa > 0.15) {
-                card.addClass('indicator-rojo');
-            } else if (tasa >= 0.05) {
-                card.addClass('indicator-amarillo');
-            } else {
-                card.addClass('indicator-verde');
-            }
-        });
-    </script>
     @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>

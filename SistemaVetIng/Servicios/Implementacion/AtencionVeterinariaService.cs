@@ -68,7 +68,7 @@ namespace SistemaVetIng.Servicios.Implementacion
 
         public async Task<string> CreateAtencionVeterinaria(AtencionVeterinariaViewModel model, ClaimsPrincipal user)
         {
-            
+
             var userIdString = user.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userIdInt))
             {
@@ -124,7 +124,7 @@ namespace SistemaVetIng.Servicios.Implementacion
             await _repository.AgregarAtencionVeterinaria(atencion);
             await _repository.SaveChangesAsync();
 
-            return null; 
+            return null;
         }
         public async Task<AtencionVeterinaria> ObtenerPorId(int id)
         {
@@ -140,9 +140,9 @@ namespace SistemaVetIng.Servicios.Implementacion
                 {
                     AtencionId = a.Id,
                     CostoTotal = a.CostoTotal,
-                    EstadoDePago = "Pendiente", 
+                    EstadoDePago = "Pendiente",
                     Fecha = a.Fecha,
-                    MascotaNombre = a.HistoriaClinica.Mascota.Nombre                  
+                    MascotaNombre = a.HistoriaClinica.Mascota.Nombre
                 })
                 .ToList();
 
@@ -176,7 +176,7 @@ namespace SistemaVetIng.Servicios.Implementacion
 
                 decimal costoVacunas = vacunasSeleccionadas.Sum(v => v.Precio);
                 decimal costoEstudios = estudiosSeleccionados.Sum(e => e.Precio);
-                decimal costoConsultaBase = 1000; 
+                decimal costoConsultaBase = 1000;
                 decimal costoTotal = costoVacunas + costoConsultaBase + costoEstudios;
 
                 // Tratamiento
@@ -188,7 +188,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                         Medicamento = model.Medicamento,
                         Dosis = model.Dosis,
                         Frecuencia = model.Frecuencia,
-                        Duracion = model.DuracionDias.ToString(), 
+                        Duracion = model.DuracionDias.ToString(),
                         Observaciones = model.ObservacionesTratamiento
                     };
                     await _repository.AgregarTratamiento(tratamiento);
@@ -209,7 +209,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                 };
 
                 await _repository.AgregarAtencionVeterinaria(atencion);
-                await _context.SaveChangesAsync(); 
+                await _context.SaveChangesAsync();
 
                 // Actualizar Turno
                 var turno = await _turnoService.ObtenerPorIdConDatosAsync(model.TurnoId);
@@ -229,13 +229,13 @@ namespace SistemaVetIng.Servicios.Implementacion
             catch (Exception)
             {
                 await transaction.RollbackAsync();
-                throw; 
+                throw;
             }
         }
 
         public async Task<decimal> SumarCostosAtencionesMesActualAsync()
         {
-            return await _repository.SumarCostosAtencionesMesActualAsync(); 
+            return await _repository.SumarCostosAtencionesMesActualAsync();
         }
 
         public async Task<(string Nombre, string Lote)> ObtenerVacunaMasFrecuenteAsync()
@@ -258,10 +258,47 @@ namespace SistemaVetIng.Servicios.Implementacion
             return await _repository.ObtenerMascotaMasFrecuentePorVeterinario(idVeterinario);
         }
 
+        public async Task<int> CantidadAtenciones()
+        {
+            return await _repository.CantidadAtenciones();
+        }
+
         public async Task<int> CantidadPagosPendientes(int idCliente)
         {
             return await _repository.CantidadPagosPendientes(idCliente);
         }
-    }
 
+        public async Task<Cliente> ObtenerClienteMasFrecuenteAsync()
+        {
+            return await _repository.ObtenerClienteMasFrecuenteAsync();
+        }
+
+        public async Task<decimal> SumarIngresosAsync()
+        {
+            return await _repository.SumarIngresosAsync();
+        }
+        public async Task<List<DashboardViewModel.IngresosAnualesData>> ObtenerDatosIngresosAnualesAsync(List<int> anios)
+        {
+            return await _repository.ObtenerDatosIngresosAnualesAsync(anios);
+        }
+
+        public async Task<List<DashboardViewModel.ServicioCountData>> ContarTopServiciosAsync(int topN)
+        {
+            return await _repository.ContarTopServiciosAsync(topN);
+        }
+        
+        public async Task<List<DashboardViewModel.IngresosMensualesData>> ObtenerDatosIngresosMensualesAsync(int anio)
+        {
+            return await _repository.ObtenerDatosIngresosMensualesAsync(anio);
+        }
+        public async Task<List<DashboardViewModel.AtencionesPorVeterinarioData>> ContarAtencionesPorVeterinarioAsync(DateTime? inicio, DateTime? fin)
+        {
+            return await _repository.ContarAtencionesPorVeterinarioAsync(inicio,fin);
+        }
+
+        public async Task<List<AtencionVeterinaria>> ObtenerAtencionesPorMesAsync(int anio, int mes)
+        {
+            return await _repository.ObtenerAtencionesPorMesAsync(anio,mes);
+        }
+    }
 }

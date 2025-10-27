@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj": {}
+    "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj": {
+    "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj",
+        "projectUniqueName": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj",
         "projectName": "PerrosPeligrososApi",
-        "projectPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj",
+        "projectPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj",
         "packagesPath": "C:\\Users\\Ulises\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\",
         "projectStyle": "PackageReference",

@@ -5,6 +5,7 @@ wwwroot\css\animaciones.css
 wwwroot\css\configuracion.css
 wwwroot\css\confirmation-styles.css
 wwwroot\css\css-unificado.css
+wwwroot\css\dashboard.css
 wwwroot\css\home-styles.css
 wwwroot\css\img\atendiendoPerro.jpg
 wwwroot\css\img\camaleon.jpg

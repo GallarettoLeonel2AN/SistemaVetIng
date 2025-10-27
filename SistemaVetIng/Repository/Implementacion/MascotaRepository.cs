@@ -2,8 +2,10 @@
 using SistemaVetIng.Data;
 using SistemaVetIng.Models;
 using SistemaVetIng.Repository.Interfaces;
+using SistemaVetIng.ViewsModels;
 using X.PagedList;
 using X.PagedList.EF;
+using static SistemaVetIng.ViewsModels.DashboardViewModel;
 
 namespace SistemaVetIng.Repository.Implementacion
 {
@@ -80,6 +82,41 @@ namespace SistemaVetIng.Repository.Implementacion
         public async Task<int> ContarPerrosPeligrososAsync()
         {
             return await _context.Mascotas.CountAsync(m => m.RazaPeligrosa);
-        } 
+        }
+        public async Task<int> ContarPerrosChipAsync()
+        {
+            return await _context.Mascotas.CountAsync(m => m.Chip.Id != null);
+        }
+
+        public async Task<List<DashboardViewModel.EspecieCountData>> ContarMascotasPorEspecieAsync()
+        {
+            var conteoPorEspecie = await _context.Mascotas
+                .GroupBy(m => m.Especie) 
+                .Select(g => new DashboardViewModel.EspecieCountData 
+                {
+                    Especie = g.Key,    
+                    Cantidad = g.Count() 
+                })
+                .OrderByDescending(x => x.Cantidad) 
+                .ToListAsync(); 
+
+            return conteoPorEspecie;
+        }
+
+        public async Task<List<DashboardViewModel.RazaData>> ObtenerRazasPorEspecieAsync(string especie)
+        {
+                return await _context.Mascotas
+                    .Where(m => m.Especie == especie)
+                    .GroupBy(m => m.Raza)
+                    .Select(g => new RazaData
+                    {
+                        Nombre = g.Key,
+                        Cantidad = g.Count()
+                    })
+                    .OrderByDescending(r => r.Cantidad)
+                    .Take(10) // Top 10 razas
+                    .ToListAsync();
+         
+        }
     }
 }

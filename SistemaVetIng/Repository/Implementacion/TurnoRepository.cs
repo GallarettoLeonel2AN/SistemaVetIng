@@ -105,5 +105,20 @@ namespace SistemaVetIng.Repository.Implementacion
                 .Where(c => c.ClienteId == idCliente && c.Estado == "Pendiente")
                 .CountAsync();
         }
+        public async Task<int> ContarTurnosPorEstadoAsync(string estado)
+        {
+            return await _context.Turnos.CountAsync(t => t.Estado == estado);
+        }
+
+        public async Task<int> CantidadTurnosAsync()
+        {
+            return await _context.Turnos.CountAsync();
+        }
+
+        public async Task<int> ContarTurnosPorEstadoYFechaAsync(string estado, DateTime fecha)
+        {
+            return await _context.Turnos
+                             .CountAsync(t => t.Fecha.Date == fecha.Date && t.Estado == estado);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using SistemaVetIng.ViewsModels;
 using X.PagedList;
 
 namespace SistemaVetIng.Repository.Interfaces
@@ -17,5 +18,8 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<int> ContarTotalMascotasAsync();
         Task<int> ContarPerrosPeligrososAsync();
         Task<int> ContarTotalMascotasPorClienteAsync(int idCliente);
+        Task<List<DashboardViewModel.EspecieCountData>> ContarMascotasPorEspecieAsync();
+        Task<int> ContarPerrosChipAsync();
+        Task<List<DashboardViewModel.RazaData>> ObtenerRazasPorEspecieAsync(string especie);
     }
 }

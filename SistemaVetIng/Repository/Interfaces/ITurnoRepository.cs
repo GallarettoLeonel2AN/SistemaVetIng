@@ -16,5 +16,9 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<IPagedList<Turno>> ListarPaginadoPorClienteAsync(int clienteId, int pageNumber, int pageSize, string busqueda = null);
         Task<int> ContarTurnosParaFechaAsync(DateTime fecha);
         Task<int> CantidadTurnosPendientesPorCliente(int idCliente);
+        Task<int> ContarTurnosPorEstadoAsync(string estado);
+        Task<int> CantidadTurnosAsync();
+
+        Task<int> ContarTurnosPorEstadoYFechaAsync(string estado, DateTime fecha);
     }
 }

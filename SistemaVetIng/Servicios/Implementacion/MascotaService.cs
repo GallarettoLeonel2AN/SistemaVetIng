@@ -389,6 +389,10 @@ namespace SistemaVetIng.Servicios.Implementacion
             return await _mascotaRepository.ContarTotalMascotasPorClienteAsync(idCliente);
         }
 
+        public async Task<int> ContarPerrosChipAsync()
+        {
+            return await _mascotaRepository.ContarPerrosChipAsync();
+        }
         public async Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
         {
             return await _mascotaRepository.ListarPaginadoAsync(pageNumber, pageSize, busqueda);
@@ -404,7 +408,15 @@ namespace SistemaVetIng.Servicios.Implementacion
             return await _mascotaRepository.ContarPerrosPeligrososAsync();
         }
 
+        public async Task<List<DashboardViewModel.EspecieCountData>> ContarMascotasPorEspecieAsync()
+        {
+            return await _mascotaRepository.ContarMascotasPorEspecieAsync();
+        }
 
+        public async Task<List<DashboardViewModel.RazaData>> ObtenerRazasPorEspecieAsync(string especie)
+        {
+            return await _mascotaRepository.ObtenerRazasPorEspecieAsync(especie);
+        }
 
         #region API PERROSPELIGROSOS
         // Metodo para enviar datos a la API de Perros Peligrosos

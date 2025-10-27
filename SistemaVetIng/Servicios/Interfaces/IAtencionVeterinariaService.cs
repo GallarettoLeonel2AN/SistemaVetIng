@@ -18,5 +18,13 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<int> CantidadAtencionesPorVeterinario(int id);
         Task<Mascota> ObtenerMascotaMasFrecuentePorVeterinario(int idVeterinario);
         Task<int> CantidadPagosPendientes(int idCliente);
+        Task<int> CantidadAtenciones();
+        Task<Cliente> ObtenerClienteMasFrecuenteAsync();
+        Task<decimal> SumarIngresosAsync();
+        Task<List<DashboardViewModel.IngresosAnualesData>> ObtenerDatosIngresosAnualesAsync(List<int> anios);
+        Task<List<DashboardViewModel.ServicioCountData>> ContarTopServiciosAsync(int topN);
+        Task<List<DashboardViewModel.IngresosMensualesData>> ObtenerDatosIngresosMensualesAsync(int anio);
+        Task<List<DashboardViewModel.AtencionesPorVeterinarioData>> ContarAtencionesPorVeterinarioAsync(DateTime? inicio, DateTime? fin);
+        Task<List<AtencionVeterinaria>> ObtenerAtencionesPorMesAsync(int anio, int mes);
     }
 }

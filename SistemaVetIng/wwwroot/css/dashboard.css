@@ -1,0 +1,88 @@
+﻿
+.indicator-rojo {
+    border-left: 5px solid #dc3545 !important; /* Rojo */
+}
+
+.indicator-amarillo {
+    border-left: 5px solid #ffc107 !important; /* Amarillo */
+}
+
+.indicator-verde {
+    border-left: 5px solid #28a745 !important; /* Verde */
+}
+
+
+body.dark-mode .v1-card {
+    background-color: #1e1e1e;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .v1-card-header {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .v1-card-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .v1-card-icon {
+    color: #9e9e9e;
+}
+
+body.dark-mode .v1-card-description {
+    color: #9e9e9e;
+}
+
+body.dark-mode .v1-text-success {
+    color: #48BB78;
+}
+
+body.dark-mode .v1-text-primary {
+    color: #63B3ED;
+}
+
+body.dark-mode .v1-text-warning {
+    color: #ECC94B;
+}
+
+body.dark-mode .v1-text-info {
+    color: #38B2AC;
+}
+
+body.dark-mode .v1-text-danger {
+    color: #F56565;
+}
+
+body.dark-mode .v1-empty-state {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #9e9e9e;
+}
+
+body.dark-mode hr {
+    border-color: #444;
+}
+
+.v1-card-value {
+    margin-bottom: 0.5rem;
+}
+/* Estilo para lista de razas */
+#drillDownRazas .v1-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted var(--history-border);
+}
+
+    #drillDownRazas .v1-list-item:last-child {
+        border-bottom: none;
+    }
+
+#drillDownRazas .v1-badge {
+    background-color: var(--history-tag-bg);
+    color: var(--history-tag-text);
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8em;
+}

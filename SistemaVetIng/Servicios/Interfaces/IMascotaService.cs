@@ -18,8 +18,11 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<IPagedList<Mascota>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
         Task<int> ContarTotalMascotasAsync();
         Task<int> ContarPerrosPeligrososAsync();
-
         Task<int> ContarTotalMascotasPorClienteAsync(int idCliente);
+        Task<List<DashboardViewModel.EspecieCountData>> ContarMascotasPorEspecieAsync();
+
+        Task<int> ContarPerrosChipAsync();
+        Task<List<DashboardViewModel.RazaData>> ObtenerRazasPorEspecieAsync(string especie);
 
     }
 }

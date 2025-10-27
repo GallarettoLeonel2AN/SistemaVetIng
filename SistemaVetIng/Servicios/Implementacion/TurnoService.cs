@@ -169,5 +169,32 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _turnoRepository.CantidadTurnosPendientesPorCliente(idCliente);
         }
+
+        public async Task<double> CalcularPorcentajeAusentismoAsync()
+        {
+            int cantidadAusentes = await _turnoRepository.ContarTurnosPorEstadoAsync("No Asistió");
+            int cantidadFinalizados = await _turnoRepository.ContarTurnosPorEstadoAsync("Finalizado");
+
+            int totalRelevantes = cantidadAusentes + cantidadFinalizados;
+
+            if (totalRelevantes == 0)
+            {
+                return 0.0; 
+            }
+
+            double porcentaje = ((double)cantidadAusentes / totalRelevantes) * 100.0;
+
+            return porcentaje;
+        }
+
+        public async Task<int> CantidadTurnosAsync()
+        {
+            return await _turnoRepository.CantidadTurnosAsync();
+        }
+
+        public async Task<int> ContarTurnosPorEstadoYFechaAsync(string estado, DateTime fecha)
+        {
+            return await _turnoRepository.ContarTurnosPorEstadoYFechaAsync(estado, fecha);
+        }
     }
 }
