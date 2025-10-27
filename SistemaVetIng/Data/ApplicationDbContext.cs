@@ -41,6 +41,12 @@ namespace SistemaVetIng.Data
                 new Estudio { Id = 4, Nombre = "Ecografía abdominal", Precio = 7500.00m, Informe = null },
                 new Estudio { Id = 5, Nombre = "Estudio parasitológico", Precio = 1800.00m, Informe = null }
             );
+           
+            modelBuilder.Entity<MetodoPago>().HasData(
+                new MetodoPago { Id = 1, Nombre = "Efectivo" },
+                new MetodoPago { Id = 2, Nombre = "Tarjeta" },
+                new MetodoPago { Id = 3, Nombre = "Mercado Pago" }
+            );
 
             // Relaciones con Usuario
             modelBuilder.Entity<Cliente>()

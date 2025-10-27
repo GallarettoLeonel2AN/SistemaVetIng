@@ -79,22 +79,33 @@ namespace SistemaVetIng.Controllers
             }).ToList(); 
 
 
-            viewModel.PaginacionMascotas = mascotasPaginadas; 
+            viewModel.PaginacionMascotas = mascotasPaginadas;
 
 
             // CARGA DE CITAS DE HOY
             var turnosDeHoy = await _turnoService.ObtenerTurnosPorFechaAsync(DateTime.Today);
 
-            viewModel.CitasDeHoy = turnosDeHoy.Select(t => new TurnoViewModel
+            // ¡ESTA ES LA REVISIÓN QUE ARREGLA TODO!
+            if (turnosDeHoy != null)
             {
-                Id = t.Id,
-                Horario = t.Horario,
-                Motivo = t.Motivo,
-                Estado = t.Estado,
-                PrimeraCita = t.PrimeraCita,
-                NombreMascota = t.Mascota?.Nombre,
-                NombreCliente = $"{t.Cliente?.Nombre} {t.Cliente?.Apellido}"
-            }).ToList();
+                // Si la lista NO es nula, la procesamos
+                viewModel.CitasDeHoy = turnosDeHoy.Select(t => new TurnoViewModel
+                {
+                    Id = t.Id,
+                    Horario = t.Horario,
+                    Motivo = t.Motivo,
+                    Estado = t.Estado,
+                    PrimeraCita = t.PrimeraCita,
+                    NombreMascota = t.Mascota?.Nombre,
+                    NombreCliente = $"{t.Cliente?.Nombre} {t.Cliente?.Apellido}"
+                }).ToList();
+            }
+            else
+            {
+                // Si la lista ES nula (porque no hay turnos),
+                // le asignamos una LISTA VACÍA.
+                viewModel.CitasDeHoy = new List<TurnoViewModel>();
+            }
 
 
             // Obtener ID del veterinario logueado

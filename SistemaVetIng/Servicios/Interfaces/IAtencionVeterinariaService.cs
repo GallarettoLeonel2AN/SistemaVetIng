@@ -26,5 +26,7 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<List<DashboardViewModel.IngresosMensualesData>> ObtenerDatosIngresosMensualesAsync(int anio);
         Task<List<DashboardViewModel.AtencionesPorVeterinarioData>> ContarAtencionesPorVeterinarioAsync(DateTime? inicio, DateTime? fin);
         Task<List<AtencionVeterinaria>> ObtenerAtencionesPorMesAsync(int anio, int mes);
+        Task<List<AtencionVeterinaria>> ObtenerVariasPorIds(List<int> ids);
+        Task ActualizarVariasAsync(List<AtencionVeterinaria> atenciones);
     }
 }

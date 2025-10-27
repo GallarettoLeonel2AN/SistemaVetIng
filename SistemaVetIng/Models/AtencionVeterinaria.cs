@@ -16,5 +16,7 @@
         public int HistoriaClinicaId { get; set; }
         public HistoriaClinica HistoriaClinica { get; set; }
         public bool Abonado { get; set; }
+        public int? PagoId { get; set; }
+        public Pago Pago { get; set; }
     }
 }

@@ -300,5 +300,15 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _repository.ObtenerAtencionesPorMesAsync(anio,mes);
         }
+
+        public async Task<List<AtencionVeterinaria>> ObtenerVariasPorIds(List<int> ids)
+        {
+            return await _repository.ObtenerVariasPorIdsConClienteAsync(ids);
+        }
+
+        public async Task ActualizarVariasAsync(List<AtencionVeterinaria> atenciones)
+        {
+            await _repository.ActualizarVariasAsync(atenciones);
+        }
     }
 }

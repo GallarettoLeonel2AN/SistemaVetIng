@@ -33,6 +33,7 @@ namespace SistemaVetIng.Models.Extension
             services.AddScoped<IConfiguracionVeterinariaRepository, ConfiguracionVeterinariaRepository>();
             services.AddScoped<IVacunaRepository, VacunaRepository>();
             services.AddScoped<IEstudioRepository, EstudioRepository>();
+            services.AddScoped<IPagoRepository, PagoRepository>();
 
             return services;
         }
@@ -57,6 +58,7 @@ namespace SistemaVetIng.Models.Extension
             services.AddScoped<IVacunaService, VacunaService>();
             services.AddScoped<IEstudioService, EstudioService>();
             services.AddScoped<IMercadoPagoService, MercadoPagoService>();
+            services.AddScoped<IPagoService, PagoService>();
 
             return services;
         }

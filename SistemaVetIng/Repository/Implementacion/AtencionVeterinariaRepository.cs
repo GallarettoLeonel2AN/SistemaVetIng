@@ -38,14 +38,13 @@ namespace SistemaVetIng.Repository.Implementacion
         }
         public async Task<List<AtencionVeterinaria>> ObtenerAtencionesPendientesPorCliente(int clienteId)
         {
-            const string ESTADO_PENDIENTE = "Pendiente";
-
+            
             return await _context.AtencionesVeterinarias
                 .Include(a => a.HistoriaClinica) 
                 .ThenInclude(hc => hc.Mascota)   
                 .Where(a => a.HistoriaClinica.Mascota.ClienteId == clienteId)
                 // Filtramos por el estado que indica que falta el pago
-                //.Where(a => a.EstadoDePago == ESTADO_PENDIENTE)
+                .Where(a => a.Abonado == false)
                 .ToListAsync();
         }
         public async Task<List<Vacuna>> GetVacunas()
@@ -339,6 +338,22 @@ namespace SistemaVetIng.Repository.Implementacion
             return await _context.AtencionesVeterinarias
                                  .Where(a => a.Fecha.Year == anio && a.Fecha.Month == mes)
                                  .ToListAsync();
+        }
+
+        public async Task<List<AtencionVeterinaria>> ObtenerVariasPorIdsConClienteAsync(List<int> ids)
+        {
+            // ¡Es VITAL incluir las relaciones (Propietario/Cliente y Usuario) que usa el controlador!
+            return await _context.AtencionesVeterinarias
+                .Include(a => a.HistoriaClinica.Mascota.Propietario.Usuario)
+                .Where(a => ids.Contains(a.Id) && a.Abonado == false) // Trae solo las pendientes
+                .ToListAsync();
+        }
+
+        public async Task ActualizarVariasAsync(List<AtencionVeterinaria> atenciones)
+        {
+            // EF Core es lo suficientemente inteligente para actualizar múltiples entidades a la vez
+            _context.AtencionesVeterinarias.UpdateRange(atenciones);
+            await _context.SaveChangesAsync();
         }
     }
 }
