@@ -164,6 +164,10 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _turnoRepository.ContarTurnosParaFechaAsync(fecha);
         }
+        public async Task<int> ContarTotalTurnosClienteAsync(int idCliente)
+        {
+            return await _turnoRepository.ContarTotalTurnosClienteAsync(idCliente);
+        }
 
         public async Task<int> CantidadTurnosPendientesPorCliente(int idCliente)
         {

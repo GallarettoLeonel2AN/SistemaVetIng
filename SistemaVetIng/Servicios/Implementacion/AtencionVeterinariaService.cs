@@ -89,7 +89,7 @@ namespace SistemaVetIng.Servicios.Implementacion
 
             decimal costoVacunas = vacunasSeleccionadas.Sum(v => v.Precio);
             decimal costoEstudios = estudiosSeleccionados.Sum(e => e.Precio);
-            decimal costoConsultaBase = 1000;
+            decimal costoConsultaBase = 5000;
             decimal costoTotal = costoVacunas + costoConsultaBase + costoEstudios;
 
             // Crear tratamiento

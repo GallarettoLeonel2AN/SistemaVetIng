@@ -14,7 +14,7 @@ namespace SistemaVetIng.ViewsModels
 
 
         // Reportes Dashboard
-        public int CantidadCitasHoy { get; set; }
+        public int CantidadTurnos { get; set; }
         public int CantidadTurnosPendientesPorCliente { get; set; }
         public int CantidadMascotasPorCliente { get; set; }
         public int CantidadPagosPendientes { get; set; }

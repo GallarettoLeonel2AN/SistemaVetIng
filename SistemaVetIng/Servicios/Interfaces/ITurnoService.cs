@@ -18,6 +18,7 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<(bool success, string message)> CancelarTurnoAsync(int turnoId, ClaimsPrincipal user);
         Task<IPagedList<Turno>> ListarPaginadoPorClienteAsync(int clienteId, int pageNumber, int pageSize, string busqueda = null);
         Task<int> ContarTurnosParaFechaAsync(DateTime fecha);
+        Task<int> ContarTotalTurnosClienteAsync(int idCliente);
         Task<int> CantidadTurnosPendientesPorCliente(int idCliente);
         Task<double> CalcularPorcentajeAusentismoAsync();
         Task<int> CantidadTurnosAsync();

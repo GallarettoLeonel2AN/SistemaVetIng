@@ -3,8 +3,6 @@
     public class Tratamiento
     {
         public int Id { get; set; }
-        
-        public decimal Precio { get; set; }
         public string Observaciones { get; set; }
 
         public string Medicamento { get; set; }

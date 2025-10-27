@@ -98,6 +98,11 @@ namespace SistemaVetIng.Repository.Implementacion
             return await _context.Turnos
                                  .CountAsync(t => t.Fecha.Date == fecha.Date);
         }
+        public async Task<int> ContarTotalTurnosClienteAsync(int idCliente)
+        {
+            return await _context.Turnos
+                                 .CountAsync(t => t.ClienteId == idCliente);
+        }
 
         public async Task<int> CantidadTurnosPendientesPorCliente(int idCliente)
         {

@@ -48,13 +48,16 @@
             <div class="v1-card-grid">
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Citas para Hoy</h3>
+                        <h3 class="v1-card-title">Citas</h3>
                         <i class="fa-regular fa-calendar-days v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
                         <div class="v1-card-value">
                            @Model.CantidadCitasHoy
                         </div>
+                          <p class="v1-card-description">
+                           Para Hoy
+                         </p>
                     </div>
                 </div>
                 <div class="v1-card">
@@ -66,6 +69,9 @@
                         <div class="v1-card-value">
                             @Model.CantidadAtencionesPorVeterinario
                         </div>
+                          <p class="v1-card-description">
+                            Historicamente
+                         </p>
                     </div>
                 </div>
                 <div class="v1-card">

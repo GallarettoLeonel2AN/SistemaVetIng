@@ -107,7 +107,7 @@ namespace SistemaVetIng.Controllers
 
             // Datos para Reportes Dashboard
 
-            viewModel.CantidadCitasHoy = await _turnoService.ContarTurnosParaFechaAsync(DateTime.Today);
+            viewModel.CantidadTurnos = await _turnoService.ContarTotalTurnosClienteAsync(clienteId);
             viewModel.CantidadTurnosPendientesPorCliente = await _turnoService.CantidadTurnosPendientesPorCliente(clienteId);
             viewModel.CantidadMascotasPorCliente = await _mascotaService.ContarTotalMascotasPorClienteAsync(clienteId);
             viewModel.CantidadPagosPendientes = await _atencionVeterinariaService.CantidadPagosPendientes(clienteId);
