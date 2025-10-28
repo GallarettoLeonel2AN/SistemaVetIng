@@ -1,41 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\",
+  "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\servicios\\implementacion\\mercadopagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\mercadopagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\views\\cliente\\paginaprincipal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\cliente\\paginaprincipal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\cliente\\paginaprincipal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\cliente\\historialpagos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\cliente\\historialpagos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Migrations\\20251028022211_metodopago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SistemaVetIng\\Migrations\\20251028022211_metodopago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SistemaVetIng_nueva/True/SqlTable/dbo.MetodosPago.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\controllers\\mercadopagowebhookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\controllers\\mercadopagowebhookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\models\\estudio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\estudio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemavetingabmvye\\sistemaveting\\servicios\\implementacion\\atencionveterinariaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\atencionveterinariaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\viewsmodels\\historialpagosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\viewsmodels\\historialpagosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,6 +26,10 @@
           "Children": [
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
@@ -57,116 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "additional-methods.js",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-              "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-              "RelativeToolTip": "SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-              "ViewState": "AgIAAPAAAAAAAAAAAAAqwIUBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-28T02:26:54.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PagosController.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Controllers\\PagosController.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Controllers\\PagosController.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Controllers\\PagosController.cs",
-              "RelativeToolTip": "SistemaVetIng\\Controllers\\PagosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T02:25:27.814Z",
+              "DocumentIndex": 1,
+              "Title": "HistorialPagos.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\HistorialPagos.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Cliente\\HistorialPagos.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\HistorialPagos.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\Cliente\\HistorialPagos.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAGkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-28T16:18:11.581Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MercadoPagoService.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Servicios\\Implementacion\\MercadoPagoService.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\MercadoPagoService.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Servicios\\Implementacion\\MercadoPagoService.cs",
-              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\MercadoPagoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T02:23:56.1Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "20251028022211_metodopago.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Migrations\\20251028022211_metodopago.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Migrations\\20251028022211_metodopago.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Migrations\\20251028022211_metodopago.cs",
-              "RelativeToolTip": "SistemaVetIng\\Migrations\\20251028022211_metodopago.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T02:22:11.769Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AtencionVeterinariaService.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAqwDEBAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T02:15:31.921Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "PaginaPrincipal.cshtml",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
               "RelativeToolTip": "SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
-              "ViewState": "AgIAAAUBAAAAAAAAAIAwwGMBAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAAABwBAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-28T02:10:11.869Z",
+              "WhenOpened": "2025-10-28T17:01:26.484Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MercadoPagoWebhookController.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Controllers\\MercadoPagoWebhookController.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Controllers\\MercadoPagoWebhookController.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Controllers\\MercadoPagoWebhookController.cs",
-              "RelativeToolTip": "SistemaVetIng\\Controllers\\MercadoPagoWebhookController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "HistorialPagosViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\ViewsModels\\HistorialPagosViewModel.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\ViewsModels\\HistorialPagosViewModel.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\ViewsModels\\HistorialPagosViewModel.cs",
+              "RelativeToolTip": "SistemaVetIng\\ViewsModels\\HistorialPagosViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T02:19:30.809Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dbo.MetodosPago [Datos]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/SistemaVetIng_nueva/True/SqlTable/dbo.MetodosPago.sql",
-              "ToolTip": "dbo.MetodosPago [Datos]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-10-28T02:21:34.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Estudio.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Models\\Estudio.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Estudio.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\Models\\Estudio.cs",
-              "RelativeToolTip": "SistemaVetIng\\Models\\Estudio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T01:18:42.557Z",
+              "WhenOpened": "2025-10-28T16:36:45.948Z",
               "EditorCaption": ""
             }
           ]

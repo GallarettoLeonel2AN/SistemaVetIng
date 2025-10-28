@@ -880,3 +880,146 @@ body.dark-mode .agenda-table {
     align-items: center;
     padding: 20px;
 }
+
+/* HISTORIAL DE PAGOS CLIENTE */
+:root {
+    --history-border: #444;
+    --history-card-bg: #1e1e1e;
+    --history-header-bg: #2a2a2a;
+    --history-text-primary: #e0e0e0;
+    --history-text-secondary: #9e9e9e;
+}
+
+.pagination-container {
+    padding: 1rem;
+    border-top: 1px solid var(--history-border);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0 3px;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: #63B3ED;
+    background-color: var(--history-card-bg);
+    border: 1px solid var(--history-border);
+    text-decoration: none;
+    border-radius: 0.25rem;
+}
+
+    .page-link:hover {
+        background-color: var(--history-header-bg);
+    }
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #63B3ED;
+    border-color: #63B3ED;
+}
+
+.page-item.disabled .page-link {
+    color: #555;
+    pointer-events: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-muted {
+    color: var(--history-text-secondary);
+}
+
+.table-icon {
+    margin-right: 0.5rem;
+    color: var(--history-text-secondary);
+    width: 1.2em;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--history-border);
+        text-align: left;
+        vertical-align: middle;
+        color: var(--history-text-primary);
+    }
+
+    .table thead {
+        background-color: var(--history-header-bg);
+    }
+
+    .table th {
+        color: var(--history-text-primary);
+        font-weight: 600;
+    }
+
+    .table tbody tr:hover {
+        background-color: var(--history-header-bg);
+    }
+
+@@media screen and (max-width: 768px) {
+    .responsive-table thead {
+        display: none;
+    }
+
+    .responsive-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--history-border);
+        border-radius: 4px;
+        background-color: var(--history-card-bg);
+    }
+
+    .responsive-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px dotted var(--history-border);
+    }
+
+        .responsive-table td:last-child {
+            border-bottom: none;
+        }
+
+        .responsive-table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+            color: var(--history-text-secondary);
+        }
+
+        .responsive-table td.text-right {
+            text-align: right;
+        }
+}

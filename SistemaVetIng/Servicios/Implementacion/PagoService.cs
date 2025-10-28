@@ -1,5 +1,6 @@
 ﻿
 using SistemaVetIng.Models;
+using X.PagedList;
 
 public class PagoService : IPagoService
 {
@@ -15,5 +16,9 @@ public class PagoService : IPagoService
     {
        
         return await _pagoRepository.CrearPagoAsync(pago);
+    }
+    public async Task<IPagedList<Pago>> ListarHistorialPagos(int clienteId, int pageNumber, int pageSize)
+    {
+        return await _pagoRepository.ListarHistorialPagos(clienteId,pageNumber,pageSize);
     }
 }

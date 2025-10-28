@@ -6,6 +6,7 @@ using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 using System.Security.Claims;
+using X.PagedList;
 
 namespace SistemaVetIng.Controllers
 {
@@ -18,19 +19,22 @@ namespace SistemaVetIng.Controllers
         private readonly ITurnoService _turnoService;
         private readonly IMascotaService _mascotaService;
         private readonly IAtencionVeterinariaService _atencionVeterinariaService;
+        private readonly IPagoService _pagoService;
 
 
         public ClienteController(IToastNotification toastNotification, 
             IClienteService clienteService,
             ITurnoService turnoService,
             IMascotaService mascotaService,
-            IAtencionVeterinariaService atencionVeterinariaService)
+            IAtencionVeterinariaService atencionVeterinariaService,
+            IPagoService pagoService)
         {
             _toastNotification = toastNotification;
             _clienteService = clienteService;
             _turnoService = turnoService;
             _mascotaService = mascotaService;
             _atencionVeterinariaService = atencionVeterinariaService;
+            _pagoService = pagoService;
         }
 
 
@@ -269,6 +273,63 @@ namespace SistemaVetIng.Controllers
                 return RedirectToAction("PaginaPrincipal", "Veterinaria");
             }
         }
+        #endregion
+
+        #region HISTORIAL DE PAGOS
+        [HttpGet]
+        public async Task<IActionResult> HistorialPagos(int page = 1)
+        {
+            int pageSize = 10;
+
+            // Obtener ID del usuario logueado
+            var usuarioIdString2 = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(usuarioIdString2, out int usuarioIdNumerico2))
+            { 
+                _toastNotification.AddErrorToastMessage("No se pudo obtener el ID del usuario.");
+            }
+            var clienteLogueado = await _clienteService.ObtenerPorIdUsuario(usuarioIdNumerico2);
+            if (clienteLogueado == null)
+            {
+                _toastNotification.AddErrorToastMessage("No se encontró un perfil de cliente para este usuario.");
+            }
+
+            int clienteId = clienteLogueado.Id;
+
+            if (clienteId == 0)
+            {
+                return Unauthorized();
+            }
+            var pagos = await _pagoService.ListarHistorialPagos(clienteId, page, pageSize);
+
+            var pagosViewModel = pagos.Select(pago => new PagosItemViewModel
+            {
+                Fecha = pago.Fecha,
+                Monto = pago.MontoTotal,
+                MetodoDePago = pago.MetodoPagoId switch // Tipo
+                {
+                    1 => "Efectivo",
+                    2 => "Pago Online / MercadoPago",
+                    3 => "Tarjeta",
+                    _ => "Desconocido"
+                },
+                IconoCssClass = pago.MetodoPagoId switch // Iconos
+                {
+                    1 => "fa-solid fa-money-bill-wave",
+                    2 => "fa-solid fa-mobile-screen-button",
+                    3 => "fa-regular fa-credit-card",
+                    _ => "fa-solid fa-circle-question"
+                }
+            });
+
+            var viewModel = new HistorialPagosViewModel
+            {
+                // Convertimos la lista mapeada de vuelta a IPagedList
+                PagosPaginados = new StaticPagedList<PagosItemViewModel>(pagosViewModel, pagos)
+            };
+
+            return View(viewModel);
+        }
+
         #endregion
     }
 }

@@ -12,7 +12,7 @@ using PerrosPeligrososApi.Data;
 namespace PerrosPeligrososApi.Migrations
 {
     [DbContext(typeof(PerrosPeligrososApiDbContext))]
-    [Migration("20251024232853_Primera")]
+    [Migration("20251028154751_Primera")]
     partial class Primera
     {
         /// <inheritdoc />

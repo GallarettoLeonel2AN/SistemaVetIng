@@ -74,7 +74,7 @@ namespace SistemaVetIng.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,7 +87,6 @@ namespace SistemaVetIng.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Medicamento = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -310,6 +309,35 @@ namespace SistemaVetIng.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Pagos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClienteId = table.Column<int>(type: "int", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MetodoPagoId = table.Column<int>(type: "int", nullable: false),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MontoTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pagos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pagos_MetodosPago_MetodoPagoId",
+                        column: x => x.MetodoPagoId,
+                        principalTable: "MetodosPago",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pagos_Personas_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Personas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Chips",
                 columns: table => new
                 {
@@ -391,7 +419,9 @@ namespace SistemaVetIng.Migrations
                     CostoTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     VeterinarioId = table.Column<int>(type: "int", nullable: false),
                     PesoMascota = table.Column<float>(type: "real", nullable: false),
-                    HistoriaClinicaId = table.Column<int>(type: "int", nullable: false)
+                    HistoriaClinicaId = table.Column<int>(type: "int", nullable: false),
+                    Abonado = table.Column<bool>(type: "bit", nullable: false),
+                    PagoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -402,6 +432,11 @@ namespace SistemaVetIng.Migrations
                         principalTable: "HistoriasClinicas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AtencionesVeterinarias_Pagos_PagoId",
+                        column: x => x.PagoId,
+                        principalTable: "Pagos",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AtencionesVeterinarias_Personas_VeterinarioId",
                         column: x => x.VeterinarioId,
@@ -423,7 +458,6 @@ namespace SistemaVetIng.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Informe = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AtencionVeterinariaId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -435,40 +469,6 @@ namespace SistemaVetIng.Migrations
                         column: x => x.AtencionVeterinariaId,
                         principalTable: "AtencionesVeterinarias",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Pagos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AtencionVeterinariaId = table.Column<int>(type: "int", nullable: false),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MetodoPagoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pagos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pagos_AtencionesVeterinarias_AtencionVeterinariaId",
-                        column: x => x.AtencionVeterinariaId,
-                        principalTable: "AtencionesVeterinarias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pagos_MetodosPago_MetodoPagoId",
-                        column: x => x.MetodoPagoId,
-                        principalTable: "MetodosPago",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pagos_Personas_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Personas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -494,14 +494,36 @@ namespace SistemaVetIng.Migrations
 
             migrationBuilder.InsertData(
                 table: "Estudios",
-                columns: new[] { "Id", "AtencionVeterinariaId", "Informe", "Nombre", "Precio" },
+                columns: new[] { "Id", "AtencionVeterinariaId", "Nombre", "Precio" },
                 values: new object[,]
                 {
-                    { 1, null, null, "Análisis de sangre completo", 4500.00m },
-                    { 2, null, null, "Radiografía de tórax", 6000.00m },
-                    { 3, null, null, "Análisis de orina", 2000.00m },
-                    { 4, null, null, "Ecografía abdominal", 7500.00m },
-                    { 5, null, null, "Estudio parasitológico", 1800.00m }
+                    { 1, null, "Análisis de sangre completo", 4500.00m },
+                    { 2, null, "Radiografía de tórax", 6000.00m },
+                    { 3, null, "Análisis de orina", 2000.00m },
+                    { 4, null, "Ecografía abdominal", 7500.00m },
+                    { 5, null, "Estudio parasitológico", 1800.00m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MetodosPago",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Efectivo" },
+                    { 2, "Pago Online / Mercado Pago" },
+                    { 3, "Tarjeta" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Vacunas",
+                columns: new[] { "Id", "AtencionVeterinariaId", "Lote", "Nombre", "Precio" },
+                values: new object[,]
+                {
+                    { 1, null, "RAB-2024A", "Antirrábica (Perros/Gatos)", 3900.00m },
+                    { 2, null, "DHPPI-101", "Quíntuple Canina (Moquillo/Parvo)", 11250.00m },
+                    { 3, null, "FVRCP-202", "Triple Felina (FVRCP)", 5100.00m },
+                    { 4, null, "FELV-303", "Leucemia Felina (FeLV)", 6400.00m },
+                    { 5, null, "KC-404", "Bordetella (Tos de las Perreras)", 85000.00m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -549,6 +571,11 @@ namespace SistemaVetIng.Migrations
                 column: "HistoriaClinicaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AtencionesVeterinarias_PagoId",
+                table: "AtencionesVeterinarias",
+                column: "PagoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AtencionesVeterinarias_TratamientoId",
                 table: "AtencionesVeterinarias",
                 column: "TratamientoId",
@@ -586,11 +613,6 @@ namespace SistemaVetIng.Migrations
                 name: "IX_Mascotas_ClienteId",
                 table: "Mascotas",
                 column: "ClienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pagos_AtencionVeterinariaId",
-                table: "Pagos",
-                column: "AtencionVeterinariaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pagos_ClienteId",
@@ -663,9 +685,6 @@ namespace SistemaVetIng.Migrations
                 name: "HorarioDia");
 
             migrationBuilder.DropTable(
-                name: "Pagos");
-
-            migrationBuilder.DropTable(
                 name: "Turnos");
 
             migrationBuilder.DropTable(
@@ -678,19 +697,22 @@ namespace SistemaVetIng.Migrations
                 name: "ConfiguracionVeterinarias");
 
             migrationBuilder.DropTable(
-                name: "MetodosPago");
-
-            migrationBuilder.DropTable(
                 name: "AtencionesVeterinarias");
 
             migrationBuilder.DropTable(
                 name: "HistoriasClinicas");
 
             migrationBuilder.DropTable(
+                name: "Pagos");
+
+            migrationBuilder.DropTable(
                 name: "Tratamientos");
 
             migrationBuilder.DropTable(
                 name: "Mascotas");
+
+            migrationBuilder.DropTable(
+                name: "MetodosPago");
 
             migrationBuilder.DropTable(
                 name: "Personas");

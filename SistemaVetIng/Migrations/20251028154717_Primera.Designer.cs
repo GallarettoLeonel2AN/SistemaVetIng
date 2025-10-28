@@ -12,8 +12,8 @@ using SistemaVetIng.Data;
 namespace SistemaVetIng.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251025021912_EstadoAbonado")]
-    partial class EstadoAbonado
+    [Migration("20251028154717_Primera")]
+    partial class Primera
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,6 +128,39 @@ namespace SistemaVetIng.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Pago", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MetodoPagoId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("MetodoPagoId");
+
+                    b.ToTable("Pagos");
+                });
+
             modelBuilder.Entity("SistemaVetIng.Models.AtencionVeterinaria", b =>
                 {
                     b.Property<int>("Id")
@@ -152,6 +185,9 @@ namespace SistemaVetIng.Migrations
                     b.Property<int>("HistoriaClinicaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PagoId")
+                        .HasColumnType("int");
+
                     b.Property<float>("PesoMascota")
                         .HasColumnType("real");
 
@@ -164,6 +200,8 @@ namespace SistemaVetIng.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("HistoriaClinicaId");
+
+                    b.HasIndex("PagoId");
 
                     b.HasIndex("TratamientoId")
                         .IsUnique()
@@ -223,9 +261,6 @@ namespace SistemaVetIng.Migrations
 
                     b.Property<int?>("AtencionVeterinariaId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Informe")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -472,44 +507,30 @@ namespace SistemaVetIng.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Tipo")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("MetodosPago");
-                });
 
-            modelBuilder.Entity("SistemaVetIng.Models.Pago", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AtencionVeterinariaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MetodoPagoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AtencionVeterinariaId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("MetodoPagoId");
-
-                    b.ToTable("Pagos");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Efectivo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Pago Online / Mercado Pago"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Tarjeta"
+                        });
                 });
 
             modelBuilder.Entity("SistemaVetIng.Models.Persona", b =>
@@ -582,9 +603,6 @@ namespace SistemaVetIng.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Tratamientos");
@@ -656,6 +674,43 @@ namespace SistemaVetIng.Migrations
                     b.HasIndex("AtencionVeterinariaId");
 
                     b.ToTable("Vacunas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Lote = "RAB-2024A",
+                            Nombre = "Antirrábica (Perros/Gatos)",
+                            Precio = 3900.00m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Lote = "DHPPI-101",
+                            Nombre = "Quíntuple Canina (Moquillo/Parvo)",
+                            Precio = 11250.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Lote = "FVRCP-202",
+                            Nombre = "Triple Felina (FVRCP)",
+                            Precio = 5100.00m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Lote = "FELV-303",
+                            Nombre = "Leucemia Felina (FeLV)",
+                            Precio = 6400.00m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Lote = "KC-404",
+                            Nombre = "Bordetella (Tos de las Perreras)",
+                            Precio = 85000.00m
+                        });
                 });
 
             modelBuilder.Entity("SistemaVetIng.Models.Veterinaria", b =>
@@ -780,6 +835,25 @@ namespace SistemaVetIng.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pago", b =>
+                {
+                    b.HasOne("SistemaVetIng.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaVetIng.Models.MetodoPago", "MetodoPago")
+                        .WithMany()
+                        .HasForeignKey("MetodoPagoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("MetodoPago");
+                });
+
             modelBuilder.Entity("SistemaVetIng.Models.AtencionVeterinaria", b =>
                 {
                     b.HasOne("SistemaVetIng.Models.HistoriaClinica", "HistoriaClinica")
@@ -787,6 +861,10 @@ namespace SistemaVetIng.Migrations
                         .HasForeignKey("HistoriaClinicaId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("Pago", "Pago")
+                        .WithMany("AtencionesCubiertas")
+                        .HasForeignKey("PagoId");
 
                     b.HasOne("SistemaVetIng.Models.Tratamiento", "Tratamiento")
                         .WithOne()
@@ -800,6 +878,8 @@ namespace SistemaVetIng.Migrations
                         .IsRequired();
 
                     b.Navigation("HistoriaClinica");
+
+                    b.Navigation("Pago");
 
                     b.Navigation("Tratamiento");
 
@@ -857,33 +937,6 @@ namespace SistemaVetIng.Migrations
                     b.Navigation("Propietario");
                 });
 
-            modelBuilder.Entity("SistemaVetIng.Models.Pago", b =>
-                {
-                    b.HasOne("SistemaVetIng.Models.AtencionVeterinaria", "AtencionVeterinaria")
-                        .WithMany()
-                        .HasForeignKey("AtencionVeterinariaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SistemaVetIng.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SistemaVetIng.Models.MetodoPago", "MetodoPago")
-                        .WithMany()
-                        .HasForeignKey("MetodoPagoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AtencionVeterinaria");
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("MetodoPago");
-                });
-
             modelBuilder.Entity("SistemaVetIng.Models.Persona", b =>
                 {
                     b.HasOne("SistemaVetIng.Models.Indentity.Usuario", "Usuario")
@@ -936,6 +989,11 @@ namespace SistemaVetIng.Migrations
                     b.HasOne("SistemaVetIng.Models.Veterinaria", null)
                         .WithMany("Veterinarios")
                         .HasForeignKey("VeterinariaId");
+                });
+
+            modelBuilder.Entity("Pago", b =>
+                {
+                    b.Navigation("AtencionesCubiertas");
                 });
 
             modelBuilder.Entity("SistemaVetIng.Models.AtencionVeterinaria", b =>
