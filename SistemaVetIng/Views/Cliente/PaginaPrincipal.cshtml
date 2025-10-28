@@ -1,4 +1,5 @@
-﻿@using X.PagedList.Mvc.Core
+﻿@using System.Globalization
+@using X.PagedList.Mvc.Core
 @model SistemaVetIng.ViewsModels.ClientePaginaPrincipalViewModel
 @{
     ViewData["Title"] = "VetIng - Cliente";
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/formularioPagosCliente.css" asp-append-version="true" />
 </head>
 
 <body>
@@ -233,57 +235,58 @@
         </section>
 
         
-        <section id="pagos" class="v1-section">
-            <h2 class="v1-section-title">Pagos Pendientes</h2>
-            <div class="v1-card">
+       <section id="pagos" class="v1-section">
+    <h2 class="v1-section-title">Pagos Pendientes</h2>
 
-                <form id="form-pagos">
-                    @Html.AntiForgeryToken()
+    <div class="v1-card">
+        <form id="form-pagos">
+            @Html.AntiForgeryToken()
 
-                    <div class="v1-card-content v1-list-content">
-
-                        @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
-                        {
-                           
-                            @foreach (var atencionPendiente in Model.PagosPendientes.Where(p => p.EstadoDePago == "Pendiente"))
-                            {
-                                <div class="v1-list-item pago-item">
-
-                                    <div class="v1-pago-checkbox">
-                                        <input type="checkbox"
-                                               class="chk-pago"
-                                               value="@atencionPendiente.AtencionId"
-                                               data-monto="@atencionPendiente.CostoTotal"
-                                               id="pago-@atencionPendiente.AtencionId" />
-                                    </div>
-
-                                    <label class="v1-list-info pago-info" for="pago-@atencionPendiente.AtencionId">
-                                        <p class="v1-list-name">Atención Mascota: @atencionPendiente.MascotaNombre</p>
-                                        <p class="v1-list-subtext">Monto: $@atencionPendiente.CostoTotal.ToString("N2")</p>
-                                        <p class="v1-list-subtext-small">Fecha: @atencionPendiente.Fecha.ToShortDateString()</p>
-                                    </label>
-
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <div class="v1-empty-state">¡Felicidades! No tienes pagos pendientes.</div>
-                        }
-
-                    </div> @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
+            <div class="payment-list-container">
+                @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
+                {
+                    @foreach (var atencionPendiente in Model.PagosPendientes.Where(p => p.EstadoDePago == "Pendiente"))
                     {
-                        <div class="v1-card-footer pago-footer">
-                            <h3 class="pago-total-label">Total a Pagar: $<span id="total-a-pagar">0.00</span></h3>
-                            <button type="submit" id="btn-pagar-seleccionados" class="v1-btn v1-btn-primary">
-                                <i class="fa-solid fa-credit-card"></i> Pagar Seleccionados
-                            </button>
+                        <div class="payment-item" data-pago-id="pago-@atencionPendiente.AtencionId">
+                            
+                            <div class="payment-checkbox-col">
+                                <input type="checkbox"
+                                       class="chk-pago"
+                                       value="@atencionPendiente.AtencionId"
+                                       data-monto="@atencionPendiente.CostoTotal.ToString(CultureInfo.InvariantCulture)"
+                                       id="pago-@atencionPendiente.AtencionId" />
+                            </div>
+
+                            <div class="payment-info-col">
+                                <p class="v1-list-name">Atención: @atencionPendiente.MascotaNombre</p>
+                                <p class="v1-list-subtext">@atencionPendiente.CostoTotal.ToString("C", new CultureInfo("es-AR"))</p>
+                                <p class="v1-list-subtext-small">Fecha: @atencionPendiente.Fecha.ToShortDateString()</p>
+                            </div>
+
                         </div>
                     }
-
-                </form>
+                }
+                else
+                {
+                    <div class="v1-empty-state" style="border: none;">
+                        <i class="fas fa-check-circle" style="font-size: 2rem; color: #48BB78; margin-bottom: 1rem;"></i>
+                        <p>¡Felicidades! No tienes pagos pendientes.</p>
+                    </div>
+                }
             </div>
-        </section>
+
+            @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
+            {
+                <div class="payment-footer">
+                    <h3 class="payment-total">Total: <span id="total-a-pagar">$0.00</span></h3>
+                    <button type="submit" id="btn-pagar-seleccionados" class="v1-btn v1-btn-primary">
+                        <i class="fa-solid fa-credit-card"></i> Pagar Seleccionados
+                    </button>
+                </div>
+            }
+        </form>
+    </div>
+</section>
         
           <a asp-controller="Cliente" asp-action="HistorialPagos" class="v1-btn v1-btn-primary">
             <i class="fa-solid fa-money-bill-wave"></i> Ver Historial de Pagos
@@ -334,97 +337,11 @@
         </div>
     </footer>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+    <script src="~/js/pagos.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
-
-    <script>
-        
-        document.addEventListener("DOMContentLoaded", function() {
-
-            const formPagos = document.getElementById("form-pagos");
-            const checkboxes = document.querySelectorAll(".chk-pago");
-            const totalSpan = document.getElementById("total-a-pagar");
-            const pagarBtn = document.getElementById("btn-pagar-seleccionados");
-
-        
-            if (!pagarBtn) {
-                return;
-            }
-
-            // Calcular el total 
-            function actualizarTotal() {
-                let total = 0;
-                checkboxes.forEach(chk => {
-                    if (chk.checked) {
-                        let monto = chk.dataset.monto.replace(",", ".");
-                        total += parseFloat(monto);
-                    }
-                });
-
-                // Actualiza el total
-                totalSpan.textContent = total.toFixed(2);
-            }
-
-            // Cada vez que un checkbox cambia, actualizamos el total
-            checkboxes.forEach(chk => {
-                chk.addEventListener("change", actualizarTotal);
-            });
-
-
-            // Enviar el formulario 
-            formPagos.addEventListener("submit", function(event) {
-              
-                event.preventDefault();
-
-                const idsSeleccionados = [];
-                checkboxes.forEach(chk => {
-                    if (chk.checked) {
-                        idsSeleccionados.push(chk.value);
-                    }
-                });
-
-                if (idsSeleccionados.length === 0) {
-                    alert("Por favor, seleccione al menos una atención para pagar.");
-                    return;
-                }
-
-                // Deshabilitamos el botón para evitar doble clic
-                pagarBtn.disabled = true;
-                pagarBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
-
-               
-                const token = formPagos.querySelector('input[name="__RequestVerificationToken"]').value;
-
-                // Usamos fetch para enviar los datos al controlador
-               fetch('/Pagos/GenerarLinkDePago', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': token
-                    },
-                    body: JSON.stringify(idsSeleccionados)
-                })
-                .then(response => {
-                    
-                    if (response.ok) {
-                        
-                        return response.json();
-                    }
-                    
-                    throw new Error('Hubo un problema con la solicitud al servidor.');
-                })
-                .then(data => {
-                    
-                    window.location.href = data.redirectUrl;
-                })
-                .catch(error => {
-                    alert('Error: ' + error.message);
-                    pagarBtn.disabled = false;
-                    pagarBtn.innerHTML = '<i class="fa-solid fa-credit-card"></i> Pagar Seleccionados';
-                });
-            });
-
-        });
-    </script>
 </body>
 </html>

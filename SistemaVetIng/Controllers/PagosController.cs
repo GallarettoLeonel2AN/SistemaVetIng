@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 using System.Threading.Tasks;
@@ -9,15 +10,18 @@ namespace SistemaVetIng.Controllers
     {
         private readonly IMercadoPagoService _mercadoPagoService;
         private readonly IAtencionVeterinariaService _atencionService; 
-        private readonly IClienteService _clienteService; 
         private readonly IPagoService _pagoService;
+        private readonly IToastNotification _toastNotification;
 
-        public PagosController(IMercadoPagoService mercadoPagoService, IAtencionVeterinariaService atencionService, IClienteService clienteService, IPagoService pagoService)
+        public PagosController(IMercadoPagoService mercadoPagoService,
+            IAtencionVeterinariaService atencionService, 
+            IPagoService pagoService,
+            IToastNotification toastNotification)
         {
             _mercadoPagoService = mercadoPagoService;
             _atencionService = atencionService;
-            _clienteService = clienteService;
             _pagoService = pagoService;
+            _toastNotification = toastNotification;
         }
 
 
@@ -28,7 +32,7 @@ namespace SistemaVetIng.Controllers
         {
             if (atencionesIds == null || !atencionesIds.Any())
             {
-                return BadRequest("No se seleccionaron atenciones para pagar.");
+                _toastNotification.AddErrorToastMessage("No se seleccionaron atenciones para pagar.");
             }
 
             
@@ -38,7 +42,7 @@ namespace SistemaVetIng.Controllers
 
             if (cliente?.Usuario == null) 
             {
-                return BadRequest("Falta información del cliente para procesar el pago.");
+                _toastNotification.AddErrorToastMessage("Falta información del cliente para procesar el pago.");
             }
 
             var email = cliente.Usuario.Email;
@@ -84,6 +88,7 @@ namespace SistemaVetIng.Controllers
             
             if (!string.IsNullOrEmpty(linkDePago))
             {
+                _toastNotification.AddSuccessToastMessage("Pago realizado correctamente");
                 return Ok(new { redirectUrl = linkDePago });
             }
 

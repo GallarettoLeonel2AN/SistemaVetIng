@@ -972,10 +972,14 @@ body.dark-mode .agenda-table {
         background-color: var(--history-header-bg);
     }
 
-    .table th {
-        color: var(--history-text-primary);
-        font-weight: 600;
-    }
+
+.table th {
+    color: cornflowerblue;
+    font-weight: 700;
+}
+.monto{
+    color:limegreen;
+}
 
     .table tbody tr:hover {
         background-color: var(--history-header-bg);

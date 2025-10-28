@@ -48,9 +48,9 @@
                             <table class="table responsive-table">
                                 <thead>
                                     <tr>
-                                        <th>Fecha</th>
-                                        <th>Método de Pago</th>
-                                        <th class="text-right">Monto</th>
+                                        <th class="historial-title">Fecha</th>
+                                        <th >Método de Pago</th>
+                                        <th >Monto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,7 +63,7 @@
                                                 @pago.MetodoDePago
                                             </td>
                                             <td data-label="Monto:" class="text-right">
-                                                <strong>@pago.Monto.ToString("C", new CultureInfo("es-AR"))</strong>
+                                                <strong class="monto">@pago.Monto.ToString("C", new CultureInfo("es-AR"))</strong>
                                             </td>
                                         </tr>
                                     }
