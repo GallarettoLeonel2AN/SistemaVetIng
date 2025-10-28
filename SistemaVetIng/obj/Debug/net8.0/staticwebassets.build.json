@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J44nLH5VpAV2W262QyOHeqkYPF/m16ykagP1vJdB6e0=",
+  "Hash": "IEjXVo67gzem9MrOTjXOyLN1tKRrOvmb/SjLDLiLcFQ=",
   "Source": "SistemaVetIng",
   "BasePath": "_content/SistemaVetIng",
   "Mode": "Default",
@@ -2152,8 +2152,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "d69rpsup09",
-      "Integrity": "y8+lpRNMlhagxYstH3zVd2tERQNBQIyPpmQMfIRRbVU=",
+      "Fingerprint": "eglzl0sml3",
+      "Integrity": "ojOsuVafxeXqQhdX7TmxdXFSBAFh11wQkjqoz9TaNug=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\veterinary-dashboard.css"
@@ -3307,8 +3307,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ay5nd8zt9x",
-      "Integrity": "4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E=",
+      "Fingerprint": "tw1belm5a7",
+      "Integrity": "bcAWnhyo7/4CoC5rOmasIe4H8YeetiEtqHwI9OV6Xas=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
@@ -6417,7 +6417,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18377"
+          "Value": "18789"
         },
         {
           "Name": "Content-Type",
@@ -6425,11 +6425,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y8+lpRNMlhagxYstH3zVd2tERQNBQIyPpmQMfIRRbVU=\""
+          "Value": "\"ojOsuVafxeXqQhdX7TmxdXFSBAFh11wQkjqoz9TaNug=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 27 Oct 2025 16:07:27 GMT"
+          "Value": "Tue, 28 Oct 2025 02:11:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6439,12 +6439,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-y8+lpRNMlhagxYstH3zVd2tERQNBQIyPpmQMfIRRbVU="
+          "Value": "sha256-ojOsuVafxeXqQhdX7TmxdXFSBAFh11wQkjqoz9TaNug="
         }
       ]
     },
     {
-      "Route": "css/veterinary-dashboard.d69rpsup09.css",
+      "Route": "css/veterinary-dashboard.eglzl0sml3.css",
       "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\wwwroot\\css\\veterinary-dashboard.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -6454,7 +6454,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18377"
+          "Value": "18789"
         },
         {
           "Name": "Content-Type",
@@ -6462,11 +6462,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y8+lpRNMlhagxYstH3zVd2tERQNBQIyPpmQMfIRRbVU=\""
+          "Value": "\"ojOsuVafxeXqQhdX7TmxdXFSBAFh11wQkjqoz9TaNug=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 27 Oct 2025 16:07:27 GMT"
+          "Value": "Tue, 28 Oct 2025 02:11:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6476,7 +6476,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "d69rpsup09"
+          "Value": "eglzl0sml3"
         },
         {
           "Name": "label",
@@ -6484,7 +6484,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-y8+lpRNMlhagxYstH3zVd2tERQNBQIyPpmQMfIRRbVU="
+          "Value": "sha256-ojOsuVafxeXqQhdX7TmxdXFSBAFh11wQkjqoz9TaNug="
         }
       ]
     },
@@ -13137,51 +13137,6 @@
       ]
     },
     {
-      "Route": "lib/jquery-validation/dist/additional-methods.ay5nd8zt9x.js",
-      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "52977"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 27 Oct 2025 16:07:27 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ay5nd8zt9x"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/jquery-validation/dist/additional-methods.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E="
-        }
-      ]
-    },
-    {
       "Route": "lib/jquery-validation/dist/additional-methods.js",
       "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
@@ -13192,7 +13147,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "52977"
+          "Value": "52973"
         },
         {
           "Name": "Content-Type",
@@ -13200,11 +13155,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E=\""
+          "Value": "\"bcAWnhyo7/4CoC5rOmasIe4H8YeetiEtqHwI9OV6Xas=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 27 Oct 2025 16:07:27 GMT"
+          "Value": "Tue, 28 Oct 2025 02:27:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13214,7 +13169,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E="
+          "Value": "sha256-bcAWnhyo7/4CoC5rOmasIe4H8YeetiEtqHwI9OV6Xas="
         }
       ]
     },
@@ -13297,6 +13252,51 @@
         {
           "Name": "integrity",
           "Value": "sha256-N11IyJpHTgDcSCb3AfX4VrBnpGQeem1NoNzzgcXVyCc="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery-validation/dist/additional-methods.tw1belm5a7.js",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetingABMvye\\SistemaVetIng\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "52973"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bcAWnhyo7/4CoC5rOmasIe4H8YeetiEtqHwI9OV6Xas=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 28 Oct 2025 02:27:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tw1belm5a7"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/jquery-validation/dist/additional-methods.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bcAWnhyo7/4CoC5rOmasIe4H8YeetiEtqHwI9OV6Xas="
         }
       ]
     },

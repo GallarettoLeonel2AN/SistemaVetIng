@@ -22,7 +22,7 @@ namespace SistemaVetIng.Servicios.Implementacion
             Id = model.Id,
             Nombre = model.Nombre,
             Precio = model.Precio,
-            Informe = model.Informe 
+           
         };
 
         // Mapeo de Entidad a ViewModel
@@ -31,7 +31,7 @@ namespace SistemaVetIng.Servicios.Implementacion
             Id = entity.Id,
             Nombre = entity.Nombre,
             Precio = entity.Precio,
-            Informe = entity.Informe
+           
         };
 
         public async Task<(bool success, string message)> Registrar(EstudioViewModel model)

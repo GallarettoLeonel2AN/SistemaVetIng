@@ -385,7 +385,9 @@ $.validator.addMethod( "cnpjBR", function( value, element ) {
 		}
 	}
 
-	var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+	var 
+	
+	= soma % 11 < 2 ? 0 : 11 - soma % 11;
 
 	if ( resultado !== parseInt( digitos.charAt( 0 ), 10 ) ) {
 		return false;

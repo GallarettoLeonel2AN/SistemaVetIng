@@ -34,7 +34,7 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<List<DashboardViewModel.AtencionesPorVeterinarioData>> ContarAtencionesPorVeterinarioAsync(DateTime? inicio, DateTime? fin);
         Task<List<AtencionVeterinaria>> ObtenerAtencionesPorMesAsync(int anio, int mes);
 
-        Task<List<AtencionVeterinaria>> ObtenerVariasPorIdsConClienteAsync(List<int> ids);
-        Task ActualizarVariasAsync(List<AtencionVeterinaria> atenciones);
+        Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids);
+        Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones);
     }
 }

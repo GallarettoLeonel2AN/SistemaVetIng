@@ -301,14 +301,14 @@ namespace SistemaVetIng.Servicios.Implementacion
             return await _repository.ObtenerAtencionesPorMesAsync(anio,mes);
         }
 
-        public async Task<List<AtencionVeterinaria>> ObtenerVariasPorIds(List<int> ids)
+        public async Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids)
         {
-            return await _repository.ObtenerVariasPorIdsConClienteAsync(ids);
+            return await _repository.ObtenerAtencionesPorIdCliente(ids);
         }
 
-        public async Task ActualizarVariasAsync(List<AtencionVeterinaria> atenciones)
+        public async Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones)
         {
-            await _repository.ActualizarVariasAsync(atenciones);
+            await _repository.ActualizarAtencionesAsync(atenciones);
         }
     }
 }

@@ -244,7 +244,7 @@
 
                         @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
                         {
-                            @* Filtramos solo las atenciones con estado "Pendiente" *@
+                           
                             @foreach (var atencionPendiente in Model.PagosPendientes.Where(p => p.EstadoDePago == "Pendiente"))
                             {
                                 <div class="v1-list-item pago-item">
@@ -283,35 +283,7 @@
 
                 </form>
             </div>
-        </section>
-
-        <style>
-            .pago-item {
-                display: flex;
-                align-items: center;
-            }
-
-            .v1-pago-checkbox {
-                padding: 0 20px;
-            }
-
-                .v1-pago-checkbox input[type="checkbox"] {
-                    transform: scale(1.5); /* Hace el checkbox más grande */
-                    cursor: pointer;
-                }
-
-            .pago-info {
-                flex-grow: 1;
-                cursor: pointer;
-            }
-
-            .pago-footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 20px;
-            }
-        </style>
+        </section> 
 
     </main>
 
@@ -362,7 +334,7 @@
     @await Component.InvokeAsync("NToastNotify")
 
     <script>
-        // Espera a que toda la página cargue
+        
         document.addEventListener("DOMContentLoaded", function() {
 
             const formPagos = document.getElementById("form-pagos");
@@ -370,24 +342,22 @@
             const totalSpan = document.getElementById("total-a-pagar");
             const pagarBtn = document.getElementById("btn-pagar-seleccionados");
 
-            // Si no hay botón, no hacemos nada (ej. si no hay pagos)
+        
             if (!pagarBtn) {
                 return;
             }
 
-            // --- FUNCIÓN 1: Calcular el total ---
+            // Calcular el total 
             function actualizarTotal() {
                 let total = 0;
                 checkboxes.forEach(chk => {
                     if (chk.checked) {
-                        // Usamos 'dataset.monto' para leer el 'data-monto' del HTML
-                        // Reemplazamos coma por punto por si acaso
                         let monto = chk.dataset.monto.replace(",", ".");
                         total += parseFloat(monto);
                     }
                 });
 
-                // Actualiza el texto del total
+                // Actualiza el total
                 totalSpan.textContent = total.toFixed(2);
             }
 
@@ -397,9 +367,9 @@
             });
 
 
-            // --- FUNCIÓN 2: Enviar el formulario ---
+            // Enviar el formulario 
             formPagos.addEventListener("submit", function(event) {
-                // Prevenimos que el formulario se envíe de la forma tradicional
+              
                 event.preventDefault();
 
                 const idsSeleccionados = [];
@@ -418,34 +388,33 @@
                 pagarBtn.disabled = true;
                 pagarBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
 
-                // Obtenemos el Token de seguridad que pusimos en el formulario
+               
                 const token = formPagos.querySelector('input[name="__RequestVerificationToken"]').value;
 
                 // Usamos fetch para enviar los datos al controlador
-                fetch('/Pagos/GenerarLinkDePago', {
+               fetch('/Pagos/GenerarLinkDePago', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        // Enviamos el token en el header
                         'RequestVerificationToken': token
                     },
-                    body: JSON.stringify(idsSeleccionados) // Enviamos el array de IDs
+                    body: JSON.stringify(idsSeleccionados)
                 })
                 .then(response => {
-                    // Si el backend nos redirige (como lo hace tu controlador), seguimos la redirección
-                    if (response.redirected) {
-                        window.location.href = response.url;
-                        return;
+                    
+                    if (response.ok) {
+                        
+                        return response.json();
                     }
-
-                    // Si hay un error (ej. un BadRequest)
-                    return response.text().then(errorMsg => {
-                         throw new Error(errorMsg || "No se pudo iniciar el pago.");
-                    });
+                    
+                    throw new Error('Hubo un problema con la solicitud al servidor.');
+                })
+                .then(data => {
+                    
+                    window.location.href = data.redirectUrl;
                 })
                 .catch(error => {
                     alert('Error: ' + error.message);
-                    // Habilitamos el botón de nuevo si falló
                     pagarBtn.disabled = false;
                     pagarBtn.innerHTML = '<i class="fa-solid fa-credit-card"></i> Pagar Seleccionados';
                 });

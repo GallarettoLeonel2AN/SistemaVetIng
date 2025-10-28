@@ -259,9 +259,6 @@ namespace SistemaVetIng.Migrations
                     b.Property<int?>("AtencionVeterinariaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Informe")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -524,12 +521,12 @@ namespace SistemaVetIng.Migrations
                         new
                         {
                             Id = 2,
-                            Nombre = "Tarjeta"
+                            Nombre = "Pago Online / Mercado Pago"
                         },
                         new
                         {
                             Id = 3,
-                            Nombre = "Mercado Pago"
+                            Nombre = "Tarjeta"
                         });
                 });
 
@@ -674,6 +671,43 @@ namespace SistemaVetIng.Migrations
                     b.HasIndex("AtencionVeterinariaId");
 
                     b.ToTable("Vacunas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Lote = "RAB-2024A",
+                            Nombre = "Antirrábica (Perros/Gatos)",
+                            Precio = 3900.00m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Lote = "DHPPI-101",
+                            Nombre = "Quíntuple Canina (Moquillo/Parvo)",
+                            Precio = 11250.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Lote = "FVRCP-202",
+                            Nombre = "Triple Felina (FVRCP)",
+                            Precio = 5100.00m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Lote = "FELV-303",
+                            Nombre = "Leucemia Felina (FeLV)",
+                            Precio = 6400.00m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Lote = "KC-404",
+                            Nombre = "Bordetella (Tos de las Perreras)",
+                            Precio = 85000.00m
+                        });
                 });
 
             modelBuilder.Entity("SistemaVetIng.Models.Veterinaria", b =>

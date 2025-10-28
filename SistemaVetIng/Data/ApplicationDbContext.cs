@@ -35,17 +35,26 @@ namespace SistemaVetIng.Data
           
             // Seed para Estudios
             modelBuilder.Entity<Estudio>().HasData(
-                new Estudio { Id = 1, Nombre = "Análisis de sangre completo", Precio = 4500.00m, Informe = null, },
-                new Estudio { Id = 2, Nombre = "Radiografía de tórax", Precio = 6000.00m, Informe = null },
-                new Estudio { Id = 3, Nombre = "Análisis de orina", Precio = 2000.00m, Informe = null },
-                new Estudio { Id = 4, Nombre = "Ecografía abdominal", Precio = 7500.00m, Informe = null },
-                new Estudio { Id = 5, Nombre = "Estudio parasitológico", Precio = 1800.00m, Informe = null }
+                new Estudio { Id = 1, Nombre = "Análisis de sangre completo", Precio = 4500.00m},
+                new Estudio { Id = 2, Nombre = "Radiografía de tórax", Precio = 6000.00m },
+                new Estudio { Id = 3, Nombre = "Análisis de orina", Precio = 2000.00m },
+                new Estudio { Id = 4, Nombre = "Ecografía abdominal", Precio = 7500.00m },
+                new Estudio { Id = 5, Nombre = "Estudio parasitológico", Precio = 1800.00m }
             );
            
+
             modelBuilder.Entity<MetodoPago>().HasData(
                 new MetodoPago { Id = 1, Nombre = "Efectivo" },
-                new MetodoPago { Id = 2, Nombre = "Tarjeta" },
-                new MetodoPago { Id = 3, Nombre = "Mercado Pago" }
+                new MetodoPago { Id = 2, Nombre = "Pago Online / Mercado Pago" },
+                new MetodoPago { Id = 3, Nombre = "Tarjeta" }
+            );
+
+            modelBuilder.Entity<Vacuna>().HasData(
+                 new Vacuna { Id = 1, Nombre = "Antirrábica (Perros/Gatos)", Lote = "RAB-2024A", Precio = 3900.00m },
+                 new Vacuna { Id = 2, Nombre = "Quíntuple Canina (Moquillo/Parvo)", Lote = "DHPPI-101", Precio = 11250.00m },
+                 new Vacuna { Id = 3, Nombre = "Triple Felina (FVRCP)", Lote = "FVRCP-202", Precio = 5100.00m },
+                 new Vacuna { Id = 4, Nombre = "Leucemia Felina (FeLV)", Lote = "FELV-303", Precio = 6400.00m },
+                 new Vacuna { Id = 5, Nombre = "Bordetella (Tos de las Perreras)", Lote = "KC-404", Precio = 85000.00m }
             );
 
             // Relaciones con Usuario

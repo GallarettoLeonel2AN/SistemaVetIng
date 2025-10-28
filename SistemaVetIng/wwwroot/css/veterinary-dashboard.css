@@ -854,3 +854,29 @@ body.dark-mode .agenda-table {
     .v1-appointment-item.appointment-inactive .v1-appointment-icon {
         color: var(--history-text-secondary, #a0aec0);
     }
+
+.pago-item {
+    display: flex;
+    align-items: center;
+}
+
+.v1-pago-checkbox {
+    padding: 0 20px;
+}
+
+    .v1-pago-checkbox input[type="checkbox"] {
+        transform: scale(1.5);
+        cursor: pointer;
+    }
+
+.pago-info {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.pago-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}

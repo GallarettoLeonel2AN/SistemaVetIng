@@ -340,7 +340,7 @@ namespace SistemaVetIng.Repository.Implementacion
                                  .ToListAsync();
         }
 
-        public async Task<List<AtencionVeterinaria>> ObtenerVariasPorIdsConClienteAsync(List<int> ids)
+        public async Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids)
         {
             // ¡Es VITAL incluir las relaciones (Propietario/Cliente y Usuario) que usa el controlador!
             return await _context.AtencionesVeterinarias
@@ -349,7 +349,7 @@ namespace SistemaVetIng.Repository.Implementacion
                 .ToListAsync();
         }
 
-        public async Task ActualizarVariasAsync(List<AtencionVeterinaria> atenciones)
+        public async Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones)
         {
             // EF Core es lo suficientemente inteligente para actualizar múltiples entidades a la vez
             _context.AtencionesVeterinarias.UpdateRange(atenciones);

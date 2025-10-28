@@ -81,11 +81,11 @@
                     </div>
                     <div class="v1-card-content">
                         <div class="v1-card-value">
-                            @Model.MascotaMasFrecuentePorVeterinario.Nombre
+                            @(Model.MascotaMasFrecuentePorVeterinario?.Nombre ?? "N/A")
                         </div>
                         <p class="v1-card-description">
-                            @Model.MascotaMasFrecuentePorVeterinario.Especie
-                            @Model.MascotaMasFrecuentePorVeterinario.Raza
+                            @(Model.MascotaMasFrecuentePorVeterinario?.Especie ?? "N/A")
+                            @(Model.MascotaMasFrecuentePorVeterinario?.Raza ?? "N/A")
                          </p>
                     </div>
                 </div>
