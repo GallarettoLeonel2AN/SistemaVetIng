@@ -342,17 +342,20 @@ namespace SistemaVetIng.Repository.Implementacion
 
         public async Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids)
         {
-            // ¡Es VITAL incluir las relaciones (Propietario/Cliente y Usuario) que usa el controlador!
             return await _context.AtencionesVeterinarias
                 .Include(a => a.HistoriaClinica.Mascota.Propietario.Usuario)
-                .Where(a => ids.Contains(a.Id) && a.Abonado == false) // Trae solo las pendientes
+                .Where(a => ids.Contains(a.Id) && a.Abonado == false) 
                 .ToListAsync();
         }
 
         public async Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones)
         {
-            // EF Core es lo suficientemente inteligente para actualizar múltiples entidades a la vez
             _context.AtencionesVeterinarias.UpdateRange(atenciones);
+            await _context.SaveChangesAsync();
+        }
+        public async Task ActualizarAtencionAsync(AtencionVeterinaria atencion)
+        {
+            _context.AtencionesVeterinarias.Update(atencion);
             await _context.SaveChangesAsync();
         }
     }

@@ -28,5 +28,6 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<List<AtencionVeterinaria>> ObtenerAtencionesPorMesAsync(int anio, int mes);
         Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids);
         Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones);
+        Task ActualizarAtencionAsync(AtencionVeterinaria atencion);
     }
 }

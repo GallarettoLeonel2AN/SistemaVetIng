@@ -36,5 +36,6 @@ namespace SistemaVetIng.Repository.Interfaces
 
         Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids);
         Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones);
+        Task ActualizarAtencionAsync(AtencionVeterinaria atencion);
     }
 }

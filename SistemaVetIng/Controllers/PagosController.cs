@@ -94,6 +94,43 @@ namespace SistemaVetIng.Controllers
 
             return View("Error", new { Mensaje = "No se pudo generar el link de pago." });
         }
-      
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PagarEfectivo(int atencionId, decimal monto, int clienteId, int mascotaId)
+        {
+            var success = await _pagoService.CrearPagoPresencialAsync(atencionId, clienteId, monto, 1); // 1 = Efectivo
+
+            if (success)
+            {
+                _toastNotification.AddSuccessToastMessage("Pago en Efectivo registrado con éxito.");
+            }
+            else
+            {
+                _toastNotification.AddErrorToastMessage("Error al registrar el pago.");
+            }
+
+            return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = mascotaId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PagarTarjeta(int atencionId, decimal monto, int clienteId, int mascotaId)
+        {
+            var success = await _pagoService.CrearPagoPresencialAsync(atencionId, clienteId, monto, 3); // 3 = Tarjeta
+
+            if (success)
+            {
+                _toastNotification.AddSuccessToastMessage("Pago con Tarjeta registrado con éxito.");
+            }
+            else
+            {
+                _toastNotification.AddErrorToastMessage("Error al registrar el pago.");
+            }
+
+            return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = mascotaId });
+        }
+
     }
 }

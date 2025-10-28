@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/pago-styles.css" asp-append-version="true" />
 </head>
 <body>
     
@@ -173,7 +174,50 @@
                             <div class="history-footer">
                                 <div class="cost-item">
                                     <label>Costo Total de la Atención</label>
-                                    <span class="primeraCita">$ @atencion.CostoTotal.ToString("N2")</span>
+                                    @if (atencion.Abonado)
+                                    {
+                                        <span class="monto-green">$ @atencion.CostoTotal.ToString("N2")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="monto-red">$ @atencion.CostoTotal.ToString("N2")</span> 
+                                    }
+                                   
+                                </div>
+
+                                <div class="payment-actions">
+                                    @if (atencion.Abonado) 
+                                    {
+                                        <span class="badge-pagado">
+                                            <i class="fas fa-check-circle"></i> Pagado
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                    
+                                        <form asp-controller="Pagos" asp-action="PagarEfectivo" method="post" style="display: inline-block;" onsubmit="return confirm('¿Confirmar pago en EFECTIVO por $ @atencion.CostoTotal.ToString("N2")?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="atencionId" value="@atencion.Id" />
+                                            <input type="hidden" name="monto" value="@atencion.CostoTotal" />
+                                            <input type="hidden" name="clienteId" value="@Model.ClienteId" />
+                                            <input type="hidden" name="mascotaId" value="@Model.Id" /> 
+                                            <button type="submit" class="v1-btn v1-btn-sm payment-btn-cash" title="Registrar Pago en Efectivo">
+                                                <i class="fas fa-money-bill-wave"></i> Efectivo
+                                            </button>
+                                        </form>
+
+                               
+                                        <form asp-controller="Pagos" asp-action="PagarTarjeta" method="post" style="display: inline-block;" onsubmit="return confirm('¿Confirmar pago con TARJETA por $ @atencion.CostoTotal.ToString("N2")?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="atencionId" value="@atencion.Id" />
+                                            <input type="hidden" name="monto" value="@atencion.CostoTotal" />
+                                            <input type="hidden" name="clienteId" value="@Model.ClienteId" />
+                                            <input type="hidden" name="mascotaId" value="@Model.Id" />
+                                            <button type="submit" class="v1-btn v1-btn-sm payment-btn-card" title="Registrar Pago con Tarjeta">
+                                                <i class="far fa-credit-card"></i> Tarjeta
+                                            </button>
+                                        </form>
+                                    }
                                 </div>
                             </div>
                         </div>

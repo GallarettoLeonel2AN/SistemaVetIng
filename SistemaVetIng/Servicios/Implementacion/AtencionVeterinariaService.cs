@@ -310,5 +310,10 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             await _repository.ActualizarAtencionesAsync(atenciones);
         }
+        
+        public async Task ActualizarAtencionAsync(AtencionVeterinaria atencion)
+        {
+            await _repository.ActualizarAtencionAsync(atencion);
+        }
     }
 }
