@@ -35,7 +35,7 @@ wwwroot\css\listado-clientes.css
 wwwroot\css\login-styles.css
 wwwroot\css\registrar-cliente-style.css
 wwwroot\css\site.css
-wwwroot\css\veterinario-home.css
+wwwroot\css\veterinary-dashboard.css
 wwwroot\favicon.ico
 wwwroot\js\atencionVeterinaria.js
 wwwroot\js\dashboard.js
@@ -99,4 +99,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\veterinary-dashboard.css
+wwwroot\css\veterinario-home.css

@@ -11,7 +11,7 @@
         "projectName": "PerrosPeligrososApi",
         "projectPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\PerrosPeligrososApi.csproj",
         "packagesPath": "C:\\Users\\Ulises\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\",
+        "outputPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

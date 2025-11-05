@@ -1,68 +1,162 @@
-﻿@using System.Globalization
+﻿@model IPagedList<SistemaVetIng.ViewsModels.VacunaViewModel>
 @using X.PagedList.Mvc.Core
 @using X.PagedList
-@model IPagedList<SistemaVetIng.ViewsModels.VacunaViewModel>
+@using System.Globalization
 
 @{
     ViewData["Title"] = "Catálogo de Vacunas";
+    Layout = null; 
+
 }
 
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
 
-<p class="mb-4">
-    <a asp-action="Crear" class="btn btn-success">
-        <i class="fas fa-plus"></i> Agregar Nueva Vacuna
-    </a>
-</p>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          xintegrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
 
-<form asp-action="Index" method="get" class="mb-4">
-    <div class="input-group">
-        <input type="text" name="busqueda" value="@ViewBag.Busqueda" class="form-control" placeholder="Buscar por Nombre o Lote..." />
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-info"><i class="fas fa-search"></i> Buscar</button>
-            <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+</head>
+<body class="dark-mode">
+
+    <header class="main-header">
+        <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
         </div>
-    </div>
-</form>
+    </header>
 
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
-                <th>@Html.DisplayNameFor(model => model.First().Lote)</th>
-                <th>@Html.DisplayNameFor(model => model.First().Precio)</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Lote)</td>
-                    <td>@item.Precio.ToString("C2", new CultureInfo("es-AR"))</td> @* Muestra el precio con formato de moneda *@
-                    <td>
-                        <a asp-action="Modificar" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Editar"><i class="fas fa-edit"></i></a>
-                        <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('¿Está seguro de que desea eliminar esta vacuna?');">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-sm btn-danger" title="Eliminar"><i class="fas fa-trash"></i></button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    <main class="v1-main-dashboard">
+        <section id="vacunas-catalogo" class="v1-section">
+            <h1 class="v1-section-title">@ViewData["Title"]</h1>
 
-@if (Model.PageCount > 1)
-{
-    @Html.PagedListPager(Model, page => Url.Action("Index",
+            <div class="v1-section-actions">
+                <a asp-action="Crear" class="v1-btn v1-btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Nueva Vacuna
+                </a>
+
+                <form asp-action="Index" method="get" class="v1-search-form">
+                    <div class="v1-input-group">
+                        <i class="fa-solid fa-search v1-input-icon"></i>
+                        <input type="text" name="busqueda" value="@ViewBag.Busqueda" class="v1-input" placeholder="Buscar por Nombre o Lote..." />
+                    </div>
+                </form>
+            </div>
+
+            <div class="v1-card">
+                <div class="v1-card-header">
+                    <h3 class="v1-card-title">Listado de Vacunas</h3>
+                </div>
+                <div class="v1-card-content">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="table-container">
+                            <table class="table responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                                        <th>@Html.DisplayNameFor(model => model.First().Lote)</th>
+                                        <th class="text-right">@Html.DisplayNameFor(model => model.First().Precio)</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td data-label="Nombre:">@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                            <td data-label="Lote:">@Html.DisplayFor(modelItem => item.Lote)</td>
+                                            <td data-label="Precio:" class="text-right">@item.Precio.ToString("C2", new CultureInfo("es-AR"))</td>
+                                            <td data-label="Acciones:" class="text-center">
+
+                                                <a asp-action="Modificar" asp-route-id="@item.Id" class="v1-btn v1-btn-sm v1-btn-ghost" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+
+                                                <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('¿Está seguro de que desea eliminar esta vacuna?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="v1-btn v1-btn-sm v1-btn-ghost v1-text-danger" title="Eliminar">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="v1-empty-state">
+                            @if (!string.IsNullOrEmpty(ViewBag.Busqueda?.ToString()))
+                            {
+                                <span>No se encontraron vacunas que coincidan con "@ViewBag.Busqueda".</span>
+                            }
+                            else
+                            {
+                                <span>No hay vacunas registradas en el catálogo.</span>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="v1-card-footer pagination-container">
+                    @if (Model != null && Model.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
                         new { page, busqueda = ViewBag.Busqueda }),
-                        new PagedListRenderOptions
-                {
-                    LiElementClasses = new string[] { "page-item" },
-                    PageClasses = new string[] { "page-link" }
-                }
-                    )
-}
+                                        new PagedListRenderOptions
+                                        {
+                                            LiElementClasses = new string[] { "page-item" },
+                                            PageClasses = new string[] { "page-link" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
+                                        })
+                                        }
+                    else if (Model != null)
+                    {
+                        <p class="text-muted text-center" style="margin:0;">
+                            Mostrando @Model.TotalItemCount @(Model.TotalItemCount == 1 ? "vacuna" : "vacunas")
+                        </p>
+                    }
+                </div>
+
+            </div> 
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-bottom">
+            <p>&copy;@DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("NToastNotify")
+</body>
+</html>
