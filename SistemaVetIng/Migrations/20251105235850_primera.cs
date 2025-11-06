@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaVetIng.Migrations
 {
     /// <inheritdoc />
-    public partial class Primera : Migration
+    public partial class primera : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -199,6 +199,30 @@ namespace SistemaVetIng.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuditoriaEventos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    NombreUsuario = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    TipoEvento = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Entidad = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    FechaHora = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Detalles = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditoriaEventos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AuditoriaEventos_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -588,6 +612,11 @@ namespace SistemaVetIng.Migrations
                 column: "VeterinarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AuditoriaEventos_UsuarioId",
+                table: "AuditoriaEventos",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Chips_MascotaId",
                 table: "Chips",
                 column: "MascotaId",
@@ -674,6 +703,9 @@ namespace SistemaVetIng.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "AuditoriaEventos");
 
             migrationBuilder.DropTable(
                 name: "Chips");

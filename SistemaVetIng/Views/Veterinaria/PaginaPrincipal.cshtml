@@ -29,8 +29,10 @@
                 <li><a class="nav-link" href="#turnos">Turnos</a></li>
                 <li><a class="nav-link" href="#configuracion-turnos">Horarios</a></li>
                 <li><a class="nav-link" href="#veterinarios">Veterinarios</a></li>
+                <li><a class="nav-link" href="#catalogos">Servicios</a></li>
                 <li><a class="nav-link" href="#clientes">Clientes</a></li>
                 <li><a class="nav-link" href="#mascotas">Mascotas</a></li>
+                <li><a class="nav-link" href="#auditoria">Auditoria</a></li>
                 <li>
                     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
                         <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
@@ -289,7 +291,7 @@
         </section>
 
         <section id="catalogos" class="v1-section">
-            <h2 class="v1-section-title">Gestión de Catálogos</h2>
+            <h2 class="v1-section-title">Gestión de Servicios</h2>
             <div class="v1-section-actions">
 
                 <a asp-controller="Vacuna" asp-action="Index" class="v1-btn v1-btn-primary">
@@ -305,8 +307,6 @@
             </div>
 
         </section>
-
-
 
        <section id="veterinarios" class="v1-section">
         <h2 class="v1-section-title">Gestión de Veterinarios</h2>
@@ -574,6 +574,20 @@
         </div>
     </div>
 </section>
+
+
+     <section id="auditoria" class="v1-section">
+            <h2 class="v1-section-title">Auditoria del Sistema</h2>
+            <div class="v1-section-actions">
+
+                <a asp-controller="Auditoria" asp-action="Index" class="v1-btn v1-btn-primary">
+                    <i class="fa-solid fa-shield-halved"></i> Auditoria
+                </a>
+
+            </div>
+        </section>
+
+
     </main>
 
     <footer class="main-footer">

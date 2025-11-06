@@ -12,8 +12,8 @@ using PerrosPeligrososApi.Data;
 namespace PerrosPeligrososApi.Migrations
 {
     [DbContext(typeof(PerrosPeligrososApiDbContext))]
-    [Migration("20251028154751_Primera")]
-    partial class Primera
+    [Migration("20251105233444_primera")]
+    partial class primera
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

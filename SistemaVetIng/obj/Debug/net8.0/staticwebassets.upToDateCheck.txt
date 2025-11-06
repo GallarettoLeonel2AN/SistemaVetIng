@@ -6,7 +6,7 @@ wwwroot\css\configuracion.css
 wwwroot\css\confirmation-styles.css
 wwwroot\css\css-unificado.css
 wwwroot\css\dashboard.css
-wwwroot\css\formularioPagosCliente.css
+wwwroot\js\pagos.js
 wwwroot\css\home-styles.css
 wwwroot\css\img\atendiendoPerro.jpg
 wwwroot\css\img\camaleon.jpg
@@ -35,12 +35,13 @@ wwwroot\css\listado-clientes.css
 wwwroot\css\login-styles.css
 wwwroot\css\registrar-cliente-style.css
 wwwroot\css\site.css
-wwwroot\css\veterinary-dashboard.css
+wwwroot\css\veterinario-home.css
+wwwroot\css\formularioPagosCliente.css
 wwwroot\favicon.ico
 wwwroot\js\atencionVeterinaria.js
 wwwroot\js\dashboard.js
 wwwroot\js\menuhamburguesa.js
-wwwroot\js\pagos.js
+wwwroot\css\veterinary-dashboard.css
 wwwroot\js\reservaTurno.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -99,4 +100,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\veterinario-home.css

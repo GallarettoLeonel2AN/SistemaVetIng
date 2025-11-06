@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MercadoPago.Resource.User;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
+using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewModels;
 using SistemaVetIng.ViewsModels;
+using System.Security.Claims;
 using System.Text.Encodings.Web; // Usado para codificar texto de forma segura en URLs.
 
 namespace SistemaVetIng.Controllers
@@ -9,10 +14,20 @@ namespace SistemaVetIng.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IAuditoriaService _auditoriaService; 
+        private readonly UserManager<Usuario> _userManager;
+        private readonly IToastNotification _toastNotification;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService,
+            IAuditoriaService auditoriaService,
+            UserManager<Usuario> userManager,
+            IToastNotification toastNotification
+            )
         {
             _accountService = accountService;
+            _auditoriaService = auditoriaService;
+            _userManager = userManager;
+            _toastNotification = toastNotification;
         }
 
         [HttpGet]
@@ -45,6 +60,10 @@ namespace SistemaVetIng.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+
+
+        [HttpGet]
+        public IActionResult ResetPasswordConfirmation() => View();
 
 
         [HttpPost]
@@ -92,8 +111,6 @@ namespace SistemaVetIng.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public IActionResult ResetPasswordConfirmation() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,42 +123,96 @@ namespace SistemaVetIng.Controllers
                 return View(model);
             }
 
+            // Auditoria
+           
+            var user = await _userManager.FindByEmailAsync(model.UserName);
+
+            if (user == null)
+            {
+                // Si el usuario no existe, registramos el intento fallido
+                await _auditoriaService.RegistrarEventoAsync(
+                    usuarioId: 0,
+                    nombreUsuario: model.UserName,
+                    tipoEvento: "Login Fallido (Usuario no existe)",
+                    entidad: "Sistema",
+                    detalles: "Intento de login con un email que no existe."
+                );
+                _toastNotification.AddErrorToastMessage("Intento de inicio de sesión inválido.");
+                return View(model);
+            }
+
             var result = await _accountService.PasswordSignIn(model);
+
+            var roles = await _userManager.GetRolesAsync(user);
+            string rolUsuario = roles.FirstOrDefault() ?? "Sin Rol";
 
             if (result.Succeeded)
             {
-                var controllerName = await _accountService.GetRedireccionPorRol(model.UserName);
+                // Auditoria
+                await _auditoriaService.RegistrarEventoAsync(
+                    usuarioId: user.Id,
+                    nombreUsuario: user.UserName,
+                    tipoEvento: "Login Exitoso",
+                    entidad: rolUsuario
+                );
+
+                var controllerName = await _accountService.GetRedireccionPorRol(user.UserName);
 
                 if (controllerName != null)
                 {
                     return RedirectToAction("PaginaPrincipal", controllerName);
                 }
 
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-
                 return RedirectToAction("Index", "Home");
             }
 
-            if (result.IsLockedOut)
+            if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, "La cuenta está bloqueada.");
+                // Auditoria: Datos incorrectos 
+                await _auditoriaService.RegistrarEventoAsync(
+                    usuarioId: user.Id,
+                    nombreUsuario: user.UserName,
+                    tipoEvento: "Login Fallido (Datos incorrectos)",
+                    entidad: rolUsuario,
+                    detalles: "Datos incorrectos."
+                );
+                _toastNotification.AddErrorToastMessage("Intento de inicio de sesión inválido.");
             }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Intento de inicio de sesión inválido.");
-            }
+       
 
             return View(model);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = User.Identity?.Name ?? "Usuario Desconocido";
+            var user = await _userManager.GetUserAsync(User);
+            string rolUsuario = "Sistema";
+
+            if (user != null) 
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                rolUsuario = roles.FirstOrDefault() ?? "Sin Rol";
+            }
+
             await _accountService.SignOut();
+
+            //  Auditoria: logout
+            if (int.TryParse(userIdStr, out int userId))
+            {
+                await _auditoriaService.RegistrarEventoAsync(
+                    usuarioId: userId,
+                    nombreUsuario: userName,
+                    tipoEvento: "Logout Exitoso",
+                    entidad: rolUsuario
+                );
+            }
+
             return RedirectToAction("Index", "Home");
         }
     }

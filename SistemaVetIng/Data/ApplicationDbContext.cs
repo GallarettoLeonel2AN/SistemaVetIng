@@ -28,6 +28,7 @@ namespace SistemaVetIng.Data
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<MetodoPago> MetodosPago { get; set; }
         public DbSet<Veterinaria> Veterinarias { get; set; }
+        public DbSet<AuditoriaEvento> AuditoriaEventos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

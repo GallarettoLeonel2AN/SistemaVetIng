@@ -25,7 +25,7 @@ namespace SistemaVetIng.Models.Indentity
             }
 
             // Creamos un usuario inicial ADMIN
-            var adminEmail = "admin@veting.com";
+            var adminEmail = "admin";
 
            
             var adminUser = await userManager.FindByEmailAsync(adminEmail);

@@ -59,6 +59,7 @@ namespace SistemaVetIng.Models.Extension
             services.AddScoped<IEstudioService, EstudioService>();
             services.AddScoped<IMercadoPagoService, MercadoPagoService>();
             services.AddScoped<IPagoService, PagoService>();
+            services.AddScoped<IAuditoriaService, AuditoriaService>();
 
             return services;
         }

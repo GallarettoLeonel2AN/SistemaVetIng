@@ -209,6 +209,45 @@ namespace SistemaVetIng.Migrations
                     b.ToTable("AtencionesVeterinarias");
                 });
 
+            modelBuilder.Entity("SistemaVetIng.Models.AuditoriaEvento", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Detalles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Entidad")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("FechaHora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("TipoEvento")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("AuditoriaEventos");
+                });
+
             modelBuilder.Entity("SistemaVetIng.Models.Chip", b =>
                 {
                     b.Property<int>("Id")
@@ -881,6 +920,17 @@ namespace SistemaVetIng.Migrations
                     b.Navigation("Tratamiento");
 
                     b.Navigation("Veterinario");
+                });
+
+            modelBuilder.Entity("SistemaVetIng.Models.AuditoriaEvento", b =>
+                {
+                    b.HasOne("SistemaVetIng.Models.Indentity.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("SistemaVetIng.Models.Chip", b =>

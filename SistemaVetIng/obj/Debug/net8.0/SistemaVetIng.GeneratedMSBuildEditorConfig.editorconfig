@@ -60,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRlbmNpb25WZXRlcmluYXJpYVxSZWdpc3RyYXJBdGVuY2lvbkNvblR1cm5vLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/Auditoria/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXVkaXRvcmlhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ulises/source/repos/SistemaVetIng/SistemaVetIng/Views/Cliente/HistorialPagos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxIaXN0b3JpYWxQYWdvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
