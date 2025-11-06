@@ -133,7 +133,7 @@ namespace SistemaVetIng.Controllers
                 await _auditoriaService.RegistrarEventoAsync(
                     usuarioId: 0,
                     nombreUsuario: model.UserName,
-                    tipoEvento: "Login Fallido (Usuario no existe)",
+                    tipoEvento: "Login Fallido",
                     entidad: "Sistema",
                     detalles: "Intento de login con un email que no existe."
                 );
@@ -173,7 +173,7 @@ namespace SistemaVetIng.Controllers
                 await _auditoriaService.RegistrarEventoAsync(
                     usuarioId: user.Id,
                     nombreUsuario: user.UserName,
-                    tipoEvento: "Login Fallido (Datos incorrectos)",
+                    tipoEvento: "Login Fallido",
                     entidad: rolUsuario,
                     detalles: "Datos incorrectos."
                 );

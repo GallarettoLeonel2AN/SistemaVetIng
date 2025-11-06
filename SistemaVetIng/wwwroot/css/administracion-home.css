@@ -319,3 +319,14 @@ input[type="number"].form-control {
     background-color: #343a40;
 }
 /* Oscuro */
+
+.table-layout-fixed {
+    table-layout: fixed;
+    width: 100%; 
+}
+
+.cell-wrap-text {
+    white-space: normal !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

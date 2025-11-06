@@ -84,14 +84,14 @@
                     @if (Model.EventosPaginados != null && Model.EventosPaginados.Any())
                     {
                         <div class="table-container">
-                            <table class="table responsive-table">
+                            <table class="table responsive-table table-layout-fixed">
                                 <thead>
                                     <tr>
                                         <th>Usuario</th>
                                         <th>Fecha y Hora</th>
                                         <th>Tipo de Evento</th>
                                         <th>Entidad</th>
-        
+                                        <th style="width: 25%;">Detalles</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -105,8 +105,7 @@
                                                     string badgeClass = evento.TipoEvento switch {
                                                         "Login Exitoso" => "v1-badge-login",
                                                         "Logout Exitoso" => "v1-badge-logout",
-                                                        "Login Fallido (Clave Incorrecta)" => "v1-badge-fallido",
-                                                        "Login Fallido (Datos Incorrectos)" => "v1-badge-fallido",
+                                                        "Login Fallido" => "v1-badge-fallido",
                                                         "Crear" => "v1-badge-crear",
                                                         "Modificar" => "v1-badge-modificar",
                                                         "Eliminar" => "v1-badge-eliminar",
@@ -116,9 +115,12 @@
                                                 <span class="v1-badge-event @badgeClass">@evento.TipoEvento</span>
                                             </td>
                                             <td data-label="Entidad:">@Html.DisplayFor(modelItem => evento.Entidad)</td>
-                                           
-                                           
-                                       
+                                          
+                                             <td data-label="Detalles:" class="cell-wrap-text">
+                                                 @(!string.IsNullOrWhiteSpace(evento.Detalles) ? evento.Detalles : " - ")
+                                             </td>
+                                            
+                                          
                                         </tr>
                                     }
                                 </tbody>

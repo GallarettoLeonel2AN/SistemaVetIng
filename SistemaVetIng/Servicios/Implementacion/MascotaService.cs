@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SistemaVetIng.Data;
 using SistemaVetIng.Models;
+using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -13,17 +15,23 @@ namespace SistemaVetIng.Servicios.Implementacion
     public class MascotaService : IMascotaService
     {
         private readonly IMascotaRepository _mascotaRepository;
-        private readonly IGeneralRepository<Cliente> _clienteRepository;
+        private readonly IClienteRepository _clienteRepository;
         private readonly IGeneralRepository<Chip> _chipRepository;
         private readonly ApplicationDbContext _context;
+        private readonly IAuditoriaService _auditoriaService;
 
 
-        public MascotaService(IMascotaRepository mascotaRepository, IGeneralRepository<Cliente> clienteRepository, IGeneralRepository<Chip> chipRepository, ApplicationDbContext context)
+        public MascotaService(IMascotaRepository mascotaRepository,
+            IClienteRepository clienteRepository, 
+            IGeneralRepository<Chip> chipRepository, 
+            ApplicationDbContext context,
+            IAuditoriaService auditoriaService)
         {
             _mascotaRepository = mascotaRepository;
             _clienteRepository = clienteRepository;
             _chipRepository = chipRepository;
             _context = context;
+            _auditoriaService = auditoriaService;
         }
 
         private readonly List<string> _razasPeligrosas = new List<string>
@@ -136,7 +144,11 @@ namespace SistemaVetIng.Servicios.Implementacion
 
             return viewModel;
         }
-        public async Task<(Mascota? mascota, bool success, string message)> Registrar(MascotaRegistroViewModel model)
+        public async Task<(Mascota? mascota, bool success, string message)> Registrar(
+            MascotaRegistroViewModel model,
+             int auditUserId,
+            string auditUserName,
+            string rolUsuario)
         {
             // Usamos una transacción para asegurar que la mascota solo se cree si la API responde correctamente.
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -203,6 +215,17 @@ namespace SistemaVetIng.Servicios.Implementacion
 
                     apiMessage = model.Chip ? $"Chip Asociado (Código: {chipAsociado?.Codigo})." : "Registrada en la API de perros peligrosos.";
                 }
+
+                // Auditoria
+
+                await _auditoriaService.RegistrarEventoAsync(
+                    usuarioId: auditUserId,
+                    nombreUsuario: auditUserName,
+                    tipoEvento: "Crear",
+                    entidad: rolUsuario,
+                    detalles: $"Se registró la mascota: {mascota.Nombre} (Raza: {mascota.Raza}) al cliente: {mascota.Propietario.Usuario.UserName}."
+                );
+
 
                 // Confirmamos la transacción.
                 await transaction.CommitAsync();

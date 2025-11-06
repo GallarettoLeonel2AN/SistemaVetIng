@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
+using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -14,6 +16,7 @@ namespace SistemaVetIng.Controllers
         private readonly IClienteService _clienteService;
         private readonly IToastNotification _toastNotification;
         private readonly ITurnoService _turnoService;
+        private readonly UserManager<Usuario> _userManager;
 
 
         private readonly List<string> _razasPeligrosas = new List<string>
@@ -27,13 +30,15 @@ namespace SistemaVetIng.Controllers
             IMascotaService mascotaService,
             IClienteService clienteService, 
             IToastNotification toastNotification,
-            ITurnoService turnoService)
+            ITurnoService turnoService,
+            UserManager<Usuario> userManager)
         {
 
             _mascotaService = mascotaService;
             _clienteService = clienteService;
             _toastNotification = toastNotification;
             _turnoService = turnoService;
+            _userManager = userManager;
         }
 
 
@@ -112,7 +117,6 @@ namespace SistemaVetIng.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrarMascota(MascotaRegistroViewModel model)
         {
-
             if (!ModelState.IsValid)
             {
                 var cliente = await _clienteService.ObtenerPorId(model.ClienteId);
@@ -123,34 +127,57 @@ namespace SistemaVetIng.Controllers
                 return View(model);
             }
 
+            // Auditoria
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                // Si no podemos identificar al usuario, no permitimos la acción
+                _toastNotification.AddErrorToastMessage("Error de autenticación. No se pudo registrar la mascota.");
+                return View(model);
+            }
 
-            var (nuevaMascota, success, message) = await _mascotaService.Registrar(model);
+            int auditUserId = user.Id;
+            string auditUserName = user.UserName;
+
+            var roles = await _userManager.GetRolesAsync(user);
+            string rolUsuario = roles.FirstOrDefault() ?? "Sin Rol";
+
+
+            var (nuevaMascota, success, message) = await _mascotaService.Registrar(
+                model,
+                auditUserId,
+                auditUserName,
+                rolUsuario
+            );
 
             if (success)
             {
                 _toastNotification.AddSuccessToastMessage(message);
 
-                // Redireccion: Si el registro viene de un turno:
                 if (model.TurnoIdParaRedireccion.HasValue)
                 {
-                    // Buscamos el turno original para vincularle la mascota.
                     var turnoOriginal = await _turnoService.ObtenerPorIdConDatosAsync(model.TurnoIdParaRedireccion.Value);
                     if (turnoOriginal != null)
                     {
                         turnoOriginal.MascotaId = nuevaMascota.Id;
-                        _turnoService.Actualizar(turnoOriginal);
-                        await _turnoService.Guardar();
+                        _turnoService.Actualizar(turnoOriginal); 
+                        await _turnoService.Guardar(); 
                     }
 
                     return RedirectToAction("RegistrarAtencionConTurno", "AtencionVeterinaria", new { turnoId = model.TurnoIdParaRedireccion.Value });
                 }
 
-                // Si no, es una creación normal
                 return RedirectToAction(nameof(ListarClientes));
             }
             else
             {
                 _toastNotification.AddErrorToastMessage(message);
+                // Recargar datos para la vista de error
+                var cliente = await _clienteService.ObtenerPorId(model.ClienteId);
+                if (cliente != null)
+                {
+                    ViewBag.ClienteNombre = $"{cliente.Nombre} {cliente.Apellido}";
+                }
                 return View(model);
             }
         }

@@ -35,8 +35,7 @@ namespace SistemaVetIng.ViewsModels
             {
                 new SelectListItem { Value = "", Text = "Todos los Tipos" },
                 new SelectListItem { Value = "Login Exitoso", Text = "Login Exitoso" },
-                new SelectListItem { Value = "Login Fallido (Datos Incorrectos)", Text = "Login Fallido (Datos)" },
-                new SelectListItem { Value = "Login Fallido (Usuario no existe)", Text = "Login Fallido (Usuario)" },
+                new SelectListItem { Value = "Login Fallido", Text = "Login Fallido" },
                 new SelectListItem { Value = "Logout Exitoso", Text = "Logout" },
                 new SelectListItem { Value = "Crear", Text = "Creacion (ABM)" },
                 new SelectListItem { Value = "Modificar", Text = "Modificacion (ABM)" },
