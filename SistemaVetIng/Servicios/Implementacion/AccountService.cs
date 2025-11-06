@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Servicios.Interfaces;
@@ -12,12 +13,17 @@ namespace SistemaVetIng.Servicios.Implementacion
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, IEmailSender emailSender)
+        public AccountService(UserManager<Usuario> userManager,
+            SignInManager<Usuario> signInManager, 
+            IEmailSender emailSender,
+            IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<SignInResult> PasswordSignIn(LoginViewModel model)
@@ -102,6 +108,13 @@ namespace SistemaVetIng.Servicios.Implementacion
         public async Task SignOut()
         {
             await _signInManager.SignOutAsync();
+
+            // Esto limpia cualquier cookie de "Remember Me" que haya quedado
+            if (_httpContextAccessor.HttpContext != null)
+            {
+                await _httpContextAccessor.HttpContext.SignOutAsync(
+                    IdentityConstants.ExternalScheme);
+            }
         }
     }
 }

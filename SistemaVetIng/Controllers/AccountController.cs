@@ -141,6 +141,7 @@ namespace SistemaVetIng.Controllers
                 return View(model);
             }
 
+            model.RememberMe = false;
             var result = await _accountService.PasswordSignIn(model);
 
             var roles = await _userManager.GetRolesAsync(user);
