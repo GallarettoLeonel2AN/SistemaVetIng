@@ -1217,6 +1217,24 @@
           "build/net8.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/9.0.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.6",
+          "Microsoft.Extensions.Caching.Memory": "9.0.6",
+          "Microsoft.Extensions.Logging": "9.0.6"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/9.0.6": {
         "type": "package",
         "dependencies": {
@@ -5711,6 +5729,21 @@
         "lib/net8.0/Microsoft.EntityFrameworkCore.Design.xml",
         "microsoft.entityframeworkcore.design.9.0.6.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/9.0.6": {
+      "sha512": "y7cpyB/aYVi4VZiVoUcIA2vQLlypQv1wGmly47RwXvPX15S15mooBsxyVmw3BShBXbdnK5wxfslihIoXzplnGg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/9.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.9.0.6.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/9.0.6": {
@@ -11116,6 +11149,7 @@
       "Microsoft.AspNetCore.Identity.UI >= 8.0.15",
       "Microsoft.EntityFrameworkCore >= 9.0.6",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.6",
+      "Microsoft.EntityFrameworkCore.InMemory >= 9.0.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.6",
       "NToastNotify >= 8.0.0",
@@ -11131,11 +11165,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
+      "projectUniqueName": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
       "projectName": "SistemaVetIng",
-      "projectPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
+      "projectPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
       "packagesPath": "C:\\Users\\Ulises\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\obj\\",
+      "outputPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -11197,6 +11231,10 @@
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
+            "target": "Package",
+            "version": "[9.0.6, )"
+          },
+          "Microsoft.EntityFrameworkCore.InMemory": {
             "target": "Package",
             "version": "[9.0.6, )"
           },

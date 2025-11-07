@@ -9,9 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerrosPeligrososApi", "Perr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unitario", "Unitario", "{E9557DB6-1607-4EAB-9A09-A6C132A11F9B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaVetIng.TestUnitario", "SistemaVetIng.TestUnitario\SistemaVetIng.TestUnitario.csproj", "{A77376E8-0494-4DB1-87FC-4BADDFDAFC8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaVetIng.Tests", "SistemaVetIng.Tests\SistemaVetIng.Tests.csproj", "{A77376E8-0494-4DB1-87FC-4BADDFDAFC8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,8 +34,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E9557DB6-1607-4EAB-9A09-A6C132A11F9B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{A77376E8-0494-4DB1-87FC-4BADDFDAFC8D} = {E9557DB6-1607-4EAB-9A09-A6C132A11F9B}
+		{A77376E8-0494-4DB1-87FC-4BADDFDAFC8D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17786CD4-3A44-48EF-8BC8-8BD3F87A5896}

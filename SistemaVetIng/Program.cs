@@ -1,19 +1,34 @@
+using MercadoPago.Config;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using SistemaVetIng.Data;
+using SistemaVetIng.Models;
 using SistemaVetIng.Models.Extension;
 using SistemaVetIng.Models.Indentity;
-using MercadoPago.Config;
-using SistemaVetIng.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
+var environment = builder.Environment.EnvironmentName;
 
-// Configuración de conexion
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// Base de datos
+if (environment == "Testing")
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseInMemoryDatabase("TestDB"));
+}
+else
+{
+    // Configuración de conexion
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+}
+
+
 
 // MErcado Pago
 var mpSettings = builder.Configuration.GetSection("MercadoPagoSettings").Get<MercadoPagoSettings>();
@@ -27,8 +42,6 @@ else
     throw new InvalidOperationException("Falta o no está configurado el AccessToken de Mercado Pago.");
 }
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<Usuario, Rol>(options =>
 {
@@ -118,3 +131,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+public partial class Program { } // Para test de integracion
