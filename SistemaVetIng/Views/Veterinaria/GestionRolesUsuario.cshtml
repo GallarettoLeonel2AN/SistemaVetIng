@@ -1,76 +1,151 @@
 ﻿@model ManageUserRolesPageViewModel
+@using System.Globalization
+
 @{
-    ViewData["Title"] = "Gestión de Roles de Usuario";
-    Layout = null;
+    ViewData["Title"] = "Gestión de Roles por Usuario";
+    Layout = null; 
+
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
-<h1><i class="fa-solid fa-users-cog"></i> Gestión de Roles por Usuario</h1>
-<p>Selecciona un usuario para asignar o quitar sus roles (grupos).</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - VetIng</title>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          xintegrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/permisos.css" asp-append-version="true" />
 
-<hr />
+</head>
+<body class="dark-mode">
 
-<form asp-action="GestionRolesUsuario" method="get">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="userSelect" class="form-label">Seleccionar Usuario:</label>
-                <select asp-for="SelectedUserId" asp-items="Model.UsersList" class="form-select" onchange="this.form.submit();">
-                    <option value="">-- Selecciona un usuario --</option>
-                </select>
-            </div>
+    <header class="main-header">
+        <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
         </div>
-    </div>
-</form>
+    </header>
 
-<hr />
+    <main class="v1-main-dashboard">
+        <section id="gestion-roles" class="v1-section">
+            <h1 class="v1-section-title"><i class="fa-solid fa-users-cog"></i> @ViewData["Title"]</h1>
+            <p style="color: var(--history-text-secondary); margin-top: -0.5rem; margin-bottom: 1.5rem;">
+                Selecciona un usuario para asignar o quitar sus roles (grupos).
+            </p>
 
-@if (Model.RolesForm != null && Model.RolesForm.Roles.Any())
-{
-    <h2>Roles para: @Model.RolesForm.UserName</h2>
 
-    <form asp-action="GestionRolesUsuario" method="post">
-        @Html.AntiForgeryToken()
+            <form asp-action="GestionRolesUsuario" method="get" class="v1-filter-bar">
+                <div class="v1-select-container">
+                    <label for="userSelect" class="v1-filter-label">Seleccionar Usuario:</label>
+                    <select asp-for="SelectedUserId" asp-items="Model.UsersList" class="v1-select" id="userSelect" onchange="this.form.submit();">
+                        <option value="">-- Selecciona un usuario --</option>
+                    </select>
+                </div>
+            </form>
 
-        <input type="hidden" asp-for="RolesForm.UserId" />
-        <input type="hidden" asp-for="RolesForm.UserName" />
+            <hr style="border-color: var(--history-border); margin: 2rem 0;" />
 
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Rol (Grupo)</th>
-                    <th>Asignado</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.RolesForm.Roles.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            <input type="hidden" asp-for="RolesForm.Roles[i].RoleId" />
-                            <input type="hidden" asp-for="RolesForm.Roles[i].RoleName" />
-                            @Model.RolesForm.Roles[i].RoleName
-                        </td>
-                        <td>
-                            <input asp-for="RolesForm.Roles[i].IsSelected" class="form-check-input" />
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
 
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">
-                <i class="fa-solid fa-save"></i> Guardar Roles
-            </button>
+            @if (Model.RolesForm != null && Model.RolesForm.Roles.Any())
+            {
+                <div class="v1-card">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Roles Asignables para: <span style="color: var(--v1-color-accent)">@Model.RolesForm.UserName</span></h3>
+                    </div>
+                    <form asp-action="GestionRolesUsuario" method="post">
+                        @Html.AntiForgeryToken()
+
+
+                        <input type="hidden" asp-for="RolesForm.UserId" />
+                        <input type="hidden" asp-for="RolesForm.UserName" />
+
+                        <div class="v1-card-content">
+                            <div class="table-container">
+                                <table class="table responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Rol (Grupo)</th>
+                                            <th style="width: 120px; text-align: center;">Asignado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RolesForm.Roles.Count; i++)
+                                        {
+                                            <tr>
+                                                <td data-label="Rol:">
+                                               
+                                                    <input type="hidden" asp-for="RolesForm.Roles[i].RoleId" />
+                                                    <input type="hidden" asp-for="RolesForm.Roles[i].RoleName" />
+
+                                                    <label for="role-@i" style="font-weight: 500; cursor: pointer;">
+                                                        @Model.RolesForm.Roles[i].RoleName
+                                                    </label>
+                                                </td>
+                                                <td data-label="Asignado:" style="text-align: center;">
+                                 
+                                                    <label class="v1-toggle-switch">
+                                                        <input type="checkbox" asp-for="RolesForm.Roles[i].IsSelected" id="role-@i" />
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+
+                  
+                    </form>
+                </div>
+                <div class="v1-card-footer v1-form-actions">
+                    <button type="submit" class="v1-btn v1-btn-primary">
+                        <i class="fa-solid fa-save"></i> Guardar Roles
+                    </button>
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(Model.SelectedUserId))
+            {
+                <div class="v1-alert v1-alert-warning">No se pudieron cargar los roles para este usuario.</div>
+            }
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <!-- ... (Tu footer copiado de la página de referencia) ... -->
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
         </div>
-    </form>
-}
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("NToastNotify")
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>
