@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using SistemaVetIng.Models;
+using SistemaVetIng.Models.Extension;
+using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -19,7 +24,10 @@ namespace SistemaVetIng.Controllers
         private readonly IMascotaService _mascotaService;
         private readonly ITurnoService _turnoService;
         private readonly IAtencionVeterinariaService _atencionVeterinariaService;
-        
+        private readonly IPermissionService _permissionService;
+        private readonly RoleManager<Rol> _roleManager;
+        private readonly UserManager<Usuario> _userManager;
+
 
         public VeterinariaController(
             IVeterinariaConfigService service,
@@ -28,7 +36,10 @@ namespace SistemaVetIng.Controllers
             IClienteService clienteService,
             IVeterinarioService veterinarioService,
             ITurnoService turnoService,
-            IAtencionVeterinariaService atencionVeterinariaService
+            IAtencionVeterinariaService atencionVeterinariaService,
+            IPermissionService permissionService,
+            RoleManager<Rol> roleManager,
+            UserManager<Usuario> userManager
             )
         {
             _mascotaService = mascotaService;
@@ -38,6 +49,9 @@ namespace SistemaVetIng.Controllers
             _toastNotification = toastNotification;
             _turnoService = turnoService;
             _atencionVeterinariaService = atencionVeterinariaService;
+            _permissionService = permissionService;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         #region PAGINA PRINCIPAL
@@ -254,6 +268,195 @@ namespace SistemaVetIng.Controllers
                 return View(model);
             }
         }
+        #endregion
+
+        #region Permisos Por Rol 
+
+        [HttpGet]
+        [Authorize(Policy = Permission.Administration.ManageRolePermissions)]
+        public async Task<IActionResult> GestionPermissions(string SelectedRoleId)
+        {
+            var model = new ManagePermissionsPageViewModel();
+
+            //  Obtener todos los roles 
+            var allRoles = await _roleManager.Roles.ToListAsync();
+            model.RolesList = allRoles.Select(r => new SelectListItem
+            {
+                Text = r.Name,
+                Value = r.Id.ToString()
+            }).ToList();
+
+            // cargar sus Permissions
+            if (!string.IsNullOrEmpty(SelectedRoleId))
+            {
+                model.SelectedRoleId = SelectedRoleId;
+                model.PermissionsForm = await _permissionService.GetRolePermissionsAsync(SelectedRoleId);
+            }
+
+            return View("GestionPermissions", model);
+        }
+
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = Permission.Administration.ManageRolePermissions)]
+        public async Task<IActionResult> GestionPermissions(RolPermissionsViewModel PermissionsForm)
+        {
+            if (!ModelState.IsValid)
+            {
+                
+                TempData["ErrorMessage"] = "Error de validación.";
+                return RedirectToAction("GestionPermissions", new { roleId = PermissionsForm.RoleId });
+            }
+
+            try
+            {
+                bool success = await _permissionService.UpdateRolePermissionsAsync(PermissionsForm);
+
+                if (success)
+                {
+                    TempData["SuccessMessage"] = "Permissions actualizados correctamente.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Error al actualizar los Permissions.";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error grave: {ex.Message}";
+            }
+
+         
+            return RedirectToAction("GestionPermissions", new { roleId = PermissionsForm.RoleId });
+        }
+        #endregion
+
+        #region Permisos por Usuario
+
+        [HttpGet]
+        [Authorize(Policy = Permission.Administration.ManageUsers)] 
+        public async Task<IActionResult> GestionPermissionsUsuario(string SelectedUserId)
+        {
+            var model = new ManageUserPermissionsPageViewModel();
+
+            // Obtener todos los usuarios 
+            var allUsers = await _userManager.Users.ToListAsync();
+            model.UsersList = allUsers.Select(u => new SelectListItem
+            {
+                Text = u.UserName, 
+                Value = u.Id.ToString()
+            }).ToList();
+
+            //  cargar sus permisos
+            if (!string.IsNullOrEmpty(SelectedUserId))
+            {
+                model.SelectedUserId = SelectedUserId;
+                var userPermissions = await _permissionService.GetUserPermissionsAsync(SelectedUserId);
+                if (userPermissions != null)
+                {
+                    model.PermissionsForm = userPermissions;
+                }
+            }
+
+           
+            return View("GestionPermissionsUsuario", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = Permission.Administration.ManageUsers)] 
+        public async Task<IActionResult> GestionPermissionsUsuario(UserPermissionsViewModel PermissionsForm)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Error de validación.";
+               
+                return RedirectToAction("GestionPermissionsUsuario", new { SelectedUserId = PermissionsForm.UserId });
+            }
+
+            try
+            {
+                bool success = await _permissionService.UpdateUserPermissionsAsync(PermissionsForm);
+
+                if (success)
+                {
+                    TempData["SuccessMessage"] = "Permisos de usuario actualizados correctamente.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Error al actualizar los permisos del usuario.";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error grave: {ex.Message}";
+            }
+
+            return RedirectToAction("GestionPermissionsUsuario", new { SelectedUserId = PermissionsForm.UserId });
+        }
+
+
+        #endregion
+
+        #region ROLES DE USUARIO
+
+        [HttpGet]
+        [Authorize(Policy = Permission.Administration.ManageUsers)] 
+        public async Task<IActionResult> GestionRolesUsuario(string SelectedUserId)
+        {
+            var model = new ManageUserRolesPageViewModel(); 
+
+            // Obtener todos los usuarios 
+            var allUsers = await _userManager.Users.ToListAsync();
+            model.UsersList = allUsers.Select(u => new SelectListItem
+            {
+                Text = u.UserName,
+                Value = u.Id.ToString()
+            }).ToList();
+
+            // cargar sus roles
+            if (!string.IsNullOrEmpty(SelectedUserId))
+            {
+                model.SelectedUserId = SelectedUserId;
+                var userRoles = await _permissionService.GetUserRolesAsync(SelectedUserId);
+                if (userRoles != null)
+                {
+                    model.RolesForm = userRoles;
+                }
+            }
+
+            return View("GestionRolesUsuario", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = Permission.Administration.ManageUsers)]
+        public async Task<IActionResult> GestionRolesUsuario(UserRolesViewModel RolesForm)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Error de validación.";
+                return RedirectToAction("GestionRolesUsuario", new { SelectedUserId = RolesForm.UserId });
+            }
+
+            try
+            {
+                bool success = await _permissionService.UpdateUserRolesAsync(RolesForm);
+                if (success)
+                {
+                    TempData["SuccessMessage"] = "Roles del usuario actualizados correctamente.";
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error grave: {ex.Message}";
+            }
+
+            return RedirectToAction("GestionRolesUsuario", new { SelectedUserId = RolesForm.UserId });
+        }
+
         #endregion
     }
 }

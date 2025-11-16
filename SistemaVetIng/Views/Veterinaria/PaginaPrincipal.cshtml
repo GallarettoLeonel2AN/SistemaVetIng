@@ -1,5 +1,8 @@
 ﻿@using X.PagedList.Mvc.Core
 @model SistemaVetIng.ViewsModels.VeterinariaPaginaPrincipalViewModel
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using SistemaVetIng.Models.Extension
 @{
     ViewData["Title"] = "VetIng - Administración";
     Layout = null;
@@ -13,8 +16,8 @@
     <title>@ViewData["Title"]</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
@@ -48,100 +51,138 @@
     <main class="v1-main-dashboard">
 
         <section id="resumen" class="v1-section">
-    <h2 class="v1-section-title">Resumen del Panel</h2>
-    <div class="v1-card-grid">
-        <div class="v1-card">
-            <div class="v1-card-header">
-                <h3 class="v1-card-title">Citas para Hoy</h3>
-                <i class="fa-regular fa-calendar-days v1-card-icon"></i>
-            </div>
-            <div class="v1-card-content">
-                <div class="v1-card-value">@Model.CantidadCitasHoy</div>
-            </div>
-        </div>
-        <div class="v1-card">
-             <div class="v1-card-header">
-                <h3 class="v1-card-title">Clientes Registrados</h3>
-                <i class="fa-solid fa-users v1-card-icon"></i>
-            </div>
-            <div class="v1-card-content">
-                <div class="v1-card-value">@Model.CantidadClientesActivos</div>
-            </div>
-        </div>
-        <div class="v1-card">
-            <div class="v1-card-header">
-                <h3 class="v1-card-title">Mascotas Registradas</h3>
-                <i class="fa-solid fa-heart v1-card-icon"></i>
-            </div>
-            <div class="v1-card-content">
-                <div class="v1-card-value">@Model.CantidadMascotasRegistradas</div>
-            </div>
-        </div>
-        <div class="v1-card">
-            <div class="v1-card-header">
-                <h3 class="v1-card-title">Facturado en @DateTime.Now.ToString("MMMM")</h3> 
-                <i class="fa-regular fa-file-lines v1-card-icon"></i>
-            </div>
-            <div class="v1-card-content">
-                <div class="v1-card-value">$ @Model.IngresosMensuales.ToString("N0")</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="v1-chart-and-list-container-flex">
-        <div class="v1-card v1-chart-card">
-            <div class="v1-card-header">
-                <h3 class="v1-card-title">Reportes Analíticos</h3>
-            </div>
-            <div class="v1-card-content v1-card-grid-reports">
+            <h2 class="v1-section-title">Resumen del Panel</h2>
+            <div class="v1-card-grid">
                 <div class="v1-card">
-                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Cant. Perros Peligrosos</h3>
-                        <i class="fa-solid fa-dog v1-card-icon"></i>
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Citas para Hoy</h3>
+                        <i class="fa-regular fa-calendar-days v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div class="v1-card-value">@Model.CantidadPerrosPeligrosos</div>
-                        <p class="v1-card-description">Registrados</p>
+                        <div class="v1-card-value">@Model.CantidadCitasHoy</div>
                     </div>
                 </div>
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Vacuna más frecuente</h3>
-                        <i class="fa-solid fa-syringe v1-card-icon"></i>
+                        <h3 class="v1-card-title">Clientes Registrados</h3>
+                        <i class="fa-solid fa-users v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div class="v1-card-value">@Model.VacunaMasFrecuenteNombre</div>
+                        <div class="v1-card-value">@Model.CantidadClientesActivos</div>
                     </div>
                 </div>
                 <div class="v1-card">
-                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Estudio más solicitado</h3>
-                        <i class="fa-solid fa-magnifying-glass v1-card-icon"></i>
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Mascotas Registradas</h3>
+                        <i class="fa-solid fa-heart v1-card-icon"></i>
                     </div>
                     <div class="v1-card-content">
-                        <div class="v1-card-value">@Model.EstudioMasSolicitadoNombre</div>
-                        <p class="v1-card-description">@Model.PrecioEstudioMasSolicitado?.ToString("C0")</p> 
+                        <div class="v1-card-value">@Model.CantidadMascotasRegistradas</div>
+                    </div>
+                </div>
+                <div class="v1-card">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Facturado en @DateTime.Now.ToString("MMMM")</h3> 
+                        <i class="fa-regular fa-file-lines v1-card-icon"></i>
+                    </div>
+                    <div class="v1-card-content">
+                        <div class="v1-card-value">$ @Model.IngresosMensuales.ToString("N0")</div>
                     </div>
                 </div>
             </div>
-             <div class="btn-centrar">
-                 <a asp-controller="Dashboard" asp-action="Dashboard" class="v1-btn v1-btn-primary">
-                    <i class="fa-solid fa-chart-simple"></i>Ver todos los reportes
-                </a>
-             </div>
-        </div>
-    </div>
-</section>
 
-           <section id="turnos" class="v1-section">
+            <div class="v1-chart-and-list-container-flex">
+                <div class="v1-card v1-chart-card">
+                    <div class="v1-card-header">
+                        <h3 class="v1-card-title">Reportes Analíticos</h3>
+                    </div>
+                    <div class="v1-card-content v1-card-grid-reports">
+                        <div class="v1-card">
+                            <div class="v1-card-header">
+                                <h3 class="v1-card-title">Cant. Perros Peligrosos</h3>
+                                <i class="fa-solid fa-dog v1-card-icon"></i>
+                            </div>
+                            <div class="v1-card-content">
+                                <div class="v1-card-value">@Model.CantidadPerrosPeligrosos</div>
+                                <p class="v1-card-description">Registrados</p>
+                            </div>
+                        </div>
+                        <div class="v1-card">
+                            <div class="v1-card-header">
+                                <h3 class="v1-card-title">Vacuna más frecuente</h3>
+                                <i class="fa-solid fa-syringe v1-card-icon"></i>
+                            </div>
+                            <div class="v1-card-content">
+                                <div class="v1-card-value">@Model.VacunaMasFrecuenteNombre</div>
+                            </div>
+                        </div>
+                        <div class="v1-card">
+                            <div class="v1-card-header">
+                                <h3 class="v1-card-title">Estudio más solicitado</h3>
+                                <i class="fa-solid fa-magnifying-glass v1-card-icon"></i>
+                            </div>
+                            <div class="v1-card-content">
+                                <div class="v1-card-value">@Model.EstudioMasSolicitadoNombre</div>
+                                <p class="v1-card-description">@Model.PrecioEstudioMasSolicitado?.ToString("C0")</p> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-centrar">
+                        <a asp-controller="Dashboard" asp-action="Dashboard" class="v1-btn v1-btn-primary">
+                            <i class="fa-solid fa-chart-simple"></i>Ver todos los reportes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @* 1. Primero, verificamos si el usuario tiene CUALQUIER permiso de administración. *@
+        @* Si no tiene ninguno, no ve la seccion *@
+        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded ||
+        (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded ||
+        (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
+        {
+            <section id="administracion" class="v1-section">
+                <h2 class="v1-section-title">Administración del Sistema</h2>
+                <div class="v1-section-actions">
+
+                   
+                    @* Solo se muestra si tiene el permiso específico de gestionar permisos *@
+                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
+                    {
+                        <a asp-controller="Veterinaria" asp-action="GestionPermissions" class="v1-btn v1-btn-primary">
+                            <i class="fa-solid fa-shield-halved"></i> Gestionar Permisos de Roles
+                        </a>
+                    }
+
+                   
+                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
+                    {
+                        <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="v1-btn v1-btn-secondary">
+                            <i class="fa-solid fa-users-cog"></i> Gestionar Usuarios
+                        </a>
+                    }
+
+                  
+                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded)
+                    {
+                        <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="v1-btn v1-btn-secondary">
+                            <i class="fa-solid fa-user-shield"></i> Gestionar Roles
+                        </a>
+                    }
+
+                </div>
+            </section>
+        }
+        <section id="turnos" class="v1-section">
             <h2 class="v1-section-title">Turnos</h2>
             <div class="v1-chart-and-list-container-flex">
                 <div class="v1-card v1-appointment-list-card">
                     <div class="v1-card-header">
                         <h3 class="v1-card-title">Citas programadas para el @DateTime.Today.ToString("dd/MM/yyyy")</h3>
-                              <a asp-controller="Turno" asp-action="TurnosPorDiaSeleccionado" class="v1-btn v1-btn-primary">
+                        <a asp-controller="Turno" asp-action="TurnosPorDiaSeleccionado" class="v1-btn v1-btn-primary">
                             <i class="fa-solid fa-calendar"></i> Ver Todos los Turnos
-                          </a>    
+                        </a>    
                     </div>
 
                     <div class="v1-card-content v1-appointment-list-content">
@@ -169,21 +210,21 @@
                                         </div>
                                     </div>
                                     <div class="v1-appointment-badges">
-                                         @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                                    {
-                                        <span class="v1-badge v1-badge-secondary">
-                                            Motivo: @turno.Motivo
+                                        @if (!string.IsNullOrWhiteSpace(turno.Motivo))
+                                        {
+                                            <span class="v1-badge v1-badge-secondary">
+                                                Motivo: @turno.Motivo
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="v1-badge v1-badge-secondary">
+                                                No especificó Motivo
+                                            </span>
+                                        }
+                                        <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" || turno.Estado == "No Asistió" ? "v1-badge-red" : "v1-badge-gray"))) ">
+                                            @turno.Estado
                                         </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="v1-badge v1-badge-secondary">
-                                            No especificó Motivo
-                                        </span>
-                                    }
-                                       <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" || turno.Estado == "No Asistió" ? "v1-badge-red" : "v1-badge-gray"))) ">
-                                        @turno.Estado
-                                    </span>
                                     </div>
                                 </div>
                             }
@@ -200,9 +241,12 @@
         <section id="configuracion-turnos" class="v1-section">
             <h2 class="v1-section-title">Configuración de Horarios</h2>
             <div class="v1-section-actions">
-                <a asp-controller="Veterinaria" asp-action="GuardarConfiguracion" class="v1-btn v1-btn-primary">
-                    <i class="fas fa-cog"></i> Agregar/Modificar Configuración
-                </a>
+                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.Create)).Succeeded)
+                {
+                    <a asp-controller="Veterinaria" asp-action="GuardarConfiguracion" class="v1-btn v1-btn-primary">
+                        <i class="fas fa-cog"></i> Agregar/Modificar Configuración
+                    </a>
+                }
             </div>
             <div class="v1-card">
                 <div class="v1-card-header">
@@ -293,27 +337,31 @@
         <section id="catalogos" class="v1-section">
             <h2 class="v1-section-title">Gestión de Servicios</h2>
             <div class="v1-section-actions">
-
+                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.Create)).Succeeded) {
                 <a asp-controller="Vacuna" asp-action="Index" class="v1-btn v1-btn-primary">
                     <i class="fa-solid fa-syringe"></i> Gestionar Catálogo de Vacunas
                 </a>
-
+                }
             </div>
             <div class="v1-section-actions">
-
+                 @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.Create)).Succeeded) {
                 <a asp-controller="Estudio" asp-action="Index" class="v1-btn v1-btn-primary">
                     <i class="fa-solid fa-microscope"></i> Gestionar Catálogo de Estudios
                 </a>
+                 }
             </div>
 
         </section>
-
+  @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.View)).Succeeded) {
        <section id="veterinarios" class="v1-section">
         <h2 class="v1-section-title">Gestión de Veterinarios</h2>
         <div class="v1-section-actions">
-        <a asp-controller="Veterinario" asp-action="RegistrarVeterinario" class="v1-btn v1-btn-primary">
-            <i class="fa-solid fa-plus"></i> Registrar Nuevo
-        </a>
+              @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.Create)).Succeeded) 
+               {
+                    <a asp-controller="Veterinario" asp-action="RegistrarVeterinario" class="v1-btn v1-btn-primary">
+                    <i class="fa-solid fa-plus"></i> Registrar Nuevo
+                    </a>
+                }
         <form asp-controller="Veterinaria" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
             <div class="v1-input-group">
                 <i class="fa-solid fa-search v1-input-icon"></i>
@@ -321,6 +369,7 @@
         
             </div>
         </form>
+        
     </div>
     <div class="v1-card">
         <div class="v1-card-header">
@@ -342,11 +391,17 @@
                             </div>
                         </div>
                         <div class="v1-list-actions">
-                            <a asp-controller="Veterinario" asp-action="ModificarVeterinario" asp-route-id="@veterinario.Id" class="v1-btn v1-btn-ghost" title="Editar Veterinario"><i class="fa-solid fa-edit"></i></a>
-                            <form asp-controller="Veterinario" asp-action="EliminarVeterinario" asp-route-id="@veterinario.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este veterinario?');" style="display:inline;">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger" title="Eliminar Veterinario"><i class="fa-solid fa-trash"></i></button>
-                            </form>
+                                        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.Edit)).Succeeded)
+                                        {
+                                             <a asp-controller="Veterinario" asp-action="ModificarVeterinario" asp-route-id="@veterinario.Id" class="v1-btn v1-btn-ghost" title="Editar Veterinario"><i class="fa-solid fa-edit"></i></a>
+                                        }
+                                        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.Delete)).Succeeded) 
+                                        {
+                                                <form asp-controller="Veterinario" asp-action="EliminarVeterinario" asp-route-id="@veterinario.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este veterinario?');" style="display:inline;">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger" title="Eliminar Veterinario"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
+                                        }
                         </div>
                     </div>
                 }
@@ -396,14 +451,16 @@
         </div>
     </div>
 </section>
-
+        }
+        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Cliente.View)).Succeeded){
         <section id="clientes" class="v1-section">
             <h2 class="v1-section-title">Gestión de Clientes</h2>
             <div class="v1-section-actions">
+                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Cliente.Create)).Succeeded){
                 <a asp-controller="Cliente" asp-action="RegistrarCliente" class="v1-btn v1-btn-primary">
                     <i class="fa-solid fa-plus"></i> Registrar Nuevo
                 </a>
-
+                }
                 <form asp-controller="Veterinaria" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
                     <div class="v1-input-group">
                         <i class="fa-solid fa-search v1-input-icon"></i>
@@ -431,11 +488,16 @@
                                     </div>
                                 </div>
                                 <div class="v1-list-actions">
+                                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Cliente.Edit)).Succeeded){
                                     <a asp-controller="Cliente" asp-action="ModificarCliente" asp-route-id="@cliente.Id" class="v1-btn v1-btn-ghost"><i class="fa-solid fa-edit"></i></a>
+                                    }
+                                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Cliente.Delete)).Succeeded)
+                                    {
                                     <form asp-controller="Cliente" asp-action="EliminarCliente" asp-route-id="@cliente.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este cliente?');" style="display:inline;">
                                         @Html.AntiForgeryToken()
                                         <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
+                                    }
                                 </div>
                             </div>
                         }
@@ -478,14 +540,16 @@
                 </div>
             </div>
         </section>
-
+        }
+        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Mascota.View)).Succeeded){
          <section id="mascotas" class="v1-section">
     <h2 class="v1-section-title">Gestión de Mascotas</h2>
     <div class="v1-section-actions">
+                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Mascota.Create)).Succeeded){
          <a asp-controller="Mascota" asp-action="RegistrarMascota" class="v1-btn v1-btn-primary">
             <i class="fa-solid fa-plus"></i> Registrar Nueva
-        </a> 
-        
+        </a>
+                }
         <form asp-controller="Veterinaria" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
             <div class="v1-input-group">
                 <i class="fa-solid fa-search v1-input-icon"></i>
@@ -522,11 +586,16 @@
                         </div>
                         <div class="v1-list-actions">
 
+                                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Mascota.Edit)).Succeeded)
+                                    {
                             <a asp-controller="Mascota" asp-action="ModificarMascota" asp-route-id="@mascota.Id" class="v1-btn v1-btn-ghost" title="Editar Mascota"><i class="fa-solid fa-edit"></i></a>
+                                    }
+                                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Mascota.Delete)).Succeeded){
                             <form asp-controller="Mascota" asp-action="EliminarMascota" asp-route-id="@mascota.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a esta mascota?');" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger" title="Eliminar Mascota"><i class="fa-solid fa-trash"></i></button>
                             </form>
+                                    }
                         </div>
                     </div>
                 }
@@ -574,7 +643,7 @@
         </div>
     </div>
 </section>
-
+}
 
      <section id="auditoria" class="v1-section">
             <h2 class="v1-section-title">Auditoria del Sistema</h2>

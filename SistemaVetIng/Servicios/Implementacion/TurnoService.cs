@@ -130,14 +130,14 @@ namespace SistemaVetIng.Servicios.Implementacion
                 return (false, $"No se puede cancelar un turno que está en estado '{turno.Estado}'.");
             }
 
-            // Validación de Permiso 
+            // Validación de Permission 
             var usuarioIdString = user.FindFirstValue(ClaimTypes.NameIdentifier);
             int.TryParse(usuarioIdString, out int usuarioId);
 
             // Si el usuario es un Cliente, verifica que sea SU turno.
             if (user.IsInRole("Cliente") && turno.Cliente?.UsuarioId != usuarioId)
             {
-                return (false, "No tienes permiso para cancelar este turno.");
+                return (false, "No tienes Permission para cancelar este turno.");
             }
 
             // Cambio de estado

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using SistemaVetIng.Data;
+using SistemaVetIng.Extensions;
 using SistemaVetIng.Models;
 using SistemaVetIng.Models.Extension;
 using SistemaVetIng.Models.Indentity;
@@ -52,6 +53,8 @@ builder.Services.AddIdentity<Usuario, Rol>(options =>
 
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddAppAuthorization(); 
+
 
 
 // Configuración explícita de la cookie de autenticación

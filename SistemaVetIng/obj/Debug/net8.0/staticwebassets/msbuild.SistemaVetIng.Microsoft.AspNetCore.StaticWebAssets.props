@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5ik6022tgg</Fingerprint>
-      <Integrity>s6p6QOcu6TXpS9ySeviaYkky1AbmeL0Jz32fajaTp6U=</Integrity>
+      <Fingerprint>iaq944l3hn</Fingerprint>
+      <Integrity>WhHMK4jXCvMj3fWJQnDRC62Q26mP9t8pbZqie6Glo5k=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\administracion-home.css'))</OriginalItemSpec>
@@ -107,6 +107,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\dashboard.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\formularioPagosCliente.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>SistemaVetIng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/SistemaVetIng</BasePath>
+      <RelativePath>css/formularioPagosCliente.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>joowocoy8p</Fingerprint>
+      <Integrity>DfMHfwF72A2dLciLPXjGkzwWJ7WYMfarRaeUFLxKyXU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\formularioPagosCliente.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\home-styles.css'))">
       <SourceType>Package</SourceType>
@@ -624,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>toyc9qmh1w</Fingerprint>
-      <Integrity>nSsDZHy/w3gU1G9uJxFvl17mD9d2MWLcFFMNQ/vgreo=</Integrity>
+      <Fingerprint>hzso9109lm</Fingerprint>
+      <Integrity>vTXgOFyRjnlpTisILvMFw05rRtPEcTXAXp/O/hfwFko=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\veterinario-home.css'))</OriginalItemSpec>
@@ -642,8 +660,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>eglzl0sml3</Fingerprint>
-      <Integrity>ojOsuVafxeXqQhdX7TmxdXFSBAFh11wQkjqoz9TaNug=</Integrity>
+      <Fingerprint>plq3tnzs0h</Fingerprint>
+      <Integrity>ky0Pjtt5HXCC/Qynqkk01/6gX/IVMgf3PMVTfFsp090=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\veterinary-dashboard.css'))</OriginalItemSpec>
@@ -719,6 +737,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\menuhamburguesa.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pagos.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>SistemaVetIng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/SistemaVetIng</BasePath>
+      <RelativePath>js/pagos.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ab0879b06</Fingerprint>
+      <Integrity>HQ30wou/rnQbUE1ZeUOeWyD54LNRoEgyPNPgzZ9a0kg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pagos.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\reservaTurno.js'))">
       <SourceType>Package</SourceType>

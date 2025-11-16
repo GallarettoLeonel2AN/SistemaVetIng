@@ -1,0 +1,15 @@
+﻿namespace SistemaVetIng.ViewsModels
+{
+    public class UserPermissionsViewModel
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public List<PermissionsViewModel> Permissions { get; set; }
+
+        public UserPermissionsViewModel()
+        {
+            // Usamos el mismo PermissionViewModel que ya tenías
+            Permissions = new List<PermissionsViewModel>();
+        }
+    }
+}
