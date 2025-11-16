@@ -86,7 +86,7 @@ namespace SistemaVetIng.Controllers
             var historiaClinica = await _historiaClinicaService.GetDetalleHistoriaClinica(model.HistoriaClinicaId);
             if (historiaClinica != null)
             {
-                return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = historiaClinica.Id });
+                return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = historiaClinica.Id});
             }
             return RedirectToAction("ListaClientesParaSeguimiento", "HistoriaClinica");
         }

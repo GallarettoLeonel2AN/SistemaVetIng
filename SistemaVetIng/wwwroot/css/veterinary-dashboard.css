@@ -1103,3 +1103,97 @@ body.dark-mode .agenda-table {
     .monto-green{
         color:limegreen;
     }
+
+    /*ESTILOS PARA BOTONES DE ATENCIONES*/
+
+#vacunas-container,
+#estudios-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- Cada grupo dinámico --- */
+.v1-input-dynamic-group {
+    background: #2a2a2a;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: box-shadow 0.2s ease;
+}
+
+    .v1-input-dynamic-group:hover {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    /* --- Select dinámico --- */
+    .v1-input-dynamic-group select {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid #cfcfcf;
+        font-size: 15px;
+    }
+
+        .v1-input-dynamic-group select:focus {
+            border-color: #3B82F6 !important;
+            box-shadow: 0 0 4px rgba(59,130,246,0.35);
+        }
+
+.form-select {
+    background-color: #444444; 
+    color: white; 
+    border: none !important; 
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    position: relative;
+}
+
+.v1-btn-remove {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+}
+
+    .v1-btn-remove:hover {
+        background: #bb2d3b;
+    }
+
+
+.v1-btn-add-atencion {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: #4e47ff;
+    color: #fff;
+    border: none;
+    transition: background 0.2s ease;
+}
+
+    .v1-btn-add-atencion i {
+        font-size: 15px;
+    }
+
+    .v1-btn-add-atencion:hover {
+        background-color: #0b5ed7;
+    }
+
+
+.v1-list-header-flex {
+    margin-top: 25px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}

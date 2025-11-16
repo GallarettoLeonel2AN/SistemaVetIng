@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = $"Nueva Atención para {Model.MascotaNombre}";
     Layout = null;
+
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
 <!DOCTYPE html>
@@ -20,14 +22,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" xintegrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
     <header class="main-header">
-        <a href="/Veterinaria/PaginaPrincipal" class="logo">
-            <i class="fas fa-paw"></i>
-            <span>VetIng</span>
-        </a>
-        <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@Model.MascotaId" class="btn sesion">
-            <i class="fas fa-arrow-left"></i> Volver
-        </a>
+        <a href="../@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@Model.MascotaId" class="nav-link">
+                  Volver
+                </a>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </header>
 
     <main class="registrar-form-main">
@@ -78,25 +90,26 @@
                     <span asp-validation-for="ObservacionesTratamiento" class="text-danger validation-error"></span>
                 </div>
 
-                <h4 class="v1-card-title">
-                    Vacunas
-                    <button type="button" id="add-vacuna-btn" class="button register-button v1-btn-sm ms-2">
+
+                <h4 class="v1-list-header-flex">
+                    <span>Vacunas</span>
+                    <button type="button" id="add-vacuna-btn" class="v1-btn v1-btn-sm v1-btn-primary v1-btn-add-atencion">
                         <i class="fas fa-plus-circle"></i> Agregar Vacuna
                     </button>
                 </h4>
-                <div id="vacunas-container">
-                    @* Las vacunas se cargan aca por JS *@
-                </div>
 
-                <h4 class="v1-card-title">
-                    Estudios Complementarios
-                    <button type="button" id="add-estudio-btn" class="button register-button v1-btn-sm ms-2">
+                <div id="vacunas-container"></div>
+
+
+                <h4 class="v1-list-header-flex">
+                    <span>Estudios Complementarios</span>
+                    <button type="button" id="add-estudio-btn" class="v1-btn v1-btn-sm v1-btn-primary v1-btn-add-atencion">
                         <i class="fas fa-plus-circle"></i> Agregar Estudio
                     </button>
                 </h4>
-                <div id="estudios-container">
-                    @* Los estudios complementarios se cargan aca por JS *@
-                </div>
+
+                <div id="estudios-container"></div>
+
 
                 <div class="form-actions mt-4">
                     <button type="submit" class="button register-button">
@@ -154,38 +167,38 @@
     </footer>
 
     <template id="vacuna-template">
-        <div class="v1-input-group mb-2">
-            <select name="" class="form-control" required>
-                <option value="">Seleccione una vacuna...</option>
-                @if (Model.VacunasDisponibles != null)
+        <div class="v1-input-dynamic-group d-flex align-items-center gap-2 mb-2">
+
+            <select class="form-select" required>
+                <option value="">Seleccione una vacuna</option>
+                @foreach (var vacuna in Model.VacunasDisponibles!)
                 {
-                    foreach (var item in Model.VacunasDisponibles)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
+                    <option value="@vacuna.Value">@vacuna.Text</option>
                 }
             </select>
-            <button type="button" class="v1-btn v1-btn-ghost v1-text-danger remove-item-btn">
-                <i class="fas fa-trash-alt"></i>
+
+            <button type="button" class="v1-btn-remove btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
             </button>
+
         </div>
     </template>
 
     <template id="estudio-template">
-        <div class="v1-input-group mb-2">
-            <select name="" class="form-control" required>
-                <option value="">Seleccione un estudio...</option>
-                @if (Model.EstudiosDisponibles != null)
+        <div class="v1-input-dynamic-group d-flex align-items-center gap-2 mb-2">
+
+            <select class="form-select" required>
+                <option value="">Seleccione un estudio</option>
+                @foreach (var estudio in Model.EstudiosDisponibles!)
                 {
-                    foreach (var item in Model.EstudiosDisponibles)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
+                    <option value="@estudio.Value">@estudio.Text</option>
                 }
             </select>
-            <button type="button" class="v1-btn v1-btn-ghost v1-text-danger remove-item-btn">
-                <i class="fas fa-trash-alt"></i>
+
+            <button type="button" class="v1-btn-remove btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
             </button>
+
         </div>
     </template>
 
