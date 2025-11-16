@@ -25,6 +25,7 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _roleManager.Roles.ToListAsync();
         }
+
         #region Gestion de permisos por grupo
         public async Task<RolPermissionsViewModel> GetRolePermissionsAsync(string roleId)
         {
@@ -108,7 +109,6 @@ namespace SistemaVetIng.Servicios.Implementacion
             return true;
         }
         #endregion
-
 
         #region Gestion de permisos por Usuario
         public async Task<UserPermissionsViewModel> GetUserPermissionsAsync(string userId)

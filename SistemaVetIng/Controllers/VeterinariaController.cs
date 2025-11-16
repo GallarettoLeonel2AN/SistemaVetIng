@@ -270,7 +270,7 @@ namespace SistemaVetIng.Controllers
         }
         #endregion
 
-        #region Permisos Por Rol 
+        #region PERMISOS POR ROL
 
         [HttpGet]
         [Authorize(Policy = Permission.Administration.ManageRolePermissions)]
@@ -304,8 +304,7 @@ namespace SistemaVetIng.Controllers
         {
             if (!ModelState.IsValid)
             {
-                
-                TempData["ErrorMessage"] = "Error de validación.";
+                _toastNotification.AddErrorToastMessage("Error de validacion");
                 return RedirectToAction("GestionPermissions", new { roleId = PermissionsForm.RoleId });
             }
 
@@ -315,16 +314,16 @@ namespace SistemaVetIng.Controllers
 
                 if (success)
                 {
-                    TempData["SuccessMessage"] = "Permissions actualizados correctamente.";
+                    _toastNotification.AddSuccessToastMessage("Permissions actualizados correctamente.");
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Error al actualizar los Permissions.";
+                    _toastNotification.AddErrorToastMessage("Error al actualizar los Permissions.");
                 }
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error grave: {ex.Message}";
+                _toastNotification.AddErrorToastMessage($"Error grave: {ex.Message}");
             }
 
          
@@ -332,7 +331,7 @@ namespace SistemaVetIng.Controllers
         }
         #endregion
 
-        #region Permisos por Usuario
+        #region PERMISOS USUARIO
 
         [HttpGet]
         [Authorize(Policy = Permission.Administration.ManageUsers)] 
@@ -370,8 +369,8 @@ namespace SistemaVetIng.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = "Error de validación.";
-               
+                _toastNotification.AddErrorToastMessage("Error de validacion");
+
                 return RedirectToAction("GestionPermissionsUsuario", new { SelectedUserId = PermissionsForm.UserId });
             }
 
@@ -381,16 +380,16 @@ namespace SistemaVetIng.Controllers
 
                 if (success)
                 {
-                    TempData["SuccessMessage"] = "Permisos de usuario actualizados correctamente.";
+                    _toastNotification.AddSuccessToastMessage("Permisos de usuario actualizados correctamente");
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Error al actualizar los permisos del usuario.";
+                    _toastNotification.AddErrorToastMessage("Error al actualizar los permisos del usuario");
                 }
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error grave: {ex.Message}";
+                _toastNotification.AddErrorToastMessage($"Error grave: {ex.Message}");
             }
 
             return RedirectToAction("GestionPermissionsUsuario", new { SelectedUserId = PermissionsForm.UserId });
@@ -436,7 +435,7 @@ namespace SistemaVetIng.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = "Error de validación.";
+                _toastNotification.AddErrorToastMessage("Error de validacion");
                 return RedirectToAction("GestionRolesUsuario", new { SelectedUserId = RolesForm.UserId });
             }
 
@@ -445,13 +444,13 @@ namespace SistemaVetIng.Controllers
                 bool success = await _permissionService.UpdateUserRolesAsync(RolesForm);
                 if (success)
                 {
-                    TempData["SuccessMessage"] = "Roles del usuario actualizados correctamente.";
+                    _toastNotification.AddSuccessToastMessage("Roles del usuario actualizados correctamente.");
                 }
                
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error grave: {ex.Message}";
+                _toastNotification.AddErrorToastMessage($"Error grave: {ex.Message}");
             }
 
             return RedirectToAction("GestionRolesUsuario", new { SelectedUserId = RolesForm.UserId });

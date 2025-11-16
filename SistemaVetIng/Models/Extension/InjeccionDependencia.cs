@@ -8,7 +8,7 @@ using SistemaVetIng.Servicios.Interfaces;
 
 namespace SistemaVetIng.Models.Extension
 {
-    public static class InjecionDepencencia
+    public static class InjeccionDependencia
     {
         public static IServiceCollection AddDatabase(
            this IServiceCollection services,

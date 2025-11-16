@@ -31,7 +31,7 @@ else
 
 
 
-// MErcado Pago
+// Mercado Pago
 var mpSettings = builder.Configuration.GetSection("MercadoPagoSettings").Get<MercadoPagoSettings>();
 if (mpSettings != null && !string.IsNullOrEmpty(mpSettings.AccessToken))
 {

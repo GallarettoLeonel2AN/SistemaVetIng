@@ -4,7 +4,7 @@ namespace SistemaVetIng.Models.Extension
 {
     public static class Permission
     {
-        // Esta es la hoja del patrón Composite.
+        // Patron Composite
      
         public static class Atenciones
         {

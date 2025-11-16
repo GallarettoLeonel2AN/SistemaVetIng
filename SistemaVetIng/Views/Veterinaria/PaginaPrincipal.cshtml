@@ -136,8 +136,6 @@
             </div>
         </section>
 
-        @* 1. Primero, verificamos si el usuario tiene CUALQUIER permiso de administración. *@
-        @* Si no tiene ninguno, no ve la seccion *@
         @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded ||
         (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded ||
         (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
@@ -146,8 +144,6 @@
                 <h2 class="v1-section-title">Administración del Sistema</h2>
                 <div class="v1-section-actions">
 
-                   
-                    @* Solo se muestra si tiene el permiso específico de gestionar permisos *@
                     @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
                     {
                         <a asp-controller="Veterinaria" asp-action="GestionPermissions" class="v1-btn v1-btn-primary">
@@ -155,23 +151,24 @@
                         </a>
                     }
 
-                   
+                </div>
+                 <div class="v1-section-actions">
                     @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
                     {
-                        <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="v1-btn v1-btn-secondary">
+                        <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="v1-btn v1-btn-primary">
                             <i class="fa-solid fa-users-cog"></i> Gestionar Usuarios
                         </a>
                     }
-
-                  
+                 </div>
+                   <div class="v1-section-actions">
                     @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded)
                     {
-                        <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="v1-btn v1-btn-secondary">
+                        <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="v1-btn v1-btn-primary">
                             <i class="fa-solid fa-user-shield"></i> Gestionar Roles
                         </a>
                     }
-
-                </div>
+                       </div>
+         
             </section>
         }
         <section id="turnos" class="v1-section">
