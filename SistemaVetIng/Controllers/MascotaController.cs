@@ -81,10 +81,19 @@ namespace SistemaVetIng.Controllers
 
         #region LISTARCLIENTES
 
-        public async Task<IActionResult> ListarClientes()
+        [HttpGet]
+        public async Task<IActionResult> ListarClientes(string busquedaCliente = null, int page = 1)
         {
-            var clientes = await _clienteService.ListarTodo();
-            return View(clientes);
+            int pageSize = 6; 
+            var clientesPaginados = await _clienteService.ListarPaginadoAsync(page, pageSize, busquedaCliente);
+
+            var viewModel = new ListadoClientesViewModel
+            {
+                ClientesPaginados = clientesPaginados,
+                BusquedaActual = busquedaCliente 
+            };
+
+            return View(viewModel);
         }
         #endregion
 

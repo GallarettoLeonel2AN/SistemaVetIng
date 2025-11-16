@@ -1,10 +1,13 @@
-﻿@model IEnumerable<SistemaVetIng.Models.Cliente>
+﻿@model SistemaVetIng.ViewsModels.ListadoClientesViewModel
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 
 @{
     ViewData["Title"] = "Seleccionar Cliente";
     Layout = null;
 
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
+    string accionActual = "ListarClientes"; 
 }
 
 <!DOCTYPE html>
@@ -12,113 +15,125 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] - VetIng</title>
+
+
     <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
-<body>
+<body class="dark-mode">
     <header class="main-header">
-        <a href="#" class="logo">
-            <i class="fas fa-paw"></i>
-            <span>VetIng</span>
-        </a>
-        <a asp-controller="@controllerDestino" asp-action="PaginaPrincipal" class="sesion">
-            <i class="fas fa-arrow-left"></i> Volver al Inicio
-        </a>
+        <a href="../@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="../@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </header>
 
     <main class="v1-main-dashboard">
         <section class="v1-section">
-            <h1 class="v1-section-title">Seleccionar Cliente</h1>
+            <h1 class="v1-section-title">@ViewData["Title"]</h1>
 
             <div class="v1-section-actions">
-                <a asp-controller="Cliente" asp-action="RegistrarCliente" class="btnAdd">
+                <a asp-controller="Cliente" asp-action="RegistrarCliente" class="v1-btn v1-btn-primary">
                     <i class="fas fa-user-plus"></i> Registrar Nuevo Cliente
                 </a>
-            </div>
+                <form asp-action="@accionActual" method="get" class="v1-search-form" style="max-width: 350px;">
+                    <div class="v1-input-group">
+                        <i class="fa-solid fa-search v1-input-icon"></i>
+                        <input type="text" name="busquedaCliente" class="v1-input" placeholder="Buscar por Nombre, DNI, Teléfono..." value="@Model.BusquedaActual" />
 
-            @if (Model != null && Model.Any())
-            {
-                <div class="table-container">
-                    <table class="table responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>DNI</th>
-                                <th>Teléfono</th>
-                                <th class="text-center">Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var cliente in Model)
+                    </div>
+                </form>
+            </div>
+        
+            <div class="v1-card">
+                <div class="v1-card-content">
+                    @if (Model.ClientesPaginados != null && Model.ClientesPaginados.Any())
+                    {
+                        <div class="table-container">
+                            <table class="table responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>DNI</th>
+                                        <th>Teléfono</th>
+                                        <th class="text-center">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cliente in Model.ClientesPaginados) 
+                                    {
+                                        <tr>
+                                            <td data-label="Nombre:">@cliente.Nombre</td>
+                                            <td data-label="Apellido:">@cliente.Apellido</td>
+                                            <td data-label="DNI:">@cliente.Dni</td>
+                                            <td data-label="Teléfono:">@cliente.Telefono</td>
+                                            <td data-label="Acción:" class="text-center">
+                                                <a asp-controller="Mascota" asp-action="RegistrarMascota" asp-route-clienteId="@cliente.Id" class="v1-btn v1-btn-sm v1-btn-primary">
+                                                    <i class="fas fa-plus"></i> Asociar Mascota
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="v1-empty-state">
+                            @if (!string.IsNullOrEmpty(Model.BusquedaActual))
                             {
-                                <tr>
-                                    <td data-label="Nombre:">@cliente.Nombre</td>
-                                    <td data-label="Apellido:">@cliente.Apellido</td>
-                                    <td data-label="DNI:">@cliente.Dni</td>
-                                    <td data-label="Teléfono:">@cliente.Telefono</td>
-                                    <td data-label="Acción:" class="text-center">
-                                        <a asp-controller="Mascota" asp-action="RegistrarMascota" asp-route-clienteId="@cliente.Id" class="btnModificar">
-                                            <i class="fas fa-plus"></i> Asociar Mascota
-                                        </a>
-                                    </td>
-                                </tr>
+                                <span>No se encontraron clientes que coincidan con "@Model.BusquedaActual".</span>
                             }
-                        </tbody>
-                    </table>
+                            else
+                            {
+                                <span>No hay clientes registrados en el sistema.</span>
+                            }
+                        </div>
+                    }
                 </div>
-            }
-            else
-            {
-                <div class="custom-alert alert-info">No se encontraron clientes en el sistema.</div>
-            }
+
+  
+                <div class="v1-card-footer pagination-container">
+                    @if (Model.ClientesPaginados != null && Model.ClientesPaginados.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.ClientesPaginados, page => Url.Action(accionActual,
+                            new { page, busquedaCliente = Model.BusquedaActual }),
+                            new PagedListRenderOptions
+                            {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" },
+                                ContainerDivClasses = new[] { "pagination justify-content-center" }
+                            })
+                    }
+                     else if (Model.ClientesPaginados != null)
+                    {
+                        <p class="text-muted text-center" style="margin:0;">Mostrando @Model.ClientesPaginados.TotalItemCount @(Model.ClientesPaginados.TotalItemCount == 1 ? "cliente" : "clientes")</p>
+                    }
+                </div>
+
+            </div>
         </section>
     </main>
 
     <footer class="main-footer">
-        <div class="footer-col footer-info">
-            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
-            <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
-            <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
-        </div>
+             <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
