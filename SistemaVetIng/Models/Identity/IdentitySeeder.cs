@@ -41,8 +41,8 @@ namespace SistemaVetIng.Models.Indentity
                     await userManager.AddToRoleAsync(user, "Veterinaria");
             }
 
-           
 
+            #region Admin Permisos
             var adminRole = await roleManager.FindByNameAsync("Veterinaria");
             if (adminRole != null)
             {
@@ -63,6 +63,75 @@ namespace SistemaVetIng.Models.Indentity
                     }
                 }
             }
+            #endregion
+
+            #region Veterinario Permisos
+            var vetRole = await roleManager.FindByNameAsync("Veterinario");
+            if (vetRole != null)
+            {
+                var defaultVeterinarioPermissions = new List<string>
+            {
+                Permission.Atenciones.Create,
+                Permission.Atenciones.View,
+
+                Permission.Cliente.View,
+                Permission.Cliente.Create,
+                Permission.Cliente.Edit,
+                Permission.Cliente.Delete,
+
+                Permission.Mascota.View,
+                Permission.Mascota.Create,
+                Permission.Mascota.Edit,
+                Permission.Mascota.Delete,
+
+                Permission.Turnos.View,
+                Permission.Turnos.Create,
+                Permission.Turnos.Cancel
+            };
+
+                var existingClaims = await roleManager.GetClaimsAsync(vetRole);
+
+                foreach (var permission in defaultVeterinarioPermissions)
+                {
+                    if (!existingClaims.Any(c => c.Type == "Permission" && c.Value == permission))
+                    {
+                        await roleManager.AddClaimAsync(vetRole, new Claim("Permission", permission));
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Cliente Permisos
+            var cliRole = await roleManager.FindByNameAsync("Cliente");
+            if (cliRole != null)
+            {
+                var defaultClientePermissions = new List<string>
+            {
+                Permission.Atenciones.View,
+               
+               
+                Permission.Pago.View,
+
+                Permission.Mascota.View,
+              
+                Permission.Turnos.View,
+                Permission.Turnos.Create,
+                Permission.Turnos.Cancel
+            };
+
+                var existingClaims = await roleManager.GetClaimsAsync(cliRole);
+
+                foreach (var permission in defaultClientePermissions)
+                {
+                    if (!existingClaims.Any(c => c.Type == "Permission" && c.Value == permission))
+                    {
+                        await roleManager.AddClaimAsync(cliRole, new Claim("Permission", permission));
+                    }
+                }
+            }
+
+            #endregion
         }
     }
 }

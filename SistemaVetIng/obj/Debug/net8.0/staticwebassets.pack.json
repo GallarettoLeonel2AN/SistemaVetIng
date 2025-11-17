@@ -145,6 +145,10 @@
       "PackagePath": "staticwebassets\\css\\login-styles.css"
     },
     {
+      "Id": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\permisos.css",
+      "PackagePath": "staticwebassets\\css\\permisos.css"
+    },
+    {
       "Id": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\registrar-cliente-style.css",
       "PackagePath": "staticwebassets\\css\\registrar-cliente-style.css"
     },

@@ -5,11 +5,13 @@
         public string UserId { get; set; }
         public string UserName { get; set; }
         public List<PermissionsViewModel> Permissions { get; set; }
-
+        public bool IsSelected { get; set; } //  checkbox
         public UserPermissionsViewModel()
         {
             // Usamos el mismo PermissionViewModel que ya tenías
             Permissions = new List<PermissionsViewModel>();
         }
+
+       
     }
 }

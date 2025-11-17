@@ -1,5 +1,9 @@
 ﻿@using System.Globalization
 @using X.PagedList.Mvc.Core
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@inject IHttpContextAccessor HttpContextAccessor
+@using SistemaVetIng.Models.Extension
 @model SistemaVetIng.ViewsModels.ClientePaginaPrincipalViewModel
 @{
     ViewData["Title"] = "VetIng - Cliente";
@@ -89,14 +93,18 @@
             </div>
         </section>
 
-       
+        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.View))
+        {
        <section id="turnos" class="v1-section">
     <h2 class="v1-section-title">Mis Turnos</h2>
 
-    <div class="v1-section-actions"> 
+    <div class="v1-section-actions">
+                    @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Create))
+                    {
         <a asp-controller="Turno" asp-action="ReservarTurno" class="v1-btn v1-btn-primary">
             <i class="fa-solid fa-plus"></i> Reservar Turno
         </a>
+         }
 
         <form asp-action="PaginaPrincipal" method="get" class="v1-search-form" style="margin-left: auto;"> 
             <div class="v1-input-group">
@@ -150,6 +158,8 @@
 
                            @if (turno.Estado == "Pendiente")
                            {
+                                            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Cancel))
+                                        {
                                     <form asp-controller="Turno" asp-action="CancelarTurnoCliente" method="post" onsubmit="return confirm('¿Estás seguro de que deseas cancelar este turno?');">
                                      @Html.AntiForgeryToken()
                                      <input type="hidden" name="turnoId" value="@turno.Id" />
@@ -157,6 +167,7 @@
                                          <i class="fas fa-times-circle"></i> Cancelar
                                      </button>
                                  </form>
+                                 }
                            }
                         </div>
                     </div>
@@ -199,7 +210,10 @@
         </div>
     </div>
 </section>
-       
+       }
+
+        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.View))
+        {
         <section id="mascotas" class="v1-section">
             <h2 class="v1-section-title">Mis Mascotas</h2>
             <div class="v1-card">
@@ -233,8 +247,11 @@
                 </div>
             </div>
         </section>
+        }
 
-        
+
+        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Pago.View))
+        {
        <section id="pagos" class="v1-section">
     <h2 class="v1-section-title">Pagos Pendientes</h2>
 
@@ -287,7 +304,7 @@
         </form>
     </div>
 </section>
-        
+        }
           <a asp-controller="Cliente" asp-action="HistorialPagos" class="v1-btn v1-btn-primary">
             <i class="fa-solid fa-money-bill-wave"></i> Ver Historial de Pagos
         </a>

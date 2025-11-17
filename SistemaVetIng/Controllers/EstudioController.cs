@@ -4,7 +4,7 @@ using NToastNotify;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 
-[Authorize(Roles = "Veterinaria")]
+[Authorize(Roles = "Veterinaria,Veterinario")]
 public class EstudioController : Controller
 {
     private readonly IEstudioService _estudioService;

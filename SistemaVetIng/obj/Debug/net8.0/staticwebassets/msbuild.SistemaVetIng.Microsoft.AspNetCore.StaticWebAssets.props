@@ -594,6 +594,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\login-styles.css'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\permisos.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>SistemaVetIng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/SistemaVetIng</BasePath>
+      <RelativePath>css/permisos.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>kyytbnnl23</Fingerprint>
+      <Integrity>PK3nNR8zwbZvYiEShL6Mb/ewI7N5n8XjS1wbvWWpp2I=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\permisos.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\registrar-cliente-style.css'))">
       <SourceType>Package</SourceType>
       <SourceId>SistemaVetIng</SourceId>
@@ -660,8 +678,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>plq3tnzs0h</Fingerprint>
-      <Integrity>ky0Pjtt5HXCC/Qynqkk01/6gX/IVMgf3PMVTfFsp090=</Integrity>
+      <Fingerprint>fju6127ro3</Fingerprint>
+      <Integrity>G/kBiql3k+04eNyuRaljsFX3/0SsRWZEULL/a3o/u2Y=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\veterinary-dashboard.css'))</OriginalItemSpec>
@@ -696,8 +714,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nqn5g6xcuw</Fingerprint>
-      <Integrity>kQDYlVTiB/ijFb+Q55LMI4U9T8gSlScY6E1OFbK3ko4=</Integrity>
+      <Fingerprint>ybt6yrbu29</Fingerprint>
+      <Integrity>AkjNxSUMSezP3ht9mV4cJeasVI7VeMR2ororoTfw3FY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\atencionVeterinaria.js'))</OriginalItemSpec>

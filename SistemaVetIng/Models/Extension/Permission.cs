@@ -14,7 +14,7 @@ namespace SistemaVetIng.Models.Extension
         }
         public static class Pago
         {
-            public const string Create = "Permission.Pago.Create";
+          
             public const string View = "Permission.Pago.View";
 
         }
@@ -52,7 +52,7 @@ namespace SistemaVetIng.Models.Extension
         {
             public const string View = "Permission.Turnos.View";
             public const string Create = "Permission.Turnos.Create";
-            public const string Edit = "Permission.Turnos.Edit";
+          
             public const string Cancel = "Permission.Turnos.Cancel";
         }
 

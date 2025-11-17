@@ -7,7 +7,8 @@ namespace SistemaVetIng.ViewsModels
     {
         public List<ClienteViewModel> Clientes { get; set; }
         public List<MascotaListViewModel> Mascotas { get; set; }
-        public List<TurnoViewModel> CitasDeHoy { get; set; } = new List<TurnoViewModel>();
+        public List<TurnoViewModel> CitasDeHoy { get; set; } 
+        public ConfiguracionVeterinariaViewModel ConfiguracionTurnos { get; set; }
         public IPagedList PaginacionClientes { get; set; }
         public IPagedList PaginacionMascotas { get; set; }
         public int CantidadCitasHoy { get; set; }
@@ -18,6 +19,8 @@ namespace SistemaVetIng.ViewsModels
             Clientes = new List<ClienteViewModel>();
             Mascotas = new List<MascotaListViewModel>();
             CitasDeHoy = new List<TurnoViewModel>();
+            ConfiguracionTurnos = new ConfiguracionVeterinariaViewModel();
+
         }
     }
 }

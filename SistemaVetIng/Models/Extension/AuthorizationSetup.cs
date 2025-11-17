@@ -20,9 +20,7 @@ namespace SistemaVetIng.Extensions
                     policy.RequireClaim("Permission", Permission.Atenciones.View));
 
                 //  PAGO 
-                options.AddPolicy(Permission.Pago.Create, policy =>
-                    policy.RequireClaim("Permission", Permission.Pago.Create));
-
+              
                 options.AddPolicy(Permission.Pago.View, policy =>
                     policy.RequireClaim("Permission", Permission.Pago.View));
 
@@ -70,8 +68,7 @@ namespace SistemaVetIng.Extensions
                    policy.RequireClaim("Permission", Permission.Turnos.View));
                 options.AddPolicy(Permission.Turnos.Create, policy =>
                     policy.RequireClaim("Permission", Permission.Turnos.Create));
-                options.AddPolicy(Permission.Turnos.Edit, policy =>
-                    policy.RequireClaim("Permission", Permission.Turnos.Edit));
+               
                 options.AddPolicy(Permission.Turnos.Cancel, policy =>
                     policy.RequireClaim("Permission", Permission.Turnos.Cancel));
                 

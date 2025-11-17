@@ -13,7 +13,7 @@ using SistemaVetIng.ViewsModels;
 
 namespace SistemaVetIng.Controllers
 {
-    [Authorize(Roles = "Veterinaria")]
+    [Authorize(Roles = "Veterinaria , Veterinario")]
     public class VeterinariaController : Controller
     {
 

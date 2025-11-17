@@ -74,7 +74,7 @@
                     <div class="v1-card-header">
                         <h3 class="v1-card-title">Permisos para el Rol: <span style="color: var(--v1-color-accent)">@Model.PermissionsForm.RoleName</span></h3>
                     </div>
-                    <form asp-action="ManagePermissions" method="post">
+                    <form asp-action="GestionPermissions" method="post">
                         @Html.AntiForgeryToken()
 
                         <input type="hidden" asp-for="PermissionsForm.RoleId" />
@@ -114,17 +114,17 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
-
+                        </div>
+                        <div class="v1-card-footer v1-form-actions">
+                            <button type="submit" class="v1-btn v1-btn-primary">
+                                <i class="fa-solid fa-save"></i> Guardar Cambios
+                            </button>
+                        </div>
     
                     </form>
                   
                 </div>
-                <div class="v1-card-footer v1-form-actions">
-                    <button type="submit" class="v1-btn v1-btn-primary">
-                        <i class="fa-solid fa-save"></i> Guardar Cambios
-                    </button>
-                </div>
+               
             }
             else if (!string.IsNullOrEmpty(Model.SelectedRoleId))
             {
