@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__mssqllocaldb/SistemaVetIng_nueva/True/SqlTable/dbo.Veterinarias.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ulises\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-SistemaVetIng-f5f7b1b7-c36a-4753-912f-9ac84bea7d90\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
@@ -46,6 +49,16 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "dbo.Veterinarias [Datos]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__mssqllocaldb/SistemaVetIng_nueva/True/SqlTable/dbo.Veterinarias.sql",
+              "ToolTip": "dbo.Veterinarias [Datos]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-11-19T17:46:32.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "secrets.json",
               "DocumentMoniker": "C:\\Users\\Ulises\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-SistemaVetIng-f5f7b1b7-c36a-4753-912f-9ac84bea7d90\\secrets.json",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\aspnet-SistemaVetIng-f5f7b1b7-c36a-4753-912f-9ac84bea7d90\\secrets.json",
@@ -58,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IdentitySeeder.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Models\\Identity\\IdentitySeeder.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Identity\\IdentitySeeder.cs",
@@ -71,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Program.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Program.cs",
@@ -84,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "20251119173640_Primera.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Migrations\\20251119173640_Primera.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Migrations\\20251119173640_Primera.cs",

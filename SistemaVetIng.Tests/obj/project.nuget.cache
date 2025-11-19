@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kEye0V8/pA8=",
+  "dgSpecHash": "EMIYDwbCUiI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ulises\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Ulises\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

@@ -12,5 +12,7 @@ namespace SistemaVetIng.Models
         public string Direccion { get; set; }
         public long Telefono { get; set; }
         public List<Veterinario> Veterinarios { get; set; }
+        public List<Cliente> Clientes { get; set; }
+        public ConfiguracionVeterinaria ConfiguracionVeterinaria { get; set; }
     }
 }

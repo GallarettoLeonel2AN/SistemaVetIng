@@ -132,6 +132,25 @@ namespace SistemaVetIng.Data
                 .HasOne(m => m.Propietario)
                 .WithMany(c => c.Mascotas)
                 .HasForeignKey(m => m.ClienteId);
+
+            // Relaciones con Veterinaria 
+            modelBuilder.Entity<Veterinaria>()
+                .HasMany(v => v.Veterinarios)
+                .WithOne(v => v.Veterinaria)
+                .HasForeignKey(v => v.VeterinariaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Veterinaria>()
+                .HasMany(v => v.Clientes)
+                .WithOne(c => c.Veterinaria)
+                .HasForeignKey(c => c.VeterinariaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Veterinaria>()
+                .HasOne(v => v.ConfiguracionVeterinaria)
+                .WithOne(c => c.Veterinaria)
+                .HasForeignKey<ConfiguracionVeterinaria>(c => c.VeterinariaId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
     }
