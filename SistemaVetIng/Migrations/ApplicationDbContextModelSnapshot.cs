@@ -282,7 +282,13 @@ namespace SistemaVetIng.Migrations
                     b.Property<int>("DuracionMinutosPorConsulta")
                         .HasColumnType("int");
 
+                    b.Property<int>("VeterinariaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VeterinariaId")
+                        .IsUnique();
 
                     b.ToTable("ConfiguracionVeterinarias");
                 });
@@ -791,6 +797,11 @@ namespace SistemaVetIng.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("VeterinariaId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("VeterinariaId");
+
                     b.HasDiscriminator().HasValue("Cliente");
                 });
 
@@ -806,7 +817,7 @@ namespace SistemaVetIng.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VeterinariaId")
+                    b.Property<int>("VeterinariaId")
                         .HasColumnType("int");
 
                     b.HasIndex("VeterinariaId");
@@ -815,6 +826,9 @@ namespace SistemaVetIng.Migrations
                         {
                             t.Property("Direccion")
                                 .HasColumnName("Veterinario_Direccion");
+
+                            t.Property("VeterinariaId")
+                                .HasColumnName("Veterinario_VeterinariaId");
                         });
 
                     b.HasDiscriminator().HasValue("Veterinario");
@@ -944,6 +958,17 @@ namespace SistemaVetIng.Migrations
                     b.Navigation("Mascota");
                 });
 
+            modelBuilder.Entity("SistemaVetIng.Models.ConfiguracionVeterinaria", b =>
+                {
+                    b.HasOne("SistemaVetIng.Models.Veterinaria", "Veterinaria")
+                        .WithOne("ConfiguracionVeterinaria")
+                        .HasForeignKey("SistemaVetIng.Models.ConfiguracionVeterinaria", "VeterinariaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Veterinaria");
+                });
+
             modelBuilder.Entity("SistemaVetIng.Models.Estudio", b =>
                 {
                     b.HasOne("SistemaVetIng.Models.AtencionVeterinaria", null)
@@ -1031,11 +1056,26 @@ namespace SistemaVetIng.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("SistemaVetIng.Models.Cliente", b =>
+                {
+                    b.HasOne("SistemaVetIng.Models.Veterinaria", "Veterinaria")
+                        .WithMany("Clientes")
+                        .HasForeignKey("VeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Veterinaria");
+                });
+
             modelBuilder.Entity("SistemaVetIng.Models.Veterinario", b =>
                 {
-                    b.HasOne("SistemaVetIng.Models.Veterinaria", null)
+                    b.HasOne("SistemaVetIng.Models.Veterinaria", "Veterinaria")
                         .WithMany("Veterinarios")
-                        .HasForeignKey("VeterinariaId");
+                        .HasForeignKey("VeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Veterinaria");
                 });
 
             modelBuilder.Entity("Pago", b =>
@@ -1070,6 +1110,11 @@ namespace SistemaVetIng.Migrations
 
             modelBuilder.Entity("SistemaVetIng.Models.Veterinaria", b =>
                 {
+                    b.Navigation("Clientes");
+
+                    b.Navigation("ConfiguracionVeterinaria")
+                        .IsRequired();
+
                     b.Navigation("Veterinarios");
                 });
 

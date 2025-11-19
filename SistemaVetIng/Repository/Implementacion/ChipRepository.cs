@@ -5,7 +5,7 @@ using SistemaVetIng.Repository.Interfaces;
 
 namespace SistemaVetIng.Repository.Implementacion
 {
-    public class ChipRepository : IGeneralRepository<Chip>
+    public class ChipRepository : IChipRepository
     {
 
         private readonly ApplicationDbContext _context;

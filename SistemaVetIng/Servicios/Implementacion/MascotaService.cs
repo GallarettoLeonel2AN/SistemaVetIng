@@ -16,14 +16,14 @@ namespace SistemaVetIng.Servicios.Implementacion
     {
         private readonly IMascotaRepository _mascotaRepository;
         private readonly IClienteRepository _clienteRepository;
-        private readonly IGeneralRepository<Chip> _chipRepository;
+        private readonly IChipRepository _chipRepository;
         private readonly ApplicationDbContext _context;
         private readonly IAuditoriaService _auditoriaService;
 
 
         public MascotaService(IMascotaRepository mascotaRepository,
-            IClienteRepository clienteRepository, 
-            IGeneralRepository<Chip> chipRepository, 
+            IClienteRepository clienteRepository,
+            IChipRepository chipRepository, 
             ApplicationDbContext context,
             IAuditoriaService auditoriaService)
         {

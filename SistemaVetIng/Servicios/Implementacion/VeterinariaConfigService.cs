@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using SistemaVetIng.Repository.Implementacion;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 
@@ -7,10 +8,14 @@ namespace SistemaVetIng.Servicios.Implementacion
     public class VeterinariaConfigService : IVeterinariaConfigService
     {
         private readonly IConfiguracionVeterinariaRepository _configRepository;
+        private readonly IVeterinariaRepository _veterinariaRepository;
 
-        public VeterinariaConfigService(IConfiguracionVeterinariaRepository configRepository)
+        public VeterinariaConfigService(
+            IConfiguracionVeterinariaRepository configRepository,
+            IVeterinariaRepository veterinariaRepository)
         {
             _configRepository = configRepository;
+            _veterinariaRepository = veterinariaRepository;
         }
 
         public async Task<ConfiguracionVeterinaria> ObtenerConfiguracionAsync()
@@ -26,7 +31,14 @@ namespace SistemaVetIng.Servicios.Implementacion
 
                 if (configExistente == null)
                 {
+                  
                     await _configRepository.AgregarAsync(model);
+
+
+                    // Vinculamos a Veterinaria
+                    var veterinaria = await _veterinariaRepository.ObtenerPrimeraAsync();
+                    veterinaria.ConfiguracionVeterinaria = model;
+                    await _veterinariaRepository.Guardar();
                 }
                 else
                 {

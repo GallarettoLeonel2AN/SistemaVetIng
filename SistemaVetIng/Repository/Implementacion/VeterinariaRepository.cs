@@ -5,35 +5,28 @@ using SistemaVetIng.Repository.Interfaces;
 
 namespace SistemaVetIng.Repository.Implementacion
 {
-    public class VeterinariaConfiguracionRepository : IGeneralRepository<ConfiguracionVeterinaria>
+    public class VeterinariaRepository : IVeterinariaRepository
     {
-        private readonly ApplicationDbContext _contextoConfiguracion;
-        public VeterinariaConfiguracionRepository(ApplicationDbContext contextoConfiguracion)
+        private readonly ApplicationDbContext _context;
+
+        public VeterinariaRepository(ApplicationDbContext context)
         {
-            _contextoConfiguracion = contextoConfiguracion;
+            _context = context;
         }
 
-        public async Task Agregar(ConfiguracionVeterinaria entity)
-            => await _contextoConfiguracion.AddAsync(entity);
-
-        public void Modificar(ConfiguracionVeterinaria entity)
+        public async Task<Veterinaria> ObtenerPrimeraAsync()
         {
-    
+            return await _context.Veterinarias
+                .Include(v => v.Veterinarios)
+                .Include(v => v.Clientes)
+                .Include(v => v.ConfiguracionVeterinaria)
+                    .ThenInclude(c => c.HorariosPorDia)
+                .FirstOrDefaultAsync();
         }
-        public async Task<ConfiguracionVeterinaria> ObtenerPorId(int id)
-            => await _contextoConfiguracion.ConfiguracionVeterinarias.FirstOrDefaultAsync(c => c.Id == id);
+
         public async Task Guardar()
-             => await _contextoConfiguracion.SaveChangesAsync();
-
-        public async Task<IEnumerable<ConfiguracionVeterinaria>> ListarTodo()
         {
-            return await _contextoConfiguracion.ConfiguracionVeterinarias.ToListAsync();
+            await _context.SaveChangesAsync();
         }
-
-        public void Eliminar(ConfiguracionVeterinaria entity)
-        {
-          
-        }
-
     }
 }

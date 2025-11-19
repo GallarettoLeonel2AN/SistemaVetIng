@@ -13,12 +13,17 @@ namespace SistemaVetIng.Servicios.Implementacion
     public class VeterinarioService : IVeterinarioService
     {
         private readonly IVeterinarioRepository _veterinarioRepository;
+        private readonly IVeterinariaRepository _veterinariaRepo;
         private readonly UserManager<Usuario> _userManager;
 
-        public VeterinarioService(IVeterinarioRepository veterinarioRepository, UserManager<Usuario> userManager)
+        public VeterinarioService(
+            IVeterinarioRepository veterinarioRepository,
+            UserManager<Usuario> userManager,
+            IVeterinariaRepository veterinariaRepo)
         {
             _veterinarioRepository = veterinarioRepository;
             _userManager = userManager;
+            _veterinariaRepo = veterinariaRepo;
         }
 
         public async Task<Veterinario> Registrar(VeterinarioRegistroViewModel viewModel)
@@ -49,9 +54,12 @@ namespace SistemaVetIng.Servicios.Implementacion
                 Matricula = viewModel.Matricula,
                 UsuarioId = usuario.Id
             };
-
-            await _veterinarioRepository.Agregar(veterinario);
-            await _veterinarioRepository.Guardar();
+            
+            // Asignamos a Veterinaria
+            var veterinaria = await _veterinariaRepo.ObtenerPrimeraAsync();
+            veterinaria.Veterinarios.Add(veterinario);
+            veterinario.VeterinariaId = veterinaria.Id;
+            await _veterinariaRepo.Guardar();
 
             return veterinario;
         }

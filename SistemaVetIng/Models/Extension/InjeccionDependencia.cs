@@ -21,12 +21,11 @@ namespace SistemaVetIng.Models.Extension
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IGeneralRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IVeterinarioRepository, VeterinarioRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IMascotaRepository, MascotaRepository>();
-            services.AddScoped<IGeneralRepository<Chip>, ChipRepository>();
-            services.AddScoped<IGeneralRepository<ConfiguracionVeterinaria>, VeterinariaConfiguracionRepository>();
+            services.AddScoped<IChipRepository, ChipRepository>();
+            services.AddScoped<IVeterinariaRepository, VeterinariaRepository>();
             services.AddScoped<IHistoriaClinicaRepository, HistoriaClinicaRepository>();
             services.AddScoped<IAtencionVeterinariaRepository, AtencionVeterinariaRepository>();
             services.AddScoped<ITurnoRepository, TurnoRepository>();

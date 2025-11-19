@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SistemaVetIng.Data;
+using SistemaVetIng.Models;
 using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -36,7 +37,34 @@ namespace SistemaVetIng.Tests.Integracion
         [Fact]
         public async Task Registrar_IntegrationTest_DebeCrearUsuarioYClienteEnBaseDeDatos()
         {
+            // Crear una veterinaria para que el registro pueda asociar el cliente
+            if (!await _dbContext.Veterinarias.AnyAsync())
+            {
+                var usuarioVet = new Usuario
+                {
+                    UserName = "adminVet",
+                    Email = "adminVet@test.com",
+                    NombreUsuario = "Adm Vet"
+                };
 
+                await _userManager.CreateAsync(usuarioVet, "Password123!");
+
+                var veterinaria = new Veterinaria
+                {
+                    UsuarioId = usuarioVet.Id,
+                    RazonSocial = "Vet Test",
+                    Cuil = "20123456789",
+                    Direccion = "Calle Falsa 123",
+                    Telefono = 1144556677,
+                    Clientes = new List<Cliente>(),
+                    Veterinarios = new List<Veterinario>()
+                };
+
+                _dbContext.Veterinarias.Add(veterinaria);
+                await _dbContext.SaveChangesAsync();
+            }
+
+            // Datos del cliente
             var viewModel = new ClienteRegistroViewModel
             {
                 Email = "test.integracion@cliente.com",
@@ -50,25 +78,29 @@ namespace SistemaVetIng.Tests.Integracion
 
             var clienteResultado = await _clienteService.Registrar(viewModel);
 
-
-            // Verificamos: metodo devolvio un cliente
+            // Afirmaciones
             Assert.NotNull(clienteResultado);
             Assert.Equal("TestIntegracion", clienteResultado.Nombre);
 
-            // Verificamos: El cliente existe en la base de datos en memoria
             var clienteEnDb = await _dbContext.Clientes
-                                            .FirstOrDefaultAsync(c => c.Id == clienteResultado.Id);
+                                             .FirstOrDefaultAsync(c => c.Id == clienteResultado.Id);
             Assert.NotNull(clienteEnDb);
             Assert.Equal(viewModel.Dni, clienteEnDb.Dni);
 
-            // Verificamos: El usuario de Identity existe en la base de datos
             var usuarioEnDb = await _userManager.FindByEmailAsync(viewModel.Email);
             Assert.NotNull(usuarioEnDb);
             Assert.Equal(clienteEnDb.UsuarioId, usuarioEnDb.Id);
 
-            // Verificamos: El usuario tiene el rol cliente 
             var roles = await _userManager.GetRolesAsync(usuarioEnDb);
             Assert.Contains("Cliente", roles);
+
+            // Verificamos que el cliente quedó asociado a la veterinaria
+            var vet = await _dbContext.Veterinarias
+                                      .Include(v => v.Clientes)
+                                      .FirstOrDefaultAsync();
+
+            Assert.Contains(vet.Clientes, c => c.Id == clienteResultado.Id);
         }
+
     }
 }

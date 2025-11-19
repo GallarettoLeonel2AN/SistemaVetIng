@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaVetIng.Migrations
 {
     /// <inheritdoc />
-    public partial class Primera : Migration
+    public partial class primera : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,19 +53,6 @@ namespace SistemaVetIng.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ConfiguracionVeterinarias",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DuracionMinutosPorConsulta = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ConfiguracionVeterinarias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -252,6 +239,67 @@ namespace SistemaVetIng.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ConfiguracionVeterinarias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DuracionMinutosPorConsulta = table.Column<int>(type: "int", nullable: false),
+                    VeterinariaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfiguracionVeterinarias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ConfiguracionVeterinarias_Veterinarias_VeterinariaId",
+                        column: x => x.VeterinariaId,
+                        principalTable: "Veterinarias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Personas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<long>(type: "bigint", nullable: false),
+                    Dni = table.Column<long>(type: "bigint", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VeterinariaId = table.Column<int>(type: "int", nullable: true),
+                    Matricula = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Veterinario_Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Veterinario_VeterinariaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Personas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Personas_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Personas_Veterinarias_VeterinariaId",
+                        column: x => x.VeterinariaId,
+                        principalTable: "Veterinarias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Personas_Veterinarias_Veterinario_VeterinariaId",
+                        column: x => x.Veterinario_VeterinariaId,
+                        principalTable: "Veterinarias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HorarioDia",
                 columns: table => new
                 {
@@ -272,39 +320,6 @@ namespace SistemaVetIng.Migrations
                         principalTable: "ConfiguracionVeterinarias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Personas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono = table.Column<long>(type: "bigint", nullable: false),
-                    Dni = table.Column<long>(type: "bigint", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Matricula = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Veterinario_Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VeterinariaId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Personas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Personas_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Personas_Veterinarias_VeterinariaId",
-                        column: x => x.VeterinariaId,
-                        principalTable: "Veterinarias",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -623,6 +638,12 @@ namespace SistemaVetIng.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_ConfiguracionVeterinarias_VeterinariaId",
+                table: "ConfiguracionVeterinarias",
+                column: "VeterinariaId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Estudios_AtencionVeterinariaId",
                 table: "Estudios",
                 column: "AtencionVeterinariaId");
@@ -663,6 +684,11 @@ namespace SistemaVetIng.Migrations
                 name: "IX_Personas_VeterinariaId",
                 table: "Personas",
                 column: "VeterinariaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Personas_Veterinario_VeterinariaId",
+                table: "Personas",
+                column: "Veterinario_VeterinariaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Turnos_ClienteId",

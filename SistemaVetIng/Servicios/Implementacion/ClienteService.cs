@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SistemaVetIng.Models;
 using SistemaVetIng.Models.Indentity;
+using SistemaVetIng.Repository.Implementacion;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -12,12 +13,17 @@ namespace SistemaVetIng.Servicios.Implementacion
     {
 
         private readonly IClienteRepository _clienteRepository;
+        private readonly IVeterinariaRepository _veterinariaRepo;
         private readonly UserManager<Usuario> _userManager;
 
-        public ClienteService(IClienteRepository clienteRepository, UserManager<Usuario> userManager)
+        public ClienteService(
+            IClienteRepository clienteRepository,
+            UserManager<Usuario> userManager,
+            IVeterinariaRepository veterinariaRepo)
         {
             _clienteRepository = clienteRepository;
             _userManager = userManager;
+            _veterinariaRepo = veterinariaRepo;
         }
 
         #region REGISTRAR CLIENTE
@@ -51,8 +57,11 @@ namespace SistemaVetIng.Servicios.Implementacion
                 UsuarioId = usuario.Id
             };
 
-            await _clienteRepository.Agregar(cliente);
-            await _clienteRepository.Guardar();
+            // Asignamos a Veterinaria
+            var veterinaria = await _veterinariaRepo.ObtenerPrimeraAsync();
+            veterinaria.Clientes.Add(cliente);
+            cliente.VeterinariaId = veterinaria.Id;
+            await _veterinariaRepo.Guardar();
 
             return cliente;
         }
