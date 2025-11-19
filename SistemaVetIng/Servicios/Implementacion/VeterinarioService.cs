@@ -28,6 +28,15 @@ namespace SistemaVetIng.Servicios.Implementacion
 
         public async Task<Veterinario> Registrar(VeterinarioRegistroViewModel viewModel)
         {
+           
+            var existingUser = await _userManager.FindByEmailAsync(viewModel.Email);
+            if (existingUser != null)
+                throw new Exception("El email ingresado ya está registrado.");
+
+            if (await _veterinarioRepository.ExisteDniAsync(viewModel.Dni))
+                throw new Exception("El DNI ingresado ya pertenece a otro veterinario.");
+
+
             // Crear el usuario de Identity
             var usuario = new Usuario
             {

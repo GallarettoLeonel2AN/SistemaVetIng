@@ -13,5 +13,6 @@ namespace SistemaVetIng.Repository.Interfaces
         void Eliminar(Veterinario entity);
         Task Guardar();
         Task<IPagedList<Veterinario>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
+        Task<bool> ExisteDniAsync(long dni);
     }
 }

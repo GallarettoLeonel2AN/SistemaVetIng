@@ -29,6 +29,12 @@ namespace SistemaVetIng.Servicios.Implementacion
         #region REGISTRAR CLIENTE
         public async Task<Cliente> Registrar(ClienteRegistroViewModel viewModel)
         {
+            var existingUser = await _userManager.FindByEmailAsync(viewModel.Email);
+            if (existingUser != null)
+                throw new Exception("El email ingresado ya está registrado.");
+
+            if (await _clienteRepository.ExisteDniAsync(viewModel.Dni))
+                throw new Exception("El DNI ingresado ya pertenece a otro cliente.");
 
             var usuario = new Usuario
             {

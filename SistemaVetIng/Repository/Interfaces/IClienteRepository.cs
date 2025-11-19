@@ -22,5 +22,7 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<IPagedList<Cliente>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
 
         Task<int> ContarTotalClientesAsync();
+
+        Task<bool> ExisteDniAsync(long dni);
     }
 }

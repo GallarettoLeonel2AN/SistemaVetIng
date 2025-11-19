@@ -28,6 +28,10 @@ public class VeterinarioRepository : IVeterinarioRepository
 
     }
 
+    public async Task<bool> ExisteDniAsync(long dni)
+    {
+        return await _context.Veterinarios.AnyAsync(c => c.Dni == dni);
+    }
 
     public async Task Agregar(Veterinario entity)
         => await _context.Veterinarios.AddAsync(entity);

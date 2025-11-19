@@ -36,6 +36,11 @@ namespace SistemaVetIng.Repository.Implementacion
             _context.Entry(entity).State = EntityState.Modified;
         }
 
+        public async Task<bool> ExisteDniAsync(long dni)
+        {
+            return await _context.Clientes.AnyAsync(c => c.Dni == dni);
+        }
+
         public async Task<Cliente> ObtenerPorId(int id)
             => await _context.Clientes.Include(c => c.Usuario).FirstOrDefaultAsync(x => x.Id == id);
 
