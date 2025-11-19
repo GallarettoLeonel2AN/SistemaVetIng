@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {}
+    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
+    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
+        "projectUniqueName": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
         "projectName": "SistemaVetIng",
-        "projectPath": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
-        "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\obj\\",
+        "projectPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
+        "packagesPath": "C:\\Users\\Ulises\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ulises\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -126,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

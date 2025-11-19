@@ -114,7 +114,7 @@ else
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    await IdentitySeeder.SeedRolesAndAdminAsync(services);
+    await IdentitySeeder.SeedRolesAndAdminAsync(services, builder.Configuration);
 }
 
 app.UseHttpsRedirection();

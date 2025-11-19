@@ -1,44 +1,64 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SistemaVetIng.Models.Indentity;
+using SistemaVetIng.Data;
 using SistemaVetIng.Models.Extension;  
-using System.Security.Claims;         
+using SistemaVetIng.Models.Indentity;
 using System.Linq;                    
+using System.Security.Claims;         
 
 namespace SistemaVetIng.Models.Indentity
 {
     public class IdentitySeeder
     {
-        public static async Task SeedRolesAndAdminAsync(IServiceProvider serviceProvider)
+        public static async Task SeedRolesAndAdminAsync(IServiceProvider serviceProvider, IConfiguration config)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<Rol>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<Usuario>>();
+            var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
-           
+            string vetAdminEmail = config["VET_ADMIN_EMAIL"];
+            string vetAdminUsername = config["VET_ADMIN_USERNAME"];
+            string vetAdminPassword = config["VET_ADMIN_PASSWORD"];
+
             string[] roles = { "Cliente", "Veterinario", "Veterinaria" };
 
             foreach (var roleName in roles)
             {
-                var roleExist = await roleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
+                if (!await roleManager.RoleExistsAsync(roleName))
                     await roleManager.CreateAsync(new Rol { Name = roleName });
             }
 
-          
-            var adminEmail = "admin";
-            var adminUser = await userManager.FindByEmailAsync(adminEmail);
+            var adminUser = await userManager.FindByEmailAsync(vetAdminEmail);
 
             if (adminUser == null)
             {
-                var user = new Usuario
+                adminUser = new Usuario
                 {
-                    UserName = "admin",
-                    Email = adminEmail,
+                    UserName = vetAdminUsername,
+                    Email = vetAdminEmail,
                     EmailConfirmed = true,
-                    NombreUsuario = "admin",
+                    NombreUsuario = vetAdminUsername,
                 };
-                var result = await userManager.CreateAsync(user, "Admin123!");
+
+                var result = await userManager.CreateAsync(adminUser, vetAdminPassword);
+
                 if (result.Succeeded)
-                    await userManager.AddToRoleAsync(user, "Veterinaria");
+                    await userManager.AddToRoleAsync(adminUser, "Veterinaria");
+            }
+
+            // Crear la Veterinaria si no existe
+            if (!context.Veterinarias.Any())
+            {
+                var nuevaVet = new Veterinaria
+                {
+                    UsuarioId = adminUser.Id,
+                    RazonSocial = "Veterinaria Elvira",
+                    Cuil = "20-43767679-9",
+                    Direccion = "Av. Caferatta 1900",
+                    Telefono = 1122334455
+                };
+
+                context.Veterinarias.Add(nuevaVet);
+                await context.SaveChangesAsync();
             }
 
 
