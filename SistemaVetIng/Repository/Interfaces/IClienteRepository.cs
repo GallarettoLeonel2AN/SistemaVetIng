@@ -24,5 +24,9 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<int> ContarTotalClientesAsync();
 
         Task<bool> ExisteDniAsync(long dni);
+
+        Task<List<Cliente>> GetClientesPorBusqueda(string busqueda);
+
+        Task<Cliente> GetMascotasClientes(int clienteId);
     }
 }

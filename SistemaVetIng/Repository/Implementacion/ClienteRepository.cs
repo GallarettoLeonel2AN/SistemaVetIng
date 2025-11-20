@@ -72,5 +72,28 @@ namespace SistemaVetIng.Repository.Implementacion
         {
             return await _context.Clientes.CountAsync();
         }
+
+        public async Task<List<Cliente>> GetClientesPorBusqueda(string busqueda)
+        {
+            var clientes = from c in _context.Clientes
+                           select c;
+
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                var lowerBusqueda = busqueda.ToLower();
+                clientes = clientes.Where(c => c.Nombre.ToLower().Contains(lowerBusqueda) ||
+                                               c.Apellido.ToLower().Contains(lowerBusqueda) ||
+                                               c.Dni.ToString().Contains(lowerBusqueda));
+            }
+
+            return await clientes.OrderBy(c => c.Apellido).ToListAsync();
+        }
+
+        public async Task<Cliente> GetMascotasClientes(int clienteId)
+        {
+            return await _context.Clientes
+                                 .Include(c => c.Mascotas)
+                                 .FirstOrDefaultAsync(c => c.Id == clienteId);
+        }
     }
 }

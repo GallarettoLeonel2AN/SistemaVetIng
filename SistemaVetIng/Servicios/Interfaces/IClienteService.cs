@@ -16,5 +16,7 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<Cliente> ObtenerPorIdUsuario(int id);
         Task<IPagedList<Cliente>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
         Task<int> ContarTotalClientesAsync();
+        Task<List<Cliente>> GetClientesPorBusqueda(string busqueda);
+        Task<Cliente> GetMascotasClientes(int clienteId);
     }
 }

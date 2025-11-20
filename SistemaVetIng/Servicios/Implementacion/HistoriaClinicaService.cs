@@ -8,20 +8,24 @@ namespace SistemaVetIng.Servicios.Implementacion
     public class HistoriaClinicaService : IHistoriaClinicaService
     {
         private readonly IHistoriaClinicaRepository _repository;
+        private readonly IClienteService _clienteService;
 
-        public HistoriaClinicaService(IHistoriaClinicaRepository repository)
+        public HistoriaClinicaService(
+            IHistoriaClinicaRepository repository,
+            IClienteService clienteService)
         {
             _repository = repository;
+            _clienteService = clienteService;
         }
 
         public async Task<List<Cliente>> GetClientesParaSeguimiento(string searchString)
         {
-            return await _repository.GetClientesPorBusqueda(searchString);
+            return await _clienteService.GetClientesPorBusqueda(searchString);
         }
 
         public async Task<Cliente> GetMascotasCliente(int clienteId)
         {
-            return await _repository.GetMascotasClientes(clienteId);
+            return await _clienteService.GetMascotasClientes(clienteId);
         }
 
         public async Task<Mascota> GetDetalleHistoriaClinica(int mascotaId)

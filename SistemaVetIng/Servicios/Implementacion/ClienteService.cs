@@ -172,5 +172,15 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _clienteRepository.ContarTotalClientesAsync();
         }
+
+        public async Task<List<Cliente>> GetClientesPorBusqueda(string busqueda)
+        {
+            return await _clienteRepository.GetClientesPorBusqueda(busqueda);
+        }
+
+        public async Task<Cliente> GetMascotasClientes(int clienteId)
+        {
+            return await _clienteRepository.GetMascotasClientes(clienteId);
+        }
     }
 }
