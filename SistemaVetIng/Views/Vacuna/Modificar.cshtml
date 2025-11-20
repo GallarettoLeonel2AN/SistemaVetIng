@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Modificar Vacuna";
     Layout = null;
-
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
 <!DOCTYPE html>
@@ -26,10 +26,10 @@
 <body class="dark-mode">
 
     <header class="main-header">
-        <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
         <nav class="main-nav">
             <ul class="nav-list">
-                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Inicio</a></li>
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
                 <li>
                     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
                         <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>

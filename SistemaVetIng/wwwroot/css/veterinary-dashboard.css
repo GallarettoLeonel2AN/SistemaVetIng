@@ -1197,3 +1197,96 @@ body.dark-mode .agenda-table {
     align-items: center;
     font-weight: 600;
 }
+
+/* ---------- CONTENEDOR GENERAL ---------- */
+.perfil-container {
+    padding: 100px 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+    background: var(--v1-background);
+    min-height: 100vh;
+}
+
+/* ---------- TARJETA PRINCIPAL ---------- */
+.perfil-card {
+    background: #1c242c;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+    animation: fadeIn 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ---------- HEADER ---------- */
+.perfil-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.perfil-icon {
+    font-size: 60px;
+    color: #4db8ff; 
+    margin-bottom: 10px;
+}
+
+.perfil-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #e6eef5;
+}
+
+.perfil-subtitle {
+    font-size: 15px;
+    color: #aab4be;
+    margin-top: 4px;
+}
+
+/* ---------- CUERPO ---------- */
+.perfil-body {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* ---------- CAMPOS ---------- */
+.perfil-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #cbd5df;
+}
+
+.perfil-input {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #2d3844;
+    background: #161d24;
+    font-size: 15px;
+    color: #e8eef4;
+    transition: 0.2s ease;
+}
+
+    .perfil-input:focus {
+        border-color: #4db8ff;
+        outline: none;
+    }
+
+/* ---------- ANIMACIÓN ---------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,80 @@
+﻿@model SistemaVetIng.ViewsModels.VeterinariaViewModel
+@{
+    ViewData["Title"] = "Perfil - Veterinaria";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="main-header">
+        <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+    <main class="perfil-container">
+
+        <div class="perfil-card">
+            <div class="perfil-header">
+                <h2 class="perfil-title">Perfil de la Veterinaria</h2>
+                <p class="perfil-subtitle">Información general de la clínica</p>
+            </div>
+
+            <div class="perfil-body">
+
+                <div class="perfil-field">
+                    <label class="perfil-label">Nombre de la Veterinaria</label>
+                    <input class="perfil-input" value="@(Model?.RazonSocial ?? "Sin nombre")" readonly />
+                </div>
+
+                <div class="perfil-field">
+                    <label class="perfil-label">CUIL</label>
+                    <input class="perfil-input" value="@(Model?.Cuil ?? "Sin CUIL")" readonly />
+                </div>
+
+                <div class="perfil-field">
+                    <label class="perfil-label">Email</label>
+                    <input class="perfil-input" value="@(Model?.Email ?? "Sin email")" readonly />
+                </div>
+
+                <div class="perfil-field">
+                    <label class="perfil-label">Teléfono</label>
+                    <input class="perfil-input" value="@(Model?.Telefono)" readonly />
+                </div>
+
+                <div class="perfil-field">
+                    <label class="perfil-label">Dirección</label>
+                    <input class="perfil-input" value="@(Model?.Direccion ?? "Sin dirección")" readonly />
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
+
+
