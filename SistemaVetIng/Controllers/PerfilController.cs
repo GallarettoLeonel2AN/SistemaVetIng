@@ -42,21 +42,46 @@ namespace SistemaVetIng.Controllers
             var usuario = await _userManager.GetUserAsync(User);
 
             var veterinaria = await _context.Veterinarias
-     .Where(v => v.UsuarioId == usuario.Id)
-     .Select(v => new VeterinariaViewModel
-     {
-         RazonSocial = v.RazonSocial ?? "",
-         Cuil = v.Cuil ?? "",
-         Direccion = v.Direccion ?? "",
-         Telefono = v.Telefono,
-         Email = usuario.Email ?? ""
-     })
-     .FirstOrDefaultAsync();
+                 .Where(v => v.UsuarioId == usuario.Id)
+                 .Select(v => new VeterinariaViewModel
+                 {
+                   RazonSocial = v.RazonSocial ?? "",
+                   Cuil = v.Cuil ?? "",
+                   Direccion = v.Direccion ?? "",
+                   Telefono = v.Telefono,
+                   Email = usuario.Email ?? ""
+                 })
+                 .FirstOrDefaultAsync();
 
             if (veterinaria == null)
                 return NotFound("No se encontró la veterinaria asociada al usuario.");
 
             return View(veterinaria);
+        }
+
+        [Authorize(Roles = "Veterinario")]
+        public async Task<IActionResult> VeterinarioPerfil()
+        {
+            var usuario = await _userManager.GetUserAsync(User);
+
+            var veterinario = await _context.Veterinarios
+                .Where(v => v.UsuarioId == usuario.Id)
+                .Select(v => new VeterinarioRegistroViewModel
+                {
+                    Nombre = v.Nombre,
+                    Apellido = v.Apellido,
+                    Dni = v.Dni,
+                    Direccion = v.Direccion,
+                    Telefono = v.Telefono,
+                    Matricula = v.Matricula,
+                    Email = usuario.Email
+                })
+                .FirstOrDefaultAsync();
+
+            if (veterinario == null)
+                return NotFound("No se encontró el veterinario asociado a este usuario.");
+
+            return View(veterinario);
         }
     }
 }
