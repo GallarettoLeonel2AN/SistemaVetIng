@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
+using SistemaVetIng.Models;
 using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -19,6 +20,7 @@ namespace SistemaVetIng.Controllers
         private readonly IMascotaService _mascotaService;
         private readonly ITurnoService _turnoService;
         private readonly IAtencionVeterinariaService _atencionVeterinariaService;
+        private readonly IVeterinariaConfigService _veterinariaConfigService;
 
         public VeterinarioController(
             IVeterinarioService veterinarioService,
@@ -26,7 +28,8 @@ namespace SistemaVetIng.Controllers
             IClienteService clienteService,
             IMascotaService mascotaService,
             ITurnoService turnoService,
-            IAtencionVeterinariaService atencionVeterinariaService)
+            IAtencionVeterinariaService atencionVeterinariaService,
+            IVeterinariaConfigService veterinariaConfigService)
         {
             _veterinarioService = veterinarioService;
             _toastNotification = toastNotification;
@@ -34,6 +37,7 @@ namespace SistemaVetIng.Controllers
             _mascotaService = mascotaService;
             _turnoService = turnoService;
             _atencionVeterinariaService = atencionVeterinariaService;
+            _veterinariaConfigService = veterinariaConfigService;
         }
 
         #region PAGINA PRINCIPAL
@@ -46,7 +50,34 @@ namespace SistemaVetIng.Controllers
         {
             var viewModel = new VeterinarioPaginaPrincipalViewModel(); 
             int pageSizeClientes = 3; 
-            int pageSizeMascotas = 3; 
+            int pageSizeMascotas = 3;
+
+            //  Cargar ConfiguracionHoraria SI SE LE DAN PERMISOS
+
+            var configuracionDb = await _veterinariaConfigService.ObtenerConfiguracionAsync();
+
+            if (configuracionDb != null)
+            {
+
+                viewModel.ConfiguracionTurnos = new ConfiguracionVeterinariaViewModel
+                {
+                    Id = configuracionDb.Id,
+                    DuracionMinutosPorConsulta = configuracionDb.DuracionMinutosPorConsulta,
+
+                    Horarios = configuracionDb.HorariosPorDia.Select(h => new HorarioDiaViewModel
+                    {
+                        DiaSemana = h.DiaSemana,
+                        EstaActivo = h.EstaActivo,
+                        HoraInicio = (DateTime)h.HoraInicio,
+                        HoraFin = (DateTime)h.HoraFin
+                    }).OrderBy(h => h.DiaSemana).ToList()
+                };
+            }
+            else
+            {
+                viewModel.ConfiguracionTurnos = null;
+            }
+
 
             // CARGA DE CLIENTES
             var clientesPaginados = await _clienteService.ListarPaginadoAsync(page, pageSizeClientes, busquedaCliente);

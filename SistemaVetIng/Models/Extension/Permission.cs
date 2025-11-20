@@ -21,7 +21,6 @@ namespace SistemaVetIng.Models.Extension
         public static class Horario
         {
             public const string Create = "Permission.Horario.Create";
-            public const string Edit = "Permission.Horario.Edit";
             public const string View = "Permission.Horario.View";
 
         }

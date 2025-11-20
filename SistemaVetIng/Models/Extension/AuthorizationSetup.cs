@@ -27,8 +27,6 @@ namespace SistemaVetIng.Extensions
                 // HORARIO 
                 options.AddPolicy(Permission.Horario.Create, policy =>
                     policy.RequireClaim("Permission", Permission.Horario.Create));
-                options.AddPolicy(Permission.Horario.Edit, policy =>
-                   policy.RequireClaim("Permission", Permission.Horario.Edit));
                 options.AddPolicy(Permission.Horario.View, policy =>
                    policy.RequireClaim("Permission", Permission.Horario.View));
   
