@@ -16,13 +16,6 @@ namespace SistemaVetIng.Repository.Implementacion
             _context = context;
         }
 
-        public async Task<HistoriaClinica> GetHistoriaClinicaConMascotayPropietario(int historiaClinicaId)
-        {
-            return await _context.HistoriasClinicas
-                                 .Include(hc => hc.Mascota)
-                                     .ThenInclude(m => m.Propietario)
-                                 .FirstOrDefaultAsync(hc => hc.Id == historiaClinicaId);
-        }
 
         public async Task<AtencionVeterinaria> ObtenerPorId(int id)
             => await _context.AtencionesVeterinarias.FirstOrDefaultAsync(x => x.Id == id);
@@ -47,35 +40,7 @@ namespace SistemaVetIng.Repository.Implementacion
                 .Where(a => a.Abonado == false)
                 .ToListAsync();
         }
-        public async Task<List<Vacuna>> GetVacunas()
-        {
-            return await _context.Vacunas.ToListAsync();
-        }
-
-        public async Task<List<Estudio>> GetEstudios()
-        {
-            return await _context.Estudios.ToListAsync();
-        }
-
-        public async Task<Veterinario> GetVeterinarioPorId(int usuarioId)
-        {
-            return await _context.Veterinarios
-                                 .FirstOrDefaultAsync(v => v.UsuarioId == usuarioId);
-        }
-
-        public async Task<List<Vacuna>> GetVacunaSeleccionada(IEnumerable<int> ids)
-        {
-            return await _context.Vacunas
-                                 .Where(v => ids.Contains(v.Id))
-                                 .ToListAsync();
-        }
-
-        public async Task<List<Estudio>> GetEstudioSeleccionado(IEnumerable<int> ids)
-        {
-            return await _context.Estudios
-                                 .Where(e => ids.Contains(e.Id))
-                                 .ToListAsync();
-        }
+        
 
         public async Task AgregarAtencionVeterinaria(AtencionVeterinaria atencion)
         {
@@ -90,11 +55,6 @@ namespace SistemaVetIng.Repository.Implementacion
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
-        }
-
-        public async Task<HistoriaClinica> GetHistoriaClinicaPorId(int id)
-        {
-            return await _context.HistoriasClinicas.FindAsync(id);
         }
 
         public async Task<int> CantidadAtencionesPorVeterinario(int id)

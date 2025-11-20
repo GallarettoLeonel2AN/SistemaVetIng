@@ -48,5 +48,12 @@ namespace SistemaVetIng.Repository.Implementacion
 
             return await _context.Vacunas.Where(v => ids.Contains(v.Id)).ToListAsync();
         }
+
+        public async Task<List<Vacuna>> GetVacunaSeleccionada(IEnumerable<int> ids)
+        {
+            return await _context.Vacunas
+                                 .Where(v => ids.Contains(v.Id))
+                                 .ToListAsync();
+        }
     }
 }

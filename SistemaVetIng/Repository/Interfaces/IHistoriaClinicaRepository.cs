@@ -8,5 +8,7 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<Cliente> GetMascotasClientes(int clienteId);
         Task<Mascota> GetHistoriaClinicaCompletaMascota(int mascotaId);
         Task<HistoriaClinica> ObtenerPorMascotaIdAsync(int mascotaId);
+        Task<HistoriaClinica> GetHistoriaClinicaConMascotayPropietario(int historiaClinicaId);
+        Task<HistoriaClinica> GetHistoriaClinicaPorId(int id);
     }
 }

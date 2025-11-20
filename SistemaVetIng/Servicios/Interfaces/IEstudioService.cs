@@ -11,9 +11,11 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<(bool success, string message)> Eliminar(int id);
         Task<EstudioViewModel?> ObtenerPorId(int id);
         Task<IEnumerable<EstudioViewModel>> ListarTodo();
-        // Usaremos esta interfaz para la paginación, implementando la lógica en el servicio
+       
         Task<IPagedList<EstudioViewModel>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
       
         Task<IEnumerable<Estudio>> ObtenerPorIdsAsync(List<int> ids);
+
+        Task<List<Estudio>> GetEstudioSeleccionado(IEnumerable<int> ids);
     }
 }

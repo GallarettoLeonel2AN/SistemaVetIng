@@ -33,5 +33,15 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             return await _repository.ObtenerPorMascotaIdAsync(mascotaId);
         }
+
+        public async Task<HistoriaClinica> GetHistoriaClinicaConMascotayPropietario(int historiaClinicaId)
+        {
+            return await _repository.GetHistoriaClinicaConMascotayPropietario(historiaClinicaId);
+        }
+
+        public async Task<HistoriaClinica> GetHistoriaClinicaPorId(int id)
+        {
+            return await _repository.GetHistoriaClinicaPorId(id);
+        }
     }
 }

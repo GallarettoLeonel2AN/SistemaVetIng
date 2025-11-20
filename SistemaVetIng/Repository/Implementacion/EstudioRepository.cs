@@ -46,5 +46,12 @@ namespace SistemaVetIng.Repository.Implementacion
 
             return await _context.Estudios.Where(e => ids.Contains(e.Id)).ToListAsync();
         }
+
+        public async Task<List<Estudio>> GetEstudioSeleccionado(IEnumerable<int> ids)
+        {
+            return await _context.Estudios
+                                 .Where(e => ids.Contains(e.Id))
+                                 .ToListAsync();
+        }
     }
 }

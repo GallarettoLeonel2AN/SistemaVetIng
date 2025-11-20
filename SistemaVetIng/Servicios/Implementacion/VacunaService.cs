@@ -132,7 +132,10 @@ namespace SistemaVetIng.Servicios.Implementacion
             );
         }
 
-       
+        public async Task<List<Vacuna>> GetVacunaSeleccionada(IEnumerable<int> ids)
+        {
+            return await _vacunaRepository.GetVacunaSeleccionada(ids);
+        }
 
         public async Task<IEnumerable<Vacuna>> ObtenerPorIdsAsync(List<int> ids)
         {

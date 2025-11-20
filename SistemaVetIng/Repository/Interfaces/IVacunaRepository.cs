@@ -11,7 +11,7 @@ namespace SistemaVetIng.Repository.Interfaces
         void Eliminar(Vacuna entity);
         Task<Vacuna> ObtenerPorId(int id);
         Task<Vacuna> ObtenerPorIdAsync(int id);
-
+        Task<List<Vacuna>> GetVacunaSeleccionada(IEnumerable<int> ids);
         Task<IEnumerable<Vacuna>> ObtenerPorIdsAsync(List<int> ids);
     }
 }

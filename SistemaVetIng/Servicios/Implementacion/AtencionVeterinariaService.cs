@@ -18,6 +18,7 @@ namespace SistemaVetIng.Servicios.Implementacion
         private readonly IVacunaService _vacunaService;
         private readonly IEstudioService _estudioService;
         private readonly ITurnoService _turnoService;
+        private readonly IHistoriaClinicaService _historiaClinicaService;
 
         public AtencionVeterinariaService(
             IAtencionVeterinariaRepository repository,
@@ -25,7 +26,8 @@ namespace SistemaVetIng.Servicios.Implementacion
             IVeterinarioService veterinarioService,
             IVacunaService vacunaService,
             IEstudioService estudioService,
-            ITurnoService turnoService)
+            ITurnoService turnoService,
+            IHistoriaClinicaService historiaClinicaService)
         {
             _repository = repository;
             _context = context;
@@ -33,11 +35,12 @@ namespace SistemaVetIng.Servicios.Implementacion
             _vacunaService = vacunaService;
             _estudioService = estudioService;
             _turnoService = turnoService;
+            _historiaClinicaService = historiaClinicaService;
         }
 
         public async Task<AtencionVeterinariaViewModel> GetAtencionVeterinariaViewModel(int historiaClinicaId)
         {
-            var historiaClinica = await _repository.GetHistoriaClinicaConMascotayPropietario(historiaClinicaId);
+            var historiaClinica = await _historiaClinicaService.GetHistoriaClinicaConMascotayPropietario(historiaClinicaId);
 
             if (historiaClinica == null)
             {
@@ -55,8 +58,8 @@ namespace SistemaVetIng.Servicios.Implementacion
             viewModel.MascotaId = historiaClinica.Mascota.Id;
 
             // Obtener datos para SelectList
-            var vacunas = await _repository.GetVacunas();
-            var estudios = await _repository.GetEstudios();
+            var vacunas = await _vacunaService.ListarTodo();
+            var estudios = await _estudioService.ListarTodo();
 
             viewModel.VacunasDisponibles = new SelectList(vacunas, "Id", "Nombre");
             viewModel.EstudiosDisponibles = new SelectList(estudios, "Id", "Nombre");
@@ -75,7 +78,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                 return "Error al obtener el ID del usuario.";
             }
 
-            var veterinario = await _repository.GetVeterinarioPorId(userIdInt);
+            var veterinario = await _veterinarioService.ObtenerPorIdUsuario(userIdInt);
             if (veterinario == null)
             {
                 return "El usuario logueado no está asociado a un perfil de veterinario.";
@@ -84,8 +87,8 @@ namespace SistemaVetIng.Servicios.Implementacion
             model.VeterinarioId = veterinario.Id;
 
             // Obtener vacunas y estudios y calcular costos
-            var vacunasSeleccionadas = await _repository.GetVacunaSeleccionada(model.VacunasSeleccionadasIds);
-            var estudiosSeleccionados = await _repository.GetEstudioSeleccionado(model.EstudiosSeleccionadosIds);
+            var vacunasSeleccionadas = await _vacunaService.GetVacunaSeleccionada(model.VacunasSeleccionadasIds);
+            var estudiosSeleccionados = await _estudioService.GetEstudioSeleccionado(model.EstudiosSeleccionadosIds);
 
             decimal costoVacunas = vacunasSeleccionadas.Sum(v => v.Precio);
             decimal costoEstudios = estudiosSeleccionados.Sum(e => e.Precio);
@@ -162,7 +165,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                     throw new Exception("Error al obtener el ID del usuario.");
                 }
 
-                var veterinario = await _repository.GetVeterinarioPorId(userIdInt);
+                var veterinario = await _veterinarioService.ObtenerPorIdUsuario(userIdInt);
                 if (veterinario == null)
                 {
                     throw new Exception("El usuario logueado no está asociado a un perfil de veterinario.");

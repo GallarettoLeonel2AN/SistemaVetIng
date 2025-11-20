@@ -12,7 +12,8 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<VacunaViewModel?> ObtenerPorId(int id);
         Task<IEnumerable<VacunaViewModel>> ListarTodo();
         Task<IPagedList<VacunaViewModel>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null);
-      
+
+        Task<List<Vacuna>> GetVacunaSeleccionada(IEnumerable<int> ids);
         Task<IEnumerable<Vacuna>> ObtenerPorIdsAsync(List<int> ids);
     }
 }

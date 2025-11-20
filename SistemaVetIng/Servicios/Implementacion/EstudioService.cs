@@ -16,7 +16,6 @@ namespace SistemaVetIng.Servicios.Implementacion
             _estudioRepository = estudioRepository;
         }
 
-        // Mapeo de ViewModel a Entidad
         private Estudio MapToEntity(EstudioViewModel model) => new Estudio
         {
             Id = model.Id,
@@ -25,7 +24,6 @@ namespace SistemaVetIng.Servicios.Implementacion
            
         };
 
-        // Mapeo de Entidad a ViewModel
         private EstudioViewModel MapToViewModel(Estudio entity) => new EstudioViewModel
         {
             Id = entity.Id,
@@ -58,7 +56,7 @@ namespace SistemaVetIng.Servicios.Implementacion
             {
                 estudio.Nombre = model.Nombre;
                 estudio.Precio = model.Precio;
-                // No modificamos Informe desde el ABM del catálogo si es un campo de Aplicación
+             
 
                 _estudioRepository.Modificar(estudio);
                 await _estudioRepository.Guardar();
@@ -99,7 +97,6 @@ namespace SistemaVetIng.Servicios.Implementacion
             return estudios.Select(MapToViewModel);
         }
 
-        // Lógica de paginación implementada en el servicio 
         public async Task<IPagedList<EstudioViewModel>> ListarPaginadoAsync(int pageNumber, int pageSize, string busqueda = null)
         {
             var estudios = await _estudioRepository.ListarTodo();
@@ -125,6 +122,11 @@ namespace SistemaVetIng.Servicios.Implementacion
         public async Task<IEnumerable<Estudio>> ObtenerPorIdsAsync(List<int> ids)
         {
             return await _estudioRepository.ObtenerPorIdsAsync(ids);
+        }
+
+        public async Task<List<Estudio>> GetEstudioSeleccionado(IEnumerable<int> ids)
+        {
+            return await _estudioRepository.GetEstudioSeleccionado(ids);
         }
     }
 }

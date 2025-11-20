@@ -60,6 +60,19 @@ namespace SistemaVetIng.Repository.Implementacion
         {
             return await _context.HistoriasClinicas.FirstOrDefaultAsync(h => h.MascotaId == mascotaId);
         }
+
+        public async Task<HistoriaClinica> GetHistoriaClinicaConMascotayPropietario(int historiaClinicaId)
+        {
+            return await _context.HistoriasClinicas
+                                 .Include(hc => hc.Mascota)
+                                     .ThenInclude(m => m.Propietario)
+                                 .FirstOrDefaultAsync(hc => hc.Id == historiaClinicaId);
+        }
+
+        public async Task<HistoriaClinica> GetHistoriaClinicaPorId(int id)
+        {
+            return await _context.HistoriasClinicas.FindAsync(id);
+        }
     }
 }
 

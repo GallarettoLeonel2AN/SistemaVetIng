@@ -12,6 +12,7 @@ namespace SistemaVetIng.Repository.Interfaces
         Task<Estudio> ObtenerPorId(int id);
         Task<Estudio> ObtenerPorIdAsync(int id);
         Task<IEnumerable<Estudio>> ObtenerPorIdsAsync(List<int> ids);
+        Task<List<Estudio>> GetEstudioSeleccionado(IEnumerable<int> ids);
 
     }
 }
