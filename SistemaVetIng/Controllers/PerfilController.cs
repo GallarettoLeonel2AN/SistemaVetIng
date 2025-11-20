@@ -83,5 +83,29 @@ namespace SistemaVetIng.Controllers
 
             return View(veterinario);
         }
+
+        [Authorize(Roles = "Cliente")]
+        public async Task<IActionResult> ClientePerfil()
+        {
+            var usuario = await _userManager.GetUserAsync(User);
+
+            var cliente = await _context.Clientes
+                .Where(c => c.UsuarioId == usuario.Id)
+                .Select(c => new ClienteRegistroViewModel
+                {
+                    Nombre = c.Nombre ?? "",
+                    Apellido = c.Apellido ?? "",
+                    Dni = c.Dni,
+                    Direccion = c.Direccion ?? "",
+                    Telefono = c.Telefono,
+                    Email = usuario.Email ?? ""
+                })
+                .FirstOrDefaultAsync();
+
+            if (cliente == null)
+                return NotFound("No se encontró el cliente asociado al usuario.");
+
+            return View(cliente);
+        }
     }
 }
