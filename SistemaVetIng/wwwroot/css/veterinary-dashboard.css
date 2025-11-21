@@ -1290,3 +1290,32 @@ body.dark-mode .agenda-table {
         transform: translateY(0);
     }
 }
+
+
+.btnlogout {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+}
+
+    .btn-primary:hover {
+        background-color: #2b6cb0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+.nav-button {
+    font-size: 0.9em;
+    padding: 8px 18px;
+}

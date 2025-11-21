@@ -3373,9 +3373,7 @@ C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\Sistem
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\scopedcss\bundle\SistemaVetIng.styles.css
-C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\scopedcss\projectbundle\SistemaVetIng.bundle.scp.css
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\staticwebassets.development.json

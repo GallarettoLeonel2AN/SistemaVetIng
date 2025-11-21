@@ -22,13 +22,15 @@
 
 <body>
     <header class="main-header">
-        <a href="#" class="logo">
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo">
             <i class="fas fa-paw"></i>
             <span>VetIng</span>
         </a>
-        <a asp-controller="@controllerDestino" asp-action="PaginaPrincipal" class="sesion">
-            <i class="fas fa-arrow-left"></i> Volver al Inicio
-        </a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="v1-main-dashboard">

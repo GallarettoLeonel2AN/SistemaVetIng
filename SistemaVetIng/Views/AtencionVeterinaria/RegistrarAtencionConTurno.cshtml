@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = $"Nueva Atención para {Model.NombreMascota}";
     Layout = null;
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
 <!DOCTYPE html>
@@ -21,10 +22,22 @@
 </head>
 <body>
     <header class="main-header">
-        <a href="/Veterinario/PaginaPrincipal" class="logo">
-            <i class="fas fa-paw"></i>
-            <span>VetIng</span>
-        </a>
+        <a href="../@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@Model.MascotaId" class="nav-link">
+                    Volver
+                </a>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </header>
 
     <main class="registrar-form-main">

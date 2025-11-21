@@ -32,6 +32,7 @@
                  <a class="nav-link" asp-controller="Perfil" asp-action="Index">Perfil</a>
                 </li>
                 <li><a class="nav-link" href="#resumen">Resumen</a></li>
+                <li><a class="nav-link" href="#permisos">Permisos</a></li>
                 <li><a class="nav-link" href="#turnos">Turnos</a></li>
                 <li><a class="nav-link" href="#configuracion-turnos">Horarios</a></li>
                 <li><a class="nav-link" href="#veterinarios">Veterinarios</a></li>
@@ -40,8 +41,8 @@
                 <li><a class="nav-link" href="#mascotas">Mascotas</a></li>
                 <li><a class="nav-link" href="#auditoria">Auditoria</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btn sesion nav-button">Cerrar Sesión</button>
+                     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>
@@ -140,7 +141,7 @@
         </section>
 
        
-            <section id="administracion" class="v1-section">
+            <section id="permisos" class="v1-section">
                 <h2 class="v1-section-title">Administración del Sistema</h2>
                 <div class="v1-section-actions">
 
