@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using SistemaVetIng.Models.Singleton;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 
@@ -10,43 +11,57 @@ namespace SistemaVetIng.Servicios.Implementacion
         private readonly IClienteService _clienteService;
         private readonly IMascotaService _mascotaService;
         private readonly IVeterinariaConfigService _veterinariaConfigService;
+        private readonly IConfiguracionHorarioCache _cache;
 
         public VeterinariaService(
             IVeterinarioService veterinarioService,
             IClienteService clienteService,
-            IMascotaService mascotaService)
+            IMascotaService mascotaService,
+            IConfiguracionHorarioCache cache,
+            IVeterinariaConfigService veterinariaConfigService)
         {
             _veterinarioService = veterinarioService;
             _clienteService = clienteService;
             _mascotaService = mascotaService;
+            _cache = cache;
+            _veterinariaConfigService = veterinariaConfigService;
         }
 
         public async Task<VeterinariaPaginaPrincipalViewModel> PaginaPrincipalAsync(
-     string busquedaVeterinario = null,
-     string busquedaCliente = null,
-     string busquedaMascota = null)
+                     string busquedaVeterinario = null,
+                     string busquedaCliente = null,
+                     string busquedaMascota = null)
         {
             var viewModel = new VeterinariaPaginaPrincipalViewModel();
 
 
-            var configuracionDb = await _veterinariaConfigService.ObtenerConfiguracionAsync();
-
-            if (configuracionDb != null)
+            // Intentamos obtener config desde cache
+            if (_cache.Configuracion == null)
             {
-  
+                var configDb = await _veterinariaConfigService.ObtenerConfiguracionAsync();
+
+                if (configDb != null)
+                    _cache.SetConfiguracion(configDb);
+            }
+
+            var configuracion = _cache.Configuracion;
+
+            // Mapear confg solo si existe
+            if (configuracion != null)
+            {
                 viewModel.ConfiguracionTurnos = new ConfiguracionVeterinariaViewModel
                 {
-                    Id = configuracionDb.Id,
-                    DuracionMinutosPorConsulta = configuracionDb.DuracionMinutosPorConsulta,
-
-                    Horarios = configuracionDb.HorariosPorDia.Select(h => new HorarioDiaViewModel
+                    Id = configuracion.Id,
+                    DuracionMinutosPorConsulta = configuracion.DuracionMinutosPorConsulta,
+                    Horarios = configuracion.HorariosPorDia.Select(h => new HorarioDiaViewModel
                     {
                         DiaSemana = h.DiaSemana,
                         EstaActivo = h.EstaActivo,
-                        HoraInicio = h.HoraInicio.HasValue ? h.HoraInicio.Value : DateTime.MinValue,
-                        HoraFin = h.HoraFin.HasValue ? h.HoraFin.Value : DateTime.MinValue
-
-                    }).OrderBy(h => h.DiaSemana).ToList()
+                        HoraInicio = h.HoraInicio ?? DateTime.MinValue,
+                        HoraFin = h.HoraFin ?? DateTime.MinValue
+                    })
+                    .OrderBy(h => h.DiaSemana)
+                    .ToList()
                 };
             }
             else

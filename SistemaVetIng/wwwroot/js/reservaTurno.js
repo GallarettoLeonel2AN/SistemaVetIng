@@ -109,8 +109,9 @@ function initializeReservaTurno(horariosUrl) {
 
         e.preventDefault();
 
-        const esPrimeraCita = primeraCitaCheckbox.length ? primeraCitaCheckbox.is(':checked') : false;
-        const mascotaSeleccionada = mascotaSelect.val();
+        // Si NO existe el checkbox: es Primera Cita obligatoriamente
+        const esPrimeraCita = primeraCitaCheckbox.length ? primeraCitaCheckbox.is(':checked') : true;
+        const mascotaSeleccionada = mascotaSelect.length ? mascotaSelect.val() : null;
         const horarioSeleccionado = horarioHiddenInput.val();
 
         if (!horarioSeleccionado) {

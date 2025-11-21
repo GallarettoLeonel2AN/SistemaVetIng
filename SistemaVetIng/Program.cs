@@ -9,6 +9,7 @@ using SistemaVetIng.Models;
 using SistemaVetIng.Models.Extension;
 using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Models.Observer;
+using SistemaVetIng.Models.Singleton;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment.EnvironmentName;
@@ -52,9 +53,12 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.AddAppAuthorization();
 
+// Patron Singleton
+builder.Services.AddSingleton<IConfiguracionHorarioCache>(sp =>
+    ConfiguracionHorarioCache.Instancia
+);
 
 // Patron Observer
-
 builder.Services.AddScoped<IClienteObserver, BienvenidaEmailObserver>();
 builder.Services.AddScoped<IClienteSubject, ClienteSubject>();
 

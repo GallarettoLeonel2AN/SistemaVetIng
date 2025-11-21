@@ -1,7 +1,9 @@
 ﻿using SistemaVetIng.Models;
+using SistemaVetIng.Models.Singleton;
 using SistemaVetIng.Repository.Implementacion;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
+
 
 namespace SistemaVetIng.Servicios.Implementacion
 {
@@ -9,18 +11,27 @@ namespace SistemaVetIng.Servicios.Implementacion
     {
         private readonly IConfiguracionVeterinariaRepository _configRepository;
         private readonly IVeterinariaRepository _veterinariaRepository;
+        private readonly IConfiguracionHorarioCache _cacheInstance;
 
         public VeterinariaConfigService(
             IConfiguracionVeterinariaRepository configRepository,
-            IVeterinariaRepository veterinariaRepository)
+            IVeterinariaRepository veterinariaRepository,
+            IConfiguracionHorarioCache cacheInstance)
         {
             _configRepository = configRepository;
             _veterinariaRepository = veterinariaRepository;
+            _cacheInstance = cacheInstance;
         }
 
         public async Task<ConfiguracionVeterinaria> ObtenerConfiguracionAsync()
         {
-            return await _configRepository.ObtenerConfiguracionConHorariosAsync();
+            var config = await _configRepository.ObtenerConfiguracionConHorariosAsync();
+
+            // Si el Singleton no tiene datos, lo cargamos
+            if (_cacheInstance.Configuracion == null && config != null)
+                _cacheInstance.SetConfiguracion(config);
+
+            return config;
         }
 
         public async Task<ConfiguracionVeterinaria> Guardar(ConfiguracionVeterinaria model)
@@ -63,6 +74,10 @@ namespace SistemaVetIng.Servicios.Implementacion
                 }
 
                 await _configRepository.GuardarCambiosAsync();
+
+                // Actualizamos Singleton
+                _cacheInstance.SetConfiguracion(model);
+
                 return model;
             }
             catch (Exception ex)

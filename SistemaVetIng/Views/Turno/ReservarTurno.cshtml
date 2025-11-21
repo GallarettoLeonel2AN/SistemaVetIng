@@ -57,6 +57,10 @@
 						</div>
 					</div>
 				}
+				@if (!Model.HasMascotas)
+				{
+					<input type="hidden" asp-for="PrimeraCita" value="true" />
+				}
 
 				<div id="mascotaContainer" class="form-group" style="@(Model.HasMascotas ? "" : "display:none;")">
 					<label asp-for="MascotaId"></label>

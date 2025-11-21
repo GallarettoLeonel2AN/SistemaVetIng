@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaVetIng.Models;
+using SistemaVetIng.Models.Singleton;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -12,29 +13,42 @@ namespace SistemaVetIng.Servicios.Implementacion
     {
         private readonly IVeterinariaConfigService _veterinariaService;
         private readonly ITurnoRepository _turnoRepository;
+        private readonly IConfiguracionHorarioCache _cache;
 
-        public TurnoService(IVeterinariaConfigService veterinariaService, ITurnoRepository turnoRepository)
+        public TurnoService(IVeterinariaConfigService veterinariaService,
+            ITurnoRepository turnoRepository,
+            IConfiguracionHorarioCache cache)
         {
             _veterinariaService = veterinariaService;
             _turnoRepository = turnoRepository;
+            _cache = cache;
         }
 
         public async Task<List<string>> GetHorariosDisponiblesAsync(DateTime fecha)
         {
-            var configuracion = await _veterinariaService.ObtenerConfiguracionAsync();
-            if (configuracion == null || configuracion.HorariosPorDia == null)
+            // Verificamos Singleton en memoria
+            if (_cache.Configuracion == null)
             {
-                return new List<string>();
+                var configDb = await _veterinariaService.ObtenerConfiguracionAsync();
+
+                if (configDb != null)
+                    _cache.SetConfiguracion(configDb);
             }
+
+            var configuracion = _cache.Configuracion;
+
+            if (configuracion == null || configuracion.HorariosPorDia == null)
+                return new List<string>();
 
             try
             {
                 var horariosPosibles = GenerarHorarios(configuracion, fecha);
+
                 var turnosOcupados = (await _turnoRepository.GetTurnosByFecha(fecha))
                     .Select(t => t.Horario.ToString(@"hh\:mm"))
                     .ToHashSet();
-                var horariosDisponibles = horariosPosibles.Where(h => !turnosOcupados.Contains(h)).ToList();
-                return horariosDisponibles;
+
+                return horariosPosibles.Where(h => !turnosOcupados.Contains(h)).ToList();
             }
             catch (Exception ex)
             {
