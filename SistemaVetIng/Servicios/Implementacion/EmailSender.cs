@@ -1,6 +1,7 @@
 ﻿
 using MailKit.Security;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
@@ -10,9 +11,9 @@ public class EmailSender : IEmailSender
 {
     private readonly SmtpSettings _smtpSettings;
 
-    public EmailSender(SmtpSettings smtpSettings)
+    public EmailSender(IOptions<SmtpSettings> smtpSettings)
     {
-        _smtpSettings = smtpSettings;
+        _smtpSettings = smtpSettings.Value;
     }
 
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
