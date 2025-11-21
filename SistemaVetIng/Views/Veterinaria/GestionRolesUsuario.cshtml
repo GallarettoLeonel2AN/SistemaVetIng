@@ -48,7 +48,7 @@
         <section id="gestion-roles" class="v1-section">
             <h1 class="v1-section-title"><i class="fa-solid fa-users-cog"></i> @ViewData["Title"]</h1>
             <p style="color: var(--history-text-secondary); margin-top: -0.5rem; margin-bottom: 1.5rem;">
-                Selecciona un usuario para asignar o quitar sus roles (grupos).
+                Selecciona un usuario para ver sus roles asignados.
             </p>
 
 
@@ -68,64 +68,42 @@
             {
                 <div class="v1-card">
                     <div class="v1-card-header">
-                        <h3 class="v1-card-title">Roles Asignables para: <span style="color: var(--v1-color-accent)">@Model.RolesForm.UserName</span></h3>
+                        <h3 class="v1-card-title">
+                            Roles del usuario:
+                            <span style="color: var(--v1-color-accent)">
+                                @Model.RolesForm.UserName
+                            </span>
+                        </h3>
                     </div>
-                    <form asp-action="GestionRolesUsuario" method="post">
-                        @Html.AntiForgeryToken()
 
-
-                        <input type="hidden" asp-for="RolesForm.UserId" />
-                        <input type="hidden" asp-for="RolesForm.UserName" />
-
-                        <div class="v1-card-content">
-                            <div class="table-container">
-                                <table class="table responsive-table">
-                                    <thead>
+                    <div class="v1-card-content">
+                        <div class="table-container">
+                            <table class="table responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rol</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var rol in Model.RolesForm.Roles.Where(r => r.IsSelected))
+                                    {
                                         <tr>
-                                            <th>Rol (Grupo)</th>
-                                            <th style="width: 120px; text-align: center;">Asignado</th>
+                                            <td data-label="Rol:">@rol.RoleName</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for (int i = 0; i < Model.RolesForm.Roles.Count; i++)
-                                        {
-                                            <tr>
-                                                <td data-label="Rol:">
-                                               
-                                                    <input type="hidden" asp-for="RolesForm.Roles[i].RoleId" />
-                                                    <input type="hidden" asp-for="RolesForm.Roles[i].RoleName" />
-
-                                                    <label for="role-@i" style="font-weight: 500; cursor: pointer;">
-                                                        @Model.RolesForm.Roles[i].RoleName
-                                                    </label>
-                                                </td>
-                                                <td data-label="Asignado:" style="text-align: center;">
-                                 
-                                                    <label class="v1-toggle-switch">
-                                                        <input type="checkbox" asp-for="RolesForm.Roles[i].IsSelected" id="role-@i" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
-						<div class="v1-card-footer v1-form-actions">
-							<button type="submit" class="v1-btn v1-btn-primary">
-								<i class="fa-solid fa-save"></i> Guardar Roles
-							</button>
-						</div>
-                  
-                    </form>
+                    </div>
                 </div>
-              
             }
             else if (!string.IsNullOrEmpty(Model.SelectedUserId))
             {
-                <div class="v1-alert v1-alert-warning">No se pudieron cargar los roles para este usuario.</div>
+                <div class="v1-alert v1-alert-warning">
+                    Este usuario no tiene roles asignados.
+                </div>
             }
+
         </section>
     </main>
 
