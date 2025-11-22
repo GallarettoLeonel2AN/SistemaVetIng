@@ -57,7 +57,7 @@
             align-items: center;
             gap: 10px;
         }
-        /* Estilo para hacer los errores MUY visibles */
+
         .validation-summary-errors {
             border: 2px solid #dc3545;
             background-color: #f8d7da;
@@ -70,6 +70,17 @@
             .validation-summary-errors ul {
                 margin-bottom: 0;
                 padding-left: 20px;
+            }
+
+        .dynamic-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+            .dynamic-row .form-select {
+                flex-grow: 1;
             }
     </style>
 </head>
@@ -117,8 +128,7 @@
 
                 <form asp-action="Editar" method="post">
 
-                    <div asp-validation-summary="All" class="text-danger mb-3">
-                    </div>
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
                     <input type="hidden" asp-for="Id" />
                     <input type="hidden" asp-for="HistoriaClinicaId" />
@@ -178,6 +188,76 @@
                         </div>
                     </div>
 
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h4 class="mb-3 border-bottom pb-2">Servicios Adicionales</h4>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Vacunas Aplicadas</label>
+
+                            <div id="vacunas-container">
+                                @foreach (var idSeleccionado in Model.VacunasSeleccionadasIds)
+                                {
+                                    <div class="dynamic-row row-item">
+                                        <select name="VacunasSeleccionadasIds" class="form-select">
+                                            @foreach (var item in Model.VacunasDisponibles)
+                                            {
+                                                if (item.Value == idSeleccionado.ToString())
+                                                {
+                                                    <option value="@item.Value" selected>@item.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            }
+                                        </select>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+
+                            <button type="button" id="btn-add-vacuna" class="btn btn-outline-primary btn-sm mt-1">
+                                <i class="fas fa-plus"></i> Agregar Vacuna
+                            </button>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Estudios Complementarios</label>
+
+                            <div id="estudios-container">
+                                @foreach (var idSeleccionado in Model.EstudiosSeleccionadosIds)
+                                {
+                                    <div class="dynamic-row row-item">
+                                        <select name="EstudiosSeleccionadosIds" class="form-select">
+                                            @foreach (var item in Model.EstudiosDisponibles)
+                                            {
+                                                if (item.Value == idSeleccionado.ToString())
+                                                {
+                                                    <option value="@item.Value" selected>@item.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            }
+                                        </select>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+
+                            <button type="button" id="btn-add-estudio" class="btn btn-outline-primary btn-sm mt-1">
+                                <i class="fas fa-plus"></i> Agregar Estudio
+                            </button>
+                        </div>
+                    </div>
+
                     <hr class="my-4" />
 
                     <div class="mb-4 p-3 bg-light border rounded">
@@ -214,13 +294,66 @@
         </div>
     </footer>
 
+    <template id="template-vacuna">
+        <div class="dynamic-row row-item">
+            <select name="VacunasSeleccionadasIds" class="form-select" required>
+                <option value="">-- Seleccione Vacuna --</option>
+                @foreach (var item in Model.VacunasDisponibles)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </template>
+
+    <template id="template-estudio">
+        <div class="dynamic-row row-item">
+            <select name="EstudiosSeleccionadosIds" class="form-select" required>
+                <option value="">-- Seleccione Estudio --</option>
+                @foreach (var item in Model.EstudiosDisponibles)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </template>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
     <script>
+        // Menú hamburguesa
         document.querySelector('.hamburger-menu').addEventListener('click', function() {
             document.querySelector('.nav-list').classList.toggle('active');
         });
+
+        // LOGICA PARA FILAS DINÁMICAS
+
+        // 1. Agregar Vacuna
+        document.getElementById('btn-add-vacuna').addEventListener('click', function () {
+            var template = document.getElementById('template-vacuna');
+            var clone = template.content.cloneNode(true);
+            document.getElementById('vacunas-container').appendChild(clone);
+        });
+
+        // 2. Agregar Estudio
+        document.getElementById('btn-add-estudio').addEventListener('click', function () {
+            var template = document.getElementById('template-estudio');
+            var clone = template.content.cloneNode(true);
+            document.getElementById('estudios-container').appendChild(clone);
+        });
+
+        // 3. Eliminar Fila
+        function eliminarFila(boton) {
+            boton.closest('.row-item').remove();
+        }
     </script>
 </body>
 </html>

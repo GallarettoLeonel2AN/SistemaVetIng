@@ -191,7 +191,6 @@
           "System.Drawing": "4.0.0.0",
           "System.Drawing.Primitives": "9.0.0.0",
           "System.Dynamic.Runtime": "9.0.0.0",
-          "System.Formats.Asn1.Reference": "9.0.0.0",
           "System.Formats.Tar": "9.0.0.0",
           "System.Globalization.Calendars.Reference": "9.0.0.0",
           "System.Globalization.Reference": "9.0.0.0",
@@ -288,7 +287,6 @@
           "System.Text.Encoding.Reference": "9.0.0.0",
           "System.Text.Encoding.Extensions.Reference": "9.0.0.0",
           "System.Text.Encodings.Web.Reference": "9.0.0.0",
-          "System.Text.Json.Reference": "9.0.0.0",
           "System.Text.RegularExpressions.Reference": "9.0.0.0",
           "System.Threading.Channels": "9.0.0.0",
           "System.Threading.Reference": "9.0.0.0",
@@ -2302,7 +2300,17 @@
           "lib/net6.0/System.Drawing.Common.dll": {}
         }
       },
-      "System.Formats.Asn1/9.0.6": {},
+      "System.Formats.Asn1/9.0.6": {
+        "runtime": {
+          "lib/net9.0/System.Formats.Asn1.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.625.26613"
+          }
+        },
+        "compile": {
+          "lib/net9.0/System.Formats.Asn1.dll": {}
+        }
+      },
       "System.Globalization/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -2823,7 +2831,17 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
-      "System.Text.Json/9.0.6": {},
+      "System.Text.Json/9.0.6": {
+        "runtime": {
+          "lib/net9.0/System.Text.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.625.26613"
+          }
+        },
+        "compile": {
+          "lib/net9.0/System.Text.Json.dll": {}
+        }
+      },
       "System.Text.RegularExpressions/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -3912,12 +3930,6 @@
         },
         "compileOnly": true
       },
-      "System.Formats.Asn1.Reference/9.0.0.0": {
-        "compile": {
-          "System.Formats.Asn1.dll": {}
-        },
-        "compileOnly": true
-      },
       "System.Formats.Tar/9.0.0.0": {
         "compile": {
           "System.Formats.Tar.dll": {}
@@ -4491,12 +4503,6 @@
       "System.Text.Encodings.Web.Reference/9.0.0.0": {
         "compile": {
           "System.Text.Encodings.Web.dll": {}
-        },
-        "compileOnly": true
-      },
-      "System.Text.Json.Reference/9.0.0.0": {
-        "compile": {
-          "System.Text.Json.dll": {}
         },
         "compileOnly": true
       },
@@ -6972,11 +6978,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Formats.Asn1.Reference/9.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
     "System.Formats.Tar/9.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
@@ -7453,11 +7454,6 @@
       "sha512": ""
     },
     "System.Text.Encodings.Web.Reference/9.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Text.Json.Reference/9.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

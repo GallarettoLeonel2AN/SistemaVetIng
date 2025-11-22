@@ -21,5 +21,9 @@
         public string? TratamientoFrecuencia { get; set; }
         public string? TratamientoDuracion { get; set; }
         public string? TratamientoObservaciones { get; set; }
+
+        // vacunas y estudios
+        public string? VacunasSnapshot { get; set; } 
+        public string? EstudiosSnapshot { get; set; }
     }
 }

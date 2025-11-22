@@ -556,6 +556,9 @@ namespace SistemaVetIng.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EstudiosSnapshot")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("FechaVersion")
                         .HasColumnType("datetime2");
 
@@ -582,6 +585,9 @@ namespace SistemaVetIng.Migrations
 
                     b.Property<string>("UsuarioEditor")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VacunasSnapshot")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

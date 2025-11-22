@@ -17,10 +17,6 @@
       "PackagePath": "staticwebassets\\css\\animaciones.css"
     },
     {
-      "Id": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\cliente-landing.css",
-      "PackagePath": "staticwebassets\\css\\cliente-landing.css"
-    },
-    {
       "Id": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\configuracion.css",
       "PackagePath": "staticwebassets\\css\\configuracion.css"
     },
@@ -147,6 +143,10 @@
     {
       "Id": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\permisos.css",
       "PackagePath": "staticwebassets\\css\\permisos.css"
+    },
+    {
+      "Id": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
+      "PackagePath": "staticwebassets\\css\\portal-theme.css"
     },
     {
       "Id": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\registrar-cliente-style.css",
