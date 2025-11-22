@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "G1AYL2jo2N+ZZ1WRW1mbxjGXoLLD4s0g+3uHIKKwZXo=",
+  "Hash": "dxLjwBHla5MGrebRkMqkcqBVzEPAj++4f2+oy8ZwOnQ=",
   "Source": "PerrosPeligrososApi",
   "BasePath": "_content/PerrosPeligrososApi",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "PerrosPeligrososApi\\wwwroot",
       "Source": "PerrosPeligrososApi",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\wwwroot\\",
       "BasePath": "_content/PerrosPeligrososApi",
       "Pattern": "**"
     }
@@ -1280,7 +1280,7 @@
       "Identity": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\contentFiles\\any\\net6.0\\wwwroot\\noty.js",
       "SourceId": "PerrosPeligrososApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\wwwroot\\",
       "BasePath": "_content/PerrosPeligrososApi",
       "RelativePath": "noty#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1301,7 +1301,7 @@
       "Identity": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\contentFiles\\any\\net6.0\\wwwroot\\toastr.js",
       "SourceId": "PerrosPeligrososApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\wwwroot\\",
       "BasePath": "_content/PerrosPeligrososApi",
       "RelativePath": "toastr#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1361,10 +1361,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\staticwebassets\\toastr.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\0k1i85ntyh-l2av4jpuoj.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\0k1i85ntyh-l2av4jpuoj.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.gz",
       "AssetKind": "All",
@@ -1382,10 +1382,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\14ipv7q33s-agp80tu62r.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\14ipv7q33s-agp80tu62r.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.gz",
       "AssetKind": "All",
@@ -1403,10 +1403,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\1fc4q00scq-tey0rigmnh.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\1fc4q00scq-tey0rigmnh.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.gz",
       "AssetKind": "All",
@@ -1424,10 +1424,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\2tikzqlmtu-b7iojwaux1.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\2tikzqlmtu-b7iojwaux1.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js.gz",
       "AssetKind": "All",
@@ -1445,10 +1445,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\362sl0bktu-47otxtyo56.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\362sl0bktu-47otxtyo56.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js.gz",
       "AssetKind": "All",
@@ -1466,10 +1466,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\3tzsqhslk9-7na4sro3qu.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\3tzsqhslk9-7na4sro3qu.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.gz",
       "AssetKind": "All",
@@ -1487,10 +1487,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\47012z8l2l-73kdqttayv.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\47012z8l2l-73kdqttayv.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map.gz",
       "AssetKind": "All",
@@ -1508,10 +1508,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\4vzefxwp2m-bpk8xqwxhs.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\4vzefxwp2m-bpk8xqwxhs.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.gz",
       "AssetKind": "All",
@@ -1529,10 +1529,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\7o8oyvng68-b4skse8du6.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\7o8oyvng68-b4skse8du6.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.gz",
       "AssetKind": "All",
@@ -1550,10 +1550,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8axix7wldr-okkk44j0xs.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8axix7wldr-okkk44j0xs.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map.gz",
       "AssetKind": "All",
@@ -1571,10 +1571,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8xykfy6qmd-j75batdsum.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8xykfy6qmd-j75batdsum.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map.gz",
       "AssetKind": "All",
@@ -1592,10 +1592,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-5vj65cig9w.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-5vj65cig9w.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map.gz",
       "AssetKind": "All",
@@ -1613,10 +1613,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9muusbdg0a-x0q3zqp4vz.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9muusbdg0a-x0q3zqp4vz.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/LICENSE.md.gz",
       "AssetKind": "All",
@@ -1634,10 +1634,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\b9lhb08218-5pze98is44.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\b9lhb08218-5pze98is44.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.min.map.gz",
       "AssetKind": "All",
@@ -1655,10 +1655,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bh4v3mdph9-8inm30yfxf.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bh4v3mdph9-8inm30yfxf.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map.gz",
       "AssetKind": "All",
@@ -1676,10 +1676,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bww8ud00yd-2q4vfeazbq.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bww8ud00yd-2q4vfeazbq.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map.gz",
       "AssetKind": "All",
@@ -1697,10 +1697,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\cynp17w084-vy0bq9ydhf.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\cynp17w084-vy0bq9ydhf.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map.gz",
       "AssetKind": "All",
@@ -1718,10 +1718,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d5z9sfpxbi-0wve5yxp74.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d5z9sfpxbi-0wve5yxp74.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.gz",
       "AssetKind": "All",
@@ -1739,10 +1739,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d82eh70q3d-8s9pevhhfs.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d82eh70q3d-8s9pevhhfs.gz",
       "SourceId": "NToastNotify",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/NToastNotify",
       "RelativePath": "noty.js.gz",
       "AssetKind": "All",
@@ -1760,10 +1760,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\staticwebassets\\noty.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-unj9p35syc.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-unj9p35syc.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.gz",
       "AssetKind": "All",
@@ -1781,10 +1781,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\edcrak57d7-n1oizzvkh6.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\edcrak57d7-n1oizzvkh6.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.gz",
       "AssetKind": "All",
@@ -1802,10 +1802,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\h9vwtoirpy-ab1c3rmv7g.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\h9vwtoirpy-ab1c3rmv7g.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map.gz",
       "AssetKind": "All",
@@ -1823,10 +1823,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\hh8ihyobdx-q2ku51ktnl.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\hh8ihyobdx-q2ku51ktnl.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.gz",
       "AssetKind": "All",
@@ -1844,10 +1844,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\higufxz8op-m39kt2b5c9.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\higufxz8op-m39kt2b5c9.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.gz",
       "AssetKind": "All",
@@ -1865,10 +1865,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\igscs4x0yk-6ukhryfubh.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\igscs4x0yk-6ukhryfubh.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map.gz",
       "AssetKind": "All",
@@ -1886,10 +1886,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ivy2s9gwh5-c2nslu3uf3.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ivy2s9gwh5-c2nslu3uf3.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map.gz",
       "AssetKind": "All",
@@ -1907,10 +1907,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\iznc766avz-56d2bn4wt9.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\iznc766avz-56d2bn4wt9.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map.gz",
       "AssetKind": "All",
@@ -1928,10 +1928,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\j9swiz3yzq-90yqlj465b.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\j9swiz3yzq-90yqlj465b.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "favicon.ico.gz",
       "AssetKind": "All",
@@ -1949,10 +1949,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\k8b25g0zwc-f8imaxxbri.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\k8b25g0zwc-f8imaxxbri.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.gz",
       "AssetKind": "All",
@@ -1970,10 +1970,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\l186vlgaag-ve6x09088i.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\l186vlgaag-ve6x09088i.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.gz",
       "AssetKind": "All",
@@ -1991,10 +1991,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ldxy2n3w6q-356vix0kms.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ldxy2n3w6q-356vix0kms.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt.gz",
       "AssetKind": "All",
@@ -2012,10 +2012,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\lr5hmrr0j7-25iw1kog22.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\lr5hmrr0j7-25iw1kog22.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.gz",
       "AssetKind": "All",
@@ -2033,10 +2033,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
       "SourceId": "PerrosPeligrososApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/PerrosPeligrososApi",
       "RelativePath": "noty#[.{fingerprint=8s9pevhhfs}]?.js.gz",
       "AssetKind": "All",
@@ -2054,10 +2054,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\contentFiles\\any\\net6.0\\wwwroot\\noty.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\nlrl0f3xs3-wmug9u23qg.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\nlrl0f3xs3-wmug9u23qg.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map.gz",
       "AssetKind": "All",
@@ -2075,10 +2075,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ns4583i71s-mpyigms19s.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ns4583i71s-mpyigms19s.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.gz",
       "AssetKind": "All",
@@ -2096,10 +2096,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\o5k23vqhrk-u3xrusw2ol.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\o5k23vqhrk-u3xrusw2ol.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.gz",
       "AssetKind": "All",
@@ -2117,10 +2117,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ofa40bqe71-o84wqeh1og.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ofa40bqe71-o84wqeh1og.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "css/site.css.gz",
       "AssetKind": "All",
@@ -2138,10 +2138,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\oxk5o6czdw-jeal3x0ldm.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\oxk5o6czdw-jeal3x0ldm.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map.gz",
       "AssetKind": "All",
@@ -2159,10 +2159,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\pogzkicjpz-u33ctipx7g.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\pogzkicjpz-u33ctipx7g.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map.gz",
       "AssetKind": "All",
@@ -2180,10 +2180,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\qfr28sqcy1-fctod5rc9n.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\qfr28sqcy1-fctod5rc9n.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map.gz",
       "AssetKind": "All",
@@ -2201,10 +2201,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
       "SourceId": "PerrosPeligrososApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/PerrosPeligrososApi",
       "RelativePath": "toastr#[.{fingerprint=hyoec0zd2t}]?.js.gz",
       "AssetKind": "All",
@@ -2222,10 +2222,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\contentFiles\\any\\net6.0\\wwwroot\\toastr.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rh65p086id-st1cbwfwo5.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rh65p086id-st1cbwfwo5.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map.gz",
       "AssetKind": "All",
@@ -2243,10 +2243,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rsc7qacj1u-4gxs3k148c.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rsc7qacj1u-4gxs3k148c.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map.gz",
       "AssetKind": "All",
@@ -2264,10 +2264,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\s3tglgz8hr-2lgwfvgpvi.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\s3tglgz8hr-2lgwfvgpvi.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map.gz",
       "AssetKind": "All",
@@ -2285,10 +2285,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\sf8kf2lula-o371a8zbv2.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\sf8kf2lula-o371a8zbv2.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map.gz",
       "AssetKind": "All",
@@ -2306,10 +2306,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t0qo7o574p-dd6z7egasc.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t0qo7o574p-dd6z7egasc.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.min.js.gz",
       "AssetKind": "All",
@@ -2327,10 +2327,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t6e3b82hrf-9oaff4kq20.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t6e3b82hrf-9oaff4kq20.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js.gz",
       "AssetKind": "All",
@@ -2348,10 +2348,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tg53r17ghy-npxfuf8dg6.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tg53r17ghy-npxfuf8dg6.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.gz",
       "AssetKind": "All",
@@ -2369,10 +2369,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tpsq5dibur-fwhahm2icz.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tpsq5dibur-fwhahm2icz.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.js.gz",
       "AssetKind": "All",
@@ -2390,10 +2390,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\u8428c4e9i-cwzlr5n8x4.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\u8428c4e9i-cwzlr5n8x4.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map.gz",
       "AssetKind": "All",
@@ -2411,10 +2411,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\uocis9wxbx-pzqfkb6aqo.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\uocis9wxbx-pzqfkb6aqo.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js.gz",
       "AssetKind": "All",
@@ -2432,10 +2432,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vltxs1u3vm-xtxxf3hu2r.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vltxs1u3vm-xtxxf3hu2r.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "js/site.js.gz",
       "AssetKind": "All",
@@ -2453,10 +2453,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vov7uhd1ha-4v8eqarkd7.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vov7uhd1ha-4v8eqarkd7.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js.gz",
       "AssetKind": "All",
@@ -2474,10 +2474,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vsrbd71spn-16095smhkz.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vsrbd71spn-16095smhkz.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.gz",
       "AssetKind": "All",
@@ -2495,10 +2495,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vw9sls9bhj-um2aeqy4ik.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vw9sls9bhj-um2aeqy4ik.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.gz",
       "AssetKind": "All",
@@ -2516,10 +2516,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xa379ftczi-kbynt5jhd9.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xa379ftczi-kbynt5jhd9.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map.gz",
       "AssetKind": "All",
@@ -2537,10 +2537,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xmqu3cgy6u-hyoec0zd2t.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xmqu3cgy6u-hyoec0zd2t.gz",
       "SourceId": "NToastNotify",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/NToastNotify",
       "RelativePath": "toastr.js.gz",
       "AssetKind": "All",
@@ -2558,10 +2558,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\ntoastnotify\\8.0.0\\staticwebassets\\toastr.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\yfc7ypekbg-mlv21k5csn.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\yfc7ypekbg-mlv21k5csn.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/LICENSE.txt.gz",
       "AssetKind": "All",
@@ -2579,10 +2579,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ym8tkpcl2i-wsezl0heh6.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ym8tkpcl2i-wsezl0heh6.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map.gz",
       "AssetKind": "All",
@@ -2600,10 +2600,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ypthv7q62w-ay5nd8zt9x.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ypthv7q62w-ay5nd8zt9x.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js.gz",
       "AssetKind": "All",
@@ -2621,10 +2621,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-9b9oa1qrmt.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-9b9oa1qrmt.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.gz",
       "AssetKind": "All",
@@ -2642,10 +2642,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zap00c0tb5-zwph15dxgs.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zap00c0tb5-zwph15dxgs.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.gz",
       "AssetKind": "All",
@@ -2663,10 +2663,10 @@
       "OriginalItemSpec": "C:\\Users\\leo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.15\\staticwebassets\\V5\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zzna4nrm5w-o4kw7cc6tf.gz",
+      "Identity": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zzna4nrm5w-o4kw7cc6tf.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.gz",
       "AssetKind": "All",
@@ -2724,7 +2724,7 @@
     },
     {
       "Route": "_content/NToastNotify/noty.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d82eh70q3d-8s9pevhhfs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d82eh70q3d-8s9pevhhfs.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2779,7 +2779,7 @@
     },
     {
       "Route": "_content/NToastNotify/noty.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d82eh70q3d-8s9pevhhfs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d82eh70q3d-8s9pevhhfs.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2861,7 +2861,7 @@
     },
     {
       "Route": "_content/NToastNotify/toastr.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xmqu3cgy6u-hyoec0zd2t.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xmqu3cgy6u-hyoec0zd2t.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -2916,7 +2916,7 @@
     },
     {
       "Route": "_content/NToastNotify/toastr.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xmqu3cgy6u-hyoec0zd2t.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xmqu3cgy6u-hyoec0zd2t.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2998,7 +2998,7 @@
     },
     {
       "Route": "Identity/css/site.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ofa40bqe71-o84wqeh1og.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ofa40bqe71-o84wqeh1og.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3053,7 +3053,7 @@
     },
     {
       "Route": "Identity/css/site.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ofa40bqe71-o84wqeh1og.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ofa40bqe71-o84wqeh1og.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3135,7 +3135,7 @@
     },
     {
       "Route": "Identity/favicon.ico",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\j9swiz3yzq-90yqlj465b.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\j9swiz3yzq-90yqlj465b.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3190,7 +3190,7 @@
     },
     {
       "Route": "Identity/favicon.ico.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\j9swiz3yzq-90yqlj465b.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\j9swiz3yzq-90yqlj465b.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3272,7 +3272,7 @@
     },
     {
       "Route": "Identity/js/site.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vltxs1u3vm-xtxxf3hu2r.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vltxs1u3vm-xtxxf3hu2r.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3327,7 +3327,7 @@
     },
     {
       "Route": "Identity/js/site.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vltxs1u3vm-xtxxf3hu2r.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vltxs1u3vm-xtxxf3hu2r.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3409,7 +3409,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ns4583i71s-mpyigms19s.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ns4583i71s-mpyigms19s.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3464,7 +3464,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ns4583i71s-mpyigms19s.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ns4583i71s-mpyigms19s.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3546,7 +3546,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\47012z8l2l-73kdqttayv.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\47012z8l2l-73kdqttayv.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3601,7 +3601,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\47012z8l2l-73kdqttayv.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\47012z8l2l-73kdqttayv.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3683,7 +3683,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\4vzefxwp2m-bpk8xqwxhs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\4vzefxwp2m-bpk8xqwxhs.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3738,7 +3738,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\4vzefxwp2m-bpk8xqwxhs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\4vzefxwp2m-bpk8xqwxhs.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3820,7 +3820,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bh4v3mdph9-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bh4v3mdph9-8inm30yfxf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -3875,7 +3875,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bh4v3mdph9-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bh4v3mdph9-8inm30yfxf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3957,7 +3957,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\l186vlgaag-ve6x09088i.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\l186vlgaag-ve6x09088i.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4012,7 +4012,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\l186vlgaag-ve6x09088i.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\l186vlgaag-ve6x09088i.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4094,7 +4094,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rsc7qacj1u-4gxs3k148c.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rsc7qacj1u-4gxs3k148c.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4149,7 +4149,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rsc7qacj1u-4gxs3k148c.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rsc7qacj1u-4gxs3k148c.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4231,7 +4231,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-9b9oa1qrmt.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-9b9oa1qrmt.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4286,7 +4286,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-9b9oa1qrmt.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-9b9oa1qrmt.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4368,7 +4368,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\qfr28sqcy1-fctod5rc9n.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\qfr28sqcy1-fctod5rc9n.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4423,7 +4423,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\qfr28sqcy1-fctod5rc9n.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\qfr28sqcy1-fctod5rc9n.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4505,7 +4505,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\14ipv7q33s-agp80tu62r.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\14ipv7q33s-agp80tu62r.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4560,7 +4560,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\14ipv7q33s-agp80tu62r.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\14ipv7q33s-agp80tu62r.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4642,7 +4642,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rh65p086id-st1cbwfwo5.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rh65p086id-st1cbwfwo5.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4697,7 +4697,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rh65p086id-st1cbwfwo5.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\rh65p086id-st1cbwfwo5.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4779,7 +4779,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-unj9p35syc.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-unj9p35syc.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4834,7 +4834,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-unj9p35syc.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-unj9p35syc.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4916,7 +4916,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-5vj65cig9w.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-5vj65cig9w.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4971,7 +4971,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-5vj65cig9w.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-5vj65cig9w.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5053,7 +5053,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\hh8ihyobdx-q2ku51ktnl.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\hh8ihyobdx-q2ku51ktnl.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5108,7 +5108,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\hh8ihyobdx-q2ku51ktnl.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\hh8ihyobdx-q2ku51ktnl.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5190,7 +5190,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bww8ud00yd-2q4vfeazbq.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bww8ud00yd-2q4vfeazbq.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5245,7 +5245,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bww8ud00yd-2q4vfeazbq.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\bww8ud00yd-2q4vfeazbq.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5327,7 +5327,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\edcrak57d7-n1oizzvkh6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\edcrak57d7-n1oizzvkh6.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5382,7 +5382,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\edcrak57d7-n1oizzvkh6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\edcrak57d7-n1oizzvkh6.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5464,7 +5464,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\sf8kf2lula-o371a8zbv2.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\sf8kf2lula-o371a8zbv2.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5519,7 +5519,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\sf8kf2lula-o371a8zbv2.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\sf8kf2lula-o371a8zbv2.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5601,7 +5601,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\3tzsqhslk9-7na4sro3qu.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\3tzsqhslk9-7na4sro3qu.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5656,7 +5656,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\3tzsqhslk9-7na4sro3qu.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\3tzsqhslk9-7na4sro3qu.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5738,7 +5738,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\oxk5o6czdw-jeal3x0ldm.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\oxk5o6czdw-jeal3x0ldm.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5793,7 +5793,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\oxk5o6czdw-jeal3x0ldm.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\oxk5o6czdw-jeal3x0ldm.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5875,7 +5875,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\k8b25g0zwc-f8imaxxbri.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\k8b25g0zwc-f8imaxxbri.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -5930,7 +5930,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\k8b25g0zwc-f8imaxxbri.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\k8b25g0zwc-f8imaxxbri.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6012,7 +6012,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8axix7wldr-okkk44j0xs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8axix7wldr-okkk44j0xs.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6067,7 +6067,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8axix7wldr-okkk44j0xs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8axix7wldr-okkk44j0xs.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6149,7 +6149,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d5z9sfpxbi-0wve5yxp74.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d5z9sfpxbi-0wve5yxp74.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6204,7 +6204,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d5z9sfpxbi-0wve5yxp74.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\d5z9sfpxbi-0wve5yxp74.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6286,7 +6286,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\u8428c4e9i-cwzlr5n8x4.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\u8428c4e9i-cwzlr5n8x4.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6341,7 +6341,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\u8428c4e9i-cwzlr5n8x4.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\u8428c4e9i-cwzlr5n8x4.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6423,7 +6423,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tg53r17ghy-npxfuf8dg6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tg53r17ghy-npxfuf8dg6.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6478,7 +6478,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tg53r17ghy-npxfuf8dg6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tg53r17ghy-npxfuf8dg6.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6560,7 +6560,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\nlrl0f3xs3-wmug9u23qg.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\nlrl0f3xs3-wmug9u23qg.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6615,7 +6615,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\nlrl0f3xs3-wmug9u23qg.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\nlrl0f3xs3-wmug9u23qg.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6697,7 +6697,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\1fc4q00scq-tey0rigmnh.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\1fc4q00scq-tey0rigmnh.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6752,7 +6752,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\1fc4q00scq-tey0rigmnh.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\1fc4q00scq-tey0rigmnh.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6834,7 +6834,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8xykfy6qmd-j75batdsum.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8xykfy6qmd-j75batdsum.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -6889,7 +6889,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8xykfy6qmd-j75batdsum.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\8xykfy6qmd-j75batdsum.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6971,7 +6971,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vsrbd71spn-16095smhkz.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vsrbd71spn-16095smhkz.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7026,7 +7026,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vsrbd71spn-16095smhkz.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vsrbd71spn-16095smhkz.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7108,7 +7108,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\cynp17w084-vy0bq9ydhf.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\cynp17w084-vy0bq9ydhf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7163,7 +7163,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\cynp17w084-vy0bq9ydhf.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\cynp17w084-vy0bq9ydhf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7245,7 +7245,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\7o8oyvng68-b4skse8du6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\7o8oyvng68-b4skse8du6.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7300,7 +7300,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\7o8oyvng68-b4skse8du6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\7o8oyvng68-b4skse8du6.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7382,7 +7382,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\h9vwtoirpy-ab1c3rmv7g.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\h9vwtoirpy-ab1c3rmv7g.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7437,7 +7437,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\h9vwtoirpy-ab1c3rmv7g.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\h9vwtoirpy-ab1c3rmv7g.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7519,7 +7519,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\o5k23vqhrk-u3xrusw2ol.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\o5k23vqhrk-u3xrusw2ol.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7574,7 +7574,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\o5k23vqhrk-u3xrusw2ol.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\o5k23vqhrk-u3xrusw2ol.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7656,7 +7656,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\iznc766avz-56d2bn4wt9.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\iznc766avz-56d2bn4wt9.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7711,7 +7711,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\iznc766avz-56d2bn4wt9.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\iznc766avz-56d2bn4wt9.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7793,7 +7793,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\0k1i85ntyh-l2av4jpuoj.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\0k1i85ntyh-l2av4jpuoj.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7848,7 +7848,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\0k1i85ntyh-l2av4jpuoj.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\0k1i85ntyh-l2av4jpuoj.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7930,7 +7930,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xa379ftczi-kbynt5jhd9.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xa379ftczi-kbynt5jhd9.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -7985,7 +7985,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.js.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xa379ftczi-kbynt5jhd9.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\xa379ftczi-kbynt5jhd9.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8067,7 +8067,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\lr5hmrr0j7-25iw1kog22.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\lr5hmrr0j7-25iw1kog22.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8122,7 +8122,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\lr5hmrr0j7-25iw1kog22.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\lr5hmrr0j7-25iw1kog22.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8204,7 +8204,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ivy2s9gwh5-c2nslu3uf3.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ivy2s9gwh5-c2nslu3uf3.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8259,7 +8259,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ivy2s9gwh5-c2nslu3uf3.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ivy2s9gwh5-c2nslu3uf3.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8341,7 +8341,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\higufxz8op-m39kt2b5c9.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\higufxz8op-m39kt2b5c9.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8396,7 +8396,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\higufxz8op-m39kt2b5c9.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\higufxz8op-m39kt2b5c9.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8478,7 +8478,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.js.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\s3tglgz8hr-2lgwfvgpvi.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\s3tglgz8hr-2lgwfvgpvi.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8533,7 +8533,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.js.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\s3tglgz8hr-2lgwfvgpvi.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\s3tglgz8hr-2lgwfvgpvi.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8615,7 +8615,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vw9sls9bhj-um2aeqy4ik.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vw9sls9bhj-um2aeqy4ik.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8670,7 +8670,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vw9sls9bhj-um2aeqy4ik.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vw9sls9bhj-um2aeqy4ik.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8752,7 +8752,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ym8tkpcl2i-wsezl0heh6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ym8tkpcl2i-wsezl0heh6.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8807,7 +8807,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.esm.min.js.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ym8tkpcl2i-wsezl0heh6.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ym8tkpcl2i-wsezl0heh6.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8889,7 +8889,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zzna4nrm5w-o4kw7cc6tf.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zzna4nrm5w-o4kw7cc6tf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -8944,7 +8944,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zzna4nrm5w-o4kw7cc6tf.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zzna4nrm5w-o4kw7cc6tf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9026,7 +9026,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.js.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\igscs4x0yk-6ukhryfubh.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\igscs4x0yk-6ukhryfubh.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9081,7 +9081,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.js.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\igscs4x0yk-6ukhryfubh.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\igscs4x0yk-6ukhryfubh.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9163,7 +9163,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zap00c0tb5-zwph15dxgs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zap00c0tb5-zwph15dxgs.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9218,7 +9218,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zap00c0tb5-zwph15dxgs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\zap00c0tb5-zwph15dxgs.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9300,7 +9300,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.min.js.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\pogzkicjpz-u33ctipx7g.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\pogzkicjpz-u33ctipx7g.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9355,7 +9355,7 @@
     },
     {
       "Route": "Identity/lib/bootstrap/dist/js/bootstrap.min.js.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\pogzkicjpz-u33ctipx7g.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\pogzkicjpz-u33ctipx7g.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9474,7 +9474,7 @@
     },
     {
       "Route": "Identity/lib/jquery/dist/jquery.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tpsq5dibur-fwhahm2icz.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tpsq5dibur-fwhahm2icz.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9529,7 +9529,7 @@
     },
     {
       "Route": "Identity/lib/jquery/dist/jquery.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tpsq5dibur-fwhahm2icz.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\tpsq5dibur-fwhahm2icz.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9611,7 +9611,7 @@
     },
     {
       "Route": "Identity/lib/jquery/dist/jquery.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t0qo7o574p-dd6z7egasc.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t0qo7o574p-dd6z7egasc.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9666,7 +9666,7 @@
     },
     {
       "Route": "Identity/lib/jquery/dist/jquery.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t0qo7o574p-dd6z7egasc.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t0qo7o574p-dd6z7egasc.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9748,7 +9748,7 @@
     },
     {
       "Route": "Identity/lib/jquery/dist/jquery.min.map",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\b9lhb08218-5pze98is44.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\b9lhb08218-5pze98is44.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9803,7 +9803,7 @@
     },
     {
       "Route": "Identity/lib/jquery/dist/jquery.min.map.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\b9lhb08218-5pze98is44.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\b9lhb08218-5pze98is44.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9885,7 +9885,7 @@
     },
     {
       "Route": "Identity/lib/jquery/LICENSE.txt",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\yfc7ypekbg-mlv21k5csn.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\yfc7ypekbg-mlv21k5csn.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9940,7 +9940,7 @@
     },
     {
       "Route": "Identity/lib/jquery/LICENSE.txt.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\yfc7ypekbg-mlv21k5csn.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\yfc7ypekbg-mlv21k5csn.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10022,7 +10022,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/additional-methods.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ypthv7q62w-ay5nd8zt9x.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ypthv7q62w-ay5nd8zt9x.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10077,7 +10077,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/additional-methods.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ypthv7q62w-ay5nd8zt9x.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ypthv7q62w-ay5nd8zt9x.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10159,7 +10159,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/additional-methods.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t6e3b82hrf-9oaff4kq20.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t6e3b82hrf-9oaff4kq20.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10214,7 +10214,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/additional-methods.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t6e3b82hrf-9oaff4kq20.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\t6e3b82hrf-9oaff4kq20.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10296,7 +10296,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/jquery.validate.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\uocis9wxbx-pzqfkb6aqo.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\uocis9wxbx-pzqfkb6aqo.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10351,7 +10351,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/jquery.validate.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\uocis9wxbx-pzqfkb6aqo.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\uocis9wxbx-pzqfkb6aqo.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10433,7 +10433,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/jquery.validate.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\2tikzqlmtu-b7iojwaux1.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\2tikzqlmtu-b7iojwaux1.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10488,7 +10488,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/dist/jquery.validate.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\2tikzqlmtu-b7iojwaux1.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\2tikzqlmtu-b7iojwaux1.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10570,7 +10570,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/LICENSE.md",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9muusbdg0a-x0q3zqp4vz.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9muusbdg0a-x0q3zqp4vz.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10625,7 +10625,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation/LICENSE.md.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9muusbdg0a-x0q3zqp4vz.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\9muusbdg0a-x0q3zqp4vz.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10707,7 +10707,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\362sl0bktu-47otxtyo56.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\362sl0bktu-47otxtyo56.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10762,7 +10762,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\362sl0bktu-47otxtyo56.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\362sl0bktu-47otxtyo56.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10844,7 +10844,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vov7uhd1ha-4v8eqarkd7.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vov7uhd1ha-4v8eqarkd7.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10899,7 +10899,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vov7uhd1ha-4v8eqarkd7.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\vov7uhd1ha-4v8eqarkd7.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10981,7 +10981,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation-unobtrusive/LICENSE.txt",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ldxy2n3w6q-356vix0kms.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ldxy2n3w6q-356vix0kms.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -11036,7 +11036,7 @@
     },
     {
       "Route": "Identity/lib/jquery-validation-unobtrusive/LICENSE.txt.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ldxy2n3w6q-356vix0kms.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\ldxy2n3w6q-356vix0kms.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11126,7 +11126,7 @@
     },
     {
       "Route": "noty.8s9pevhhfs.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -11189,7 +11189,7 @@
     },
     {
       "Route": "noty.8s9pevhhfs.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11279,7 +11279,7 @@
     },
     {
       "Route": "noty.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -11334,7 +11334,7 @@
     },
     {
       "Route": "noty.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\n6dxkez9ve-8s9pevhhfs.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11424,7 +11424,7 @@
     },
     {
       "Route": "toastr.hyoec0zd2t.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -11487,7 +11487,7 @@
     },
     {
       "Route": "toastr.hyoec0zd2t.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11577,7 +11577,7 @@
     },
     {
       "Route": "toastr.js",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -11632,7 +11632,7 @@
     },
     {
       "Route": "toastr.js.gz",
-      "AssetFile": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
+      "AssetFile": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\obj\\Debug\\net9.0\\compressed\\r3wfablozb-hyoec0zd2t.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {

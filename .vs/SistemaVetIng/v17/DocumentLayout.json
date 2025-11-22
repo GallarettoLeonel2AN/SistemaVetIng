@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\views\\atencionveterinaria\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\atencionveterinaria\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\servicios\\implementacion\\atencionveterinariaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\atencionveterinariaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Migrations\\20251122203455_ActualizacionMemento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SistemaVetIng\\Migrations\\20251122203455_ActualizacionMemento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\repository\\implementacion\\atencionveterinariarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\repository\\implementacion\\atencionveterinariarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\repository\\interfaces\\iatencionveterinariarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\repository\\interfaces\\iatencionveterinariarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\decorator\\descuentoclientefrecuente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\decorator\\descuentoclientefrecuente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\decorator\\recargorazapeligrosa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\decorator\\recargorazapeligrosa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\decorator\\recargofindesemana.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\decorator\\recargofindesemana.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\decorator\\atenciondecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\decorator\\atenciondecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\decorator\\costobaseatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\decorator\\costobaseatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\decorator\\icostoatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\decorator\\icostoatencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\views\\atencionveterinaria\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\atencionveterinaria\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\models\\memento\\atencionveterinariamemento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,6 +49,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\leo\\source\\repos\\sistemaveting\\sistemaveting\\migrations\\20251122203455_actualizacionmemento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\migrations\\20251122203455_actualizacionmemento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 422,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +78,117 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DescuentoClienteFrecuente.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\DescuentoClienteFrecuente.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Decorator\\DescuentoClienteFrecuente.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\DescuentoClienteFrecuente.cs",
+              "RelativeToolTip": "SistemaVetIng\\Models\\Decorator\\DescuentoClienteFrecuente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:38:03.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RecargoRazaPeligrosa.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\RecargoRazaPeligrosa.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Decorator\\RecargoRazaPeligrosa.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\RecargoRazaPeligrosa.cs",
+              "RelativeToolTip": "SistemaVetIng\\Models\\Decorator\\RecargoRazaPeligrosa.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:33:50.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RecargoFinDeSemana.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\RecargoFinDeSemana.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Decorator\\RecargoFinDeSemana.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\RecargoFinDeSemana.cs",
+              "RelativeToolTip": "SistemaVetIng\\Models\\Decorator\\RecargoFinDeSemana.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:28:29.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AtencionDecorator.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\AtencionDecorator.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Decorator\\AtencionDecorator.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\AtencionDecorator.cs",
+              "RelativeToolTip": "SistemaVetIng\\Models\\Decorator\\AtencionDecorator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:25:33.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AtencionVeterinariaService.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
+              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
+              "ViewState": "AgIAAM0BAAAAAAAAAAAAAAYCAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T20:29:09.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AtencionVeterinariaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Repository\\Implementacion\\AtencionVeterinariaRepository.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Repository\\Implementacion\\AtencionVeterinariaRepository.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Repository\\Implementacion\\AtencionVeterinariaRepository.cs",
+              "RelativeToolTip": "SistemaVetIng\\Repository\\Implementacion\\AtencionVeterinariaRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAAEgBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:39:51.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "IAtencionVeterinariaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Repository\\Interfaces\\IAtencionVeterinariaRepository.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Repository\\Interfaces\\IAtencionVeterinariaRepository.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Repository\\Interfaces\\IAtencionVeterinariaRepository.cs",
+              "RelativeToolTip": "SistemaVetIng\\Repository\\Interfaces\\IAtencionVeterinariaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:39:39.126Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CostoBaseAtencion.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\CostoBaseAtencion.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Decorator\\CostoBaseAtencion.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\CostoBaseAtencion.cs",
+              "RelativeToolTip": "SistemaVetIng\\Models\\Decorator\\CostoBaseAtencion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:23:09.178Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ICostoAtencion.cs",
+              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\ICostoAtencion.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Decorator\\ICostoAtencion.cs",
+              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Decorator\\ICostoAtencion.cs",
+              "RelativeToolTip": "SistemaVetIng\\Models\\Decorator\\ICostoAtencion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T21:22:12.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "20251122203455_ActualizacionMemento.cs",
               "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Migrations\\20251122203455_ActualizacionMemento.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Migrations\\20251122203455_ActualizacionMemento.cs",
@@ -54,25 +196,11 @@
               "RelativeToolTip": "SistemaVetIng\\Migrations\\20251122203455_ActualizacionMemento.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T20:34:55.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-22T20:34:55.629Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AtencionVeterinariaService.cs",
-              "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "ToolTip": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\AtencionVeterinariaService.cs",
-              "ViewState": "AgIAALMBAAAAAAAAAAAqwNQBAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T20:29:09.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "Editar.cshtml",
               "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Views\\AtencionVeterinaria\\Editar.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\AtencionVeterinaria\\Editar.cshtml",
@@ -80,12 +208,11 @@
               "RelativeToolTip": "SistemaVetIng\\Views\\AtencionVeterinaria\\Editar.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYBAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-22T20:22:58.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-22T20:22:58.604Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "AtencionVeterinariaMemento.cs",
               "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\Models\\Memento\\AtencionVeterinariaMemento.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Models\\Memento\\AtencionVeterinariaMemento.cs",
@@ -93,12 +220,11 @@
               "RelativeToolTip": "SistemaVetIng\\Models\\Memento\\AtencionVeterinariaMemento.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAA1wBkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T20:21:34.827Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-22T20:21:34.827Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "portal-theme.css",
               "DocumentMoniker": "C:\\Users\\leo\\source\\repos\\SistemaVeting\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
@@ -106,8 +232,7 @@
               "RelativeToolTip": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "ViewState": "AgIAAEIEAAAAAAAAAAAAAFQEAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-22T19:08:29.94Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-22T19:08:29.94Z"
             }
           ]
         }

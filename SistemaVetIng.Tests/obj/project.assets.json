@@ -11656,9 +11656,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
       "projectName": "SistemaVetIng.Tests",
-      "projectPath": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
+      "projectPath": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
       "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\obj\\",
       "projectStyle": "PackageReference",
@@ -11681,8 +11681,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
-              "projectPath": "C:\\Users\\leo\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj"
+            "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
+              "projectPath": "C:\\Users\\leo\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj"
             }
           }
         }

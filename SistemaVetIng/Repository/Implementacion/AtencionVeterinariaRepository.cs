@@ -318,5 +318,14 @@ namespace SistemaVetIng.Repository.Implementacion
             _context.AtencionesVeterinarias.Update(atencion);
             await _context.SaveChangesAsync();
         }
+        public async Task<int> ContarAtencionesHistoricasPorCliente(int clienteId)
+        {
+            // Contamos cuántas atenciones tiene cualquier mascota de este dueño
+            return await _context.AtencionesVeterinarias
+                .Include(a => a.HistoriaClinica)
+                .ThenInclude(hc => hc.Mascota)
+                .Where(a => a.HistoriaClinica.Mascota.ClienteId == clienteId)
+                .CountAsync();
+        }
     }
 }
