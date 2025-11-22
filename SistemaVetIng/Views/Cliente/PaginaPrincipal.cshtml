@@ -6,7 +6,7 @@
 @using SistemaVetIng.Models.Extension
 @model SistemaVetIng.ViewsModels.ClientePaginaPrincipalViewModel
 @{
-    ViewData["Title"] = "VetIng - Cliente";
+    ViewData["Title"] = "VetIng - Portal Cliente";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -15,347 +15,323 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/formularioPagosCliente.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/cliente-landing.css" asp-append-version="true" />
 </head>
 
 <body>
     <header class="main-header">
-        <a href="/Cliente/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/Cliente/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
+
         <nav class="main-nav">
-            <ul class="nav-list">
-                 <li>
-                 <a class="nav-link" asp-controller="Perfil" asp-action="Index">Perfil</a>
-                </li>
-                <li><a class="nav-link" href="#resumen">Resumen</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" asp-controller="Perfil" asp-action="Index">Perfil</a></li>
                 <li><a class="nav-link" href="#turnos">Mis Turnos</a></li>
-                <li><a class="nav-link" href="#mascotas">Mis Mascotas</a></li>
+                <li><a class="nav-link" href="#mascotas">Mascotas</a></li>
                 <li><a class="nav-link" href="#pagos">Pagos</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
+    <main class="main-content">
 
-        
-        <section id="resumen" class="v1-section">
-            <h2 class="v1-section-title">Mi Resumen</h2>
-            <div class="v1-card-grid">
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Turnos</h3>
-                        <i class="fa-regular fa-calendar-days v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                      <div class="v1-card-value">@Model.CantidadTurnos</div>
-                        <p class="v1-card-description">Agendados historicamente</p>
-                    </div>
-                </div>
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Próximos Turnos</h3>
-                        <i class="fa-solid fa-clock v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">@Model.CantidadTurnosPendientesPorCliente</div>
-                        <p class="v1-card-description">Reservados y pendientes de atencion</p>
-                    </div>
-                </div>
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Mis Mascotas</h3>
-                        <i class="fa-solid fa-heart v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">@Model.CantidadMascotasPorCliente</div>
-                        <p class="v1-card-description">Registradas en VetIng</p>
-                    </div>
-                </div>
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Pagos Pendientes</h3>
-                        <i class="fa-solid fa-credit-card v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">@Model.CantidadPagosPendientes</div>
-                        <p class="v1-card-description">En espera de pago</p>
-                    </div>
-                </div>
+        <section class="dash-hero">
+            <div class="dash-title">
+                <h1>Bienvenido @Model.NombreCompleto <br><span>VetIng Portal</span></h1>
+                <p class="dash-subtitle">Tu espacio personal para gestionar la salud de tus mascotas, turnos y pagos de forma segura.</p>
+            </div>
+            <div class="dash-actions">
+                <a asp-controller="Turno" asp-action="ReservarTurno" class="btn btn-primary">
+                    <i class="fa-regular fa-calendar-plus"></i> Nuevo Turno
+                </a>
+                <a asp-controller="Cliente" asp-action="HistorialPagos" class="btn btn-outline">
+                    <i class="fa-solid fa-receipt"></i> Ver Historial de Pagos
+                </a>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="stat-value">@Model.CantidadTurnos</div>
+                <div class="stat-label">Turnos solicitados</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon icon-coral"><i class="fa-solid fa-hourglass-start"></i></div>
+                <div class="stat-value">@Model.CantidadTurnosPendientesPorCliente</div>
+                <div class="stat-label">Turnos pendientes</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon icon-green"><i class="fa-solid fa-dog"></i></div>
+                <div class="stat-value">@Model.CantidadMascotasPorCliente</div>
+                <div class="stat-label">Mis mascotas</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-credit-card"></i></div>
+                <div class="stat-value">@Model.CantidadPagosPendientes</div>
+                <div class="stat-label">Pagos a realizar</div>
             </div>
         </section>
 
         @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.View))
         {
-       <section id="turnos" class="v1-section">
-    <h2 class="v1-section-title">Mis Turnos</h2>
-
-    <div class="v1-section-actions">
-                    @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Create))
-                    {
-        <a asp-controller="Turno" asp-action="ReservarTurno" class="v1-btn v1-btn-primary">
-            <i class="fa-solid fa-plus"></i> Reservar Turno
-        </a>
-         }
-
-        <form asp-action="PaginaPrincipal" method="get" class="v1-search-form" style="margin-left: auto;"> 
-            <div class="v1-input-group">
-                <i class="fa-solid fa-search v1-input-icon"></i>
-                <input type="text" name="busquedaTurno" placeholder="Buscar por Mascota" class="v1-input" value="@Model.BusquedaTurnoActual" />
-              
-            </div>
-        </form>
-    </div>
-
-    <div class="v1-card">
-        <div class="v1-card-header">
-            <h3 class="v1-card-title">Historial de Turnos</h3>
-        </div>
-        <div class="v1-card-content v1-appointment-list-content">
-            @if (Model.Turnos != null && Model.Turnos.Any())
-            {
-                @foreach (var turno in Model.Turnos) 
-                {
-                    <div class="v1-appointment-item @(turno.Estado != "Pendiente" ? "appointment-inactive" : "")">
-                        <div class="v1-appointment-info">
-                            <i class="fa-regular fa-clock v1-appointment-icon"></i>
-                            <div>
-                                <p class="v1-appointment-time">@turno.Fecha.ToString("dd/MM/yyyy")</p>
-                                <p class="v1-appointment-time">@turno.Horario.ToString(@"hh\:mm") hs</p>
-                                @if (turno.PrimeraCita && turno.Mascota == null)
-                                {
-                                    <p class="v1-appointment-pet">Primera Cita</p>
-                                }
-                                else
-                                {
-                                    <p class="v1-appointment-pet">Mascota: @(turno.Mascota?.Nombre ?? "N/A")</p>
-                                }
-                            </div>
-                        </div>
-                        <div class="v1-appointment-badges">
-                            @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                            {
-                                <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
-                            }
-                            @{
-                                string badgeClass = turno.Estado switch {
-                                     "Finalizado" => "v1-badge-green",
-                                     "Pendiente" => "v1-badge-yellow",
-                                     "Cancelado" => "v1-badge-red",
-                                     "No Asistió" => "v1-badge-gray",
-                                     _ => "v1-badge-gray"
-                                 };
-                            }
-                           <span class="v1-badge @badgeClass">@turno.Estado</span>
-
-                           @if (turno.Estado == "Pendiente")
-                           {
-                                            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Cancel))
-                                        {
-                                    <form asp-controller="Turno" asp-action="CancelarTurnoCliente" method="post" onsubmit="return confirm('¿Estás seguro de que deseas cancelar este turno?');">
-                                     @Html.AntiForgeryToken()
-                                     <input type="hidden" name="turnoId" value="@turno.Id" />
-                                     <button type="submit" class="v1-btn-cancelar">
-                                         <i class="fas fa-times-circle"></i> Cancelar
-                                     </button>
-                                 </form>
-                                 }
-                           }
-                        </div>
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="v1-empty-state">
-                    @if (!string.IsNullOrEmpty(Model.BusquedaTurnoActual))
-                    {
-                        <span>No se encontraron turnos que coincidan con "@Model.BusquedaTurnoActual".</span>
-                    }
-                    else
-                    {
-                        <span>No tienes turnos registrados.</span>
-                    }
+            <section id="turnos">
+                <div class="section-header">
+                    <h2 class="section-heading">Próximos Turnos</h2>
+                    <form asp-action="PaginaPrincipal" method="get" class="search-box">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" name="busquedaTurno" class="search-input" placeholder="Buscar mascota..." value="@Model.BusquedaTurnoActual" />
+                    </form>
                 </div>
-            }
-        </div>
 
-        <div class="v1-card-footer pagination-container">
-            @if (Model.PaginacionTurnos != null && Model.PaginacionTurnos.PageCount > 1)
-            {
-                @Html.PagedListPager(Model.PaginacionTurnos, page => Url.Action("PaginaPrincipal",
-                    new { page, busquedaTurno = Model.BusquedaTurnoActual }),
-                    new PagedListRenderOptions {
-                        LiElementClasses = new string[] { "page-item" },
-                        PageClasses = new string[] { "page-link" },
-                        ContainerDivClasses = new[] { "pagination justify-content-center" },
-                        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                        DisplayLinkToNextPage = PagedListDisplayMode.Always
-                    })
-            }
-             else if(Model.PaginacionTurnos != null)
-            {
-                 <p class="text-muted text-center" style="margin:0;">Mostrando @Model.PaginacionTurnos.TotalItemCount @(Model.PaginacionTurnos.TotalItemCount == 1 ? "turno" : "turnos")</p>
-            }
-        </div>
-    </div>
-</section>
-       }
-
-        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.View))
-        {
-        <section id="mascotas" class="v1-section">
-            <h2 class="v1-section-title">Mis Mascotas</h2>
-            <div class="v1-card">
-                <div class="v1-card-content v1-list-content">
-                    @if (Model.Mascotas != null && Model.Mascotas.Any())
+                <div class="list-container">
+                    @if (Model.Turnos != null && Model.Turnos.Any())
                     {
-                        @foreach (var mascota in Model.Mascotas)
+                        foreach (var turno in Model.Turnos)
                         {
-                            <div class="v1-list-item">
-                                <div class="v1-list-info">
-                                    <div class="v1-pet-icon-bg"><i class="fa-solid fa-heart v1-pet-icon"></i></div>
-                                    <div>
-                                        <p class="v1-list-name">@mascota.NombreMascota</p>
-                                        <p class="v1-list-subtext">@mascota.Especie &bull; @mascota.Raza</p>
+                            <div class="list-item @(turno.Estado != "Pendiente" ? "item-inactive" : "")">
+                                <div style="display:flex; align-items:center;">
+                                    <div class="date-badge">
+                                        <div class="date-day">@turno.Fecha.Day</div>
+                                        <div class="date-month">@turno.Fecha.ToString("MMM", new CultureInfo("es-ES"))</div>
+                                    </div>
+                                    
+                                    <div class="item-info">
+                                        <h4>@(turno.Mascota?.Nombre ?? "Primera Cita")</h4>
+                                        <p>
+                                            <i class="fa-regular fa-clock" style="color:var(--secondary-color);"></i> @turno.Horario.ToString(@"hh\:mm") hs
+                                            &nbsp;|&nbsp; @turno.Motivo
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="v1-list-actions">
-                                    <a asp-controller="Mascota" asp-action="Detalle" asp-route-id="@mascota.Id" class="v1-btn v1-btn-ghost">
-                                        <span class="v1-badge v1-badge-secondary">
-                                            Historial Clinico
-                                        </span><i class="fa-solid fa-eye"></i>
-                                    </a>
+
+                                <div style="display:flex; align-items:center;">
+                                    @{
+                                        string badgeClass = turno.Estado switch {
+                                            "Finalizado" => "badge-success",
+                                            "Pendiente" => "badge-pending",
+                                            "Cancelado" => "badge-error",
+                                            _ => "badge-neutral"
+                                        };
+                                    }
+                                    <span class="badge @badgeClass">@turno.Estado</span>
+
+                                    @if (turno.Estado == "Pendiente" && HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Cancel))
+                                    {
+                                        <form asp-controller="Turno" asp-action="CancelarTurnoCliente" method="post" onsubmit="return confirm('¿Deseas cancelar este turno?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="turnoId" value="@turno.Id" />
+                                            <button type="submit" class="btn-cancel">
+                                                <i class="fa-solid fa-ban"></i> Cancelar
+                                            </button>
+                                        </form>
+                                    }
                                 </div>
                             </div>
                         }
                     }
                     else
                     {
-                        <div class="v1-empty-state">No tienes mascotas registradas.</div>
-                    }
-                </div>
-            </div>
-        </section>
-        }
-
-
-        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Pago.View))
-        {
-       <section id="pagos" class="v1-section">
-    <h2 class="v1-section-title">Pagos Pendientes</h2>
-
-    <div class="v1-card">
-        <form id="form-pagos">
-            @Html.AntiForgeryToken()
-
-            <div class="payment-list-container">
-                @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
-                {
-                    @foreach (var atencionPendiente in Model.PagosPendientes.Where(p => p.EstadoDePago == "Pendiente"))
-                    {
-                        <div class="payment-item" data-pago-id="pago-@atencionPendiente.AtencionId">
-                            
-                            <div class="payment-checkbox-col">
-                                <input type="checkbox"
-                                       class="chk-pago"
-                                       value="@atencionPendiente.AtencionId"
-                                       data-monto="@atencionPendiente.CostoTotal.ToString(CultureInfo.InvariantCulture)"
-                                       id="pago-@atencionPendiente.AtencionId" />
-                            </div>
-
-                            <div class="payment-info-col">
-                                <p class="v1-list-name">Atención: @atencionPendiente.MascotaNombre</p>
-                                <p class="v1-list-subtext">@atencionPendiente.CostoTotal.ToString("C", new CultureInfo("es-AR"))</p>
-                                <p class="v1-list-subtext-small">Fecha: @atencionPendiente.Fecha.ToShortDateString()</p>
-                            </div>
-
+                         <div style="padding:40px; text-align:center; color:var(--text-muted);">
+                            <i class="fa-regular fa-calendar-xmark" style="font-size:2em; margin-bottom:15px; display:block;"></i>
+                            No hay turnos registrados.
                         </div>
                     }
-                }
-                else
-                {
-                    <div class="v1-empty-state" style="border: none;">
-                        <i class="fas fa-check-circle" style="font-size: 2rem; color: #48BB78; margin-bottom: 1rem;"></i>
-                        <p>¡Felicidades! No tienes pagos pendientes.</p>
-                    </div>
-                }
-            </div>
 
-            @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
-            {
-                <div class="payment-footer">
-                    <h3 class="payment-total">Total: <span id="total-a-pagar">$0.00</span></h3>
-                    <button type="submit" id="btn-pagar-seleccionados" class="v1-btn v1-btn-primary">
-                        <i class="fa-solid fa-credit-card"></i> Pagar Seleccionados
-                    </button>
+                    <div class="pagination-wrapper">
+                        @if (Model.PaginacionTurnos != null && Model.PaginacionTurnos.PageCount > 1)
+                        {
+                            @Html.PagedListPager(Model.PaginacionTurnos, page => Url.Action("PaginaPrincipal",
+                                new { page, busquedaTurno = Model.BusquedaTurnoActual }),
+                                new PagedListRenderOptions {
+                                    LiElementClasses = new string[] { "page-item" },
+                                    PageClasses = new string[] { "page-link" },
+                                    ContainerDivClasses = new[] { "pagination" },
+                                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                    DisplayLinkToLastPage = PagedListDisplayMode.Never
+                                })
+                        }
+                    </div>
                 </div>
-            }
-        </form>
-    </div>
-</section>
+            </section>
         }
-          <a asp-controller="Cliente" asp-action="HistorialPagos" class="v1-btn v1-btn-primary">
-            <i class="fa-solid fa-money-bill-wave"></i> Ver Historial de Pagos
-        </a>
+
+        <br><br>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:40px;">
+            
+            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.View))
+            {
+            <section id="mascotas">
+                <div class="section-header">
+                    <h2 class="section-heading">Mis Mascotas</h2>
+                </div>
+                <div class="list-container">
+                     @if (Model.Mascotas != null && Model.Mascotas.Any())
+                    {
+                        foreach (var mascota in Model.Mascotas)
+                        {
+                            <div class="list-item">
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:40px; height:40px; background:#333; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--secondary-color);">
+                                        <i class="fa-solid fa-paw"></i>
+                                    </div>
+                                    <div class="item-info">
+                                        <h4>@mascota.NombreMascota</h4>
+                                        <p>@mascota.Especie &bull; @mascota.Raza</p>
+                                    </div>
+                                </div>
+                                <a asp-controller="Mascota" asp-action="Detalle" asp-route-id="@mascota.Id" class="btn btn-outline btn-sm">
+                                    Ver
+                                </a>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="padding:30px; text-align:center; color:var(--text-muted);">Sin mascotas.</div>
+                    }
+                </div>
+            </section>
+            }
+
+            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Pago.View))
+            {
+            <section id="pagos">
+                <div class="section-header">
+                    <h2 class="section-heading">Pagos Pendientes</h2>
+                </div>
+                <div class="list-container">
+                    <form id="form-pagos">
+                        @Html.AntiForgeryToken()
+                        <div style="max-height:300px; overflow-y:auto;">
+                            @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
+                            {
+                                foreach (var pago in Model.PagosPendientes.Where(p => p.EstadoDePago == "Pendiente"))
+                                {
+                                    <div class="list-item">
+                                        <div style="display:flex; align-items:center; gap:15px;">
+                                            <input type="checkbox" class="checkbox-custom chk-pago" value="@pago.AtencionId" data-monto="@pago.CostoTotal.ToString(CultureInfo.InvariantCulture)" />
+                                            <div class="item-info">
+                                                <h4>@pago.MascotaNombre</h4>
+                                                <p>@pago.Fecha.ToShortDateString()</p>
+                                            </div>
+                                        </div>
+                                        <div style="font-weight:bold; color:var(--secondary-color);">
+                                            @pago.CostoTotal.ToString("C", new CultureInfo("es-AR"))
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                 <div style="padding:30px; text-align:center;">
+                                    <i class="fa-solid fa-check-circle" style="color:var(--success-color); font-size:2em; margin-bottom:10px;"></i>
+                                    <p style="color:var(--text-muted);">Estás al día.</p>
+                                </div>
+                            }
+                        </div>
+
+                        @if (Model.PagosPendientes != null && Model.PagosPendientes.Any(p => p.EstadoDePago == "Pendiente"))
+                        {
+                            <div class="payments-footer">
+                                <div class="total-display">Total: <span id="total-a-pagar">$0.00</span></div>
+                                <button type="submit" id="btn-pagar-seleccionados" class="btn btn-primary btn-sm">
+                                    Pagar
+                                </button>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </section>
+            }
+        </div>
 
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-col footer-info">
-            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            </div>
+   <footer class="main-footer">
+    <div class="footer-col footer-info">
+        <div class="footer-logo-container">
+            <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+            <h3 class="footer-brand">VetIng</h3>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
-            <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
-            </ul>
+        <p class="footer-description">
+            Cuidado profesional para tus mascotas. Tecnología y salud unidas para su bienestar.
+        </p>
+        <div class="footer-social-icons">
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
-            <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
-        </div>
-    </footer>
+    </div>
+
+    <div class="footer-col">
+        <h4 class="footer-heading">Visítanos</h4>
+        <ul class="footer-links" style="gap: 15px;">
+            <li>
+                <i class="fa-solid fa-location-dot" style="color:var(--secondary-color); width:20px;"></i> 
+                UAI Sede Rosario, Santa Fe
+            </li>
+            <li>
+                <i class="fa-solid fa-phone" style="color:var(--secondary-color); width:20px;"></i> 
+                +54 341 12345678
+            </li>
+            <li>
+                <i class="fa-solid fa-clock" style="color:var(--secondary-color); width:20px;"></i> 
+                Lun - Vie: 9:00 - 18:00 hs
+            </li>
+            <li>
+                <i class="fa-solid fa-clock" style="color:var(--secondary-color); width:20px;"></i> 
+                Sáb: 9:00 - 13:00 hs
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4 class="footer-heading">Mi Cuenta</h4>
+        <ul class="footer-links">
+            <li><a asp-controller="Turno" asp-action="ReservarTurno">Reservar Nuevo Turno</a></li>
+            <li><a asp-controller="Perfil" asp-action="Index">Mi Perfil</a></li>
+            <li><a href="#mascotas">Ver mis Mascotas</a></li>
+            <li><a href="#pagos">Pagos Pendientes</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4 class="footer-heading">Ayuda</h4>
+        <ul class="footer-links">
+            <li><a href="mailto:soporte@veting.com">Contactar Soporte</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li>
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
+    </div>
+</footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -363,5 +339,16 @@
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     <script src="~/js/pagos.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
+
+    <script>
+        // Lógica básica para el menu hamburguesa
+        const burger = document.getElementById('hamburgerBtn');
+        const navList = document.getElementById('navMenu');
+        if(burger){
+            burger.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+        }
+    </script>
 </body>
 </html>
