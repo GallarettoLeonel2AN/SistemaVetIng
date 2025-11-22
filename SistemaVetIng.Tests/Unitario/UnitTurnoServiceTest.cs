@@ -1,4 +1,5 @@
 ﻿using Moq;
+using SistemaVetIng.Models.Singleton;
 using SistemaVetIng.Repository.Interfaces;
 using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
@@ -10,17 +11,21 @@ namespace SistemaVetIng.Tests.Unitario
         private readonly Mock<ITurnoRepository> _mockTurnoRepo;
         private readonly TurnoService _service;
         private readonly Mock<IVeterinariaConfigService> _mockVeterinariaConfigService;
+        private readonly Mock<IConfiguracionHorarioCache> _mockCache;
 
         public UnitTurnoServiceTests()
         {
             // Mock es para simular nuestro repositorio y realizar las pruebas sobre esa bd que no es real
             _mockTurnoRepo = new Mock<ITurnoRepository>();
             _mockVeterinariaConfigService = new Mock<IVeterinariaConfigService>(); // Inicializamos ConfigService porque lo tenemos en el constructor real del Service
+           
+            _mockCache = new Mock<IConfiguracionHorarioCache>();
 
             // Creamos una instancia real de nuestro servicio, pero le pasamos el repositorio falso (mock).
             _service = new TurnoService(
                _mockVeterinariaConfigService.Object,
-               _mockTurnoRepo.Object
+               _mockTurnoRepo.Object,
+               _mockCache.Object
            );
         }
 

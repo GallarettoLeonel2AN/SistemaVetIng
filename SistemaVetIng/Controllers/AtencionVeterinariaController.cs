@@ -171,15 +171,13 @@ namespace SistemaVetIng.Controllers
         #endregion
 
         #region MEMENTO
-        // En AtencionVeterinariaController.cs
 
         [HttpGet]
         public async Task<IActionResult> Historial(int id)
         {
-            // 1. Buscamos la lista de mementos (versiones viejas) usando el servicio
+            // Buscar la lista de mementos (versiones viejas)
             var historial = await _atencionService.ObtenerHistorialAsync(id);
 
-            // 2. También necesitamos saber datos básicos de la atención actual (para el título)
             var atencionActual = await _atencionService.ObtenerPorId(id);
             ViewData["AtencionId"] = id;
             ViewData["MascotaNombre"] = atencionActual.HistoriaClinica.Mascota.Nombre;
@@ -193,16 +191,10 @@ namespace SistemaVetIng.Controllers
         {
             try
             {
-                // 1. Llamamos a la lógica de restauración del servicio
                 await _atencionService.RestaurarVersionAsync(mementoId);
-
-                // 2. Buscamos el memento para saber a qué historia clínica volver
-                // (Esto es un truco rápido para redirigir bien, podrías optimizarlo)
-                // Lo ideal es que RestaurarVersionAsync devuelva el ID de la HistoriaClinica
 
                 _toastNotification.AddSuccessToastMessage("¡Versión restaurada con éxito!");
 
-                // Redirigimos al usuario a la página anterior (el navegador maneja esto)
                 return Redirect(Request.Headers["Referer"].ToString());
             }
             catch (Exception ex)
@@ -214,8 +206,6 @@ namespace SistemaVetIng.Controllers
         [HttpGet]
         public async Task<IActionResult> Editar(int id)
         {
-            // Necesitamos un método en el servicio que busque la atención por ID 
-            // y la convierta en tu ViewModel. (Te paso el código de esto más abajo)
             var model = await _atencionService.ObtenerAtencionParaEditarAsync(id);
 
             if (model == null) return NotFound();
@@ -223,7 +213,6 @@ namespace SistemaVetIng.Controllers
             return View(model);
         }
 
-        // 2. POST: Recibe los cambios
         [HttpPost]
         [ValidateAntiForgeryToken]
         
@@ -231,19 +220,13 @@ namespace SistemaVetIng.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Si hay error, recargamos listas (si las usas) y volvemos a la vista
                 return View(model);
             }
 
             try
             {
-                // Guardamos los cambios y el memento
                 await _atencionService.EditarAtencionConRespaldoAsync(model, User, motivoCambio);
-
                 _toastNotification.AddSuccessToastMessage("Cambios guardados correctamente.");
-
-                // --- AQUÍ ESTÁ LA CORRECCIÓN ---
-                // Redirige a la Historia Clínica de la mascota específica
                 return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = model.MascotaId });
             }
             catch (Exception ex)

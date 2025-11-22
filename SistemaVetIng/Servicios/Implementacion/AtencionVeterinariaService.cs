@@ -238,21 +238,21 @@ namespace SistemaVetIng.Servicios.Implementacion
         }
 
         #region Memento
-        // 1. MÉTODO PARA EDITAR (Guardando el Memento antes)
+        // Metodo para editar (Guardando el Memento antes)
         public async Task EditarAtencionConRespaldoAsync(AtencionVeterinariaViewModel model, ClaimsPrincipal user, string motivo)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                // 1. BUSCAR POR ID (Ahora sí podemos hacerlo)
+                // Buscar por ID
                 var atencionActual = await _context.AtencionesVeterinarias
                     .Include(a => a.Tratamiento)
-                    .FirstOrDefaultAsync(a => a.Id == model.Id); // <-- Usamos el Id del ViewModel
+                    .FirstOrDefaultAsync(a => a.Id == model.Id);
 
                 if (atencionActual == null) throw new Exception("Atención no encontrada");
 
-                // 2. CREAR MEMENTO (Guardar estado anterior)
+                // Crear memento (Guardar estado anterior)
                 var memento = new AtencionVeterinariaMemento
                 {
                     AtencionVeterinariaId = atencionActual.Id,
@@ -275,11 +275,11 @@ namespace SistemaVetIng.Servicios.Implementacion
                 _context.AtencionMementos.Add(memento);
                 await _context.SaveChangesAsync();
 
-                // 3. ACTUALIZAR CON LOS NUEVOS DATOS DEL VIEWMODEL
+                // Actualizar con los datos nuevos
                 atencionActual.Diagnostico = model.Diagnostico;
-                atencionActual.PesoMascota = model.PesoKg; // Mapeo: PesoMascota (BD) <- PesoKg (VM)
+                atencionActual.PesoMascota = model.PesoKg;
 
-                // Lógica de Tratamiento
+                // Logica de Tratamiento
                 if (atencionActual.Tratamiento != null)
                 {
                     atencionActual.Tratamiento.Medicamento = model.Medicamento;
@@ -317,13 +317,13 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             var atencion = await _context.AtencionesVeterinarias
                 .Include(a => a.Tratamiento)
-                .Include(a => a.Vacunas) // Importante cargar relaciones
+                .Include(a => a.Vacunas) 
                 .Include(a => a.EstudiosComplementarios)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             if (atencion == null) return null;
 
-            // Convertimos Entidad -> ViewModel
+           
             var model = new AtencionVeterinariaViewModel
             {
                 Id = atencion.Id,
@@ -337,15 +337,13 @@ namespace SistemaVetIng.Servicios.Implementacion
                 Medicamento = atencion.Tratamiento?.Medicamento,
                 Dosis = atencion.Tratamiento?.Dosis,
                 Frecuencia = atencion.Tratamiento?.Frecuencia,
-                DuracionDias = atencion.Tratamiento?.Duracion, // Asegúrate que los tipos coincidan (string/string)
+                DuracionDias = atencion.Tratamiento?.Duracion, 
                 ObservacionesTratamiento = atencion.Tratamiento?.Observaciones,
 
-                // Pre-seleccionar checkboxes
                 VacunasSeleccionadasIds = atencion.Vacunas?.Select(v => v.Id).ToList() ?? new List<int>(),
                 EstudiosSeleccionadosIds = atencion.EstudiosComplementarios?.Select(e => e.Id).ToList() ?? new List<int>()
             };
 
-            // Cargar las listas desplegables (reutiliza lógica que ya tienes)
             var vacunas = await _vacunaService.ListarTodo();
             var estudios = await _estudioService.ListarTodo();
             model.VacunasDisponibles = new SelectList(vacunas, "Id", "Nombre");
@@ -353,27 +351,25 @@ namespace SistemaVetIng.Servicios.Implementacion
 
             return model;
         }
-        // 2. MÉTODO PARA RESTAURAR (Volver al pasado)
+        // Metodo para restaurar (Volver al pasado)
         public async Task RestaurarVersionAsync(int mementoId)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                // A. Buscar la copia de seguridad
+                // Buscar la copia de seguridad
                 var memento = await _context.AtencionMementos.FindAsync(mementoId);
                 if (memento == null) throw new Exception("Versión histórica no encontrada");
 
-                // B. Buscar la entidad real actual
+                // Buscar la entidad real actual
                 var atencionActual = await _context.AtencionesVeterinarias
                     .Include(a => a.Tratamiento)
                     .FirstOrDefaultAsync(a => a.Id == memento.AtencionVeterinariaId);
 
                 if (atencionActual == null) throw new Exception("La atención original ya no existe");
 
-                // C. (Opcional) Crear UN NUEVO MEMENTO de la versión "errónea" actual antes de sobrescribirla
-                // (Para poder deshacer el deshacer). Por ahora lo saltamos para simplificar.
 
-                // D. SOBRESCRIBIR (Restaurar datos)
+                // Sobrescribir (Restaurar datos)
                 atencionActual.Diagnostico = memento.Diagnostico;
                 atencionActual.PesoMascota = memento.PesoMascota;
 
@@ -402,7 +398,6 @@ namespace SistemaVetIng.Servicios.Implementacion
                     atencionActual.Tratamiento = tratamientoRestaurado;
                 }
 
-                // E. Guardar
                 _context.AtencionesVeterinarias.Update(atencionActual);
                 await _context.SaveChangesAsync();
 
@@ -415,7 +410,7 @@ namespace SistemaVetIng.Servicios.Implementacion
             }
         }
 
-        // 3. MÉTODO PARA VER LA LISTA
+        // Metodo para ver la lista
         public async Task<List<AtencionVeterinariaMemento>> ObtenerHistorialAsync(int atencionId)
         {
             return await _context.AtencionMementos
