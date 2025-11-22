@@ -1140,3 +1140,320 @@ body {
     color: #22d3ee !important;
     text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
 }
+
+/* =========================================
+         MÓDULO FORMULARIOS Y TURNOS
+   ========================================= */
+
+/* Contenedor Vidrio */
+.booking-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+    /* Labels Blancos y Legibles */
+    .booking-container .form-label {
+        display: block;
+        color: #ffffff; 
+        margin-bottom: 10px;
+        font-weight: 600; 
+        font-size: 1rem;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5); 
+    }
+
+/* Inputs Oscuros para contraste */
+.form-control {
+    width: 100%;
+    background-color: rgba(2, 6, 23, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: var(--font-poppins);
+    outline: none;
+    transition: 0.3s;
+}
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        background-color: rgba(2, 6, 23, 0.8) !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    }
+
+/* Ajuste Selects (Las flechitas) */
+select.form-control {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 16px 12px;
+    appearance: none;
+}
+
+/* Ajuste Calendario */
+.form-control::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* Textarea */
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Switch / Checkbox dentro del formulario */
+.form-check-label {
+    color: #ffffff; /* Blanco */
+    font-weight: 500;
+}
+
+
+/* --- GRILLA DE HORARIOS --- */
+.horario-opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+    /* Estilo de los botones de horario  */
+    .horario-btn,
+    .horario-opciones button,
+    .horario-opciones .slot {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-light);
+        color: var(--text-main);
+        padding: 10px 5px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+        .horario-btn:hover,
+        .horario-opciones button:hover {
+            background-color: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Estado Seleccionado  */
+        .horario-btn.active,
+        .horario-opciones button.active,
+        .horario-opciones .slot.selected {
+            background-color: var(--success-color);
+            color: #fff;
+            border-color: var(--success-color);
+            box-shadow: 0 0 15px rgba(72, 187, 120, 0.4);
+            transform: scale(1.05);
+        }
+
+/* Switch (Checkbox moderna) */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.03);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+}
+
+.form-check-input {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background: #4b5563;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .form-check-input:checked {
+        background: var(--primary-color);
+    }
+
+    .form-check-input::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+    .form-check-input:checked::after {
+        transform: translateX(20px);
+    }
+
+
+/* Mensajes de error */
+.text-danger {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+}
+
+
+
+/* =========================================
+   CALENDARIO SÓLIDO (Flatpickr High Contrast)
+   ========================================= */
+
+.flatpickr-calendar {
+    background: #1e293b !important;
+    border: 1px solid var(--primary-color) !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8) !important;
+    font-family: var(--font-poppins) !important;
+    width: 320px !important; 
+}
+
+/* Cabecera del calendario (Mes y Año) */
+.flatpickr-months {
+    background: #0f172a !important; 
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    padding-bottom: 10px !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+    color: #ffffff !important; 
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+}
+
+/* Flechas de navegación */
+.flatpickr-prev-month, .flatpickr-next-month {
+    fill: #ffffff !important;
+}
+
+/* Días de la semana */
+span.flatpickr-weekday {
+    color: var(--primary-color) !important; 
+    font-weight: 600 !important;
+}
+
+/* Los días (Números) */
+.flatpickr-day {
+    color: #ffffff !important; 
+    font-weight: 500 !important;
+    font-size: 1rem !important; 
+}
+
+    /* Hover sobre los días */
+    .flatpickr-day:hover {
+        background: rgba(255,255,255,0.2) !important;
+        border-color: transparent !important;
+    }
+
+    /* Día Seleccionado */
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange {
+        background: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+        color: #ffffff !important;
+        font-weight: bold !important;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.6) !important;
+    }
+
+
+
+/* =========================================
+   ALERTAS Y MENSAJES NO HAY HORARIO DISPONIBLE EN TURNO
+   ========================================= */
+
+.alert-warning {
+    grid-column: 1 / -1 !important; 
+    width: 100% !important; 
+    box-sizing: border-box !important; 
+    padding: 40px 20px !important;
+    margin-top: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    background-color: rgba(245, 158, 11, 0.08) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    border-radius: 16px !important;
+    color: #fbbf24 !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    text-align: center !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+}
+
+    .alert-warning::before {
+        content: "\f071";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 2.5rem !important;
+        opacity: 0.9;
+        margin-bottom: 5px;
+    }
+
+/* =========================================
+              GRILLA DE HORARIOS RESERVAR TURNO
+   ========================================= */
+
+.booking-time-grid {
+    display: grid;
+    /* Columnas anchas para botones cómodos */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.booking-time-btn {
+    background-color: rgba(2, 6, 23, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 15px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+    .booking-time-btn:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        color: white;
+    }
+
+    /* Cuando se selecciona un horario */
+    .booking-time-btn.active {
+        background-color: var(--success-color) !important;
+        border-color: var(--success-color) !important;
+        color: #ffffff !important;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(72, 187, 120, 0.5);
+    }

@@ -1,147 +1,202 @@
 ﻿@model SistemaVetIng.ViewsModels.ReservaTurnoViewModel
 
 @{
-	ViewData["Title"] = "Reservar Turno";
-	Layout = null;
+    ViewData["Title"] = "Reservar Turno - VetIng";
+    Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"]</title>
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-	<link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
 </head>
 <body>
-	<header class="main-header">
-		<a href="/Cliente/PaginaPrincipal" class="logo">
-			<i class="fas fa-paw"></i>
-			<span>VetIng</span>
-		</a>
-		<nav class="main-nav">
-			<ul class="nav-list">
-				<li><a class="nav-link" href="/Cliente/PaginaPrincipal">Volver al Inicio</a></li>
-			</ul>
-		</nav>
-	</header>
+    <header class="main-header">
+        <a href="/Cliente/PaginaPrincipal" class="logo">
+            <i class="fas fa-paw"></i> VetIng
+        </a>
+        <nav class="main-nav">
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/Cliente/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburgerBtn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
 
-	<main class="registrar-form-main">
-		<section class="form-section">
-			<h2 class="section-title">Reservar Turno</h2>
-			<form asp-controller="Turno" asp-action="Reservar" method="post" class="main-form"
-				  data-horarios-url="@Url.Action("ObtenerHorariosDisponibles", "Turno")">
-				<!-- data-horarios-url para pasar la URL a JS -->
-				@Html.AntiForgeryToken()
+    <main class="main-content">
 
-				<div class="form-group">
-					<label asp-for="Fecha"></label>
-					<input type="date" asp-for="Fecha" class="form-control" id="fechaTurno" required
-										 value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
-					<span asp-validation-for="Fecha" class="text-danger validation-error"></span>
-				</div>
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Reservar <span>Turno</span></h1>
+                <p class="dash-subtitle">Elige el día y horario más conveniente para tu mascota.</p>
+            </div>
+        </div>
 
-				<div class="form-group" id="horariosDisponiblesContainer" style="display:none;">
-					<label>Horarios Disponibles</label>
-					<input type="hidden" asp-for="Horario" id="horarioHiddenInput" />
-					<div class="horario-opciones" id="horariosOpciones">
-					</div>
-				</div>
+        <section class="booking-container">
+            <form asp-controller="Turno" asp-action="Reservar" method="post"
+                  data-horarios-url="@Url.Action("ObtenerHorariosDisponibles", "Turno")">
 
-				@if (Model.HasMascotas)
-				{
-					<div class="form-group">
-						<div class="form-check form-switch">
-							<input class="form-check-input" type="checkbox" id="primeraCitaCheckbox" asp-for="PrimeraCita" />
-							<label class="form-check-label" for="primeraCitaCheckbox">Reservar para una nueva mascota (Primera Cita)</label>
-						</div>
-					</div>
-				}
-				@if (!Model.HasMascotas)
-				{
-					<input type="hidden" asp-for="PrimeraCita" value="true" />
-				}
+                @Html.AntiForgeryToken()
 
-				<div id="mascotaContainer" class="form-group" style="@(Model.HasMascotas ? "" : "display:none;")">
-					<label asp-for="MascotaId"></label>
-					<select asp-for="MascotaId" class="form-control" id="mascotaSelect">
-						<option value="">-- Selecciona una mascota --</option>
-						@if (Model.Mascotas != null)
-						{
-							@foreach (var mascota in Model.Mascotas)
-							{
-								<option value="@mascota.Id">@mascota.Nombre (@mascota.Especie)</option>
-							}
-						}
-					</select>
-				</div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="Fecha" class="form-label"><i class="fa-regular fa-calendar"></i> Fecha del Turno</label>
+                    <input type="text" asp-for="Fecha" class="form-control" id="fechaTurno"
+                           placeholder="Selecciona una fecha" readonly="readonly" />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
 
-				<div class="form-group">
-					<label asp-for="Motivo"></label>
-					<textarea asp-for="Motivo" class="form-control" rows="3" placeholder="Describe brevemente el motivo de la consulta."></textarea>
-					<span asp-validation-for="Motivo" class="text-danger validation-error"></span>
-				</div>
+                <div class="form-group" id="horariosDisponiblesContainer" style="display:none; margin-bottom:20px;">
+                    <label class="form-label"><i class="fa-regular fa-clock"></i> Horarios Disponibles</label>
+                    <input type="hidden" asp-for="Horario" id="horarioHiddenInput" />
+                    <div class="booking-time-grid" id="horariosOpciones"></div>
+                </div>
 
-				<div class="form-actions">
-					<button type="submit" class="button register-button">
-						<i class="fa-solid fa-calendar-plus"></i> Confirmar Turno
-					</button>
-				</div>
-			</form>
-		</section>
-	</main>
+                @if (Model.HasMascotas)
+                {
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="primeraCitaCheckbox" asp-for="PrimeraCita" />
+                        <label class="form-check-label" for="primeraCitaCheckbox">
+                            Es para una nueva mascota (Primera Cita)
+                        </label>
+                    </div>
+                }
+                @if (!Model.HasMascotas)
+                {
+                    <input type="hidden" asp-for="PrimeraCita" value="true" />
+                    <div class="alert" style="background:rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.3); color:#facc15; padding:15px; border-radius:10px; margin-bottom:20px; font-weight: 500;">
+                        <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> Al no tener mascotas registradas, se creará como Primera Cita.
+                    </div>
+                }
 
-	<footer class="main-footer">
-		<div class="footer-col footer-info">
-			<div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-			<p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-			<div class="footer-social-icons">
-				<a href="#"><i class="fa-brands fa-instagram"></i></a>
-				<a href="#"><i class="fa-brands fa-facebook"></i></a>
-				<a href="#"><i class="fa-brands fa-youtube"></i></a>
-				<a href="#"><i class="fa-brands fa-twitter"></i></a>
-			</div>
-		</div>
-		<div class="footer-col">
-			<h4 class="footer-heading">Acerca de VetIng</h4>
-			<ul class="footer-links">
-				<li><a href="#">Nuestra Historia</a></li>
-				<li><a href="#">Equipo</a></li>
-				<li><a href="#">Noticias y Blog</a></li>
-				<li><a href="#">Fundación VetIng</a></li>
-			</ul>
-		</div>
-		<div class="footer-col">
-			<h4 class="footer-heading">Soporte</h4>
-			<ul class="footer-links">
-				<li><a href="#">Preguntas Frecuentes</a></li>
-				<li><a href="#">Contacto</a></li>
-				<li><a href="#">Guías de Usuario</a></li>
-				<li><a href="#">Descargar App Móvil</a></li>
-			</ul>
-		</div>
-		<div class="footer-col">
-			<h4 class="footer-heading">Legal</h4>
-			<ul class="footer-links">
-				<li><a href="#">Términos y Condiciones</a></li>
-				<li><a href="#">Política de Privacidad</a></li>
-				<li><a href="#">Aviso Legal</a></li>
-				<li><a href="#">Cookies</a></li>
-			</ul>
-		</div>
-		<div class="footer-bottom">
-			<p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
-		</div>
-	</footer>
+                <div id="mascotaContainer" class="form-group" style="margin-bottom:20px; @(Model.HasMascotas ? "" : "display:none;")">
+                    <label asp-for="MascotaId" class="form-label"><i class="fa-solid fa-paw"></i> Selecciona Mascota</label>
+                    <select asp-for="MascotaId" class="form-control" id="mascotaSelect">
+                        <option value="">-- Seleccionar --</option>
+                        @if (Model.Mascotas != null)
+                        {
+                            @foreach (var mascota in Model.Mascotas)
+                            {
+                                <option value="@mascota.Id">@mascota.Nombre (@mascota.Especie)</option>
+                            }
+                        }
+                    </select>
+                </div>
 
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-	<script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
-	<script src="~/js/reservaTurno.js" asp-append-version="true"></script>
+                <div class="form-group" style="margin-bottom:30px;">
+                    <label asp-for="Motivo" class="form-label"><i class="fa-solid fa-comment-medical"></i> Motivo de la consulta</label>
+                    <textarea asp-for="Motivo" class="form-control" rows="3" placeholder="Ej: Vacunación anual, chequeo general..."></textarea>
+                    <span asp-validation-for="Motivo" class="text-danger"></span>
+                </div>
 
-	@await Component.InvokeAsync("NToastNotify")
+                <div class="form-actions" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:15px; font-size:1.1rem;">
+                        <i class="fa-solid fa-check-circle"></i> Confirmar Reserva
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Cuidado profesional para tus mascotas. Tecnología y salud unidas para su bienestar.
+            </p>
+            <div class="footer-social-icons">
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Visítanos</h4>
+            <ul class="footer-links" style="gap: 15px;">
+                <li>
+                    <i class="fa-solid fa-location-dot" style="color:var(--secondary-color); width:20px;"></i>
+                    UAI Sede Rosario, Santa Fe
+                </li>
+                <li>
+                    <i class="fa-solid fa-phone" style="color:var(--secondary-color); width:20px;"></i>
+                    +54 341 12345678
+                </li>
+                <li>
+                    <i class="fa-solid fa-clock" style="color:var(--secondary-color); width:20px;"></i>
+                    Lun - Vie: 9:00 - 18:00 hs
+                </li>
+                <li>
+                    <i class="fa-solid fa-clock" style="color:var(--secondary-color); width:20px;"></i>
+                    Sáb: 9:00 - 13:00 hs
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Mi Cuenta</h4>
+            <ul class="footer-links">
+                <li><a asp-controller="Turno" asp-action="ReservarTurno">Reservar Nuevo Turno</a></li>
+                <li><a asp-controller="Perfil" asp-action="Index">Mi Perfil</a></li>
+                <li><a href="/Cliente/PaginaPrincipal">Ver mis Mascotas</a></li>
+                <li><a href="/Cliente/PaginaPrincipal">Pagos Pendientes</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Ayuda</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:soporte@veting.com">Contactar Soporte</a></li>
+                <li><a href="#">Términos y Condiciones</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+    <script src="~/js/reservaTurno.js" asp-append-version="true"></script>
+
+    @await Component.InvokeAsync("NToastNotify")
+
+    <script>
+        // Helper menú móvil
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>

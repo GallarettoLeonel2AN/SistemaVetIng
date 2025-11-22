@@ -1,135 +1,134 @@
 ﻿
-// Logica principal del formulario de reserva
 function initializeReservaTurno(horariosUrl) {
+    // Referencias a elementos del DOM
     const primeraCitaCheckbox = $('#primeraCitaCheckbox');
     const mascotaContainer = $('#mascotaContainer');
     const mascotaSelect = $('#mascotaSelect');
 
-    const fechaTurnoInput = $('#fechaTurno');
+    const fechaInputSelector = "#fechaTurno"; // ID del input de fecha
     const horariosDisponiblesContainer = $('#horariosDisponiblesContainer');
     const horariosOpcionesDiv = $('#horariosOpciones');
     const horarioHiddenInput = $('#horarioHiddenInput');
-    const reservaForm = $('form.main-form');
+    const reservaForm = $('form'); // Selector genérico para el form actual
 
-    // Logica para alternar la seleccion de mascota (Primera Cita)
+    // INICIALIZAR FLATPICKR (Calendario Moderno)
+    const calendario = flatpickr(fechaInputSelector, {
+        locale: "es",              // Idioma español
+        minDate: "today",          // No permitir fechas pasadas
+        dateFormat: "Y-m-d",       // Formato ISO para el backend
+        disableMobile: "true",     // Forzar estilo desktop en móvil
+        defaultDate: "today",      // Pre-seleccionar hoy
+
+        // Se dispara al elegir fecha
+        onChange: function (selectedDates, dateStr, instance) {
+            cargarHorariosDisponibles(dateStr);
+        }
+    });
+
+    // LÓGICA DE MASCOTA / PRIMERA CITA
     function toggleMascotaSelection() {
         if (primeraCitaCheckbox.length && primeraCitaCheckbox.is(':checked')) {
-            mascotaContainer.hide();
-            mascotaSelect.prop('required', false); 
-            mascotaSelect.val(""); 
+            mascotaContainer.slideUp();
+            mascotaSelect.prop('required', false);
+            mascotaSelect.val("");
         } else {
-            mascotaContainer.show();
+            mascotaContainer.slideDown();
             mascotaSelect.prop('required', true);
         }
     }
 
     if (primeraCitaCheckbox.length) {
         primeraCitaCheckbox.on('change', toggleMascotaSelection);
-        toggleMascotaSelection();
+        toggleMascotaSelection(); 
     }
 
-    // Logica para la restriccion de fecha anteriores a la de hoy 
-    function getTodayDateString() {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
-    const minDate = getTodayDateString();
-    fechaTurnoInput.attr('min', minDate);
-    if (fechaTurnoInput.val() < minDate) {
-        fechaTurnoInput.val(minDate);
-    }
-
-    // Logica para cargar los horarios disponibles
-    function cargarHorariosDisponibles() {
-        const fechaSeleccionada = fechaTurnoInput.val();
-
-        // Siempre limpiamos el horario seleccionado al cambiar la fecha.
-        horarioHiddenInput.val('');
-        horariosOpcionesDiv.find('.horario-btn').removeClass('selected');
-
-        if (fechaSeleccionada) {
-
-            if (fechaSeleccionada < minDate) {
-                horariosOpcionesDiv.empty().html('<p class="text-danger validation-error">No se pueden buscar horarios para fechas pasadas.</p>');
-                horariosDisponiblesContainer.show();
-                return;
-            }
-
-            horariosOpcionesDiv.empty().html('<p>Cargando horarios...</p>');
-            horariosDisponiblesContainer.show();
-
-            $.ajax({
-                url: horariosUrl,
-                type: 'GET',
-                data: { fecha: fechaSeleccionada },
-                success: function (horarios) {
-                    horariosOpcionesDiv.empty();
-
-                    let horariosValidos = horarios;
-
-                    if (fechaSeleccionada === minDate) {
-                        const ahora = new Date();
-                        const horaActualString = String(ahora.getHours()).padStart(2, '0') + ':' + String(ahora.getMinutes()).padStart(2, '0');
-                        horariosValidos = horarios.filter(horario => horario > horaActualString);
-                    }
-
-                    if (horariosValidos && horariosValidos.length > 0) {
-                        horariosValidos.forEach(horario => {
-                            const btn = `<button type="button" class="horario-btn" data-horario="${horario}">${horario}</button>`;
-                            horariosOpcionesDiv.append(btn);
-                        });
-                    } else {
-                        horariosOpcionesDiv.html('<p class="text-danger validation-error">No hay horarios disponibles para la fecha seleccionada.</p>');
-                    }
-                },
-                error: function () {
-                    horariosOpcionesDiv.html('<p class="text-danger validation-error">Ocurrió un error al cargar los horarios. Por favor, intente de nuevo.</p>');
-                }
-            });
-        } else {
-            horariosDisponiblesContainer.hide();
+    // FUNCIÓN PARA CARGAR HORARIOS
+    function cargarHorariosDisponibles(fechaSeleccionada) {
+        if (!fechaSeleccionada) {
+            fechaSeleccionada = $(fechaInputSelector).val();
         }
+
+        // Limpiar estado previo
+        horarioHiddenInput.val('');
+        horariosOpcionesDiv.empty();
+        horariosDisponiblesContainer.show();
+
+        // Mostrar spinner de carga
+        horariosOpcionesDiv.html('<div style="text-align:center; color:white;"><i class="fas fa-spinner fa-spin"></i> Buscando horarios...</div>');
+
+        if (!fechaSeleccionada) return;
+
+        $.ajax({
+            url: horariosUrl,
+            type: 'GET',
+            data: { fecha: fechaSeleccionada },
+            success: function (horarios) {
+                horariosOpcionesDiv.empty(); // Quitar spinner
+
+                // Filtrar horarios pasados si la fecha es hoy
+                let horariosValidos = horarios;
+                const hoy = new Date();
+                const fechaElegida = new Date(fechaSeleccionada + 'T00:00:00'); // Forzar zona horaria local
+
+                // Comparar solo si es el mismo día
+                if (fechaElegida.setHours(0, 0, 0, 0) === hoy.setHours(0, 0, 0, 0)) {
+                    const horaActual = hoy.getHours();
+                    const minutoActual = hoy.getMinutes();
+                    const horaActualString = String(horaActual).padStart(2, '0') + ':' + String(minutoActual).padStart(2, '0');
+
+                    horariosValidos = horarios.filter(h => h > horaActualString);
+                }
+
+                if (horariosValidos && horariosValidos.length > 0) {
+                    horariosValidos.forEach(horario => {
+                        const btn = $(`<button type="button" class="booking-time-btn" data-horario="${horario}">${horario}</button>`);
+                        horariosOpcionesDiv.append(btn);
+                    });
+                } else {
+                    horariosOpcionesDiv.html('<div class="alert alert-warning" style="width:100%; text-align:center;">No hay horarios disponibles para esta fecha.</div>');
+                }
+            },
+            error: function () {
+                horariosOpcionesDiv.html('<div class="text-danger" style="text-align:center;">Error al cargar horarios. Intente otra fecha.</div>');
+            }
+        });
     }
 
-    // Logica para seleccionar un boton de horario 
-    horariosOpcionesDiv.on('click', '.horario-btn', function () {
-        horariosOpcionesDiv.find('.horario-btn').removeClass('selected');
-        $(this).addClass('selected');
+    // SELECCIÓN DE HORARIO (Click en botón)
+    horariosOpcionesDiv.on('click', '.booking-time-btn', function () {
+        // Remover clase activa de todos
+        horariosOpcionesDiv.find('.booking-time-btn').removeClass('active');
+        // Agregar al clickeado
+        $(this).addClass('active');
+        // Guardar valor en input oculto
         horarioHiddenInput.val($(this).data('horario'));
     });
 
-    fechaTurnoInput.on('change', cargarHorariosDisponibles);
-    cargarHorariosDisponibles();
-
-    // Logica para el envio del formulario con Ajax
+    // ENVÍO DEL FORMULARIO
     reservaForm.on('submit', function (e) {
-
         e.preventDefault();
 
-        // Si NO existe el checkbox: es Primera Cita obligatoriamente
         const esPrimeraCita = primeraCitaCheckbox.length ? primeraCitaCheckbox.is(':checked') : true;
         const mascotaSeleccionada = mascotaSelect.length ? mascotaSelect.val() : null;
         const horarioSeleccionado = horarioHiddenInput.val();
 
+        // Validaciones Frontend
         if (!horarioSeleccionado) {
-            toastr.error("Por favor, selecciona una fecha y un horario disponible.");
-            return; 
+            toastr.warning("Por favor, selecciona un horario disponible.");
+            return;
         }
 
-        // Condición de error: NO es primera cita Y NO se seleccionó mascota
-        if (!esPrimeraCita && (mascotaSeleccionada === "" || mascotaSeleccionada === null)) {
-            toastr.error("Por favor, selecciona una mascota o marca la opción de 'Primera Cita'.");
-            return; 
+        if (!esPrimeraCita && !mascotaSeleccionada) {
+            toastr.warning("Debes seleccionar una mascota o marcar 'Primera Cita'.");
+            return;
         }
 
-
+        // Preparar envío
         const formData = new FormData(this);
-
         const submitButton = $(this).find('button[type="submit"]');
-        submitButton.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Reservando...');
+        const originalBtnText = submitButton.html();
+
+        submitButton.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Procesando...');
 
         $.ajax({
             url: this.action,
@@ -140,29 +139,36 @@ function initializeReservaTurno(horariosUrl) {
             success: function (response) {
                 if (response.success) {
                     toastr.success("¡Turno reservado con éxito!");
-                    // Redirige dspues de 2 segundos para que el usuario vea el mensaje
-                    setTimeout(() => window.location.href = response.redirectUrl, 2000);
-
+                    // Redirección suave
+                    setTimeout(() => window.location.href = response.redirectUrl, 1500);
                 } else {
-                    toastr.error(response.message || "Ocurrió un error al reservar el turno.");
-                    submitButton.prop('disabled', false).html('<i class="fa-solid fa-calendar-plus"></i> Confirmar Turno');
+                    toastr.error(response.message || "No se pudo reservar el turno.");
+                    submitButton.prop('disabled', false).html(originalBtnText);
                 }
             },
-            error: function (xhr, status, error) {
-                toastr.error("Ocurrió un error al conectar con el servidor. Por favor, intente de nuevo.");
-                submitButton.prop('disabled', false).html('<i class="fa-solid fa-calendar-plus"></i> Confirmar Turno');
-            },
+            error: function () {
+                toastr.error("Error de conexión. Intente nuevamente.");
+                submitButton.prop('disabled', false).html(originalBtnText);
+            }
         });
     });
+
+    // Cargar horarios iniciales (por si entra con fecha pre-seleccionada)
+    // Pequeño timeout para asegurar que Flatpickr esté listo
+    setTimeout(() => {
+        const fechaInicial = $(fechaInputSelector).val();
+        if (fechaInicial) {
+            cargarHorariosDisponibles(fechaInicial);
+        }
+    }, 100);
 }
 
-// Inicializa las funciones
+// INICIALIZADOR GLOBAL
 $(document).ready(function () {
-    const formElement = $('form.main-form');
+    // Buscamos el form y extraemos la URL de horarios del atributo data
+    const formElement = $('form[data-horarios-url]');
     if (formElement.length) {
         const horariosUrl = formElement.data('horarios-url');
-        if (horariosUrl) {
-            initializeReservaTurno(horariosUrl);
-        }
+        initializeReservaTurno(horariosUrl);
     }
 });
