@@ -1,0 +1,226 @@
+﻿@model SistemaVetIng.ViewsModels.AtencionVeterinariaViewModel
+
+@{
+    ViewData["Title"] = "Editar Atención";
+    Layout = null;
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            background-color: #f4f7f6;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .v1-btn-warning {
+            background-color: #ffc107;
+            color: #000;
+            border: none;
+        }
+
+            .v1-btn-warning:hover {
+                background-color: #e0a800;
+            }
+
+        .v1-btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .memento-alert {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Estilo para hacer los errores MUY visibles */
+        .validation-summary-errors {
+            border: 2px solid #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+            .validation-summary-errors ul {
+                margin-bottom: 0;
+                padding-left: 20px;
+            }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="#" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <main class="v1-main-dashboard" style="padding-top: 100px;">
+        <section class="v1-section">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="v1-section-title" style="margin-bottom: 0;">Editar Atención</h1>
+                    <p class="text-muted">Mascota: <strong>@Model.MascotaNombre</strong></p>
+                </div>
+                <a asp-action="Historial" asp-route-id="@Model.Id" class="v1-btn v1-btn-primary" target="_blank">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Ver Historial de Cambios
+                </a>
+            </div>
+
+            <div class="form-container">
+
+                <div class="memento-alert">
+                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                    <div>
+                        <strong>Modo Edición y Auditoría:</strong><br />
+                        Al guardar los cambios, el sistema generará automáticamente una copia de seguridad de la versión anterior.
+                    </div>
+                </div>
+
+                <form asp-action="Editar" method="post">
+
+                    <div asp-validation-summary="All" class="text-danger mb-3">
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="HistoriaClinicaId" />
+                    <input type="hidden" asp-for="VeterinarioId" />
+                    <input type="hidden" asp-for="MascotaId" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="mb-3 border-bottom pb-2">Datos Clínicos</h4>
+
+                            <div class="mb-3">
+                                <label asp-for="Diagnostico" class="form-label fw-bold">Diagnóstico</label>
+                                <textarea asp-for="Diagnostico" class="form-control" rows="5" style="resize: none;"></textarea>
+                                <span asp-validation-for="Diagnostico" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="PesoKg" class="form-label fw-bold">Peso (kg)</label>
+                                <input asp-for="PesoKg" class="form-control" type="number" step="0.1" />
+                                <span asp-validation-for="PesoKg" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4 class="mb-3 border-bottom pb-2">Tratamiento</h4>
+
+                            <div class="mb-3">
+                                <label asp-for="Medicamento" class="form-label fw-bold">Medicamento</label>
+                                <input asp-for="Medicamento" class="form-control" />
+                                <span asp-validation-for="Medicamento" class="text-danger"></span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Dosis" class="form-label">Dosis</label>
+                                    <input asp-for="Dosis" class="form-control" />
+                                    <span asp-validation-for="Dosis" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Frecuencia" class="form-label">Frecuencia</label>
+                                    <input asp-for="Frecuencia" class="form-control" />
+                                    <span asp-validation-for="Frecuencia" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="DuracionDias" class="form-label">Duración (días)</label>
+                                <input asp-for="DuracionDias" class="form-control" />
+                                <span asp-validation-for="DuracionDias" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="ObservacionesTratamiento" class="form-label">Observaciones Tratamiento</label>
+                                <textarea asp-for="ObservacionesTratamiento" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="ObservacionesTratamiento" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <div class="mb-4 p-3 bg-light border rounded">
+                        <label for="motivoCambio" class="form-label fw-bold text-danger">
+                            <i class="fa-solid fa-comment-dots"></i> ¿Por qué se realiza este cambio? (Obligatorio)
+                        </label>
+                        <input type="text" name="motivoCambio" id="motivoCambio" class="form-control"
+                               placeholder="Ej: Error de tipeo en la dosis, Corrección de diagnóstico..." required />
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-3">
+                        <a asp-controller="HistoriaClinica"
+                           asp-action="DetalleHistoriaClinica"
+                           asp-route-mascotaId="@Model.MascotaId"
+                           class="v1-btn v1-btn-secondary"
+                           style="text-decoration: none; padding: 10px 20px;">
+                            <i class="fa-solid fa-arrow-left"></i> Volver Atrás
+                        </a>
+
+                        <button type="submit" class="v1-btn v1-btn-warning" style="padding: 10px 20px; font-weight: bold;">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Corrección
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            document.querySelector('.nav-list').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

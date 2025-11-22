@@ -541,6 +541,54 @@ namespace SistemaVetIng.Migrations
                     b.ToTable("Mascotas");
                 });
 
+            modelBuilder.Entity("SistemaVetIng.Models.Memento.AtencionVeterinariaMemento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AtencionVeterinariaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Diagnostico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaVersion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MotivoCambio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("PesoMascota")
+                        .HasColumnType("real");
+
+                    b.Property<string>("TratamientoDosis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TratamientoDuracion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TratamientoFrecuencia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TratamientoMedicamento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TratamientoObservaciones")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UsuarioEditor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AtencionMementos");
+                });
+
             modelBuilder.Entity("SistemaVetIng.Models.MetodoPago", b =>
                 {
                     b.Property<int>("Id")

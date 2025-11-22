@@ -1,4 +1,5 @@
 ﻿using SistemaVetIng.Models;
+using SistemaVetIng.Models.Memento;
 using SistemaVetIng.ViewsModels;
 using System.Security.Claims;
 
@@ -29,5 +30,13 @@ namespace SistemaVetIng.Servicios.Interfaces
         Task<List<AtencionVeterinaria>> ObtenerAtencionesPorIdCliente(List<int> ids);
         Task ActualizarAtencionesAsync(List<AtencionVeterinaria> atenciones);
         Task ActualizarAtencionAsync(AtencionVeterinaria atencion);
+
+        #region Memento
+        Task<AtencionVeterinariaViewModel> ObtenerAtencionParaEditarAsync(int id);
+        Task EditarAtencionConRespaldoAsync(AtencionVeterinariaViewModel model, ClaimsPrincipal user, string motivo);
+        Task RestaurarVersionAsync(int mementoId);
+        Task<List<AtencionVeterinariaMemento>> ObtenerHistorialAsync(int atencionId);
+        #endregion
+
     }
 }

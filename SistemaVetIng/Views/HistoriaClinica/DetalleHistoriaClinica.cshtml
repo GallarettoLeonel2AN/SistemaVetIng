@@ -109,7 +109,19 @@
                                     <span class="vet">Atendido por: @(atencion.Veterinario?.Nombre) @(atencion.Veterinario?.Apellido)</span>
                                 </div>
                             </div>
-
+                            @* Asegúrate de tener el permiso 'Permission.Atenciones.Edit' definido en tu clase estática *@
+                            @* Si no lo tienes, usa 'Permission.Atenciones.Create' temporalmente *@
+                            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Atenciones.Create)).Succeeded)
+                            {
+                                <a asp-controller="AtencionVeterinaria"
+                                   asp-action="Editar"
+                                   asp-route-id="@atencion.Id"
+                                   class="v1-btn v1-btn-sm"
+                                   style="background-color: #ffc107; color: #000; border: none;"
+                                   title="Editar esta atención">
+                                    <i class="fa-solid fa-pen-to-square"></i> Editar
+                                </a>
+                            }
                             <div class="history-body">
                                 <div class="details-grid">
                                     <div class="details-item">

@@ -2396,9 +2396,7 @@ C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\SistemaVe
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\SistemaVetIng.RazorAssemblyInfo.cache
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\SistemaVetIng.RazorAssemblyInfo.cs
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\SistemaVetIng.sourcelink.json
-C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\scopedcss\bundle\SistemaVetIng.styles.css
-C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\scopedcss\projectbundle\SistemaVetIng.bundle.scp.css
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\leo\source\repos\SistemaVetIng\SistemaVetIng\obj\Debug\net8.0\staticwebassets.build.endpoints.json

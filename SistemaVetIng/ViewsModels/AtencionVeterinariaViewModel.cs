@@ -5,6 +5,8 @@ namespace SistemaVetIng.ViewsModels
 {
     public class AtencionVeterinariaViewModel
     {
+
+        public int Id { get; set; }
         // Propiedades de AtencionVeterinaria
         [Display(Name = "Fecha de Atención")]
         public DateTime Fecha { get; set; } = DateTime.Now;

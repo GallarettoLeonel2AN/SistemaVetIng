@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaVetIng.Models;
 using SistemaVetIng.Models.Indentity;
+using SistemaVetIng.Models.Memento;
 using System.Diagnostics;
 
 namespace SistemaVetIng.Data
@@ -29,6 +30,7 @@ namespace SistemaVetIng.Data
         public DbSet<MetodoPago> MetodosPago { get; set; }
         public DbSet<Veterinaria> Veterinarias { get; set; }
         public DbSet<AuditoriaEvento> AuditoriaEventos { get; set; }
+        public DbSet<AtencionVeterinariaMemento> AtencionMementos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
