@@ -2,7 +2,6 @@ C:\Users\Ulises\.nuget\packages\ntoastnotify\8.0.0\contentFiles\any\net6.0\wwwro
 C:\Users\Ulises\.nuget\packages\ntoastnotify\8.0.0\contentFiles\any\net6.0\wwwroot\toastr.js
 wwwroot\css\administracion-home.css
 wwwroot\css\animaciones.css
-wwwroot\css\cliente-landing.css
 wwwroot\css\configuracion.css
 wwwroot\css\confirmation-styles.css
 wwwroot\css\css-unificado.css
@@ -102,3 +101,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\cliente-landing.css
