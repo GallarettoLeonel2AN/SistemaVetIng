@@ -279,7 +279,7 @@ namespace SistemaVetIng.Controllers
         [HttpGet]
         public async Task<IActionResult> HistorialPagos(int page = 1)
         {
-            int pageSize = 10;
+            int pageSize = 5;
 
             // Obtener ID del usuario logueado
             var usuarioIdString2 = User.FindFirstValue(ClaimTypes.NameIdentifier);

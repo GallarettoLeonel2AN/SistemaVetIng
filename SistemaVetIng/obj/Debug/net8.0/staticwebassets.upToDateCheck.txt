@@ -2,7 +2,6 @@ C:\Users\Ulises\.nuget\packages\ntoastnotify\8.0.0\contentFiles\any\net6.0\wwwro
 C:\Users\Ulises\.nuget\packages\ntoastnotify\8.0.0\contentFiles\any\net6.0\wwwroot\toastr.js
 wwwroot\css\administracion-home.css
 wwwroot\css\animaciones.css
-wwwroot\css\cliente-landing.css
 wwwroot\css\configuracion.css
 wwwroot\css\confirmation-styles.css
 wwwroot\css\css-unificado.css
@@ -35,6 +34,7 @@ wwwroot\css\img\vet-cuidado.jpg
 wwwroot\css\listado-clientes.css
 wwwroot\css\login-styles.css
 wwwroot\css\permisos.css
+wwwroot\css\portal-theme.css
 wwwroot\css\registrar-cliente-style.css
 wwwroot\css\site.css
 wwwroot\css\veterinario-home.css

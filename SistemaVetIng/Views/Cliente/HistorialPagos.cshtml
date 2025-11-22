@@ -5,8 +5,8 @@
 @using System.Globalization;
 
 @{
-    ViewData["Title"] = "Historial de Pagos";
-    Layout = null; 
+    ViewData["Title"] = "Historial de Pagos - VetIng";
+    Layout = null;
     string controllerDestino = "Cliente";
 }
 
@@ -16,113 +16,196 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
-<body class="dark-mode"> 
+<body>
     <header class="main-header">
-        <a href="../@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
+
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="../@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="../@controllerDestino/PaginaPrincipal">Inicio</a></li>
+                <li><a class="nav-link" style="color:var(--primary-color);" href="#">Pagos</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
-        <section class="v1-section">
-            <h1 class="v1-section-title">Mi Historial de Pagos</h1>
-            
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Pagos Realizados</h3>
-                </div>
-                    @if (Model.PagosPaginados != null && Model.PagosPaginados.Any())
-                    {
-                    <div class="v1-card-content">
-                        <div class="table-container">
-                            <table class="table responsive-table">
-                                <thead>
-                                    <tr>
-                                        <th class="historial-title">Fecha</th>
-                                        <th >Método de Pago</th>
-                                        <th >Monto</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var pago in Model.PagosPaginados)
-                                    {
-                                        <tr>
-                                            <td data-label="Fecha:">@pago.Fecha.ToString("dd/MM/yyyy HH:mm") hs</td>
-                                            <td data-label="Método:">
-                                                <i class="@pago.IconoCssClass table-icon"></i>
-                                                @pago.MetodoDePago
-                                            </td>
-                                            <td data-label="Monto:" class="text-right">
-                                                <strong class="monto">@pago.Monto.ToString("C", new CultureInfo("es-AR"))</strong>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> 
+    <main class="main-content">
+        
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Historial de <span>Pagos</span></h1>
+                <p class="dash-subtitle">Consulta los comprobantes de tus pagos realizados.</p>
+            </div>
+            <div class="dash-actions">
+                <a href="../@controllerDestino/PaginaPrincipal" class="btn btn-outline">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+                </a>
+            </div>
+        </div>
 
-                    <div class="v1-card-footer pagination-container">
-                        @if (Model.PagosPaginados.PageCount > 1)
-                        {
-                            @Html.PagedListPager(Model.PagosPaginados, page => Url.Action("HistorialPagos",
-                                new { page }), 
-                                new PagedListRenderOptions
-                                {
-                                    LiElementClasses = new string[] { "page-item" },
-                                    PageClasses = new string[] { "page-link" },
-                                    DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                                    DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                                    ContainerDivClasses = new[] { "pagination justify-content-center" }
-                                })
-                        }
-                        else
-                        {
-                            <p class="text-muted text-center" style="margin:0;">
-                                Mostrando @Model.PagosPaginados.TotalItemCount @(Model.PagosPaginados.TotalItemCount == 1 ? "pago" : "pagos")
-                            </p>
-                        }
-                    </div>
-                }
-                else
-                {
-                    <div class="v1-empty-state" style="padding: 2rem;">
-                         <i class="fas fa-file-invoice-dollar fa-3x" style="color: var(--history-border, #444); margin-bottom: 1rem;"></i>
-                        <p>No tienes pagos registrados.</p>
-                    </div>
-                }
-            </div> 
-        </section>
+        <div class="list-container">
+            
+            @if (Model.PagosPaginados != null && Model.PagosPaginados.Any())
+            {
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha y Hora</th>
+                                <th>Método de Pago</th>
+                                <th>Monto Total</th>
+                                <th class="text-center">Estado</th> </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pago in Model.PagosPaginados)
+                            {
+                                <tr>
+                                    <td data-label="Fecha">
+                                        <div style="display:flex; flex-direction:column;">
+                                            <span style="font-weight:600; color:var(--text-main);">@pago.Fecha.ToString("dd/MM/yyyy")</span>
+                                            <span style="font-size:0.85rem; color:var(--text-muted);">@pago.Fecha.ToString("HH:mm") hs</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Método">
+                                        <i class="@pago.IconoCssClass payment-icon"></i>
+                                        @pago.MetodoDePago
+                                    </td>
+                                    <td data-label="Monto">
+                                        <span class="amount-highlight">
+                                            @pago.Monto.ToString("C", new CultureInfo("es-AR"))
+                                        </span>
+                                    </td>
+                                    <td data-label="Estado" class="text-center">
+                                         <span class="badge badge-success">Pagado</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination-wrapper">
+                    @if (Model.PagosPaginados.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.PagosPaginados, page => Url.Action("HistorialPagos", new { page }),
+                            new PagedListRenderOptions {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" },
+                                ContainerDivClasses = new[] { "pagination" },
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never
+                            })
+                    }
+                    else
+                    {
+                        <p style="color:var(--text-muted); margin:0; font-size:0.9rem;">
+                            Mostrando @Model.PagosPaginados.TotalItemCount registros.
+                        </p>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <i class="fa-solid fa-file-invoice-dollar empty-icon"></i>
+                    <h3>No hay pagos registrados</h3>
+                    <p>Aún no has realizado ningún pago en la plataforma.</p>
+                </div>
+            }
+        </div>
+
     </main>
 
-    <footer class="main-footer">
-         <div class="footer-bottom">
-             <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
-         </div>
-     </footer>
+     <footer class="main-footer">
+    <div class="footer-col footer-info">
+        <div class="footer-logo-container">
+            <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+            <h3 class="footer-brand">VetIng</h3>
+        </div>
+        <p class="footer-description">
+            Cuidado profesional para tus mascotas. Tecnología y salud unidas para su bienestar.
+        </p>
+        <div class="footer-social-icons">
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-col">
+        <h4 class="footer-heading">Visítanos</h4>
+        <ul class="footer-links" style="gap: 15px;">
+            <li>
+                <i class="fa-solid fa-location-dot" style="color:var(--secondary-color); width:20px;"></i> 
+                UAI Sede Rosario, Santa Fe
+            </li>
+            <li>
+                <i class="fa-solid fa-phone" style="color:var(--secondary-color); width:20px;"></i> 
+                +54 341 12345678
+            </li>
+            <li>
+                <i class="fa-solid fa-clock" style="color:var(--secondary-color); width:20px;"></i> 
+                Lun - Vie: 9:00 - 18:00 hs
+            </li>
+            <li>
+                <i class="fa-solid fa-clock" style="color:var(--secondary-color); width:20px;"></i> 
+                Sáb: 9:00 - 13:00 hs
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4 class="footer-heading">Mi Cuenta</h4>
+        <ul class="footer-links">
+            <li><a asp-controller="Turno" asp-action="ReservarTurno">Reservar Nuevo Turno</a></li>
+            <li><a asp-controller="Perfil" asp-action="Index">Mi Perfil</a></li>
+            <li><a href="/Cliente/PaginaPrincipal">Ver mis Mascotas</a></li>
+            <li><a href="/Cliente/PaginaPrincipal">Pagos Pendientes</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4 class="footer-heading">Ayuda</h4>
+        <ul class="footer-links">
+            <li><a href="mailto:soporte@veting.com">Contactar Soporte</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li>
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
+    </div>
+</footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    @await Component.InvokeAsync("NToastNotify")
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>

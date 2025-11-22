@@ -981,3 +981,162 @@ body {
         gap: 25px;
     }
 }
+
+/* =========================================
+        MÓDULO TABLAS (Historiales)
+   ========================================= */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Scroll horizontal en móvil */
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--text-main);
+}
+
+    .custom-table thead th {
+        background-color: rgba(15, 23, 42, 0.8); /* Encabezado más oscuro */
+        padding: 18px 20px;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        border-bottom: 2px solid var(--border-light);
+    }
+
+    .custom-table tbody tr {
+        border-bottom: 1px solid var(--border-light);
+        transition: background 0.2s;
+    }
+
+        .custom-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .custom-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+    .custom-table tbody td {
+        color: #ffffff; 
+        font-weight: 500; 
+        font-size: 1.1rem; 
+        padding: 20px;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+    }
+
+    .custom-table td span {
+        display: block; 
+    }
+
+        .custom-table td span:last-child {
+            color: #cbd5e1; 
+            font-size: 0.95rem; 
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+.amount-highlight {
+    font-weight: 800;
+    color: #4ade80 !important; 
+    font-size: 1.25rem;
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.25);
+    letter-spacing: 0.5px;
+    display: inline-block; 
+}
+
+/* Iconos dentro de la tabla */
+.payment-icon {
+    color: var(--primary-color);
+    font-size: 1.3rem; 
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+.custom-table tbody tr:hover td {
+    text-shadow: 0 0 1px rgba(255,255,255,0.5); 
+}
+
+.empty-state-container {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+/* Responsive Table (Cards en móvil) */
+@media (max-width: 768px) {
+    .custom-table thead {
+        display: none;
+    }
+
+    .custom-table tbody tr {
+        display: block;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-light);
+        border-radius: 10px;
+        background: rgba(255,255,255,0.02);
+        padding: 15px;
+    }
+
+    .custom-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+        .custom-table td:last-child {
+            border-bottom: none;
+        }
+
+        .custom-table td::before {
+            content: attr(data-label); 
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-right: 20px;
+        }
+}
+
+.text-center {
+    text-align: center !important;
+    justify-content: center !important; 
+}
+
+/* EFECTIVO (Verde Dinero) */
+.payment-icon.fa-money-bill,
+.payment-icon.fa-money-bill-wave,
+.payment-icon.fa-cash-register,
+.payment-icon.fa-sack-dollar {
+    color: #4ade80 !important; 
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+
+/* TARJETA  */
+.payment-icon.fa-credit-card,
+.payment-icon.fa-cc-visa,
+.payment-icon.fa-cc-mastercard {
+    color: #a78bfa !important; 
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
+}
+
+
+/*  DIGITAL / CELULAR / QR  */
+.payment-icon.fa-mobile-screen-button,
+.payment-icon.fa-mobile,
+.payment-icon.fa-qrcode,
+.payment-icon.fa-wallet {
+    color: #22d3ee !important;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+}
