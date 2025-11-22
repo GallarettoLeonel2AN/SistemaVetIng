@@ -1,80 +1,169 @@
 ﻿@model SistemaVetIng.ViewsModels.VeterinariaViewModel
 @{
-    ViewData["Title"] = "Perfil - Veterinaria";
+    ViewData["Title"] = "Perfil Institucional - VetIng";
     Layout = null;
 }
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/cliente-landing.css" asp-append-version="true" />
 </head>
 <body>
     <header class="main-header">
-        <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/Veterinaria/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
+
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Inicio</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Panel de Control</a></li>
+                <li><a class="nav-link" style="color:var(--primary-color); font-weight:700;" href="#">Perfil Clínica</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
-    <main class="perfil-container">
 
-        <div class="perfil-card">
-            <div class="perfil-header">
-                <h2 class="perfil-title">Perfil de la Veterinaria</h2>
-                <p class="perfil-subtitle">Información general de la clínica</p>
+    <main class="main-content">
+
+        <div class="dash-hero" style="margin-bottom:30px; align-items:center;">
+            <div class="dash-title">
+                <h1 class="hero-title-white">Perfil <span>Institucional</span></h1>
             </div>
-
-            <div class="perfil-body">
-
-                <div class="perfil-field">
-                    <label class="perfil-label">Nombre de la Veterinaria</label>
-                    <input class="perfil-input" value="@(Model?.RazonSocial ?? "Sin nombre")" readonly />
-                </div>
-
-                <div class="perfil-field">
-                    <label class="perfil-label">CUIL</label>
-                    <input class="perfil-input" value="@(Model?.Cuil ?? "Sin CUIL")" readonly />
-                </div>
-
-                <div class="perfil-field">
-                    <label class="perfil-label">Email</label>
-                    <input class="perfil-input" value="@(Model?.Email ?? "Sin email")" readonly />
-                </div>
-
-                <div class="perfil-field">
-                    <label class="perfil-label">Teléfono</label>
-                    <input class="perfil-input" value="@(Model?.Telefono)" readonly />
-                </div>
-
-                <div class="perfil-field">
-                    <label class="perfil-label">Dirección</label>
-                    <input class="perfil-input" value="@(Model?.Direccion ?? "Sin dirección")" readonly />
-                </div>
-
+            <div class="dash-actions">
+                <a href="/Veterinaria/PaginaPrincipal" class="btn btn-outline">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Panel
+                </a>
             </div>
         </div>
 
+        <div class="profile-container">
+
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-hospital"></i>
+                </div>
+                <h2 class="profile-name">
+                    @(Model?.RazonSocial ?? "Veterinaria")
+                </h2>
+                <span class="badge badge-success profile-badge-lg">
+                    Sucursal Activa
+                </span>
+            </div>
+
+            <div class="profile-grid">
+
+                <div class="form-group">
+                    <label class="profile-label">Razón Social / Nombre</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-building input-icon icon-primary"></i>
+                        <input type="text" class="profile-input" value="@(Model?.RazonSocial)" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="profile-label">CUIL / CUIT</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-file-invoice input-icon icon-secondary"></i>
+                        <input type="text" class="profile-input" value="@(Model?.Cuil)" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="profile-label">Correo de Contacto</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope input-icon icon-secondary"></i>
+                        <input type="text" class="profile-input" value="@(Model?.Email)" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="profile-label">Teléfono Central</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-phone-volume input-icon icon-success"></i>
+                        <input type="text" class="profile-input" value="@(Model?.Telefono)" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label class="profile-label">Dirección Física</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-map-location-dot input-icon icon-success"></i>
+                        <input type="text" class="profile-input" value="@(Model?.Direccion)" readonly />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="profile-footer-info">
+                <p>
+                    <i class="fa-solid fa-circle-check" style="color:var(--success-color);"></i>
+                    Datos públicos visibles para clientes y personal.
+                </p>
+            </div>
+
+        </div>
     </main>
+
+    <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Panel de administración institucional. Configure los parámetros de su clínica.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Gestión</h4>
+            <ul class="footer-links">
+                <li><a href="/Veterinaria/PaginaPrincipal">Gestionar Staff</a></li>
+                <li><a href="/Veterinaria/PaginaPrincipal">Gestionar Clientes</a></li>
+                <li><a href="/Veterinaria/PaginaPrincipal">Horarios de Atención</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Sistema</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Mesa de Ayuda</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
-
-
