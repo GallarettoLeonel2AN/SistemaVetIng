@@ -2801,3 +2801,22 @@ span.flatpickr-weekday {
     cursor: not-allowed;
     border-color: rgba(255, 255, 255, 0.1);
 }
+
+/* =========================================
+   CALENDARIO FLATPICKR (Clase Específica)
+   ========================================= */
+
+.calendar-input-fix {
+    background-color: rgba(2, 6, 23, 0.6) !important;
+    color: #ffffff !important; 
+    cursor: pointer !important; 
+    opacity: 1 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    pointer-events: auto !important; 
+}
+
+    .calendar-input-fix:hover,
+    .calendar-input-fix:focus {
+        border-color: var(--primary-color) !important;
+        background-color: rgba(99, 102, 241, 0.1) !important;
+    }
