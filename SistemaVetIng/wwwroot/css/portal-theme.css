@@ -2520,7 +2520,7 @@ span.flatpickr-weekday {
     .btn-action-cancel:hover {
         background-color: var(--error-color);
         color: white;
-        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); /* Resplandor Rojo */
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); 
     }
 
 /* Botón Ausente (Amarillo/Naranja) */
@@ -2533,8 +2533,8 @@ span.flatpickr-weekday {
 
     .btn-action-absent:hover {
         background-color: var(--warning-color);
-        color: #000; /* Texto negro para mejor contraste en amarillo */
-        box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); /* Resplandor Ámbar */
+        color: #000; 
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); 
     }
 
 /* Botón Ver/Atender */
@@ -2553,17 +2553,51 @@ span.flatpickr-weekday {
 
 /* Label del Filtro (Alineado horizontalmente) */
 .filter-label {
-    display: flex !important; /* Pone el icono al lado del texto */
-    align-items: center !important; /* Los centra verticalmente */
-    gap: 8px; /* Espacio entre icono y texto */
+    display: flex !important;
+    align-items: center !important; 
+    gap: 8px; 
     color: #ffffff;
     font-weight: 600;
-    margin-bottom: 0; /* Quita margen inferior por defecto */
-    margin-right: 10px; /* Separa del input */
-    white-space: nowrap; /* Evita que se rompa en dos líneas */
+    margin-bottom: 0; 
+    margin-right: 10px; 
+    white-space: nowrap; 
 }
 
     .filter-label i {
         color: var(--primary-color); /* Color del icono */
         font-size: 1.1rem;
     }
+
+/* =========================================
+   MÓDULO REGISTRO MASCOTA (Hazard Zone)
+   ========================================= */
+
+/* Contenedor de Alerta de Raza Peligrosa */
+.hazard-zone {
+    background: rgba(239, 68, 68, 0.1); /* Rojo muy suave */
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* Oculto por defecto, jQuery lo muestra con slideDown */
+    display: none;
+}
+
+.hazard-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fca5a5; /* Rojo claro pastel */
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Ajuste específico para el switch dentro de la zona de peligro */
+.hazard-zone .form-check {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
+}
