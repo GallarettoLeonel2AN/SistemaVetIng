@@ -1457,3 +1457,286 @@ span.flatpickr-weekday {
         transform: scale(1.05);
         box-shadow: 0 0 20px rgba(72, 187, 120, 0.5);
     }
+
+/* =========================================
+           MÓDULO AGENDA VETERINARIA
+   ========================================= */
+
+/* Bloque de la Hora (Cuadradito a la izquierda) */
+.time-block {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 80px;
+    border: 1px solid var(--border-light);
+}
+
+.time-hour {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.time-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Información del Turno */
+.appointment-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.appointment-meta {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Badge "Nueva" (Verde) */
+.badge-new {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+/* Botón Ausente  */
+.btn-absent {
+    background: transparent;
+    border: 1px solid #f97316; 
+    color: #f97316;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+    .btn-absent:hover {
+        background: #f97316;
+        color: white;
+    }
+
+/* Grupo de botones de acción */
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* UTILIDADES DE FLEXBOX (Para limpiar el HTML) */
+.d-flex {
+    display: flex !important;
+}
+
+.align-center {
+    align-items: center !important;
+}
+
+.gap-10 {
+    gap: 10px !important;
+}
+
+.gap-15 {
+    gap: 15px !important;
+}
+
+.mb-50 {
+    margin-bottom: 50px !important;
+}
+
+/* Avatar de cliente con iniciales */
+.avatar-circle {
+    width: 45px;
+    height: 45px;
+    background: rgba(99,102,241,0.2);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+
+.icon-text {
+    font-size: 0.85em;
+    margin-left: 8px;
+    margin-right: 3px;
+    color: var(--text-muted); 
+}
+
+/* Icono de Mascota con fondo circular */
+.pet-icon-circle {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.actions-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-outline-green {
+    background: transparent;
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+    transition: all 0.3s ease;
+}
+
+    .btn-outline-green:hover {
+        background: var(--success-color);
+        color: white;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); 
+        transform: translateY(-2px);
+    }
+
+
+/* =========================================
+         TABLA DE HORARIOS (VETERINARIO)
+   ========================================= */
+
+.config-info-header {
+    padding: 25px 30px !important;
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important; 
+    color: #ffffff !important;
+    font-size: 18px !important;
+    letter-spacing: 0.3px;
+}
+
+/* El Icono del Reloj */
+.config-icon {
+    font-size: 1.5rem !important; 
+    color: var(--primary-color) !important;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Estado "ABIERTO" (Verde Fuerte y Sólido) */
+.status-active {
+    background-color: #10b981 !important; 
+    color: #ffffff !important; 
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); 
+    padding: 8px 16px; 
+    font-weight: 800;
+}
+
+/* Horarios */
+.time-display {
+    font-weight: 500 !important; 
+    font-size: 18px !important; 
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+/* FILA CERRADA (Estilo Bloqueado/Oscuro) */
+.row-closed {
+    opacity: 0.5; 
+    filter: grayscale(100%); 
+}
+    .row-closed .status-closed {
+        color: #94a3b8 !important; 
+       
+    }
+
+/* =========================================
+   MÓDULO CATÁLOGOS (Tarjetas de Acción)
+   ========================================= */
+
+/* Grilla contenedora */
+.catalogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Modificador para la tarjeta (Centrado) */
+.catalog-card {
+  
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px; 
+}
+
+    /* Ajuste del icono dentro del catálogo */
+    .catalog-card .stat-icon {
+        margin: 0 auto 20px auto !important; 
+        width: 60px; 
+        height: 60px;
+        font-size: 2rem;
+    }
+
+/* Título del catálogo */
+.catalog-title {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+        ESPACIADO Y SECCIONES (LAYOUT)
+   ========================================= */
+
+.main-content section {
+    
+    margin-bottom: 80px;
+    scroll-margin-top: 100px;
+}
+    .main-content section:last-child {
+        margin-bottom: 40px;
+    }
+
+@media (max-width: 768px) {
+    .main-content section {
+        margin-bottom: 50px;
+        scroll-margin-top: 90px;
+    }
+}

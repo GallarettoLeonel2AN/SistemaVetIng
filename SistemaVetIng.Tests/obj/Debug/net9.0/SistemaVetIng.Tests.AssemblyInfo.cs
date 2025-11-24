@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaVetIng.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cbd37adba9e5df829e977bd7bee35d02fbacd02e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b87d0483221a0f70c6f28894f6a02ac83e3b8278")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaVetIng.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaVetIng.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

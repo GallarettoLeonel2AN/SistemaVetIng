@@ -4,497 +4,243 @@
 @inject IAuthorizationService AuthorizationService
 @inject IHttpContextAccessor HttpContextAccessor
 @using SistemaVetIng.Models.Extension
+@using System.Globalization
 
 @{
-    ViewData["Title"] = "VetIng - Veterinario";
+    ViewData["Title"] = "Panel Veterinario - VetIng";
     Layout = null;
 }
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 
 <body>
     <header class="main-header">
-        <a href="/Veterinario/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/Veterinario/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
+
         <nav class="main-nav">
-            <ul class="nav-list">
-                 <li>
-                 <a class="nav-link" asp-controller="Perfil" asp-action="Index">Perfil</a>
-                </li>
-                <li><a class="nav-link" href="#resumen">Resumen</a></li>
-                <li><a class="nav-link" href="#clientes">Clientes</a></li>
-                <li><a class="nav-link" href="#mascotas">Mascotas</a></li>
-                <li><a class="nav-link" href="#seguimiento-clinico">Seguimiento Clínico</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" asp-controller="Perfil" asp-action="Index">Perfil</a></li>
+                <li><a class="nav-link" href="#turnos-hoy">Agenda</a></li>
+                <li><a class="nav-link" href="#clientes">Pacientes</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
+    <main class="main-content">
 
-        <section id="resumen" class="v1-section">
-            <h2 class="v1-section-title">Resumen del Día</h2>
-            <div class="v1-card-grid">
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Citas</h3>
-                        <i class="fa-regular fa-calendar-days v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                           @Model.CantidadCitasHoy
-                        </div>
-                          <p class="v1-card-description">
-                           Para Hoy
-                         </p>
-                    </div>
-                </div>
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Mascotas Atendidas</h3>
-                        <i class="fa-solid fa-paw v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            @Model.CantidadAtencionesPorVeterinario
-                        </div>
-                          <p class="v1-card-description">
-                            Historicamente
-                         </p>
-                    </div>
-                </div>
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Mascota mas Frecuente</h3>
-                        <i class="fa-solid fa-file-invoice-dollar v1-card-icon"></i>
-                    </div>
-                    <div class="v1-card-content">
-                        <div class="v1-card-value">
-                            @(Model.MascotaMasFrecuentePorVeterinario?.Nombre ?? "N/A")
-                        </div>
-                        <p class="v1-card-description">
-                            @(Model.MascotaMasFrecuentePorVeterinario?.Especie ?? "N/A")
-                            @(Model.MascotaMasFrecuentePorVeterinario?.Raza ?? "N/A")
-                         </p>
-                    </div>
-                </div>
+        <section class="dash-hero">
+            <div class="dash-title">
+                <h1>Bienvenido @Model.Nombre <br><span>Panel Veterinario</span></h1>
+                <p class="dash-subtitle">Gestión clínica, agenda diaria y administración de pacientes.</p>
             </div>
-        </section>
-
-      
-
-
-        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded ||
-        (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded ||
-        (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
-        {
-            <section id="administracion" class="v1-section">
-                <h2 class="v1-section-title">Administración del Sistema</h2>
-                <div class="v1-section-actions">
-
-                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
-                    {
-                        <a asp-controller="Veterinaria" asp-action="GestionPermissions" class="v1-btn v1-btn-primary">
-                            <i class="fa-solid fa-shield-halved"></i> Gestionar Permisos de Roles
-                        </a>
-                    }
-
-                </div>
-                <div class="v1-section-actions">
-                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
-                    {
-                        <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="v1-btn v1-btn-primary">
-                            <i class="fa-solid fa-users-cog"></i> Gestionar Usuarios
-                        </a>
-                    }
-                </div>
-                <div class="v1-section-actions">
-                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded)
-                    {
-                        <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="v1-btn v1-btn-primary">
-                            <i class="fa-solid fa-user-shield"></i> Gestionar Roles
-                        </a>
-                    }
-                </div>
-
-            </section>
-        }
-
-        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.View)).Succeeded){
-        <section id="configuracion-turnos" class="v1-section">
-            <h2 class="v1-section-title">Configuración de Horarios</h2>
-            <div class="v1-section-actions">
-                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.Create)).Succeeded)
-                {
-                    <a asp-controller="Veterinaria" asp-action="GuardarConfiguracion" class="v1-btn v1-btn-primary">
-                        <i class="fas fa-cog"></i> Agregar/Modificar Configuración
+            
+            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Atenciones.View)).Succeeded)
+            {
+                <div class="dash-actions">
+                    <a asp-controller="HistoriaClinica" asp-action="BuscarClienteParaSeguimiento" class="btn btn-primary">
+                        <i class="fa-solid fa-notes-medical"></i> Nueva Atencion Veterinaria
                     </a>
-                }
-            </div>
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Configuración Actual</h3>
                 </div>
-                <div class="v1-card-content">
-                    @if (Model.ConfiguracionTurnos != null && Model.ConfiguracionTurnos.Horarios.Any())
-                    {
-                        <div class="v1-info-item" style="margin-bottom: 20px;">
-                            <strong>Duración por Consulta:</strong>
-                            <span>@Model.ConfiguracionTurnos.DuracionMinutosPorConsulta minutos</span>
-                        </div>
+            }
+        </section>
 
-                        <table class="v1-table">
-                            <thead>
-                                <tr>
-                                    <th>Día de la Semana</th>
-                                    <th>Estado</th>
-                                    <th>Horario Laboral</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var dia in Model.ConfiguracionTurnos.Horarios)
-                                {
-                                    <tr>
-                                        <td>
-
-                                            @switch (dia.DiaSemana)
-                                            {
-                                                case DayOfWeek.Monday:
-                                                    <span>Lunes</span>
-                                                    break;
-                                                case DayOfWeek.Tuesday:
-                                                    <span>Martes</span>
-                                                    break;
-                                                case DayOfWeek.Wednesday:
-                                                    <span>Miércoles</span>
-                                                    break;
-                                                case DayOfWeek.Thursday:
-                                                    <span>Jueves</span>
-                                                    break;
-                                                case DayOfWeek.Friday:
-                                                    <span>Viernes</span>
-                                                    break;
-                                                case DayOfWeek.Saturday:
-                                                    <span>Sábado</span>
-                                                    break;
-                                                case DayOfWeek.Sunday:
-                                                    <span>Domingo</span>
-                                                    break;
-                                            }
-                                        </td>
-                                        <td>
-                                            @if (dia.EstaActivo)
-                                            {
-                                                <span class="v1-badge v1-badge-success">Activo</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="v1-badge v1-badge-danger">Inactivo</span>
-                                            }
-                                        </td>
-                                        <td>
-
-                                            @if (dia.EstaActivo && dia.HoraInicio != DateTime.MinValue)
-                                            {
-
-                                                <span>@dia.HoraInicio.ToString("HH:mm") - @dia.HoraFin.ToString("HH:mm")</span>
-                                            }
-                                            else
-                                            {
-                                                <span>-</span>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <div class="v1-empty-state">Aún no se ha configurado el horario.</div>
-                    }
+        <section id="resumen" class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-regular fa-calendar-days"></i></div>
+                <div class="stat-value">@Model.CantidadCitasHoy</div>
+                <div class="stat-label">Citas para Hoy</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon icon-coral"><i class="fa-solid fa-stethoscope"></i></div>
+                <div class="stat-value">@Model.CantidadAtencionesPorVeterinario</div>
+                <div class="stat-label">Atenciones Totales</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon icon-green"><i class="fa-solid fa-paw"></i></div>
+                <div class="stat-value" style="font-size:1.5rem;">
+                    @(Model.MascotaMasFrecuentePorVeterinario?.Nombre ?? "N/A")
+                </div>
+                <div class="stat-label">
+                    @(Model.MascotaMasFrecuentePorVeterinario != null ? $"{Model.MascotaMasFrecuentePorVeterinario.Especie} - Mascota mas frecuente" : "Sin datos")
                 </div>
             </div>
         </section>
-        }
 
        
-        <section id="catalogos" class="v1-section">
-            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.View)).Succeeded){
-            <h2 class="v1-section-title">Gestión de Servicios</h2>
-            <div class="v1-section-actions">
-                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.Create)).Succeeded)
-                {
-                    <a asp-controller="Vacuna" asp-action="Index" class="v1-btn v1-btn-primary">
-                        <i class="fa-solid fa-syringe"></i> Gestionar Catálogo de Vacunas
-                    </a>
-                }
-            </div>
-            }
-             @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.View)).Succeeded){
-            <div class="v1-section-actions">
-                @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.Create)).Succeeded)
-                {
-                    <a asp-controller="Estudio" asp-action="Index" class="v1-btn v1-btn-primary">
-                        <i class="fa-solid fa-microscope"></i> Gestionar Catálogo de Estudios
-                    </a>
-                }
-            </div>
-             }
-        </section>
 
-        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.View))
+       @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.View))
         {
-        <section id="turnos" class="v1-section">
-                <div class="v1-card v1-appointment-list-card">
-                    <div class="v1-card-header">
-                          <h3 class="v1-card-title">Citas programadas para el @DateTime.Today.ToString("dd/MM/yyyy")</h3>
-                              <a asp-controller="Turno" asp-action="TurnosPorDiaSeleccionado" class="v1-btn v1-btn-primary">
-                            <i class="fa-solid fa-calendar"></i> Ver Todos los Turnos
-                          </a> 
-                    </div>
-                    <div class="v1-card-content v1-appointment-list-content">
+            <section id="turnos-hoy" style="margin-bottom: 50px;">
+                <div class="section-header">
+                    <h2 class="section-heading">Agenda del Día @DateTime.Today.ToString("dd/MM/yy")</h2>
+                    <a asp-controller="Turno" asp-action="TurnosPorDiaSeleccionado" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-calendar-week"></i> Ver Agenda Completa
+                    </a> 
+                </div>
 
-                        @if (Model.CitasDeHoy.Any())
+                <div class="list-container">
+                    @if (Model.CitasDeHoy.Any())
+                    {
+                        foreach (var turno in Model.CitasDeHoy)
                         {
-                            @foreach (var turno in Model.CitasDeHoy)
-                            {
-                                <div class="v1-appointment-item">
-                                    <div class="v1-appointment-info">
-                                        <i class="fa-regular fa-clock v1-appointment-icon"></i>
-                                        <div>
-                                            <p class="v1-appointment-time">@turno.Horario.ToString(@"hh\:mm") hs</p>
+                            <div class="list-item">
+                                <div style="display:flex; align-items:center; gap:20px;">
+         
+                                    <div class="time-block">
+                                        <div class="time-hour">@turno.Horario.ToString(@"hh\:mm")</div>
+                                        <div class="time-label">HS</div>
+                                    </div>
 
-                                            @if (turno.PrimeraCita)
-                                            {
-                                                <p class="v1-appointment-pet primeraCita">Primera Cita</p>
+                                    <div class="item-info">
+                   
+                                        <div class="appointment-title">
+                                            @(turno.NombreMascota ?? "Primera Cita")
+                                            @if (turno.PrimeraCita) 
+                                            { 
+                                                <span class="badge-new">Nueva</span> 
                                             }
-                                            else
-                                            {
-                                                <p class="v1-appointment-pet">Mascota: @(turno.NombreMascota ?? "Sin mascota")</p>
-                                            }
-
-                                            <p class="v1-appointment-owner">Cliente: @turno.NombreCliente</p>
                                         </div>
+                                        
+               
+                                        <div class="appointment-meta">
+                                            <i class="fa-solid fa-user" style="color:var(--primary-color);"></i> @turno.NombreCliente
+                                            &nbsp;|&nbsp; 
+                                            <span>
+                                                @(string.IsNullOrWhiteSpace(turno.Motivo) ? "No especificó motivo" : turno.Motivo)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                         
+                                <div class="action-buttons">
+                                    <span class="badge @(turno.Estado == "Finalizado" ? "badge-success" : (turno.Estado == "Pendiente" ? "badge-pending" : "badge-error"))">
+                                        @turno.Estado
+                                    </span>
+
                                     @if (turno.Estado == "Pendiente")
                                     {
-                                        <div class="v1-appointment-actions">
-                                            <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencionConTurno" asp-route-turnoId="@turno.Id" class="v1-btn v1-btn-primary">
-                                                <i class="fa-solid fa-file-waveform"></i> Registrar Atención
-                                            </a>
-                                        </div>
-                                            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Cancel))
-                                            {
-                                        <form asp-controller="Turno" asp-action="CancelarTurnoAdmin" method="post" onsubmit="return confirm('¿Estás seguro de cancelar este turno?');" style="display: inline-block; margin-left: 5px;">
+                                   
+                                        <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencionConTurno" asp-route-turnoId="@turno.Id" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-clipboard-check"></i> Atender
+                                        </a>
+                                        
+                          
+                                        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Cancel))
+                                        {
+                                            <form asp-controller="Turno" asp-action="CancelarTurnoAdmin" method="post" onsubmit="return confirm('¿Cancelar turno?');">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="turnoId" value="@turno.Id" />
+                                                <button type="submit" class="btn-cancel" title="Cancelar">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        }
+                                        
+                                    
+                                        <form asp-controller="Turno" asp-action="MarcarNoAsistio" method="post" onsubmit="return confirm('¿Marcar ausente?');">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="turnoId" value="@turno.Id" />
-                                            <button type="submit" class="v1-btn-cancelar">
-                                                <i class="fas fa-calendar-times"></i> Cancelar
-                                            </button>
-                                        </form>
-                                            }
-                                        <form asp-controller="Turno" asp-action="MarcarNoAsistio" method="post" onsubmit="return confirm('¿Confirmar que el cliente no asistió a este turno?');" style="display: inline-block; margin-left: 5px;">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="turnoId" value="@turno.Id" />
-                                            <button type="submit" class="v1-btn-ausente">
-                                                <i class="fas fa-user-slash"></i> Ausente
+                                            <button type="submit" class="btn-absent" title="Marcar Ausente">
+                                                <i class="fas fa-user-slash"></i>
                                             </button>
                                         </form>
                                     }
-                                    </div>
-                                    <div class="v1-appointment-badges">
-                                        @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                                        {
-                                            <span class="v1-badge v1-badge-secondary">@turno.Motivo</span>
-                                        }
-
-                                   <span class="v1-badge @(turno.Estado == "Finalizado" ? "v1-badge-green" : (turno.Estado == "Pendiente" ? "v1-badge-yellow" : (turno.Estado == "Cancelado" || turno.Estado == "No Asistió" ? "v1-badge-red" : "v1-badge-gray"))) ">
-                                        @turno.Estado
-                                    </span>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <div class="v1-empty-state">No hay citas programadas para hoy.</div>
-                        }
-                    </div>
-                </div>
-        </section>
-        }
-
-        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.View)){
-        <section id="clientes" class="v1-section">
-            <h2 class="v1-section-title">Gestión de Clientes</h2>
-            <div class="v1-section-actions">
-                    @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.Create))
-                    {
-                <a asp-controller="Cliente" asp-action="RegistrarCliente" class="v1-btn v1-btn-primary">
-                    <i class="fa-solid fa-plus"></i> Registrar Nuevo
-                </a>
-                    }
-
-                <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
-                    <div class="v1-input-group">
-                        <i class="fa-solid fa-search v1-input-icon"></i>
-                        <input type="text" id="busquedaCliente" name="busquedaCliente" placeholder="Buscar por DNI, Nombre..." class="v1-input" value="@Context.Request.Query["busquedaCliente"]" />
-                    </div>
-                </form>
-            </div>
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Lista de Clientes</h3>
-                </div>
-                <div class="v1-card-content v1-list-content">
-                    @if (Model.Clientes != null && Model.Clientes.Any())
-                    {
-                        @foreach (var cliente in Model.Clientes)
-                        {
-                            <div class="v1-list-item">
-                                <div class="v1-list-info">
-                                    <div class="v1-avatar">@(cliente.NombreCompleto.Split(' ').FirstOrDefault()?.FirstOrDefault())@(cliente.NombreCompleto.Split(' ').LastOrDefault()?.FirstOrDefault())</div>
-                                    <div>
-                                        <p class="v1-list-name">@cliente.NombreCompleto</p>
-                                        <p class="v1-list-subtext">Dni: @cliente.DNI</p>
-                                        <p class="v1-list-subtext-small">Telefono: @cliente.Telefono</p>
-                                        <p class="v1-list-subtext-small">Usuario: @cliente.NombreUsuario</p>
-                                    </div>
-                                </div>
-                                <div class="v1-list-actions">
-                                        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.Edit))
-                    {
-                                    <a asp-controller="Cliente" asp-action="ModificarCliente" asp-route-id="@cliente.Id" class="v1-btn v1-btn-ghost"><i class="fa-solid fa-edit"></i></a>
-                    }
-                                        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.Delete))
-                                        {
-                                    <form asp-controller="Cliente" asp-action="EliminarCliente" asp-route-id="@cliente.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este cliente?');" style="display:inline;">
-                                        @Html.AntiForgeryToken() 
-                                        <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger"><i class="fa-solid fa-trash"></i></button>
-                                    </form>
-                                        }
                                 </div>
                             </div>
                         }
                     }
                     else
                     {
-                        <div class="v1-empty-state">
-                            @if (!string.IsNullOrEmpty(Context.Request.Query["busquedaCliente"]))
-                            {
-                                <span>No se encontraron clientes que coincidan con "@Context.Request.Query["busquedaCliente"]".</span>
-                            }
-                            else
-                            {
-                                <span>No hay clientes registrados.</span>
-                            }
+                        <div class="empty-state-container">
+                            <i class="fa-solid fa-mug-hot empty-icon"></i>
+                            <p>No hay citas programadas para hoy.</p>
                         </div>
                     }
                 </div>
-
-                <div class="v1-card-footer pagination-container">
-                    @if (Model.PaginacionClientes != null && Model.PaginacionClientes.PageCount > 1)
-                    {
-                        @Html.PagedListPager(Model.PaginacionClientes, page => Url.Action("PaginaPrincipal", "Veterinario",
-                        new { page, busquedaCliente = Context.Request.Query["busquedaCliente"]}),
-                                        new PagedListRenderOptions
-                                        {
-                                            LiElementClasses = new string[] { "page-item" },
-                                            PageClasses = new string[] { "page-link" },
-                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
-                                        })
-                                        }
-                    else if (Model.PaginacionClientes != null)
-                    {
-                        <p class="text-muted text-center">Mostrando @Model.PaginacionClientes.TotalItemCount @(Model.PaginacionClientes.TotalItemCount == 1 ? "cliente" : "clientes")</p>
-                    }
-                </div>
-            </div>
-        </section>
+            </section>
         }
+    
 
-        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.View)){
-     <section id="mascotas" class="v1-section">
-    <h2 class="v1-section-title">Gestión de Mascotas</h2>
-    <div class="v1-section-actions">
-                    @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.Create))
-                    {
-         <a asp-controller="Mascota" asp-action="RegistrarMascota" class="v1-btn v1-btn-primary">
-            <i class="fa-solid fa-plus"></i> Registrar Nueva
-        </a> 
-                    }
-
-        <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="v1-search-form">
-            <div class="v1-input-group">
-                <i class="fa-solid fa-search v1-input-icon"></i>
-                <input type="text" id="busquedaMascota" name="busquedaMascota" placeholder="Buscar por Nombre, Raza, Dueño..." class="v1-input" value="@Context.Request.Query["busquedaMascota"]" />
-            </div>
-        </form>
-    </div>
-    <div class="v1-card">
-        <div class="v1-card-header">
-            <h3 class="v1-card-title">Registro de Mascotas</h3>
-        </div>
-        <div class="v1-card-content v1-list-content">
-            @if (Model.Mascotas != null && Model.Mascotas.Any())
-            {
-                @foreach (var mascota in Model.Mascotas) 
+       @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.View))
+{
+    <section id="clientes" class="mb-50">
+        <div class="section-header">
+            <h2 class="section-heading">Gestión de Clientes</h2>
+            
+            <div class="d-flex gap-10">
+                @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.Create))
                 {
-                    <div class="v1-list-item">
-                        <div class="v1-list-info">
-                            <div class="v1-pet-icon-bg"> 
-                                @if (mascota.Especie.ToLower().Contains("canino") || mascota.Especie.ToLower().Contains("perro")) {
-                                    <i class="fa-solid fa-dog v1-pet-icon"></i>
-                                } else if (mascota.Especie.ToLower().Contains("felino") || mascota.Especie.ToLower().Contains("gato")) {
-                                    <i class="fa-solid fa-cat v1-pet-icon"></i>
-                                } else {
-                                    <i class="fa-solid fa-paw v1-pet-icon"></i> 
-                                }
+                    <a asp-controller="Cliente" asp-action="RegistrarCliente" class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-plus"></i> Nuevo
+                    </a>
+                }
+                
+                <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="search-box">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" name="busquedaCliente" class="search-input" placeholder="Buscar cliente..." value="@Context.Request.Query["busquedaCliente"]" />
+                </form>
+            </div>
+        </div>
+
+        <div class="list-container">
+            @if (Model.Clientes != null && Model.Clientes.Any())
+            {
+                foreach (var cliente in Model.Clientes)
+                {
+                    <div class="list-item">
+                        <div class="d-flex align-center gap-15">
+                            <div class="avatar-circle">
+                                @(cliente.NombreCompleto.Split(' ').FirstOrDefault()?.FirstOrDefault())@(cliente.NombreCompleto.Split(' ').LastOrDefault()?.FirstOrDefault())
                             </div>
-                            <div>
-                                <p class="v1-list-name">@mascota.NombreMascota</p>
-                                <p class="v1-list-subtext">@mascota.Especie &bull; @mascota.Raza (@mascota.Sexo)</p>
-                                <p class="v1-list-subtext-small">Edad: @mascota.EdadAnios @(mascota.EdadAnios == 1 ? "año" : "años")</p>
-                                <p class="v1-list-subtext-small">Propietario: @mascota.NombreDueno</p>
+                            
+                            <div class="item-info">
+                                <h4>@cliente.NombreCompleto</h4>
+                                <p>
+                                DNI: @cliente.DNI 
+                                &bull; <i class="fa-solid fa-phone icon-text"></i> @cliente.Telefono 
+                                &bull; <i class="fa-solid fa-envelope icon-text"></i> @cliente.NombreUsuario
+</p>
                             </div>
                         </div>
-                        <div class="v1-list-actions">
-                             <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@mascota.Id" class="v1-btn v1-btn-ghost" title="Ver Historia Clínica">
-                                 <i class="fa-solid fa-notes-medical"></i>
-                             </a>
-                                        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.Edit))
-                                        {
-                            <a asp-controller="Mascota" asp-action="ModificarMascota" asp-route-id="@mascota.Id" class="v1-btn v1-btn-ghost" title="Editar Mascota"><i class="fa-solid fa-edit"></i></a>
-                             }
-                                        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.Delete))
-                                        {
-                            <form asp-controller="Mascota" asp-action="EliminarMascota" asp-route-id="@mascota.Id" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a esta mascota?');" style="display:inline;">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="v1-btn v1-btn-ghost v1-text-danger" title="Eliminar Mascota"><i class="fa-solid fa-trash"></i></button>
-                            </form>
+                        
+                        <div class="d-flex gap-10">
+                            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.Edit))
+                            {
+                                <a asp-controller="Cliente" asp-action="ModificarCliente" asp-route-id="@cliente.Id" class="btn btn-outline btn-sm" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            }
+                            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Cliente.Delete))
+                            {
+                                <form asp-controller="Cliente" asp-action="EliminarCliente" asp-route-id="@cliente.Id" method="post" onsubmit="return confirm('¿Eliminar cliente?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-outline btn-sm" style="border-color:var(--error-color); color:var(--error-color);" title="Eliminar">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
                             }
                         </div>
                     </div>
@@ -502,101 +248,316 @@
             }
             else
             {
-                <div class="v1-empty-state">
-                    @if (!string.IsNullOrEmpty(Context.Request.Query["busquedaMascota"]))
+                <div class="empty-state-container">
+                    <p>No se encontraron clientes.</p>
+                </div>
+            }
+
+            <div class="pagination-wrapper">
+                @if (Model.PaginacionClientes != null && Model.PaginacionClientes.PageCount > 1)
+                {
+                    @Html.PagedListPager(Model.PaginacionClientes, page => Url.Action("PaginaPrincipal", "Veterinario",
+                        new { page, busquedaCliente = Context.Request.Query["busquedaCliente"] }),
+                        new PagedListRenderOptions {
+                            LiElementClasses = new string[] { "page-item" },
+                            PageClasses = new string[] { "page-link" },
+                            ContainerDivClasses = new[] { "pagination" },
+                            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                            DisplayLinkToLastPage = PagedListDisplayMode.Never
+                        })
+                }
+            </div>
+        </div>
+    </section>
+}
+
+       @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.View))
+{
+    <section id="mascotas" class="mb-50">
+        <div class="section-header">
+            <h2 class="section-heading">Registro de Mascotas</h2>
+            
+            <div class="d-flex gap-10">
+                @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.Create))
+                {
+                    <a asp-controller="Mascota" asp-action="RegistrarMascota" class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-plus"></i> Nueva
+                    </a>
+                }
+                
+                <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="search-box">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" name="busquedaMascota" class="search-input" placeholder="Buscar mascota..." value="@Context.Request.Query["busquedaMascota"]" />
+                </form>
+            </div>
+        </div>
+
+        <div class="list-container">
+            @if (Model.Mascotas != null && Model.Mascotas.Any())
+            {
+                foreach (var mascota in Model.Mascotas)
+                {
+                    <div class="list-item">
+                        <div class="d-flex align-center gap-15">
+                            <div class="pet-icon-circle">
+                                @if (mascota.Especie.ToLower().Contains("canino") || mascota.Especie.ToLower().Contains("perro")) {
+                                    <i class="fa-solid fa-dog"></i>
+                                } else if (mascota.Especie.ToLower().Contains("felino") || mascota.Especie.ToLower().Contains("gato")) {
+                                    <i class="fa-solid fa-cat"></i>
+                                } else {
+                                    <i class="fa-solid fa-paw"></i>
+                                }
+                            </div>
+                            
+                            <div class="item-info">
+                                <h4>@mascota.NombreMascota</h4>
+                                <p>@mascota.Raza (@mascota.Sexo) &bull; Dueño: @mascota.NombreDueno</p>
+                            </div>
+                        </div>
+
+                        <div class="actions-container">
+                          <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@mascota.Id" class="btn btn-outline-green btn-sm" title="Historia Clínica">
+                          <i class="fa-solid fa-file-medical"></i>
+                          </a>
+                            
+                            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.Edit))
+                            {
+                                <a asp-controller="Mascota" asp-action="ModificarMascota" asp-route-id="@mascota.Id" class="btn btn-outline btn-sm" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <p>
+                        @if (!string.IsNullOrEmpty(Context.Request.Query["busquedaMascota"]))
+                        {
+                            <span>No se encontraron mascotas para "@Context.Request.Query["busquedaMascota"]".</span>
+                        }
+                        else
+                        {
+                            <span>No hay mascotas registradas.</span>
+                        }
+                    </p>
+                </div>
+            }
+
+            <div class="pagination-wrapper">
+                @if (Model.PaginacionMascotas != null && Model.PaginacionMascotas.PageCount > 1)
+                {
+                    @Html.PagedListPager(Model.PaginacionMascotas, pageMascota => Url.Action("PaginaPrincipal", "Veterinario",
+                        new { 
+                            page = Context.Request.Query["page"], 
+                            busquedaCliente = Context.Request.Query["busquedaCliente"],
+                            pageMascota,
+                            busquedaMascota = Context.Request.Query["busquedaMascota"] 
+                        }),
+                        new PagedListRenderOptions {
+                            LiElementClasses = new string[] { "page-item" },
+                            PageClasses = new string[] { "page-link" },
+                            ContainerDivClasses = new[] { "pagination" },
+                            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                            DisplayLinkToLastPage = PagedListDisplayMode.Never
+                        })
+                }
+                else if(Model.PaginacionMascotas != null)
+                {
+                     <p class="text-muted text-center" style="margin:0; font-size:0.9rem;">
+                        Mostrando @Model.PaginacionMascotas.TotalItemCount @(Model.PaginacionMascotas.TotalItemCount == 1 ? "mascota" : "mascotas")
+                     </p>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+
+ @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded ||
+             (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded ||
+             (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
+        {
+            <section style="margin-bottom: 50px;">
+                <div class="section-header">
+                    <h2 class="section-heading">Panel de Administración</h2>
+                </div>
+                <div class="list-container" style="padding:30px; display:flex; gap:15px; flex-wrap:wrap;">
+                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
                     {
-                        <span>No se encontraron mascotas que coincidan con "@Context.Request.Query["busquedaMascota"]".</span>
+                        <a asp-controller="Veterinaria" asp-action="GestionPermissions" class="btn btn-outline btn-sm">
+                            <i class="fa-solid fa-shield-halved"></i> Permisos
+                        </a>
                     }
-                    else
+                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
                     {
-                        <span>No hay mascotas registradas.</span>
+                        <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="btn btn-outline btn-sm">
+                            <i class="fa-solid fa-users-cog"></i> Usuarios
+                        </a>
                     }
+                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded)
+                    {
+                        <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="btn btn-outline btn-sm">
+                            <i class="fa-solid fa-user-shield"></i> Roles
+                        </a>
+                    }
+                </div>
+            </section>
+        }
+
+
+
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.View)).Succeeded)
+{
+    <section id="horarios" class="mb-50">
+        <div class="section-header">
+            <h2 class="section-heading">Horarios de Atención</h2>
+            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.Create)).Succeeded)
+            {
+                <a asp-controller="Veterinaria" asp-action="GuardarConfiguracion" class="btn btn-primary btn-sm">
+                    <i class="fas fa-cog"></i> Configurar
+                </a>
+            }
+        </div>
+
+        <div class="list-container">
+            @if (Model.ConfiguracionTurnos != null && Model.ConfiguracionTurnos.Horarios.Any())
+            {
+                <div class="config-info-header">
+                    <i class="fa-regular fa-clock config-icon"></i> 
+                    <span>
+                        <strong>Duración consulta:</strong> @Model.ConfiguracionTurnos.DuracionMinutosPorConsulta minutos
+                    </span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                       <tbody>
+                         @foreach (var dia in Model.ConfiguracionTurnos.Horarios)
+                        {
+                          <tr class="@(dia.EstaActivo ? "" : "row-closed")">
+            
+                           <td data-label="Día" style="text-transform:capitalize; font-weight:600; font-size:1.1rem; color:white;">
+                           @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(dia.DiaSemana)
+                           </td>
+            
+                            <td data-label="Estado" class="text-center">
+                     @if (dia.EstaActivo)
+                {
+                    <span class="status-active">Abierto</span>
+                }
+                else
+                {
+                    <span class="status-closed">Cerrado</span>
+                }
+            </td>
+            
+            <td data-label="Horario" class="text-center">
+                @if (dia.EstaActivo && dia.HoraInicio != DateTime.MinValue)
+                {
+                    <span class="time-display">
+                        @dia.HoraInicio.ToString("HH:mm") - @dia.HoraFin.ToString("HH:mm")
+                    </span>
+                }
+                else
+                {
+                    <span class="time-empty" style="font-size:1.5rem;">&mdash;</span> }
+            </td>
+        </tr>
+    }
+</tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <p>Horarios no configurados.</p>
                 </div>
             }
         </div>
+    </section>
+}
 
-        <div class="v1-card-footer pagination-container"> 
-            @if (Model.PaginacionMascotas != null && Model.PaginacionMascotas.PageCount > 1) 
+       <section id="catalogos" class="catalogs-grid">
+    
+    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.View)).Succeeded)
+    {
+        <div class="stat-card catalog-card">
+            <div class="stat-icon">
+                <i class="fa-solid fa-syringe"></i>
+            </div>
+            <h3 class="catalog-title">Vacunas</h3>
+            
+            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.Create)).Succeeded)
             {
-                @Html.PagedListPager(Model.PaginacionMascotas, pageMascota => Url.Action("PaginaPrincipal", "Veterinario",
-                    new { 
-                        page = Context.Request.Query["page"], 
-                        busquedaCliente = Context.Request.Query["busquedaCliente"],
-                        pageMascota,
-                        busquedaMascota = Context.Request.Query["busquedaMascota"] 
-                    }),
-                    new PagedListRenderOptions
-                    {
-                          LiElementClasses = new string[] { "page-item" },
-                                            PageClasses = new string[] { "page-link" },
-                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
-                    })
-            }
-            else if(Model.PaginacionMascotas != null)
-            {
-                 <p class="text-muted text-center">Mostrando @Model.PaginacionMascotas.TotalItemCount @(Model.PaginacionMascotas.TotalItemCount == 1 ? "mascota" : "mascotas")</p>
+                <a asp-controller="Vacuna" asp-action="Index" class="btn btn-outline btn-sm">
+                    Gestionar Catálogo
+                </a>
             }
         </div>
-    </div>
-</section>
-}
-        @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Atenciones.View))
-        {
-        <section id="seguimiento-clinico" class="v1-section">
-            <h2 class="v1-section-title">Seguimiento Clínico</h2>
-            <div class="v1-section-actions">
-                <a asp-controller="HistoriaClinica" asp-action="BuscarClienteParaSeguimiento" class="v1-btn v1-btn-primary">
-                    <i class="fa-solid fa-file-waveform"></i> Nuevo Registro Clínico
-                </a>
+    }
+
+    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.View)).Succeeded)
+    {
+        <div class="stat-card catalog-card">
+            <div class="stat-icon icon-green">
+                <i class="fa-solid fa-microscope"></i>
             </div>
-        </section>
-}
+            <h3 class="catalog-title">Estudios</h3>
+            
+            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.Create)).Succeeded)
+            {
+                <a asp-controller="Estudio" asp-action="Index" class="btn btn-outline btn-sm">
+                    Gestionar Catálogo
+                </a>
+            }
+        </div>
+    }
+
+</section>
+
     </main>
 
-    <footer class="main-footer">
+   <footer class="main-footer">
         <div class="footer-col footer-info">
-            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
             </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
+            <h4 class="footer-heading">Herramientas</h4>
             <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
+                <li><a href="/Veterinario/PaginaPrincipal">Agenda del Día</a></li>
+                <li><a href="/Veterinario/PaginaPrincipal">Historiales Clínicos</a></li>
+                <li><a href="/Veterinario/PaginaPrincipal">Pacientes</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
+            <h4 class="footer-heading">Soporte Técnico</h4>
             <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
@@ -605,5 +566,13 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
+
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>

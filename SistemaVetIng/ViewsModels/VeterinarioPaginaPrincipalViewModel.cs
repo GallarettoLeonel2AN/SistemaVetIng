@@ -5,6 +5,7 @@ namespace SistemaVetIng.ViewsModels
 {
     public class VeterinarioPaginaPrincipalViewModel
     {
+        public string Nombre { get; set; }
         public List<ClienteViewModel> Clientes { get; set; }
         public List<MascotaListViewModel> Mascotas { get; set; }
         public List<TurnoViewModel> CitasDeHoy { get; set; } 

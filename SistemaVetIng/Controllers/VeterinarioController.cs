@@ -8,6 +8,8 @@ using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 using System.Security.Claims;
 using X.PagedList;
+using static SistemaVetIng.Models.Extension.Permission;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SistemaVetIng.Controllers
 {
@@ -48,7 +50,9 @@ namespace SistemaVetIng.Controllers
             int page = 1,
             int pageMascota = 1)
         {
-            var viewModel = new VeterinarioPaginaPrincipalViewModel(); 
+          
+
+            var viewModel = new VeterinarioPaginaPrincipalViewModel();
             int pageSizeClientes = 3; 
             int pageSizeMascotas = 3;
 
@@ -116,7 +120,6 @@ namespace SistemaVetIng.Controllers
             // CARGA DE CITAS DE HOY
             var turnosDeHoy = await _turnoService.ObtenerTurnosPorFechaAsync(DateTime.Today);
 
-            // ¡ESTA ES LA REVISIÓN QUE ARREGLA TODO!
             if (turnosDeHoy != null)
             {
                 // Si la lista NO es nula, la procesamos
@@ -155,6 +158,7 @@ namespace SistemaVetIng.Controllers
 
 
             // Datos para Reportes dashboard
+            viewModel.Nombre = $"{veterinarioLogueado.Nombre} {veterinarioLogueado.Apellido}";
             viewModel.CantidadCitasHoy = await _turnoService.ContarTurnosParaFechaAsync(DateTime.Today);
             viewModel.CantidadAtencionesPorVeterinario = await _atencionVeterinariaService.CantidadAtencionesPorVeterinario(veterinarioId);
             viewModel.MascotaMasFrecuentePorVeterinario = await _atencionVeterinariaService.ObtenerMascotaMasFrecuentePorVeterinario(veterinarioId);
