@@ -2,7 +2,7 @@
 @model SistemaVetIng.ViewsModels.TurnosPorDiaViewModel
 
 @{
-    ViewData["Title"] = "Historial de Turnos";
+    ViewData["Title"] = "Historial de Turnos - VetIng";
     Layout = null;
 
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
@@ -14,187 +14,253 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 
 <body>
     <header class="main-header">
         <a href="/@controllerDestino/PaginaPrincipal" class="logo">
-            <i class="fas fa-paw"></i>
-            <span>VetIng</span>
+            <i class="fas fa-paw"></i> VetIng
         </a>
         <nav class="main-nav">
-            <ul class="nav-list">
+            <ul class="nav-list" id="navMenu">
                 <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
+                    </form>
+                </li>
             </ul>
         </nav>
+        <div class="hamburger-menu" id="hamburgerBtn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </header>
 
-    <main class="v1-main-dashboard">
-        <section class="v1-section">
-            <h1 class="v1-section-title">Agenda del Día</h1>
+    <main class="main-content">
 
-            <form asp-action="TurnosPorDiaSeleccionado" method="get" class="date-selector-form">
-                <div class="form-group">
-                    <label asp-for="FechaSeleccionada"></label>
-                    <input asp-for="FechaSeleccionada" type="date" class="v1-input" onchange="this.form.submit()" />
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Agenda <span>Diaria</span></h1>
+                <p class="dash-subtitle">Visualiza y gestiona todos los turnos programados.</p>
+            </div>
+        </div>
+
+        <section>
+            <div class="date-filter-card">
+                <form asp-action="TurnosPorDiaSeleccionado" method="get" class="date-filter-group" id="formFiltroFecha">
+
+                    <label asp-for="FechaSeleccionada" class="filter-label">
+                        <i class="fa-regular fa-calendar-days"></i> Fecha:
+                    </label>
+
+                    <input type="text" asp-for="FechaSeleccionada" id="filtroFecha"
+                           class="form-control" style="width:200px; text-align:center; cursor:pointer;"
+                           readonly="readonly" />
+                </form>
+
+                <div class="date-display-text">
+                    Mostrando: <strong>@Model.FechaSeleccionada.ToString("dddd, dd 'de' MMMM", new CultureInfo("es-AR"))</strong>
                 </div>
-                <div>Mostrando turnos para: <strong>@Model.FechaSeleccionada.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-AR"))</strong></div>
-            </form>
+            </div>
 
-            <div class="v1-card">
-                <div class="v1-card-content">
-                    @if (Model.TurnosDelDia.Any())
-                    {
-                        <div class="table-container">
-                            <table class="agenda-table responsive-table">
-                                <thead>
+            <div class="list-container">
+                @if (Model.TurnosDelDia.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Hora</th>
+                                    <th>Cliente</th>
+                                    <th>Mascota</th>
+                                    <th>Motivo</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var turno in Model.TurnosDelDia)
+                                {
                                     <tr>
-                                        <th>Hora</th>
-                                        <th>Cliente</th>
-                                        <th>Mascota</th>
-                                        <th>Motivo</th>
-                                        <th>Estado</th>
-                                        <th class="text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var turno in Model.TurnosDelDia)
-                                    {
-                                        <tr>
-                                            <td data-label="Hora:">@turno.Horario.ToString(@"hh\:mm")</td>
-                                            <td data-label="Cliente:">@turno.NombreCliente</td>
-                                            <td data-label="Mascota:">
-                                                @if (turno.PrimeraCita && string.IsNullOrEmpty(turno.NombreMascota))
+                                        <td data-label="Hora" class="text-center">
+                                            <span class="time-display" style="font-size:1rem; padding:5px 10px;">
+                                                @turno.Horario.ToString(@"hh\:mm")
+                                            </span>
+                                        </td>
+
+                                        <td data-label="Cliente">
+                                            <div class="d-flex align-center">
+                                                <i class="fa-solid fa-user icon-text"></i> @turno.NombreCliente
+                                            </div>
+                                        </td>
+
+                                        <td data-label="Mascota">
+                                            @if (turno.PrimeraCita && string.IsNullOrEmpty(turno.NombreMascota))
+                                            {
+                                                <span class="text-first-visit">
+                                                    <i class="fa-solid fa-star"></i> Primera Cita
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <div class="d-flex align-center">
+                                                    <i class="fa-solid fa-paw icon-text"></i> @turno.NombreMascota
+                                                </div>
+                                            }
+                                        </td>
+
+                                        <td data-label="Motivo">
+                                            @if (!string.IsNullOrWhiteSpace(turno.Motivo))
+                                            {
+                                                <span>@turno.Motivo</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted" style="font-style:italic;">No especificó motivo</span>
+                                            }
+                                        </td>
+
+                                        <td data-label="Estado" class="text-center">
+                                            @{
+                                                string badgeClass = turno.Estado switch
                                                 {
-                                                    <span><strong class="primeraCita">Primera Cita</strong></span>
-                                                }
-                                                else
-                                                {
-                                                    <span>@turno.NombreMascota</span>
-                                                }
-                                            </td>
-                                            <td data-label="Motivo:">
-                                                @if (!string.IsNullOrWhiteSpace(turno.Motivo))
-                                                {
-                                                    <span class="v1-badge v1-badge-secondary">
-                                                        Motivo: @turno.Motivo
-                                                    </span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="v1-badge v1-badge-secondary">
-                                                        No especificó Motivo
-                                                    </span>
-                                                }
-                                                </td>
-                                            <td data-label="Estado:">
-                                                @{
-                                                    string statusClass = turno.Estado switch
-                                                    {
-                                                        "Pendiente" => "status-pendiente",
-                                                        "Finalizado" => "status-finalizado",
-                                                        "Cancelado" => "status-cancelado",
-                                                        "No Asistió" => "status-no-asistio",
-                                                        _ => "status-pendiente" // Default
-                                                    };
-                                                }
-                                                <span class="badge-status @statusClass">@turno.Estado</span>
-                                            </td>
-                                            <td data-label="Acciones:" class="text-center">
+                                                    "Pendiente" => "status-pending",
+                                                    "Finalizado" => "status-finished",
+                                                    "Cancelado" => "status-cancelled",
+                                                    "No Asistió" => "status-absent",
+                                                    _ => "status-pending"
+                                                };
+                                            }
+                                            <span class="status-badge @badgeClass">@turno.Estado</span>
+                                        </td>
+
+                                        <td data-label="Acciones" class="text-center">
+                                            <div class="d-flex justify-content-center gap-10">
                                                 @if (turno.Estado == "Pendiente")
                                                 {
-                                                    <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencionConTurno" asp-route-turnoId="@turno.Id" class="v1-btn v1-btn-sm v1-btn-primary" title="Registrar Atención">
-                                                        <i class="fa-solid fa-file-medical"></i>
+                                                    <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencionConTurno" asp-route-turnoId="@turno.Id"
+                                                       class="btn btn-sm btn-primary" title="Atender">
+                                                        <i class="fa-solid fa-clipboard-check"></i>
                                                     </a>
-                                                    <form asp-controller="Turno" asp-action="CancelarTurnoAdmin" method="post" onsubmit="return confirm('¿Estás seguro de cancelar este turno?');" style="display: inline-block; margin-left: 5px;" title="Cancelar Turno">
+
+                                                    <form asp-controller="Turno" asp-action="CancelarTurnoAdmin" method="post" onsubmit="return confirm('¿Cancelar turno?');">
                                                         @Html.AntiForgeryToken()
                                                         <input type="hidden" name="turnoId" value="@turno.Id" />
-                                                        <button type="submit" class="v1-btn v1-btn-sm v1-btn-ghost v1-text-danger">
-                                                            <i class="fas fa-calendar-times"></i>
+                                                        <button type="submit" class="btn btn-sm btn-action-cancel" title="Cancelar">
+                                                            <i class="fa-solid fa-xmark"></i>
                                                         </button>
                                                     </form>
-                                                    <form asp-controller="Turno" asp-action="MarcarNoAsistio" method="post" onsubmit="return confirm('¿Confirmar que el cliente no asistió?');" style="display: inline-block; margin-left: 5px;" title="Marcar Ausente">
+
+                                                    <form asp-controller="Turno" asp-action="MarcarNoAsistio" method="post" onsubmit="return confirm('¿Marcar ausente?');">
                                                         @Html.AntiForgeryToken()
                                                         <input type="hidden" name="turnoId" value="@turno.Id" />
-                                                        <button type="submit" class="v1-btn v1-btn-sm v1-btn-ghost v1-text-danger">
-                                                            <i class="fas fa-user-slash"></i>
+                                                        <button type="submit" class="btn btn-sm btn-action-absent" title="Ausente">
+                                                            <i class="fa-solid fa-user-slash"></i>
                                                         </button>
                                                     </form>
                                                 }
                                                 else if (turno.Estado == "Finalizado")
                                                 {
-
-                                                    <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@turno.MascotaId" class="btnModificar">
-                                                        <i class="fas fa-eye"></i> Ver Historia Clinica
-                                                    </a> 
+                                                    <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@turno.MascotaId"
+                                                       class="btn btn-sm btn-action-primary" title="Ver Historia">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
                                                 }
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state-container">
+                        <div class="empty-search-icon">
+                            <i class="fa-regular fa-calendar-xmark"></i>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="v1-empty-state">No hay turnos programados para el @Model.FechaSeleccionada.ToString("dd/MM/yyyy").</div>
-                         
-                    }
-                </div>
+                        <p>No hay turnos registrados para el <strong>@Model.FechaSeleccionada.ToShortDateString()</strong>.</p>
+                    </div>
+                }
             </div>
         </section>
+
     </main>
 
     <footer class="main-footer">
         <div class="footer-col footer-info">
-            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
             </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
+            <h4 class="footer-heading">Navegacion</h4>
             <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
+            <h4 class="footer-heading">Soporte Técnico</h4>
             <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    @await Component.InvokeAsync("NToastNotify")
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
+    <script>
+        // Menú Móvil
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+
+        // INICIALIZAR CALENDARIO
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#filtroFecha", {
+                locale: "es",
+                dateFormat: "Y-m-d", 
+                altInput: true,     
+                altFormat: "d/m/Y",  
+                disableMobile: "true",
+
+                onChange: function(selectedDates, dateStr, instance) {
+                    document.getElementById('formFiltroFecha').submit();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -2427,3 +2427,143 @@ span.flatpickr-weekday {
         background: var(--success-color);
         color: white;
     }
+
+/* =========================================
+          VISTA TODOS LOS TURNOS POR FECHA
+   ========================================= */
+
+/* Barra de Filtro de Fecha */
+.date-filter-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: var(--shadow-card);
+}
+
+.date-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.date-display-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+    .date-display-text strong {
+        color: var(--primary-color);
+        text-transform: capitalize;
+    }
+
+/* Badges de Estado de Turno */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.status-pending {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24; /* Ámbar */
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.status-finished {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399; /* Verde Menta */
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.status-cancelled {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171; /* Rojo */
+    border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.status-absent {
+    background: rgba(148, 163, 184, 0.15);
+    color: #94a3b8; /* Gris */
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* Texto "Primera Cita" */
+.text-first-visit {
+    color: var(--success-color);
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* =========================================
+   BOTONES DE ACCIÓN (Colores Específicos)
+   ========================================= */
+
+/* Botón Cancelar (Rojo) */
+.btn-action-cancel {
+    background: transparent;
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    transition: all 0.2s;
+}
+
+    .btn-action-cancel:hover {
+        background-color: var(--error-color);
+        color: white;
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); /* Resplandor Rojo */
+    }
+
+/* Botón Ausente (Amarillo/Naranja) */
+.btn-action-absent {
+    background: transparent;
+    border: 1px solid var(--warning-color);
+    color: var(--warning-color);
+    transition: all 0.2s;
+}
+
+    .btn-action-absent:hover {
+        background-color: var(--warning-color);
+        color: #000; /* Texto negro para mejor contraste en amarillo */
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); /* Resplandor Ámbar */
+    }
+
+/* Botón Ver/Atender */
+.btn-action-primary {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: all 0.2s;
+}
+
+    .btn-action-primary:hover {
+        background-color: var(--primary-color);
+        color: white;
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+    }
+
+/* Label del Filtro (Alineado horizontalmente) */
+.filter-label {
+    display: flex !important; /* Pone el icono al lado del texto */
+    align-items: center !important; /* Los centra verticalmente */
+    gap: 8px; /* Espacio entre icono y texto */
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0; /* Quita margen inferior por defecto */
+    margin-right: 10px; /* Separa del input */
+    white-space: nowrap; /* Evita que se rompa en dos líneas */
+}
+
+    .filter-label i {
+        color: var(--primary-color); /* Color del icono */
+        font-size: 1.1rem;
+    }
