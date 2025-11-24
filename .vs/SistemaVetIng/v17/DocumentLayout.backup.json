@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\atencionveterinaria\\registraratencionconturno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\atencionveterinaria\\registraratencionconturno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\atencionveterinaria\\registraratencion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\atencionveterinaria\\registraratencion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\mascota\\registrarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\mascota\\registrarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -22,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 422,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +46,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegistrarAtencion.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-24T14:30:46.177Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "RegistrarAtencionConTurno.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencionConTurno.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencionConTurno.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencionConTurno.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencionConTurno.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-24T14:30:02.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "RegistrarMascota.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Mascota\\RegistrarMascota.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Mascota\\RegistrarMascota.cshtml",
@@ -46,12 +79,11 @@
               "RelativeToolTip": "SistemaVetIng\\Views\\Mascota\\RegistrarMascota.cshtml",
               "ViewState": "AgIAACMAAAAAAAAAAAAQwC8AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-24T13:55:18.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T13:55:18.16Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Historial.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\Historial.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\AtencionVeterinaria\\Historial.cshtml",
@@ -63,7 +95,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "portal-theme.css",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",

@@ -2601,3 +2601,186 @@ span.flatpickr-weekday {
     background: rgba(0, 0, 0, 0.2);
     border-color: rgba(239, 68, 68, 0.3);
 }
+
+/* =========================================
+   MÓDULO AUTENTICACIÓN (Login / Registro)
+   ========================================= */
+
+/* Fondo especial para Login/Registro (Opcional: más limpio o con imagen de fondo) */
+.auth-body {
+    background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.2) 0%, transparent 60%), linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Contenedor principal (Tarjeta ancha) */
+.auth-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 1000px; /* Ancho máximo para diseño de dos columnas */
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Columna imagen - Columna form */
+    overflow: hidden;
+}
+
+.auth-visual {
+    background-image: url('/css/img/perro.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start;
+    position: relative;
+    color: white; /* Asegura texto blanco */
+    z-index: 1; /* Para que el texto quede sobre el overlay */
+}
+
+    /* Overlay oscuro para que el texto blanco se lea bien sobre la imagen */
+    .auth-visual::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Oscurece la imagen al 50% */
+        z-index: -1; /* Se pone detrás del texto */
+        border-radius: 24px 0 0 24px; /* Redondea solo la izquierda */
+    }
+
+    /* Quitamos el patrón SVG anterior */
+    .auth-visual::before {
+        display: none;
+    }
+
+/* Aseguramos que el texto de la marca y la frase sean blancos */
+.auth-brand, .auth-quote {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra para mejor lectura */
+}
+
+
+/* Columna Derecha (Formulario) */
+.auth-form-container {
+    padding: 50px;
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.btn-register-submit {
+    width: 100%;
+    margin-top: 30px;
+    padding: 15px;
+    font-size: 1.1rem;
+    display: flex !important; /* Importante para centrar */
+    justify-content: center !important; /* Centrado horizontal */
+    align-items: center !important; /* Centrado vertical */
+}
+
+/* Botones Sociales */
+.social-login {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-social {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .btn-social:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+/* Link de Login */
+.signin-text {
+    margin-top: 25px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+    .signin-text a {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .signin-text a:hover {
+            text-decoration: underline;
+        }
+
+/* Responsive (Columna única en móvil) */
+@media (max-width: 768px) {
+    .auth-card {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .auth-visual {
+        display: none; /* Ocultamos la imagen en móvil para ahorrar espacio */
+    }
+
+    .auth-form-container {
+        padding: 30px;
+    }
+}
+
+/* =========================================
+   CORRECCIÓN TEXTOS REGISTRO/LOGIN
+   ========================================= */
+
+/* Forzamos color blanco para los labels dentro de la tarjeta de auth */
+.auth-form-container .form-label {
+    color: #ffffff !important; /* Blanco Puro */
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-bottom: 8px;
+    display: block;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Sombra suave para mayor legibilidad */
+}
+
+/* Color del placeholder (texto de ayuda dentro del input) */
+.auth-form-container .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Color del texto que escribes dentro del input */
+.auth-form-container .form-control {
+    color: #ffffff !important;
+    background-color: rgba(2, 6, 23, 0.6) !important; /* Fondo oscuro para el input */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

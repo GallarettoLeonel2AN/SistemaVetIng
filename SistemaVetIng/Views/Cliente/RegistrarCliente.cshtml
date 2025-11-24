@@ -1,8 +1,8 @@
 ﻿@model SistemaVetIng.ViewsModels.ClienteRegistroViewModel
 
 @{
-    ViewData["Title"] = "Registrar Cliente";
-    Layout = null; 
+    ViewData["Title"] = "Registrar Cliente - VetIng";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -11,89 +11,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/registrar-cliente-style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
-<body>
-    <main class="register-main">
-        <div class="register-container">
-            <div class="container-img-register"></div>
-            <div class="container-formulario">
-                <div class="ingreso-correo">
-                    <h1>¡Únete a la familia VetIng!</h1> 
-                    <p class="register-subtext">Regístrate para gestionar tus mascotas y citas.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon google"><i class="fa-brands fa-google"></i></a>
-                        <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
+<body class="auth-body">
+
+    <div class="auth-card">
+
+        <div class="auth-visual">
+            <div style="margin-top: auto; opacity: 0.8; font-size: 0.9rem; color:white;">
+                &copy; @DateTime.Now.Year VetIng Software
+            </div>
+        </div>
+
+        <div class="auth-form-container">
+            <div class="dash-title">
+                <h1>Crear <span>Cuenta</span></h1>
+              </div>
+            <p class="auth-subtitle" style="color:var(--text-muted);">Completa tus datos para empezar.</p>
+
+            <form asp-action="RegistrarCliente" asp-controller="Cliente" method="post" style="margin-top:20px;">
+                @Html.AntiForgeryToken()
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="form-label">Nombre</label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Tu nombre" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="form-label">Apellido</label>
+                        <input asp-for="Apellido" class="form-control" placeholder="Tu apellido" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="formulario">
-                    <form asp-action="RegistrarCliente" asp-controller="Cliente" method="post" class="register-form">
-                        @Html.AntiForgeryToken()
-                     
-
-                        <div class="form-group">
-                            <label asp-for="Nombre"></label>
-                            <input asp-for="Nombre" class="form-control" placeholder="Tu nombre" /> 
-                            <span asp-validation-for="Nombre" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Apellido"></label>
-                            <input asp-for="Apellido" class="form-control" placeholder="Tu apellido" />
-                            <span asp-validation-for="Apellido" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Dni"></label>
-                            <input asp-for="Dni" class="form-control" placeholder="Número de DNI" />
-                            <span asp-validation-for="Dni" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Email"></label>
-                            <input asp-for="Email" class="form-control" placeholder="email@gmail.com" type="email" /> 
-                            <span asp-validation-for="Email" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Password">Contraseña:</label>
-                            <input asp-for="Password" class="form-control" type="password" placeholder="8+ caracteres, Mayús, Minús, Números, Carácter" />
-                            <span asp-validation-for="Password" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Direccion"></label>
-                            <input asp-for="Direccion" class="form-control" placeholder="Calle, número, piso, depto." />
-                            <span asp-validation-for="Direccion" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Telefono"></label>
-                            <input asp-for="Telefono" class="form-control" placeholder="Número de telefono"/> 
-                            <span asp-validation-for="Telefono" class="text-danger validation-error"></span>
-                        </div>
-
-                        <button type="submit" class="button register-button">Registrarme</button> 
-
-
-                        <p class="signin-link">¿Ya eres miembro? <a asp-controller="Account" asp-action="Login" class="link-secondary"> Iniciar sesión</a></p>
-                    </form>
+                <div class="form-group" style="margin-top:15px;">
+                    <label asp-for="Dni" class="form-label">DNI</label>
+                    <input asp-for="Dni" class="form-control" placeholder="Número de documento" />
+                    <span asp-validation-for="Dni" class="text-danger"></span>
                 </div>
-            </div>
+
+                <div class="form-group" style="margin-top:15px;">
+                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                    <input asp-for="Email" class="form-control" placeholder="ejemplo@email.com" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:15px;">
+                    <label asp-for="Password" class="form-label">Contraseña</label>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Mínimo 8 caracteres" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:15px;">
+                    <label asp-for="Direccion" class="form-label">Dirección</label>
+                    <input asp-for="Direccion" class="form-control" placeholder="Calle y número" />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:15px;">
+                    <label asp-for="Telefono" class="form-label">Teléfono</label>
+                    <input asp-for="Telefono" class="form-control" placeholder="Número de contacto" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-register-submit">
+                    Registrarme
+                </button>
+
+                <p class="signin-text">
+                    ¿Ya tienes una cuenta? <a asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
+                </p>
+            </form>
         </div>
-    </main>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    }
     @await Component.InvokeAsync("NToastNotify")
+
 </body>
 </html>
