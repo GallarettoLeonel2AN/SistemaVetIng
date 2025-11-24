@@ -2764,13 +2764,13 @@ span.flatpickr-weekday {
 
 /* Forzamos color blanco para los labels dentro de la tarjeta de auth */
 .auth-form-container .form-label {
-    color: #ffffff !important; /* Blanco Puro */
+    color: #ffffff !important; 
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.3px;
     margin-bottom: 8px;
     display: block;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Sombra suave para mayor legibilidad */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
 }
 
 /* Color del placeholder (texto de ayuda dentro del input) */
@@ -2781,6 +2781,23 @@ span.flatpickr-weekday {
 /* Color del texto que escribes dentro del input */
 .auth-form-container .form-control {
     color: #ffffff !important;
-    background-color: rgba(2, 6, 23, 0.6) !important; /* Fondo oscuro para el input */
+    background-color: rgba(2, 6, 23, 0.6) !important; 
     border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Ajuste para botones de acción alineados */
+.action-group {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    align-items: center;
+}
+
+/* Estilo para input readonly (Email) */
+.form-control[readonly] {
+    background-color: rgba(2, 6, 23, 0.4) !important; 
+    color: var(--text-muted) !important;
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.1);
 }

@@ -1,8 +1,9 @@
 ﻿@model SistemaVetIng.ViewsModels.ClienteEditarViewModel
 
 @{
-    ViewData["Title"] = "Modificar Cliente";
+    ViewData["Title"] = "Modificar Cliente - VetIng";
     Layout = null;
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
 <!DOCTYPE html>
@@ -11,78 +12,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/registrar-cliente-style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 <body>
-    <main class="register-main">
-        <div class="register-container">
-            <div class="container-img-editar"></div>
-            <div class="container-formulario">
-                <div class="ingreso-correo">
-                    <h1>Modificar Cliente</h1>
-                    <p class="register-subtext">Edita los datos de la cuenta del cliente.</p>
-                </div>
-                <div class="formulario">
-                    <form asp-action="ModificarCliente" asp-controller="Cliente" method="post" class="register-form">
-                        @Html.AntiForgeryToken()
 
-                        <input type="hidden" asp-for="Id" />
-
-                        <div class="form-group">
-                            <label asp-for="Nombre"></label>
-                            <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
-                            <span asp-validation-for="Nombre" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Apellido"></label>
-                            <input asp-for="Apellido" class="form-control" placeholder="Apellido" />
-                            <span asp-validation-for="Apellido" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Dni"></label>
-                            <input asp-for="Dni" class="form-control" placeholder="Número de DNI" />
-                            <span asp-validation-for="Dni" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Email"></label>
-                            <input asp-for="Email" class="form-control" placeholder="email@gmail.com" type="email" readonly/>
-                            <span asp-validation-for="Email" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Direccion"></label>
-                            <input asp-for="Direccion" class="form-control" placeholder="Calle, número, piso, depto." />
-                            <span asp-validation-for="Direccion" class="text-danger validation-error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="Telefono"></label>
-                            <input asp-for="Telefono" class="form-control" placeholder="Número de teléfono" />
-                            <span asp-validation-for="Telefono" class="text-danger validation-error"></span>
-                        </div>
-
-                        <button type="submit" class="button register-button">Actualizar Cliente</button>
-                        <a asp-controller="Veterinaria" asp-action="PaginaPrincipal" class="btnBack">Volver a la Página Principal</a>
-                    
+    <header class="main-header">
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
+        <nav class="main-nav">
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Panel</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
-                </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburgerBtn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Modificar <span>Cliente</span></h1>
+                <p class="dash-subtitle">Actualiza la información personal y de contacto del cliente.</p>
             </div>
         </div>
+
+        <section class="booking-container" style="max-width: 800px;">
+            <form asp-action="ModificarCliente" asp-controller="Cliente" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Id" />
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="form-label">Nombre</label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="form-label">Apellido</label>
+                        <input asp-for="Apellido" class="form-control" placeholder="Apellido" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <label asp-for="Dni" class="form-label">DNI</label>
+                    <input asp-for="Dni" class="form-control" placeholder="Número de DNI" />
+                    <span asp-validation-for="Dni" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                    <div style="position:relative;">
+                        <i class="fa-solid fa-lock" style="position:absolute; right:15px; top:50%; transform:translateY(-50%); color:var(--text-muted);"></i>
+                        <input asp-for="Email" class="form-control" placeholder="email@gmail.com" type="email" readonly />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <small style="color:var(--text-muted); font-size:0.85rem;">El correo no se puede modificar por seguridad.</small>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <label asp-for="Direccion" class="form-label">Dirección</label>
+                    <input asp-for="Direccion" class="form-control" placeholder="Calle, número, piso, depto." />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <label asp-for="Telefono" class="form-label">Teléfono</label>
+                    <input asp-for="Telefono" class="form-control" placeholder="Número de teléfono" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+
+                <div class="action-group">
+                    <a href="/@controllerDestino/PaginaPrincipal" class="btn btn-outline">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </section>
     </main>
+
+    <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegacion</h4>
+            <ul class="footer-links">
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Técnico</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
+        </div>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    }
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
+
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
