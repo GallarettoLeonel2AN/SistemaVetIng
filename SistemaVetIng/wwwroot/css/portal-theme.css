@@ -2181,3 +2181,131 @@ span.flatpickr-weekday {
         transform: translateY(0);
     }
 }
+
+/* =========================================
+       MÓDULO EDICIÓN DE ATENCIONES VET
+   ========================================= */
+
+/* Alerta de Auditoría */
+.audit-alert {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-left: 4px solid #f59e0b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fbbf24;
+}
+
+.audit-icon {
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.audit-content strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+/* Separadores de sección en edición */
+.edit-section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Botón de Guardar Cambios (Amarillo para precaución) */
+.btn-save-changes {
+    background: #f59e0b; 
+    color: white; 
+    font-weight: 700;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor:pointer;
+}
+
+    .btn-save-changes:hover {
+        background: #d97706;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+/* =========================================
+   MÓDULO EDICIÓN Y AUDITORÍA
+   ========================================= */
+
+/* Alerta Ámbar (Auditoría) */
+.audit-alert {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-left: 4px solid #f59e0b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fbbf24;
+}
+
+.audit-icon {
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+/* Títulos de sección interna */
+.edit-section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Input Motivo (Rojo) */
+.input-danger-zone {
+    background: rgba(239, 68, 68, 0.05) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    color: #fca5a5 !important;
+}
+
+.label-danger-zone {
+    color: #fca5a5 !important;
+    font-weight: 700;
+}
+
+/* Botón Guardar (Amarillo Precaución) */
+.btn-save-changes {
+    background: #f59e0b;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .btn-save-changes:hover {
+        background: #d97706;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }

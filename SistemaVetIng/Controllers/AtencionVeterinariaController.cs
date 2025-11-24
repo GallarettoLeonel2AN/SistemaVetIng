@@ -227,11 +227,20 @@ namespace SistemaVetIng.Controllers
             {
                 await _atencionService.EditarAtencionConRespaldoAsync(model, User, motivoCambio);
                 _toastNotification.AddSuccessToastMessage("Cambios guardados correctamente.");
+
+             
                 return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = model.MascotaId });
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Error al editar: " + ex.Message);
+                _toastNotification.AddErrorToastMessage("Error: " + ex.Message);
+
+                // Recargamos listas para que el dropdown no falle al volver a la vista
+                var vacunas = await _vacunaService.ListarTodo();
+                var estudios = await _estudioService.ListarTodo();
+                model.VacunasDisponibles = new SelectList(vacunas, "Id", "Nombre");
+                model.EstudiosDisponibles = new SelectList(estudios, "Id", "Nombre");
+
                 return View(model);
             }
         }

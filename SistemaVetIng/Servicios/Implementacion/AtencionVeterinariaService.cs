@@ -276,19 +276,19 @@ namespace SistemaVetIng.Servicios.Implementacion
 
             try
             {
-                // cargar Datos
+                // CARGAR DATOS COMPLETOS
                 var atencionActual = await _context.AtencionesVeterinarias
                     .Include(a => a.Tratamiento)
                     .Include(a => a.Vacunas)
                     .Include(a => a.EstudiosComplementarios)
-                    .Include(a => a.HistoriaClinica) // incluir HistoriaClinica para el Decorator
-                        .ThenInclude(hc => hc.Mascota) 
-                    .Include(a => a.HistoriaClinica.Mascota.Propietario) 
+                    .Include(a => a.HistoriaClinica)
+                        .ThenInclude(hc => hc.Mascota)
+                    .Include(a => a.HistoriaClinica.Mascota.Propietario)
                     .FirstOrDefaultAsync(a => a.Id == model.Id);
 
                 if (atencionActual == null) throw new Exception($"No se encontró la atención {model.Id}");
 
-                // crear memento
+                // CREAR MEMENTO (Respaldo)
                 var memento = new AtencionVeterinariaMemento
                 {
                     AtencionVeterinariaId = atencionActual.Id,
@@ -297,49 +297,59 @@ namespace SistemaVetIng.Servicios.Implementacion
                     MotivoCambio = motivo,
                     Diagnostico = atencionActual.Diagnostico,
                     PesoMascota = atencionActual.PesoMascota,
-                    // Tratamiento
+                    // Datos del tratamiento viejo (puede ser null)
                     TratamientoMedicamento = atencionActual.Tratamiento?.Medicamento,
                     TratamientoDosis = atencionActual.Tratamiento?.Dosis,
                     TratamientoFrecuencia = atencionActual.Tratamiento?.Frecuencia,
                     TratamientoDuracion = atencionActual.Tratamiento?.Duracion,
                     TratamientoObservaciones = atencionActual.Tratamiento?.Observaciones,
-                    // Listas
+                    // Snapshots de listas
                     VacunasSnapshot = string.Join(", ", atencionActual.Vacunas.Select(v => v.Nombre)),
                     EstudiosSnapshot = string.Join(", ", atencionActual.EstudiosComplementarios.Select(e => e.Nombre))
                 };
 
                 _context.AtencionMementos.Add(memento);
-                await _context.SaveChangesAsync(); 
+                await _context.SaveChangesAsync(); // Guardamos el respaldo primero
 
-               
+                // ACTUALIZAR DATOS BÁSICOS
                 atencionActual.Diagnostico = model.Diagnostico;
                 atencionActual.PesoMascota = model.PesoKg;
 
-                // actualizar tratamiento
+                // ACTUALIZAR O CREAR TRATAMIENTO
+                // Validamos si el usuario ingresó algo en el tratamiento
+                bool hayDatosTratamiento = !string.IsNullOrWhiteSpace(model.Medicamento);
+
                 if (atencionActual.Tratamiento != null)
                 {
+                    // Si ya existía, actualizamos
                     atencionActual.Tratamiento.Medicamento = model.Medicamento;
                     atencionActual.Tratamiento.Dosis = model.Dosis;
                     atencionActual.Tratamiento.Frecuencia = model.Frecuencia;
                     atencionActual.Tratamiento.Duracion = model.DuracionDias;
                     atencionActual.Tratamiento.Observaciones = model.ObservacionesTratamiento;
-                    _context.Entry(atencionActual.Tratamiento).State = EntityState.Modified;
                 }
-                else if (!string.IsNullOrEmpty(model.Medicamento))
+                else if (hayDatosTratamiento)
                 {
-                    
-                    var nuevoTratamiento = new Tratamiento {  };
-                   
+                    // Si NO existía y ahora pusieron datos, CREAMOS UNO NUEVO
+                    var nuevoTratamiento = new Tratamiento
+                    {
+                        Medicamento = model.Medicamento,
+                        Dosis = model.Dosis,
+                        Frecuencia = model.Frecuencia,
+                        Duracion = model.DuracionDias,
+                        Observaciones = model.ObservacionesTratamiento
+                    };
+
                     _context.Tratamientos.Add(nuevoTratamiento);
                     atencionActual.Tratamiento = nuevoTratamiento;
                 }
 
-               
-                // Limpiamos listas actuales
+                // ACTUALIZAR LISTAS (VACUNAS / ESTUDIOS)
+                // Limpiamos relaciones actuales
                 atencionActual.Vacunas.Clear();
                 atencionActual.EstudiosComplementarios.Clear();
 
-                // Agregamos las nuevas (y guardamos referencia para calcular costos)
+                // Agregamos nuevas vacunas si hay seleccionadas
                 List<Vacuna> vacunasNuevas = new List<Vacuna>();
                 if (model.VacunasSeleccionadasIds != null && model.VacunasSeleccionadasIds.Any())
                 {
@@ -349,6 +359,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                     foreach (var v in vacunasNuevas) atencionActual.Vacunas.Add(v);
                 }
 
+                // Agregamos nuevos estudios si hay seleccionados
                 List<Estudio> estudiosNuevos = new List<Estudio>();
                 if (model.EstudiosSeleccionadosIds != null && model.EstudiosSeleccionadosIds.Any())
                 {
@@ -358,30 +369,24 @@ namespace SistemaVetIng.Servicios.Implementacion
                     foreach (var e in estudiosNuevos) atencionActual.EstudiosComplementarios.Add(e);
                 }
 
-                // recalcular con decorator
-                
 
-                decimal costoConsultaBase = 5000;
+                decimal costoConsultaBase = 5000; 
                 decimal costoVacunas = vacunasNuevas.Sum(v => v.Precio);
                 decimal costoEstudios = estudiosNuevos.Sum(e => e.Precio);
 
-                
                 ICostoAtencion calculador = new CostoBaseAtencion(costoConsultaBase, costoVacunas, costoEstudios);
 
-                
+                // Decorators
                 calculador = new RecargoFinDeSemana(calculador);
-
-                //  Raza Peligrosa
                 if (atencionActual.HistoriaClinica.Mascota.RazaPeligrosa)
                 {
                     calculador = new RecargoRazaPeligrosa(calculador);
                 }
 
-                // D. Cliente Frecuente
+                // Lógica Cliente Frecuente
                 if (atencionActual.HistoriaClinica.Mascota.Propietario != null)
                 {
                     int clienteId = atencionActual.HistoriaClinica.Mascota.Propietario.Id;
-                   
                     int cantidadVisitas = await _repository.ContarAtencionesHistoricasPorCliente(clienteId);
 
                     if (cantidadVisitas > 50)
@@ -390,21 +395,18 @@ namespace SistemaVetIng.Servicios.Implementacion
                     }
                 }
 
-               
                 atencionActual.CostoTotal = calculador.Calcular();
 
-               
-
-                _context.Entry(atencionActual).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw;
+                throw new Exception($"Error al guardar en BD: {(ex.InnerException != null ? ex.InnerException.Message : ex.Message)}");
             }
         }
+
         public async Task<AtencionVeterinariaViewModel> ObtenerAtencionParaEditarAsync(int id)
         {
             var atencion = await _context.AtencionesVeterinarias

@@ -12,279 +12,219 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
-    <style>
-        body {
-            background-color: #f4f7f6;
-        }
-
-        .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .v1-btn-warning {
-            background-color: #ffc107;
-            color: #000;
-            border: none;
-        }
-
-            .v1-btn-warning:hover {
-                background-color: #e0a800;
-            }
-
-        .v1-btn-secondary {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        .memento-alert {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .validation-summary-errors {
-            border: 2px solid #dc3545;
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-            .validation-summary-errors ul {
-                margin-bottom: 0;
-                padding-left: 20px;
-            }
-
-        .dynamic-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-            .dynamic-row .form-select {
-                flex-grow: 1;
-            }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 <body>
 
     <header class="main-header">
-        <a href="#" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
+            <ul class="nav-list" id="navMenu">
                 <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard" style="padding-top: 100px;">
-        <section class="v1-section">
+    <main class="main-content">
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h1 class="v1-section-title" style="margin-bottom: 0;">Editar Atención</h1>
-                    <p class="text-muted">Mascota: <strong>@Model.MascotaNombre</strong></p>
-                </div>
-                <a asp-action="Historial" asp-route-id="@Model.Id" class="v1-btn v1-btn-primary" target="_blank">
+        <section class="dash-hero">
+            <div class="dash-title">
+                <h1>Editar <span>Atención</span></h1>
+            </div>
+            <div class="dash-actions">
+                <a asp-action="Historial" asp-route-id="@Model.Id" class="btn btn-outline" target="_blank">
                     <i class="fa-solid fa-clock-rotate-left"></i> Ver Historial de Cambios
                 </a>
             </div>
+        </section>
 
-            <div class="form-container">
+        <section class="booking-container" style="max-width: 900px;">
 
-                <div class="memento-alert">
-                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+            <div class="audit-alert">
+                <i class="fa-solid fa-triangle-exclamation audit-icon"></i>
+                <div class="audit-content">
+                    <strong>Modo Edición y Auditoría</strong>
+                    Al guardar los cambios, el sistema generará automáticamente una copia de seguridad de la versión anterior.
+                </div>
+            </div>
+
+            <form asp-action="Editar" method="post">
+                <div asp-validation-summary="All" class="text-danger" style="margin-bottom:20px;"></div>
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="HistoriaClinicaId" />
+                <input type="hidden" asp-for="VeterinarioId" />
+                <input type="hidden" asp-for="MascotaId" />
+
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:40px;">
+
                     <div>
-                        <strong>Modo Edición y Auditoría:</strong><br />
-                        Al guardar los cambios, el sistema generará automáticamente una copia de seguridad de la versión anterior.
+                        <h4 class="edit-section-title">Datos Clínicos</h4>
+
+                        <div class="form-group" style="margin-bottom:20px;">
+                            <label asp-for="Diagnostico" class="form-label">Diagnóstico</label>
+                            <textarea asp-for="Diagnostico" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Diagnostico" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PesoKg" class="form-label">Peso (kg)</label>
+                            <input asp-for="PesoKg" class="form-control" type="number" step="0.1" />
+                            <span asp-validation-for="PesoKg" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="edit-section-title">Tratamiento</h4>
+
+                        <div class="form-group" style="margin-bottom:20px;">
+                            <label asp-for="Medicamento" class="form-label">Medicamento</label>
+                            <input asp-for="Medicamento" class="form-control" />
+                            <span asp-validation-for="Medicamento" class="text-danger"></span>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:20px;">
+                            <div class="form-group">
+                                <label asp-for="Dosis" class="form-label">Dosis</label>
+                                <input asp-for="Dosis" class="form-control" />
+                                <span asp-validation-for="Dosis" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Frecuencia" class="form-label">Frecuencia</label>
+                                <input asp-for="Frecuencia" class="form-control" />
+                                <span asp-validation-for="Frecuencia" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:20px;">
+                            <label asp-for="DuracionDias" class="form-label">Duración (días)</label>
+                            <input asp-for="DuracionDias" class="form-control" />
+                            <span asp-validation-for="DuracionDias" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ObservacionesTratamiento" class="form-label">Observaciones</label>
+                            <textarea asp-for="ObservacionesTratamiento" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="ObservacionesTratamiento" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
 
-                <form asp-action="Editar" method="post">
+                <div style="margin-top:40px;">
+                    <h4 class="edit-section-title">Servicios Adicionales</h4>
 
-                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
-
-                    <input type="hidden" asp-for="Id" />
-                    <input type="hidden" asp-for="HistoriaClinicaId" />
-                    <input type="hidden" asp-for="VeterinarioId" />
-                    <input type="hidden" asp-for="MascotaId" />
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="mb-3 border-bottom pb-2">Datos Clínicos</h4>
-
-                            <div class="mb-3">
-                                <label asp-for="Diagnostico" class="form-label fw-bold">Diagnóstico</label>
-                                <textarea asp-for="Diagnostico" class="form-control" rows="5" style="resize: none;"></textarea>
-                                <span asp-validation-for="Diagnostico" class="text-danger"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label asp-for="PesoKg" class="form-label fw-bold">Peso (kg)</label>
-                                <input asp-for="PesoKg" class="form-control" type="number" step="0.1" />
-                                <span asp-validation-for="PesoKg" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <h4 class="mb-3 border-bottom pb-2">Tratamiento</h4>
-
-                            <div class="mb-3">
-                                <label asp-for="Medicamento" class="form-label fw-bold">Medicamento</label>
-                                <input asp-for="Medicamento" class="form-control" />
-                                <span asp-validation-for="Medicamento" class="text-danger"></span>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label asp-for="Dosis" class="form-label">Dosis</label>
-                                    <input asp-for="Dosis" class="form-control" />
-                                    <span asp-validation-for="Dosis" class="text-danger"></span>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label asp-for="Frecuencia" class="form-label">Frecuencia</label>
-                                    <input asp-for="Frecuencia" class="form-control" />
-                                    <span asp-validation-for="Frecuencia" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label asp-for="DuracionDias" class="form-label">Duración (días)</label>
-                                <input asp-for="DuracionDias" class="form-control" />
-                                <span asp-validation-for="DuracionDias" class="text-danger"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label asp-for="ObservacionesTratamiento" class="form-label">Observaciones Tratamiento</label>
-                                <textarea asp-for="ObservacionesTratamiento" class="form-control" rows="2"></textarea>
-                                <span asp-validation-for="ObservacionesTratamiento" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h4 class="mb-3 border-bottom pb-2">Servicios Adicionales</h4>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Vacunas Aplicadas</label>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:40px;">
+                        <div>
+                            <label class="form-label" style="color:var(--primary-color);">Vacunas Aplicadas</label>
 
                             <div id="vacunas-container">
-                                @foreach (var idSeleccionado in Model.VacunasSeleccionadasIds)
+                                @if (Model.VacunasSeleccionadasIds != null)
                                 {
-                                    <div class="dynamic-row row-item">
-                                        <select name="VacunasSeleccionadasIds" class="form-select">
-                                            @foreach (var item in Model.VacunasDisponibles)
-                                            {
-                                                if (item.Value == idSeleccionado.ToString())
+                                    foreach (var idSeleccionado in Model.VacunasSeleccionadasIds)
+                                    {
+                                        <div class="dynamic-item v1-input-dynamic-group row-item">
+                                            <select name="VacunasSeleccionadasIds" class="form-control">
+                                                @if (Model.VacunasDisponibles != null)
                                                 {
-                                                    <option value="@item.Value" selected>@item.Text</option>
+                                                    foreach (var item in Model.VacunasDisponibles)
+                                                    {
+                                                        if (item.Value == idSeleccionado.ToString())
+                                                        {
+                                                            <option value="@item.Value" selected>@item.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <option value="@item.Value">@item.Text</option>
-                                                }
-                                            }
-                                        </select>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
+                                            </select>
+                                            <button type="button" class="btn-remove-item v1-btn-remove" onclick="eliminarFila(this)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    }
                                 }
                             </div>
 
-                            <button type="button" id="btn-add-vacuna" class="btn btn-outline-primary btn-sm mt-1">
+                            <button type="button" id="btn-add-vacuna" class="btn btn-outline btn-sm" style="margin-top:10px;">
                                 <i class="fas fa-plus"></i> Agregar Vacuna
                             </button>
                         </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Estudios Complementarios</label>
+                        <div>
+                            <label class="form-label" style="color:var(--primary-color);">Estudios Complementarios</label>
 
                             <div id="estudios-container">
-                                @foreach (var idSeleccionado in Model.EstudiosSeleccionadosIds)
+                                @if (Model.EstudiosSeleccionadosIds != null)
                                 {
-                                    <div class="dynamic-row row-item">
-                                        <select name="EstudiosSeleccionadosIds" class="form-select">
-                                            @foreach (var item in Model.EstudiosDisponibles)
-                                            {
-                                                if (item.Value == idSeleccionado.ToString())
+                                    foreach (var idSeleccionado in Model.EstudiosSeleccionadosIds)
+                                    {
+                                        <div class="dynamic-item v1-input-dynamic-group row-item">
+                                            <select name="EstudiosSeleccionadosIds" class="form-control">
+                                                @if (Model.EstudiosDisponibles != null)
                                                 {
-                                                    <option value="@item.Value" selected>@item.Text</option>
+                                                    foreach (var item in Model.EstudiosDisponibles)
+                                                    {
+                                                        if (item.Value == idSeleccionado.ToString())
+                                                        {
+                                                            <option value="@item.Value" selected>@item.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <option value="@item.Value">@item.Text</option>
-                                                }
-                                            }
-                                        </select>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
+                                            </select>
+                                            <button type="button" class="btn-remove-item v1-btn-remove" onclick="eliminarFila(this)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    }
                                 }
                             </div>
 
-                            <button type="button" id="btn-add-estudio" class="btn btn-outline-primary btn-sm mt-1">
+                            <button type="button" id="btn-add-estudio" class="btn btn-outline btn-sm" style="margin-top:10px;">
                                 <i class="fas fa-plus"></i> Agregar Estudio
                             </button>
                         </div>
                     </div>
+                </div>
 
-                    <hr class="my-4" />
+                <hr style="border-color:var(--border-light); margin:40px 0;">
 
-                    <div class="mb-4 p-3 bg-light border rounded">
-                        <label for="motivoCambio" class="form-label fw-bold text-danger">
-                            <i class="fa-solid fa-comment-dots"></i> ¿Por qué se realiza este cambio? (Obligatorio)
-                        </label>
-                        <input type="text" name="motivoCambio" id="motivoCambio" class="form-control"
-                               placeholder="Ej: Error de tipeo en la dosis, Corrección de diagnóstico..." required />
-                    </div>
+                <div style="margin-bottom:30px;">
+                    <label for="motivoCambio" class="form-label label-danger-zone">
+                        <i class="fa-solid fa-comment-dots"></i> ¿Por qué se realiza este cambio? (Obligatorio)
+                    </label>
+                    <input type="text" name="motivoCambio" id="motivoCambio" class="form-control input-danger-zone"
+                           placeholder="Ej: Error de tipeo en la dosis, Corrección de diagnóstico..." required />
+                </div>
 
-                    <div class="d-flex justify-content-end gap-3">
-                        <a asp-controller="HistoriaClinica"
-                           asp-action="DetalleHistoriaClinica"
-                           asp-route-mascotaId="@Model.MascotaId"
-                           class="v1-btn v1-btn-secondary"
-                           style="text-decoration: none; padding: 10px 20px;">
-                            <i class="fa-solid fa-arrow-left"></i> Volver Atrás
-                        </a>
+                <div class="form-actions" style="display:flex; justify-content:flex-end; gap:15px;">
+                    <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@Model.MascotaId" class="btn btn-outline">
+                        <i class="fa-solid fa-arrow-left"></i> Volver Atrás
+                    </a>
+                    <button type="submit" class="btn-save-changes">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Corrección
+                    </button>
+                </div>
 
-                        <button type="submit" class="v1-btn v1-btn-warning" style="padding: 10px 20px; font-weight: bold;">
-                            <i class="fa-solid fa-floppy-disk"></i> Guardar Corrección
-                        </button>
-                    </div>
-
-                </form>
-
-            </div>
+            </form>
         </section>
     </main>
 
@@ -295,30 +235,36 @@
     </footer>
 
     <template id="template-vacuna">
-        <div class="dynamic-row row-item">
-            <select name="VacunasSeleccionadasIds" class="form-select" required>
+        <div class="dynamic-item v1-input-dynamic-group row-item">
+            <select name="VacunasSeleccionadasIds" class="form-control" required>
                 <option value="">-- Seleccione Vacuna --</option>
-                @foreach (var item in Model.VacunasDisponibles)
+                @if (Model.VacunasDisponibles != null)
                 {
-                    <option value="@item.Value">@item.Text</option>
+                    foreach (var item in Model.VacunasDisponibles)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
                 }
             </select>
-            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+            <button type="button" class="btn-remove-item v1-btn-remove" onclick="eliminarFila(this)">
                 <i class="fas fa-trash"></i>
             </button>
         </div>
     </template>
 
     <template id="template-estudio">
-        <div class="dynamic-row row-item">
-            <select name="EstudiosSeleccionadosIds" class="form-select" required>
+        <div class="dynamic-item v1-input-dynamic-group row-item">
+            <select name="EstudiosSeleccionadosIds" class="form-control" required>
                 <option value="">-- Seleccione Estudio --</option>
-                @foreach (var item in Model.EstudiosDisponibles)
+                @if (Model.EstudiosDisponibles != null)
                 {
-                    <option value="@item.Value">@item.Text</option>
+                    foreach (var item in Model.EstudiosDisponibles)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
                 }
             </select>
-            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+            <button type="button" class="btn-remove-item v1-btn-remove" onclick="eliminarFila(this)">
                 <i class="fas fa-trash"></i>
             </button>
         </div>
@@ -327,32 +273,36 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
 
     <script>
-        // Menú hamburguesa
-        document.querySelector('.hamburger-menu').addEventListener('click', function() {
-            document.querySelector('.nav-list').classList.toggle('active');
-        });
+        // Menú Hamburguesa
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
 
-        // LOGICA PARA FILAS DINÁMICAS
-
-        // 1. Agregar Vacuna
+        // JS Básico para filas dinámicas (sin archivo externo para evitar caché)
         document.getElementById('btn-add-vacuna').addEventListener('click', function () {
             var template = document.getElementById('template-vacuna');
-            var clone = template.content.cloneNode(true);
-            document.getElementById('vacunas-container').appendChild(clone);
+            if (template) {
+                var clone = template.content.cloneNode(true);
+                document.getElementById('vacunas-container').appendChild(clone);
+            }
         });
 
-        // 2. Agregar Estudio
         document.getElementById('btn-add-estudio').addEventListener('click', function () {
             var template = document.getElementById('template-estudio');
-            var clone = template.content.cloneNode(true);
-            document.getElementById('estudios-container').appendChild(clone);
+            if (template) {
+                var clone = template.content.cloneNode(true);
+                document.getElementById('estudios-container').appendChild(clone);
+            }
         });
 
-        // 3. Eliminar Fila
         function eliminarFila(boton) {
-            boton.closest('.row-item').remove();
+            var fila = boton.closest('.dynamic-item') || boton.closest('.row-item');
+            if(fila) fila.remove();
         }
     </script>
 </body>
