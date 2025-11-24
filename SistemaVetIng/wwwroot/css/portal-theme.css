@@ -2309,3 +2309,121 @@ span.flatpickr-weekday {
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
     }
+
+/* =========================================
+   MÓDULO TIMELINE (HISTORIAL DE CAMBIOS EN ATENCIONES)
+   ========================================= */
+
+.timeline {
+    position: relative;
+    padding: 20px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Ítem Individual */
+.timeline-item {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 40px;
+}
+
+    /* Línea Vertical Conectora */
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 19px; /* Centro del punto */
+        top: 0;
+        bottom: -40px;
+        width: 2px;
+        background-color: rgba(99, 102, 241, 0.3); 
+    }
+
+    .timeline-item:last-child::before {
+        display: none;
+    }
+
+/* Punto (Marker) */
+.timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); 
+}
+
+/* Tarjeta de Contenido */
+.timeline-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+}
+
+    /* Flecha que apunta al timeline */
+    .timeline-content::after {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 12px;
+        width: 15px;
+        height: 15px;
+        background-color: var(--bg-card);
+        border-left: 1px solid var(--border-light);
+        border-bottom: 1px solid var(--border-light);
+        transform: rotate(45deg);
+    }
+
+/* Caja de Diferencias (Datos Viejos) */
+.diff-box {
+    background-color: rgba(2, 6, 23, 0.4); 
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #06b6d4;
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.diff-label {
+    color: #67e8f9; 
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.diff-value {
+    color: #e2e8f0;
+    font-family: monospace; 
+}
+
+/* Botón Restaurar (Verde) */
+.btn-restore {
+    background: transparent;
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+    .btn-restore:hover {
+        background: var(--success-color);
+        color: white;
+    }

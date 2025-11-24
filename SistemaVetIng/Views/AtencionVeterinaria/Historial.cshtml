@@ -1,7 +1,7 @@
 ﻿@model List<SistemaVetIng.Models.Memento.AtencionVeterinariaMemento>
 
 @{
-    ViewData["Title"] = "Historial de Cambios";
+    ViewData["Title"] = "Historial de Cambios - VetIng";
     Layout = null;
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
@@ -12,133 +12,57 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
-    <style>
-        body {
-            background-color: #f4f7f6;
-        }
-
-        /* Estilos para la línea de tiempo */
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 30px;
-        }
-
-            /* La línea vertical */
-            .timeline-item::before {
-                content: '';
-                position: absolute;
-                left: 15px;
-                top: 0;
-                bottom: -30px;
-                width: 2px;
-                background-color: #dee2e6;
-            }
-
-            .timeline-item:last-child::before {
-                display: none;
-            }
-
-        /* El punto (círculo) */
-        .timeline-marker {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #6c757d;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        /* La tarjeta del evento */
-        .timeline-content {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border: 1px solid #e9ecef;
-        }
-
-        .restore-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-        }
-
-            .restore-btn:hover {
-                background-color: #218838;
-                color: white;
-            }
-
-        .diff-box {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            border-left: 3px solid #17a2b8;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 <body>
 
     <header class="main-header">
-        <a href="#" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
+            <ul class="nav-list" id="navMenu">
                 <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard" style="padding-top: 100px;">
-        <div class="container">
+    <main class="main-content">
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2 class="v1-section-title mb-0"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Versiones</h2>
-                    <p class="text-muted mt-1">
-                        Mascota: <strong>@ViewData["MascotaNombre"]</strong> <span class="mx-2">|</span> Atención ID: #@ViewData["AtencionId"]
-                    </p>
-                </div>
-                <button onclick="window.close()" class="v1-btn v1-btn-secondary">
-                    <i class="fa-solid fa-times"></i> Cerrar Historial
+        <section class="dash-hero">
+            <div class="dash-title">
+                <h1>Historial de <span>Cambios</span></h1>
+                <p class="dash-subtitle">
+                    Auditoría de versiones para la atención #@ViewData["AtencionId"] (Mascota: <strong>@ViewData["MascotaNombre"]</strong>)
+                </p>
+            </div>
+            <div class="dash-actions">
+                <button onclick="window.close()" class="btn btn-outline">
+                    <i class="fa-solid fa-xmark"></i> Cerrar Historial
                 </button>
             </div>
+        </section>
 
+        <section>
             @if (Model == null || !Model.Any())
             {
-                <div class="text-center p-5 bg-white rounded shadow-sm">
-                    <div class="mb-3 text-muted opacity-50">
-                        <i class="fa-solid fa-file-circle-check fa-4x"></i>
+                <div class="empty-state-container">
+                    <div class="empty-search-icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
                     </div>
-                    <h4>No hay versiones anteriores</h4>
-                    <p class="text-muted">Esta atención nunca ha sido modificada. La versión actual es la original.</p>
+                    <h3>Historial Impecable</h3>
+                    <p>Esta atención nunca ha sido modificada. La versión actual es la original.</p>
                 </div>
             }
             else
@@ -147,73 +71,146 @@
                     @foreach (var version in Model)
                     {
                         <div class="timeline-item">
-                            <div class="timeline-marker bg-secondary">
-                                <i class="fa-solid fa-clock"></i>
+                            <div class="timeline-marker">
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </div>
 
                             <div class="timeline-content">
-                                <div class="d-flex justify-content-between align-items-start">
+
+                                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px;">
                                     <div>
-                                        <h5 class="mb-1 fw-bold">Versión del @version.FechaVersion.ToString("dd/MM/yyyy")</h5>
-                                        <small class="text-muted">
-                                            <i class="fa-solid fa-clock"></i> @version.FechaVersion.ToString("HH:mm")
-                                            <span class="mx-2">•</span>
-                                            <i class="fa-solid fa-user"></i> Editado por: <strong>@version.UsuarioEditor</strong>
-                                        </small>
+                                        <h4 style="margin-bottom:5px; color:var(--primary-color);">
+                                            Versión del @version.FechaVersion.ToString("dd/MM/yyyy")
+                                        </h4>
+                                        <div style="font-size:0.9rem; color:var(--text-muted);">
+                                            <i class="fa-regular fa-clock"></i> @version.FechaVersion.ToString("HH:mm")
+                                            &nbsp;|&nbsp;
+                                            <i class="fa-solid fa-user-pen"></i> Por: <strong>@version.UsuarioEditor</strong>
+                                        </div>
                                     </div>
 
-                                    <form asp-action="Restaurar" method="post" onsubmit="return confirm('¿Estás seguro de querer restaurar esta versión antigua? Se perderán los cambios posteriores.');">
+                                    <form asp-action="Restaurar" method="post" onsubmit="return confirm('¿Estás seguro de restaurar esta versión antigua? Se perderán los cambios posteriores.');">
                                         <input type="hidden" name="mementoId" value="@version.Id" />
-                                        <button type="submit" class="v1-btn v1-btn-sm restore-btn">
-                                            <i class="fa-solid fa-rotate-left"></i> Restaurar esta versión
+                                        <button type="submit" class="btn-restore" title="Volver a esta versión">
+                                            <i class="fa-solid fa-rotate-left"></i> Restaurar
                                         </button>
                                     </form>
                                 </div>
 
-                                <hr class="my-2" />
-
-                                <p class="mb-2">
-                                    <strong>Motivo del cambio anterior:</strong>
-                                    <span class="fst-italic text-dark">"@(version.MotivoCambio ?? "Sin motivo especificado")"</span>
-                                </p>
+                                <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:6px; margin-bottom:15px; border-left:3px solid var(--primary-color);">
+                                    <strong style="color:var(--primary-color); font-size:0.85rem; text-transform:uppercase;">Motivo del cambio:</strong><br>
+                                    <span style="font-style:italic; color:white">"@(version.MotivoCambio ?? "Sin motivo especificado")"</span>
+                                </div>
 
                                 <div class="diff-box">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <strong>Diagnóstico:</strong><br />
-                                            @version.Diagnostico
+                                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                                        <div>
+                                            <span class="diff-label">Diagnóstico Anterior</span>
+                                            <div class="diff-value">@version.Diagnostico</div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <strong>Peso:</strong> @version.PesoMascota kg
+                                        <div>
+                                            <span class="diff-label">Peso Anterior</span>
+                                            <div class="diff-value">@version.PesoMascota kg</div>
                                         </div>
-                                        @if (!string.IsNullOrEmpty(version.TratamientoMedicamento))
+                                    </div>
+
+                                    @if (!string.IsNullOrEmpty(version.TratamientoMedicamento))
+                                    {
+                                        <div style="margin-top:15px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);">
+                                            <span class="diff-label">Tratamiento Anterior</span>
+                                            <div class="diff-value">
+                                                @version.TratamientoMedicamento - @version.TratamientoDosis (@version.TratamientoFrecuencia)
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div style="margin-top:15px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);">
+                                        <span class="diff-label">Vacunas Aplicadas</span>
+                                        @if (!string.IsNullOrEmpty(version.VacunasSnapshot))
                                         {
-                                            <div class="col-md-12 mt-2 pt-2 border-top">
-                                                <strong>Tratamiento:</strong> @version.TratamientoMedicamento (@version.TratamientoDosis)
+                                            <div class="diff-value">
+                                                <i class="fa-solid fa-syringe" style="color:var(--text-muted); font-size:0.8rem;"></i>
+                                                @version.VacunasSnapshot
                                             </div>
                                         }
+                                        else
+                                        {
+                                            <div class="diff-value" style="opacity:0.5; font-style:italic;">No se registraron vacunas en esta versión.</div>
+                                        }
                                     </div>
+
+                                    <div style="margin-top:15px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);">
+                                        <span class="diff-label">Estudios Complementarios</span>
+                                        @if (!string.IsNullOrEmpty(version.EstudiosSnapshot))
+                                        {
+                                            <div class="diff-value">
+                                                <i class="fa-solid fa-microscope" style="color:var(--text-muted); font-size:0.8rem;"></i>
+                                                @version.EstudiosSnapshot
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="diff-value" style="opacity:0.5; font-style:italic;">No se registraron estudios en esta versión.</div>
+                                        }
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
                     }
                 </div>
             }
-        </div>
+        </section>
+
     </main>
 
     <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegacion</h4>
+            <ul class="footer-links">
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Técnico</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados.</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+
     <script>
-        document.querySelector('.hamburger-menu').addEventListener('click', function() {
-            document.querySelector('.nav-list').classList.toggle('active');
-        });
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
     </script>
 </body>
 </html>

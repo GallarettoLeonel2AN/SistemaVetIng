@@ -34,6 +34,7 @@ wwwroot\css\img\vet-cuidado.jpg
 wwwroot\css\listado-clientes.css
 wwwroot\css\login-styles.css
 wwwroot\css\permisos.css
+wwwroot\css\portal-theme.css
 wwwroot\css\registrar-cliente-style.css
 wwwroot\css\site.css
 wwwroot\css\veterinario-home.css
@@ -101,4 +102,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\portal-theme.css

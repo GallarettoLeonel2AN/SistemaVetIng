@@ -229,8 +229,39 @@
     </main>
 
     <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegacion</h4>
+            <ul class="footer-links">
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Técnico</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados.</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
