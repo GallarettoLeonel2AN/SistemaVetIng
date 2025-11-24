@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\atencionveterinaria\\registraratencion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\atencionveterinaria\\registraratencion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\historiaclinica\\detallehistoriaclinica.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\historiaclinica\\detallehistoriaclinica.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\wwwroot\\js\\atencionveterinaria.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\wwwroot\\js\\atencionveterinaria.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,25 +43,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DetalleHistoriaClinica.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
-              "RelativeToolTip": "SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
-              "ViewState": "AgIAAPUAAAAAAAAAAAAYwA4BAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-24T11:41:10.284Z",
+              "Title": "atencionVeterinaria.js",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\js\\atencionVeterinaria.js",
+              "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\js\\atencionVeterinaria.js",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\js\\atencionVeterinaria.js",
+              "RelativeToolTip": "SistemaVetIng\\wwwroot\\js\\atencionVeterinaria.js",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-24T12:10:56.07Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "RegistrarAtencion.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\AtencionVeterinaria\\RegistrarAtencion.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC8AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-24T12:03:49.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "portal-theme.css",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeToolTip": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
-              "ViewState": "AgIAABMHAAAAAAAAAAAwwDYHAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAD8IAAAAAAAAAAAwwFQIAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-11-24T01:34:12.975Z",
               "EditorCaption": ""
