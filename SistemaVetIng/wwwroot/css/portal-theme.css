@@ -1913,3 +1913,204 @@ span.flatpickr-weekday {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* =========================================
+       MÓDULO HISTORIA CLÍNICA (Timeline)
+   ========================================= */
+
+/* Tarjeta de una Atención individual */
+.history-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease;
+}
+
+    .history-card:hover {
+        border-color: rgba(99, 102, 241, 0.3); 
+    }
+
+/* Cabecera de la tarjeta (Fecha y Doctor) */
+.history-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.history-date {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-vet {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Cuerpo de la tarjeta */
+.history-body {
+    padding: 25px;
+    background-color: rgba(2, 6, 23, 0.25);
+}
+
+/* Grilla de detalles (Diagnóstico, Peso, Tratamiento) */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive auto */
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.detail-value {
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+/* Sub-sección (Tratamientos, Vacunas) */
+.history-subsection {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+}
+
+.history-subtitle {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Etiquetas (Tags) para Vacunas/Estudios */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-item {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* Footer Financiero (Costos y Botones) */
+.history-footer {
+    background: rgba(2, 6, 23, 0.4); 
+    padding: 15px 25px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Precios */
+.price-paid {
+    color: var(--success-color);
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.price-pending {
+    color: var(--error-color);
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+/* Contenedor de botones de pago */
+.payment-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* =========================================
+           BOTONES DE PAGO Y ALINEACIÓN
+   ========================================= */
+
+.payment-actions {
+    display: flex !important;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+    .payment-actions form {
+        margin: 0;
+        display: inline-block;
+    }
+
+/* Botón Efectivo (Verde) */
+.btn-pay-cash {
+    background: transparent;
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+    transition: 0.3s;
+}
+
+    .btn-pay-cash:hover {
+        background: var(--success-color);
+        color: white;
+        box-shadow: 0 0 15px rgba(72, 187, 120, 0.4);
+    }
+
+/* Botón Tarjeta (Violeta/Primary) */
+.btn-pay-card {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: 0.3s;
+}
+
+    .btn-pay-card:hover {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    }
+
+/* Badge de estado Pagado */
+.badge-paid-status {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}

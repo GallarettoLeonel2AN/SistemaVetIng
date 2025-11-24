@@ -17,149 +17,177 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="~/css/pago-styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 <body>
-    
+
     <header class="main-header">
-        <a href="../@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="../@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
+            <ul class="nav-list" id="navMenu">
                 <li><a class="nav-link" href="../@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
- 
-    <main class="v1-main-dashboard">
-        <section class="v1-section">
-            <h1 class="v1-section-title">Historia Clínica de: @Model.Nombre</h1>
-            <h3 class="v1-section-subtitle">Propietario: @Model.Propietario?.Nombre @Model.Propietario?.Apellido</h3>
+    <main class="main-content">
 
-           
-            <div class="table-container">
-                <table class="table responsive-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Especie</th>
-                            <th>Raza</th>
-                            <th>Fecha de Nacimiento</th>
-                            <th>Sexo</th>
-                            <th>Raza Peligrosa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            <tr>
-                            <td data-label="Nombre:">@Model.Nombre</td>
-                            <td data-label="Especie:">@Model.Especie</td>
-                            <td data-label="Raza:">@Model.Raza</td>
-                            <td data-label="FechaNacimiento:">@Model.FechaNacimiento.ToShortDateString()</td>
-                            <td data-label="Sexo:">@Model.Sexo</td>
-                            <td data-label="RazaPeligrosa:">@(Model.RazaPeligrosa ? "Sí" : "No")</td>
-                        </tr>
-     
-                    </tbody>
-                </table>
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Historia Clínica: <span>@Model.Nombre</span></h1>
+                <p class="dash-subtitle">
+                    <i class="fa-solid fa-user-circle"></i> Propietario: <strong>@Model.Propietario?.Nombre @Model.Propietario?.Apellido</strong>
+                </p>
+            </div>
+        </div>
+
+        <section id="ficha-tecnica" class="mb-50">
+            <div class="section-header">
+                <h2 class="section-heading">Ficha Técnica</h2>
             </div>
 
-            <div class="v1-section">
-                <h4 class="v1-section-title">Atenciones Registradas</h4>
+            <div class="list-container">
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Especie</th>
+                                <th>Raza</th>
+                                <th class="text-center">Nacimiento</th>
+                                <th class="text-center">Sexo</th>
+                                <th class="text-center">Raza Peligrosa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Nombre">
+                                    <div class="d-flex align-center gap-10">
+                                        <div class="pet-icon-circle" style="width:35px; height:35px; font-size:1rem;">
+                                            <i class="fa-solid fa-paw"></i>
+                                        </div>
+                                        <span class="text-name">@Model.Nombre</span>
+                                    </div>
+                                </td>
+                                <td data-label="Especie">@Model.Especie</td>
+                                <td data-label="Raza">@Model.Raza</td>
+                                <td data-label="Nacimiento" class="text-center">@Model.FechaNacimiento.ToShortDateString()</td>
+                                <td data-label="Sexo" class="text-center">@Model.Sexo</td>
+                                <td data-label="Peligrosa" class="text-center">
+                                    @if (Model.RazaPeligrosa)
+                                    {
+                                        <span class="badge badge-error">SÍ</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-success">NO</span>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="historial">
+            <div class="section-header">
+                <h2 class="section-heading">Atenciones Registradas</h2>
+
                 @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Atenciones.Create))
                 {
-                <div class="v1-section-actions">
-                    <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencion" asp-route-historiaClinicaId="@Model.HistoriaClinica.Id" class="v1-btn v1-btn-primary">
-                        <i class="fa-solid fa-plus"></i> Nueva Atencion
+                    <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencion" asp-route-historiaClinicaId="@Model.HistoriaClinica.Id" class="btn btn-primary btn-outline">
+                        <i class="fa-solid fa-plus"></i> Nueva Atención
                     </a>
-                </div>
                 }
             </div>
 
             @if (Model.HistoriaClinica.Atenciones == null || !Model.HistoriaClinica.Atenciones.Any())
             {
-                <div class="empty-state">
-                    <i class="fas fa-file-medical-alt fa-3x"></i>
-                    <h3>Sin Historial</h3>
+                <div class="empty-state-container">
+                    <div class="empty-search-icon">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
                     <p>Aún no hay atenciones registradas para esta mascota.</p>
                 </div>
             }
             else
             {
-                <div class="attention-history">
+                <div class="timeline-container">
                     @foreach (var atencion in Model.HistoriaClinica.Atenciones.OrderByDescending(a => a.Fecha))
                     {
                         <div class="history-card">
+
                             <div class="history-header">
-                                <i class="fas fa-calendar-alt"></i>
-                                <div>
-                                    <span class="date">@atencion.Fecha.ToString("dd 'de' MMMM 'de' yyyy")</span>
-                                    <span class="vet">Atendido por: @(atencion.Veterinario?.Nombre) @(atencion.Veterinario?.Apellido)</span>
+                                <div class="history-date">
+                                    <i class="fas fa-calendar-alt" style="color:var(--primary-color);"></i>
+                                    @atencion.Fecha.ToString("dd 'de' MMMM 'de' yyyy")
+                                </div>
+
+                                <div class="d-flex align-center gap-15">
+                                    <span class="history-vet">Dr/a. @(atencion.Veterinario?.Nombre) @(atencion.Veterinario?.Apellido)</span>
+
+                                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Atenciones.Create)).Succeeded)
+                                    {
+                                        <a asp-controller="AtencionVeterinaria" asp-action="Editar" asp-route-id="@atencion.Id"
+                                           class="btn btn-outline btn-sm" title="Editar">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
+                                    }
                                 </div>
                             </div>
-                            @* Asegúrate de tener el permiso 'Permission.Atenciones.Edit' definido en tu clase estática *@
-                            @* Si no lo tienes, usa 'Permission.Atenciones.Create' temporalmente *@
-                            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Atenciones.Create)).Succeeded)
-                            {
-                                <a asp-controller="AtencionVeterinaria"
-                                   asp-action="Editar"
-                                   asp-route-id="@atencion.Id"
-                                   class="v1-btn v1-btn-sm"
-                                   style="background-color: #ffc107; color: #000; border: none;"
-                                   title="Editar esta atención">
-                                    <i class="fa-solid fa-pen-to-square"></i> Editar
-                                </a>
-                            }
+
                             <div class="history-body">
                                 <div class="details-grid">
-                                    <div class="details-item">
-                                        <label>Diagnóstico</label>
-                                        <span>@atencion.Diagnostico</span>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Diagnóstico</span>
+                                        <span class="detail-value">@atencion.Diagnostico</span>
                                     </div>
-                                    <div class="details-item">
-                                        <label>Peso</label>
-                                        <span>@atencion.PesoMascota kg</span>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Peso</span>
+                                        <span class="detail-value">@atencion.PesoMascota kg</span>
                                     </div>
                                 </div>
 
                                 @if (atencion.Tratamiento != null)
                                 {
-                                    <div class="history-section">
-                                        <h4>Tratamiento Indicado</h4>
+                                    <div class="history-subsection">
+                                        <h4 class="history-subtitle"><i class="fa-solid fa-pills"></i> Tratamiento Indicado</h4>
                                         <div class="details-grid">
-                                            <div class="details-item">
-                                                <label>Medicamento</label>
-                                                <span>@atencion.Tratamiento.Medicamento</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Medicamento</span>
+                                                <span class="detail-value">@atencion.Tratamiento.Medicamento</span>
                                             </div>
-                                            <div class="details-item">
-                                                <label>Dosis</label>
-                                                <span>@atencion.Tratamiento.Dosis</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Dosis</span>
+                                                <span class="detail-value">@atencion.Tratamiento.Dosis</span>
                                             </div>
-                                            <div class="details-item">
-                                                <label>Frecuencia</label>
-                                                <span>@atencion.Tratamiento.Frecuencia</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Frecuencia</span>
+                                                <span class="detail-value">@atencion.Tratamiento.Frecuencia</span>
                                             </div>
-                                            <div class="details-item">
-                                                <label>Duración</label>
-                                                <span>@atencion.Tratamiento.Duracion días</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Duración</span>
+                                                <span class="detail-value">@atencion.Tratamiento.Duracion días</span>
                                             </div>
                                             @if (!string.IsNullOrWhiteSpace(atencion.Tratamiento.Observaciones))
                                             {
-                                                <div class="details-item full-width">
-                                                    <label>Observaciones</label>
-                                                    <span>@atencion.Tratamiento.Observaciones</span>
+                                                <div class="detail-item" style="grid-column: 1 / -1;">
+                                                    <span class="detail-label">Observaciones</span>
+                                                    <span class="detail-value">@atencion.Tratamiento.Observaciones</span>
                                                 </div>
                                             }
                                         </div>
@@ -168,9 +196,9 @@
 
                                 @if (atencion.Vacunas != null && atencion.Vacunas.Any())
                                 {
-                                    <div class="history-section">
-                                        <h4>Vacunas Aplicadas</h4>
-                                        <div class="tags-list">
+                                    <div class="history-subsection">
+                                        <h4 class="history-subtitle"><i class="fa-solid fa-syringe"></i> Vacunas Aplicadas</h4>
+                                        <div class="tag-container">
                                             @foreach (var vacuna in atencion.Vacunas)
                                             {
                                                 <span class="tag-item">@vacuna.Nombre (Lote: @vacuna.Lote)</span>
@@ -181,14 +209,12 @@
 
                                 @if (atencion.EstudiosComplementarios != null && atencion.EstudiosComplementarios.Any())
                                 {
-                                    <div class="history-section">
-                                        <h4>Estudios Complementarios</h4>
-                                        <div class="tags-list">
+                                    <div class="history-subsection">
+                                        <h4 class="history-subtitle"><i class="fa-solid fa-microscope"></i> Estudios Complementarios</h4>
+                                        <div class="tag-container">
                                             @foreach (var estudio in atencion.EstudiosComplementarios)
                                             {
-                                                <span class="tag-item">
-                                                    @estudio.Nombre
-                                                </span>
+                                                <span class="tag-item">@estudio.Nombre</span>
                                             }
                                         </div>
                                     </div>
@@ -196,120 +222,111 @@
                             </div>
 
                             <div class="history-footer">
-                                <div class="cost-item">
-                                    <label>Costo Total de la Atención</label>
+                                <div class="d-flex align-center gap-10">
+                                    <span class="detail-label" style="margin-right:5px;">Costo Total:</span>
                                     @if (atencion.Abonado)
                                     {
-                                        <span class="monto-green">$ @atencion.CostoTotal.ToString("N2")</span>
+                                        <span class="price-paid">$ @atencion.CostoTotal.ToString("N2")</span>
                                     }
                                     else
                                     {
-                                        <span class="monto-red">$ @atencion.CostoTotal.ToString("N2")</span> 
+                                        <span class="price-pending">$ @atencion.CostoTotal.ToString("N2")</span>
                                     }
-                                   
                                 </div>
 
                                 <div class="payment-actions">
-                                    @if (atencion.Abonado) 
+                                    @if (atencion.Abonado)
                                     {
-                                        <span class="badge-pagado">
+                                        <div class="badge-paid-status">
                                             <i class="fas fa-check-circle"></i> Pagado
-                                        </span>
+                                        </div>
                                     }
                                     else
                                     {
-                                    
-                                        <form asp-controller="Pagos" asp-action="PagarEfectivo" method="post" style="display: inline-block;" onsubmit="return confirm('¿Confirmar pago en EFECTIVO por $ @atencion.CostoTotal.ToString("N2")?');">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="atencionId" value="@atencion.Id" />
-                                            <input type="hidden" name="monto" value="@atencion.CostoTotal" />
-                                            <input type="hidden" name="clienteId" value="@Model.ClienteId" />
-                                            <input type="hidden" name="mascotaId" value="@Model.Id" /> 
-                                            <button type="submit" class="v1-btn v1-btn-sm payment-btn-cash" title="Registrar Pago en Efectivo">
-                                                <i class="fas fa-money-bill-wave"></i> Efectivo
-                                            </button>
-                                        </form>
+                                        <div class="payment-actions">
+                                            <form asp-controller="Pagos" asp-action="PagarEfectivo" method="post" onsubmit="return confirm('¿Confirmar pago en EFECTIVO?');">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="atencionId" value="@atencion.Id" />
+                                                <input type="hidden" name="monto" value="@atencion.CostoTotal" />
+                                                <input type="hidden" name="clienteId" value="@Model.ClienteId" />
+                                                <input type="hidden" name="mascotaId" value="@Model.Id" />
 
-                               
-                                        <form asp-controller="Pagos" asp-action="PagarTarjeta" method="post" style="display: inline-block;" onsubmit="return confirm('¿Confirmar pago con TARJETA por $ @atencion.CostoTotal.ToString("N2")?');">
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="atencionId" value="@atencion.Id" />
-                                            <input type="hidden" name="monto" value="@atencion.CostoTotal" />
-                                            <input type="hidden" name="clienteId" value="@Model.ClienteId" />
-                                            <input type="hidden" name="mascotaId" value="@Model.Id" />
-                                            <button type="submit" class="v1-btn v1-btn-sm payment-btn-card" title="Registrar Pago con Tarjeta">
-                                                <i class="far fa-credit-card"></i> Tarjeta
-                                            </button>
-                                        </form>
+                                                <button type="submit" class="btn btn-sm btn-pay-cash">
+                                                    <i class="fas fa-money-bill-wave"></i> Efectivo
+                                                </button>
+                                            </form>
+
+                                            <form asp-controller="Pagos" asp-action="PagarTarjeta" method="post" onsubmit="return confirm('¿Confirmar pago con TARJETA?');">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="atencionId" value="@atencion.Id" />
+                                                <input type="hidden" name="monto" value="@atencion.CostoTotal" />
+                                                <input type="hidden" name="clienteId" value="@Model.ClienteId" />
+                                                <input type="hidden" name="mascotaId" value="@Model.Id" />
+
+                                                <button type="submit" class="btn btn-sm btn-pay-card">
+                                                    <i class="far fa-credit-card"></i> Tarjeta
+                                                </button>
+                                            </form>
+                                        </div>
                                     }
                                 </div>
                             </div>
+
                         </div>
                     }
                 </div>
             }
-
-            <div class="v1-section-actions mt-3">
-                <a asp-action="MascotasCliente"
-                   asp-route-clienteId="@Model.ClienteId"
-                   class="btnBack">
-                    <i class="fas fa-arrow-left"></i> Volver a las mascotas del cliente
-                </a>
-            </div>
         </section>
+
     </main>
 
-   
     <footer class="main-footer">
         <div class="footer-col footer-info">
             <div class="footer-logo-container">
-                <i class="fa-solid fa-paw footer-logo-icon"></i>
-                <h3 class="footer-brand">VetIng Software</h3>
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
             </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
+            <h4 class="footer-heading">Navegacion</h4>
             <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
+            <h4 class="footer-heading">Soporte Técnico</h4>
             <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
-    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
+
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
