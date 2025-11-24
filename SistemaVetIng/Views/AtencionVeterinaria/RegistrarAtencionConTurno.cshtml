@@ -1,9 +1,9 @@
 ﻿@model SistemaVetIng.ViewsModels.AtencionPorTurnoViewModel
 
-
 @{
-    ViewData["Title"] = $"Nueva Atención para {Model.NombreMascota}";
+    ViewData["Title"] = $"Atención Turno - {Model.NombreMascota}";
     Layout = null;
+
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
@@ -13,111 +13,128 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" xintegrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 <body>
+
     <header class="main-header">
-        <a href="../@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="../@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
-                <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@Model.MascotaId" class="nav-link">
-                    Volver
-                </a>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="../@controllerDestino/PaginaPrincipal">Volver al Panel</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <a asp-controller="HistoriaClinica" asp-action="DetalleHistoriaClinica" asp-route-mascotaId="@Model.MascotaId" class="nav-link">
+                        Ver Historia
+                    </a>
+                </li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="registrar-form-main">
-        <section class="form-section">
-            <h2 class="section-title">Nueva Atención para <span class="v1-text-primary">@Model.NombreMascota</span></h2>
-            <p class="form-subtitle">Propietario: <strong>@Model.NombreCliente</strong></p>
+    <main class="main-content">
 
-            <form asp-action="RegistrarAtencionConTurno" asp-controller="AtencionVeterinaria" method="post" class="main-form">
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Atención de <span>Turno</span></h1>
+                <p class="dash-subtitle">
+                    Paciente: <strong>@Model.NombreMascota</strong> &bull; Propietario: <strong>@Model.NombreCliente</strong>
+                </p>
+            </div>
+        </div>
+
+        <section class="booking-container" style="max-width: 800px;">
+            <form asp-action="RegistrarAtencionConTurno" asp-controller="AtencionVeterinaria" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                 <input type="hidden" asp-for="TurnoId" />
                 <input type="hidden" asp-for="MascotaId" />
-
                 <input type="hidden" asp-for="HistoriaClinicaId" />
 
-                <div class="form-group">
-                    <label asp-for="Diagnostico" class="v1-control-label"></label>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="Diagnostico" class="form-label">Diagnóstico</label>
                     <textarea asp-for="Diagnostico" class="form-control" rows="3" placeholder="Descripción del diagnóstico..."></textarea>
-                    <span asp-validation-for="Diagnostico" class="text-danger validation-error"></span>
+                    <span asp-validation-for="Diagnostico" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="PesoKg" class="v1-control-label"></label>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="PesoKg" class="form-label">Peso (Kg)</label>
                     <input asp-for="PesoKg" class="form-control" type="number" step="0.01" placeholder="Ej: 5.25" />
-                    <span asp-validation-for="PesoKg" class="text-danger validation-error"></span>
+                    <span asp-validation-for="PesoKg" class="text-danger"></span>
                 </div>
 
-                <h4 class="v1-section-title">Tratamiento</h4>
-                <div class="form-group">
-                    <label asp-for="Medicamento" class="v1-control-label"></label>
-                    <input asp-for="Medicamento" class="form-control" placeholder="Ej: Amoxicilina" />
-                    <span asp-validation-for="Medicamento" class="text-danger validation-error"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Dosis" class="v1-control-label"></label>
-                    <input asp-for="Dosis" class="form-control" placeholder="Ej: 10mg/kg" />
-                    <span asp-validation-for="Dosis" class="text-danger validation-error"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Frecuencia" class="v1-control-label"></label>
-                    <input asp-for="Frecuencia" class="form-control" placeholder="Ej: Cada 8 horas" />
-                    <span asp-validation-for="Frecuencia" class="text-danger validation-error"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DuracionDias" class="v1-control-label"></label>
-                    <input asp-for="DuracionDias" class="form-control" type="number" placeholder="Duración en días" />
-                    <span asp-validation-for="DuracionDias" class="text-danger validation-error"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ObservacionesTratamiento" class="v1-control-label"></label>
-                    <textarea asp-for="ObservacionesTratamiento" class="form-control" rows="3" placeholder="Observaciones adicionales sobre el tratamiento..."></textarea>
-                    <span asp-validation-for="ObservacionesTratamiento" class="text-danger validation-error"></span>
+                <h4 class="form-section-title">
+                    <span> <i class="fa-solid fa-pills"></i> Tratamiento </span>
+                </h4>
+
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div class="form-group">
+                        <label asp-for="Medicamento" class="form-label">Medicamento</label>
+                        <input asp-for="Medicamento" class="form-control" placeholder="Nombre droga/comercial" />
+                        <span asp-validation-for="Medicamento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Dosis" class="form-label">Dosis</label>
+                        <input asp-for="Dosis" class="form-control" placeholder="Ej: 10mg/kg" />
+                        <span asp-validation-for="Dosis" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <h4 class="v1-card-title">
-                    Vacunas
-                    <button type="button" id="add-vacuna-btn" class="button register-button v1-btn-sm ms-2">
-                        <i class="fas fa-plus-circle"></i> Agregar Vacuna
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:15px;">
+                    <div class="form-group">
+                        <label asp-for="Frecuencia" class="form-label">Frecuencia</label>
+                        <input asp-for="Frecuencia" class="form-control" placeholder="Ej: Cada 8hs" />
+                        <span asp-validation-for="Frecuencia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DuracionDias" class="form-label">Duración (Días)</label>
+                        <input asp-for="DuracionDias" class="form-control" type="number" placeholder="Cant. días" />
+                        <span asp-validation-for="DuracionDias" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <label asp-for="ObservacionesTratamiento" class="form-label">Observaciones</label>
+                    <textarea asp-for="ObservacionesTratamiento" class="form-control" rows="2" placeholder="Indicaciones adicionales..."></textarea>
+                    <span asp-validation-for="ObservacionesTratamiento" class="text-danger"></span>
+                </div>
+
+                <h4 class="form-section-title">
+                    <span><i class="fa-solid fa-syringe"></i> Vacunas</span>
+                    <button type="button" id="add-vacuna-btn" class="btn btn-outline btn-sm">
+                        <i class="fas fa-plus"></i> Agregar
                     </button>
                 </h4>
-                <div id="vacunas-container">
-                    @* Las vacunas se cargan aca por JS *@
-                </div>
+                <div id="vacunas-container"></div>
 
-                <h4 class="v1-card-title">
-                    Estudios Complementarios
-                    <button type="button" id="add-estudio-btn" class="button register-button v1-btn-sm ms-2">
-                        <i class="fas fa-plus-circle"></i> Agregar Estudio
+                <h4 class="form-section-title">
+                    <span><i class="fa-solid fa-microscope"></i> Estudios</span>
+                    <button type="button" id="add-estudio-btn" class="btn btn-outline btn-sm">
+                        <i class="fas fa-plus"></i> Agregar
                     </button>
                 </h4>
-                <div id="estudios-container">
-                    @* Los estudios complementarios se cargan aca por JS *@
-                </div>
+                <div id="estudios-container"></div>
 
-                <div class="form-actions mt-4">
-                    <button type="submit" class="button register-button">
+                <div class="form-actions" style="margin-top:40px; display:flex; gap:15px; justify-content:flex-end;">
+                    <a href="../@controllerDestino/PaginaPrincipal" class="btn btn-outline">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Guardar Atención
                     </button>
-                    <a asp-controller="Veterinario" asp-action="PaginaPrincipal" class="btnBack">
-                        <i class="fas fa-arrow-left"></i> Cancelar y Volver
-                    </a>
                 </div>
             </form>
         </section>
@@ -125,51 +142,46 @@
 
     <footer class="main-footer">
         <div class="footer-col footer-info">
-            <div class="footer-logo-container"> <i class="fa-solid fa-paw footer-logo-icon"></i> <h3 class="footer-brand">VetIng Software</h3> </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
             </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
+            <h4 class="footer-heading">Navegacion</h4>
             <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
+            <h4 class="footer-heading">Soporte Técnico</h4>
             <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
     <template id="vacuna-template">
-        <div class="v1-input-group mb-2">
-            <select name="" class="form-control" required>
-                <option value="">Seleccione una vacuna...</option>
+        <div class="dynamic-item v1-input-dynamic-group">
+            <i class="fa-solid fa-syringe" style="color:var(--text-muted);"></i>
+            <select class="form-control" required name="VacunasSeleccionadasIds">
+                <option value="">-- Seleccione Vacuna --</option>
                 @if (Model.VacunasDisponibles != null)
                 {
                     foreach (var item in Model.VacunasDisponibles)
@@ -178,16 +190,17 @@
                     }
                 }
             </select>
-            <button type="button" class="v1-btn v1-btn-ghost v1-text-danger remove-item-btn">
-                <i class="fas fa-trash-alt"></i>
+            <button type="button" class="btn-remove-item v1-btn-remove">
+                <i class="fas fa-trash"></i>
             </button>
         </div>
     </template>
 
     <template id="estudio-template">
-        <div class="v1-input-group mb-2">
-            <select name="" class="form-control" required>
-                <option value="">Seleccione un estudio...</option>
+        <div class="dynamic-item v1-input-dynamic-group">
+            <i class="fa-solid fa-microscope" style="color:var(--text-muted);"></i>
+            <select class="form-control" required name="EstudiosSeleccionadosIds">
+                <option value="">-- Seleccione Estudio --</option>
                 @if (Model.EstudiosDisponibles != null)
                 {
                     foreach (var item in Model.EstudiosDisponibles)
@@ -196,18 +209,26 @@
                     }
                 }
             </select>
-            <button type="button" class="v1-btn v1-btn-ghost v1-text-danger remove-item-btn">
-                <i class="fas fa-trash-alt"></i>
+            <button type="button" class="btn-remove-item v1-btn-remove">
+                <i class="fas fa-trash"></i>
             </button>
         </div>
     </template>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/atencionVeterinaria.js" asp-append-version="true"></script>
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
 
     @await Component.InvokeAsync("NToastNotify")
+
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
