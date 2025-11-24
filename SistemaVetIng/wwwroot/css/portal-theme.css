@@ -1740,3 +1740,166 @@ span.flatpickr-weekday {
         scroll-margin-top: 90px;
     }
 }
+
+/* =========================================
+           VISTA BÚSQUEDA ATENCION VET(Focus)
+   ========================================= */
+
+/* Contenedor central para el buscador */
+.search-focus-container {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+    .search-focus-container .search-input {
+        width: 100%;
+        padding: 18px 25px 18px 55px; 
+        font-size: 1.1rem;
+        background-color: rgba(30, 41, 59, 0.8);
+        border: 2px solid var(--border-light);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+        .search-focus-container .search-input:focus {
+            border-color: var(--primary-color);
+            background-color: rgba(30, 41, 59, 1);
+            transform: scale(1.02); 
+        }
+
+    .search-focus-container .search-icon {
+        left: 20px;
+        font-size: 1.3rem;
+        color: var(--primary-color); 
+    }
+
+/* Botón de acción en la tabla (Ver Mascotas) */
+.btn-action-table {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .btn-action-table:hover {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+        transform: translateY(-2px);
+    }
+
+/* =========================================
+            VISTA BÚSQUEDA
+   ========================================= */
+
+/* Hero Centrado (Modificador) */
+.dash-hero--center {
+    display: block;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+    .dash-hero--center .dash-subtitle {
+        margin: 15px auto 0;
+        max-width: 600px;
+    }
+
+/* Contenedor del Buscador Focus */
+.search-focus-container {
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    text-align: center;
+}
+
+    .search-focus-container .search-input {
+        width: 100%;
+        padding: 18px 25px 18px 55px;
+        font-size: 1.1rem;
+        background-color: rgba(30, 41, 59, 0.8);
+        border: 2px solid var(--border-light);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+        .search-focus-container .search-input:focus {
+            border-color: var(--primary-color);
+            background-color: rgba(30, 41, 59, 1);
+            transform: scale(1.02);
+        }
+
+    .search-focus-container .search-icon {
+        left: 20px;
+        font-size: 1.3rem;
+        color: var(--primary-color);
+    }
+
+/* Elementos de la Tabla de Clientes */
+.avatar-sm {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    flex-shrink: 0; /* Evita que se aplaste */
+}
+
+.text-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-main);
+}
+
+.text-mono {
+    color: var(--text-muted);
+    font-family: monospace; /* Para números como DNI */
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+.margin-bottom{
+    margin-bottom:50px;
+}
+.icon-phone-sm {
+    color: var(--success-color);
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.btn-action-table {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .btn-action-table:hover {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+        transform: translateY(-2px);
+    }
+
+/* Icono gigante para estado vacío */
+.empty-search-icon {
+    font-size: 4rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    opacity: 0.3;
+}

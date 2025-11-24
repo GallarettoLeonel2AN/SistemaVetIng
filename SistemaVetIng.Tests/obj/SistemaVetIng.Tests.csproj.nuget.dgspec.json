@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj": {}
+    "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj": {
+    "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
         "projectName": "SistemaVetIng.Tests",
-        "projectPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
+        "projectPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng.Tests\\SistemaVetIng.Tests.csproj",
         "packagesPath": "C:\\Users\\Ulises\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng.Tests\\obj\\",
         "projectStyle": "PackageReference",
@@ -32,8 +32,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
-                "projectPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj"
+              "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
+                "projectPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj"
               }
             }
           }
@@ -103,12 +103,12 @@
         }
       }
     },
-    "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
+    "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
+        "projectUniqueName": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
         "projectName": "SistemaVetIng",
-        "projectPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
+        "projectPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\SistemaVetIng.csproj",
         "packagesPath": "C:\\Users\\Ulises\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Ulises\\Source\\Repos\\SistemaVetIng\\SistemaVetIng\\obj\\",
         "projectStyle": "PackageReference",
