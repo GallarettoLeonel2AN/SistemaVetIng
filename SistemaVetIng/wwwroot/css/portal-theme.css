@@ -1903,3 +1903,13 @@ span.flatpickr-weekday {
     margin-bottom: 20px;
     opacity: 0.3;
 }
+
+/* Subtítulo específico para Hero centrado */
+.dash-hero--center .dash-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
