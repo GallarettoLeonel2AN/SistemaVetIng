@@ -3176,3 +3176,192 @@ span.flatpickr-weekday {
     position: relative;
     z-index: 1;
 }
+
+/* =========================================
+         DASHBOARD BI (Gráficos)
+   ========================================= */
+
+/* Tarjeta de Gráfico */
+.chart-card {
+    background-color: rgba(30, 41, 59, 0.6); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-card);
+    height: 100%; 
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 10px;
+}
+
+.chart-title {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Lista de drill-down (Razas) */
+.drill-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+    /* Scrollbar finita para la lista */
+    .drill-list::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .drill-list::-webkit-scrollbar-thumb {
+        background: var(--border-light);
+        border-radius: 5px;
+    }
+
+/* Grid principal del Dashboard */
+.dashboard-grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.dashboard-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid-2, .dashboard-grid-3 {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* =========================================
+   DASHBOARD ANALÍTICO (Contenedores de Gráficos)
+   ========================================= */
+
+/* Grids de disposición para el Dashboard */
+.dash-grid-2-1 {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.dash-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Contenedor tipo "Vidrio" para los gráficos */
+.chart-box {
+    background: var(--card-bg); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+/* Cabecera dentro del gráfico (Título y Botón Volver) */
+.chart-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+/* El contenedor de la fila */
+#drillDownRazas .v1-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    transition: background 0.2s ease;
+    background-color: transparent; 
+}
+
+    /* Efecto Hover */
+    #drillDownRazas .v1-list-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+
+    /* El Nombre de la Raza  */
+    #drillDownRazas .v1-list-item > div:first-child {
+        color: #ffffff !important; 
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+/* Número/Cantidad  */
+#drillDownRazas .v1-badge {
+    background-color: rgba(99, 102, 241, 0.2) !important; 
+    color: #a5b4fc !important; 
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Mensaje de "Sin datos" */
+#drillDownRazas .v1-empty-state {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 15px;
+    text-align: center;
+}
+/* Títulos de los gráficos */
+.chart-box-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff; 
+    margin: 0;
+}
+
+/* Contenedor flexible para el canvas */
+.chart-canvas-wrapper {
+    flex-grow: 1; 
+    position: relative;
+    min-height: 300px; 
+}
+
+/* Estilos para la lista de detalle (ej. Razas) */
+.chart-detail-list {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dash-grid-2-1 {
+        grid-template-columns: 1fr; 
+    }
+
+    .chart-canvas-wrapper {
+        min-height: 250px;
+    }
+}
