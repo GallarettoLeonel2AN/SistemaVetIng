@@ -2820,3 +2820,90 @@ span.flatpickr-weekday {
         border-color: var(--primary-color) !important;
         background-color: rgba(99, 102, 241, 0.1) !important;
     }
+
+/* =========================================
+        MÓDULO GESTIÓN PERMISOS
+   ========================================= */
+
+/* Panel de Filtro de Rol */
+.filter-bar-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-select-wrapper {
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+/* Toggle Switch (Interruptor Moderno) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-light);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 3px;
+        background-color: #ffffff;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+/* Estado Activo (Verde) */
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+    .toggle-switch input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+    }
+
+/* Texto del permiso */
+.permission-label {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 1rem;
+    display: block;
+    cursor: pointer;
+}
+
+.permission-subtext {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+}
