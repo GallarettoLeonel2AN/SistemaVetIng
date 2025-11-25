@@ -108,7 +108,7 @@
 
                                             <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" onsubmit="return confirm('¿Seguro que deseas eliminar este estudio?');">
                                                 @Html.AntiForgeryToken()
-                                                <button type="submit" class="btn btn-outline btn-sm" style="color:var(--error-color); border-color:var(--error-color);" title="Eliminar">
+                                                <button type="submit" class="btn btn-outline btn-sm trash" style="color:var(--error-color); border-color:var(--error-color);" title="Eliminar">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>

@@ -3098,3 +3098,5 @@ span.flatpickr-weekday {
     gap: 10px !important;
     width: 100%;
 }
+
+.trash:hover{background-color:darkred}

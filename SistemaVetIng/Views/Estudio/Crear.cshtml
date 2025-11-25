@@ -1,91 +1,119 @@
 ﻿@model SistemaVetIng.ViewsModels.EstudioViewModel
-@using System.Globalization
 
 @{
-    ViewData["Title"] = "Registrar Nuevo Estudio";
-    Layout = null; 
+    ViewData["Title"] = "Nuevo Estudio - VetIng";
+    Layout = null;
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
-
 }
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - VetIng</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          xintegrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
-<body class="dark-mode">
+<body>
 
     <header class="main-header">
-        <a href="/@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Panel</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
-        <section id="crear-estudio" class="v1-section">
-            <h1 class="v1-section-title">@ViewData["Title"]</h1>
+    <main class="main-content">
 
-            <div class="v1-card v1-form-container">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Cargar Nuevo Estudio de Catálogo</h3>
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Nuevo <span>Estudio</span></h1>
+                <p class="dash-subtitle">Registra un nuevo tipo de estudio médico al catálogo.</p>
+            </div>
+        </div>
+
+        <section class="booking-container" style="max-width: 700px;">
+            <form asp-action="Crear" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger" style="margin-bottom:20px;"></div>
+
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="Nombre" class="form-label">Nombre del Estudio</label>
+                    <div style="position:relative;">
+                        <i class="fa-solid fa-microscope" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--primary-color);"></i>
+                        <input asp-for="Nombre" class="form-control" placeholder="Ej: Ecografía Abdominal" style="padding-left:40px;" />
+                    </div>
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
-                <div class="v1-card-content">
-                    <form asp-action="Crear" method="post">
-                        @Html.AntiForgeryToken()
 
+                <div class="form-group" style="margin-bottom:30px;">
+                    <label asp-for="Precio" class="form-label">Precio ($)</label>
+                    <input asp-for="Precio" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" />
+                    <span asp-validation-for="Precio" class="text-danger"></span>
+                </div>
 
-                        <div class="v1-form-group">
-                            <label asp-for="Nombre" class="v1-label"></label>
-                            <input asp-for="Nombre" class="v1-input" placeholder="Ej: Ecografía Abdominal, Análisis de Orina" />
-                            <span asp-validation-for="Nombre" class="v1-validation-error"></span>
-                        </div>
+                <div class="form-actions" style="display:flex; justify-content:flex-end; gap:15px;">
+                    <a asp-action="Index" class="btn btn-outline">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-save"></i> Guardar Estudio
+                    </button>
+                </div>
 
-                        <div class="v1-form-group">
-                            <label asp-for="Precio" class="v1-label"></label>
-                            <input asp-for="Precio" class="v1-input" type="number" step="0.01" min="0.01" placeholder="Ej: 5500.00" />
-                            <span asp-validation-for="Precio" class="v1-validation-error"></span>
-                        </div>
-
-                        <div class="v1-form-actions">
-                            <a asp-action="Index" class="v1-btn v1-btn-ghost">
-                                <i class="fas fa-arrow-left"></i> Volver al Listado
-                            </a>
-                            <button type="submit" class="v1-btn v1-btn-primary">
-                                <i class="fas fa-save"></i> Guardar Estudio
-                            </button>
-                        </div>
-                    </form>
-                </div> 
-            </div> 
-
+            </form>
         </section>
     </main>
 
     <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegacion</h4>
+            <ul class="footer-links">
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Técnico</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
@@ -95,9 +123,12 @@
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
 
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
