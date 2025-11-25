@@ -4,140 +4,180 @@
 @using System.Globalization
 
 @{
-    ViewData["Title"] = "Registro de Auditoria del Sistema";
+    ViewData["Title"] = "Auditoría del Sistema - VetIng";
     Layout = null;
-
+    string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - VetIng</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          xintegrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
-<body class="dark-mode"> 
+
+<body>
 
     <header class="main-header">
-        <a href="/Veterinaria/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/Veterinaria/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Inicio</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/Veterinaria/PaginaPrincipal">Volver al Panel</a></li>
                 <li>
-                      <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
-        <section id="auditoria-logs" class="v1-section">
-            <h1 class="v1-section-title">@ViewData["Title"]</h1>
+    <main class="main-content">
+        
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Registro de <span>Auditoría</span></h1>
+                <p class="dash-subtitle">Historial de seguridad y movimientos del sistema.</p>
+            </div>
+        </div>
 
-            <form asp-action="Index" method="get" class="v1-filter-bar">
-                <div class="v1-filter-group">
-                    <label for="busquedaUsuario" class="v1-filter-label">Buscar por Usuario</label>
-                    <input type="text" name="busquedaUsuario" id="busquedaUsuario" class="v1-input" placeholder="Nombre de usuario..." value="@Model.BusquedaUsuario" />
-                </div>
-                <div class="v1-filter-group">
-                    <label for="tipoEventoSeleccionado" class="v1-filter-label">Tipo de Evento</label>
-                    <select name="tipoEventoSeleccionado" id="tipoEventoSeleccionado" class="v1-input" asp-for="TipoEventoSeleccionado" asp-items="Model.TiposDeEvento">
-                        <option value="">-- Todos los Eventos --</option>
-                    </select>
-                </div>
-                <div class="v1-filter-group">
-                    <label for="fechaInicio" class="v1-filter-label">Desde</label>
-                    <input type="date" name="fechaInicio" id="fechaInicio" class="v1-input" asp-for="FechaInicio" />
-                </div>
-                 <div class="v1-filter-group">
-                    <label for="fechaFin" class="v1-filter-label">Hasta</label>
-                    <input type="date" name="fechaFin" id="fechaFin" class="v1-input" asp-for="FechaFin" />
-                </div>
-                <div class="v1-filter-group">
-                    <button type="submit" class="v1-btn v1-btn-primary" style="width: 100%;"><i class="fas fa-search"></i> Filtrar</button>
-                </div>
-                 <div class="v1-filter-group">
-                    <a asp-action="Index" class="v1-btn v1-btn-ghost" style="width: 100%;"><i class="fas fa-times"></i> Limpiar</a>
-                </div>
-            </form>
+        <section>
+            <div class="date-filter-card" style="display:block;"> 
+                <form asp-action="Index" method="get" class="filter-grid-bar">
+                    
+                    <div class="form-group" style="margin:0;">
+                        <label for="busquedaUsuario" class="form-label" style="color:white;">Usuario</label>
+                        <input type="text" name="busquedaUsuario" id="busquedaUsuario" class="form-control" 
+                               placeholder="Ej: admin@veting.com" value="@Model.BusquedaUsuario" />
+                    </div>
 
-  
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Eventos Registrados</h3>
-                </div>
-                <div class="v1-card-content">
-                    @if (Model.EventosPaginados != null && Model.EventosPaginados.Any())
-                    {
-                        <div class="table-container">
-                            <table class="table responsive-table table-layout-fixed">
-                                <thead>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>Fecha y Hora</th>
-                                        <th>Tipo de Evento</th>
-                                        <th>Entidad</th>
-                                        <th style="width: 25%;">Detalles</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var evento in Model.EventosPaginados)
-                                    {
-                                        <tr>
-                                            <td data-label="Usuario:">@Html.DisplayFor(modelItem => evento.NombreUsuario)</td>
-                                            <td data-label="Fecha:">@evento.FechaHora.ToString("dd/MM/yyyy HH:mm:ss")</td>
-                                            <td data-label="Evento:">
-                                                @{
-                                                    string badgeClass = evento.TipoEvento switch {
-                                                        "Login Exitoso" => "v1-badge-login",
-                                                        "Logout Exitoso" => "v1-badge-logout",
-                                                        "Login Fallido" => "v1-badge-fallido",
-                                                        "Crear" => "v1-badge-crear",
-                                                        "Modificar" => "v1-badge-modificar",
-                                                        "Eliminar" => "v1-badge-eliminar",
-                                                        _ => "v1-badge-default"
-                                                    };
-                                                }
-                                                <span class="v1-badge-event @badgeClass">@evento.TipoEvento</span>
-                                            </td>
-                                            <td data-label="Entidad:">@Html.DisplayFor(modelItem => evento.Entidad)</td>
-                                          
-                                             <td data-label="Detalles:" class="cell-wrap-text">
-                                                 @(!string.IsNullOrWhiteSpace(evento.Detalles) ? evento.Detalles : " - ")
-                                             </td>
-                                            
-                                          
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="v1-empty-state">
-                            <span>No se encontraron eventos que coincidan con los filtros aplicados.</span>
-                        </div>
-                    }
+                    <div class="form-group" style="margin:0;">
+                        <label for="tipoEventoSeleccionado" class="form-label" style="color:white;">Evento</label>
+                        <select name="tipoEventoSeleccionado" id="tipoEventoSeleccionado" class="form-control" 
+                                asp-for="TipoEventoSeleccionado" asp-items="Model.TiposDeEvento">
+                            <option value="">-- Todos --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin:0;">
+                        <label for="fechaInicio" class="form-label" style="color:white;">Desde</label>
+                        <input type="text" name="fechaInicio" id="fechaInicio" 
+                               class="form-control calendar-input-fix" 
+                               placeholder="Seleccionar..." 
+                               value="@Model.FechaInicio?.ToString("yyyy-MM-dd")" readonly />
+                    </div>
+
+                    <div class="form-group" style="margin:0;">
+                        <label for="fechaFin" class="form-label" style="color:white;">Hasta</label>
+                        <input type="text" name="fechaFin" id="fechaFin" 
+                               class="form-control calendar-input-fix" 
+                               placeholder="Seleccionar..." 
+                               value="@Model.FechaFin?.ToString("yyyy-MM-dd")" readonly />
+                    </div>
+
+                    <div style="display:flex; gap:10px;">
+                        <button type="submit" class="btn btn-primary btn-sm" style="flex:1;">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">
+                            <i class="fas fa-broom"></i> Limpiar
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+        <section class="list-container">
+            @if (Model.EventosPaginados != null && Model.EventosPaginados.Any())
+            {
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Fecha y Hora</th>
+                                <th class="text-center">Evento</th>
+                                <th>Entidad</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var evento in Model.EventosPaginados)
+                            {
+                                <tr>
+                                    <td data-label="Usuario">
+                                        <div class="d-flex align-center gap-10">
+                                            <i class="fa-solid fa-user-shield" style="color:var(--text-muted);"></i>
+                                            <span class="text-name" style="font-size:0.95rem;">@evento.NombreUsuario</span>
+                                        </div>
+                                    </td>
+                                    
+                                    <td data-label="Fecha">
+                                        <span class="text-mono" style="font-size:0.9rem;">
+                                            @evento.FechaHora.ToString("dd/MM/yyyy HH:mm:ss")
+                                        </span>
+                                    </td>
+                                    
+                                    <td data-label="Evento" class="text-center">
+                                        @{
+                                            string badgeClass = evento.TipoEvento switch {
+                                                "Login Exitoso" => "audit-login",
+                                                "Logout Exitoso" => "audit-logout",
+                                                "Login Fallido" => "audit-fail",
+                                                "Crear" => "audit-create",
+                                                "Modificar" => "audit-update",
+                                                "Eliminar" => "audit-delete",
+                                                _ => "audit-logout"
+                                            };
+                                        }
+                                        <span class="audit-badge @badgeClass">@evento.TipoEvento</span>
+                                    </td>
+                                    
+                                  <td data-label="Entidad">
+                                    @{
+        
+                                      var (textColorClass, entityIcon) = evento.Entidad switch
+                                        {
+                                            "Veterinario" => ("text-vet", "fa-user-doctor"),
+                                            "Veterinaria" => ("text-clinic", "fa-hospital"),
+                                            "Cliente"     => ("text-client", "fa-user"),
+                                            _             => ("text-default", "fa-cube") // Default
+                                        };
+                                            }
+    
+                                            <span class="entity-text-wrap @textColorClass">
+                                                <i class="fa-solid @entityIcon"></i> @evento.Entidad
+                                            </span>
+                                        </td>
+                                    
+                                    <td data-label="Detalle">
+                                        <span style="color:var(--text-muted); font-size:0.9rem; font-style:italic;">
+                                            @(!string.IsNullOrWhiteSpace(evento.Detalles) ? evento.Detalles : "-")
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
 
-
-                <div class="v1-card-footer pagination-container">
-                    @if (Model.EventosPaginados != null && Model.EventosPaginados.PageCount > 1)
+                <div class="pagination-wrapper">
+                    @if (Model.EventosPaginados.PageCount > 1)
                     {
                         @Html.PagedListPager(Model.EventosPaginados, page => Url.Action("Index",
                             new { 
@@ -147,41 +187,69 @@
                                 fechaInicio = Model.FechaInicio?.ToString("yyyy-MM-dd"),
                                 fechaFin = Model.FechaFin?.ToString("yyyy-MM-dd")
                             }),
-                            new PagedListRenderOptions
-                            {
+                            new PagedListRenderOptions {
                                 LiElementClasses = new string[] { "page-item" },
                                 PageClasses = new string[] { "page-link" },
-                                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                                DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                                ContainerDivClasses = new[] { "pagination justify-content-center" }
+                                ContainerDivClasses = new[] { "pagination" },
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never
                             })
                     }
-                    else if (Model.EventosPaginados != null)
+                    else
                     {
-                        <p class="text-muted text-center" style="margin:0;">
-                            Mostrando @Model.EventosPaginados.TotalItemCount @(Model.EventosPaginados.TotalItemCount == 1 ? "evento" : "eventos")
+                        <p style="color:var(--text-muted); margin:0; font-size:0.9rem;">
+                            Mostrando @Model.EventosPaginados.TotalItemCount registros.
                         </p>
                     }
                 </div>
-
-            </div> 
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <div class="empty-search-icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <p>No se encontraron eventos de auditoría con los filtros actuales.</p>
+                </div>
+            }
         </section>
+
     </main>
 
     <footer class="main-footer">
-
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+           <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
     @await Component.InvokeAsync("NToastNotify")
+    
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+
+        // Inicializar Calendarios
+        document.addEventListener('DOMContentLoaded', function() {
+            const config = {
+                locale: "es",
+                dateFormat: "Y-m-d",
+                altInput: true,
+                altFormat: "d/m/Y",
+                disableMobile: "true"
+            };
+            
+            flatpickr("#fechaInicio", config);
+            flatpickr("#fechaFin", config);
+        });
+    </script>
 </body>
 </html>

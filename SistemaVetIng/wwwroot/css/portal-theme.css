@@ -3365,3 +3365,109 @@ span.flatpickr-weekday {
         min-height: 250px;
     }
 }
+
+/* =========================================
+             MÓDULO AUDITORÍA
+   ========================================= */
+
+/* Badges de Tipo de Evento */
+.audit-badge {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.audit-login {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.audit-logout {
+    background: rgba(148, 163, 184, 0.15);
+    color: #94a3b8;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.audit-fail {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.audit-create {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.audit-update {
+    background: rgba(250, 204, 21, 0.15);
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.audit-delete {
+    background: rgba(244, 63, 94, 0.15);
+    color: #fb7185;
+    border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+/* Ajuste para la barra de filtros multi-columna */
+.filter-grid-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: end; 
+}
+
+.entity-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid transparent;
+    letter-spacing: 0.3px;
+}
+
+/* Clase base para alinear icono y texto */
+.entity-text-wrap {
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+/* Veterinario: Cyan brillante */
+.text-vet {
+    color: #22d3ee !important;
+}
+
+/* Veterinaria (Clínica): Violeta claro */
+.text-clinic {
+    color: #c084fc !important;
+}
+
+/* Cliente: Rosa/Coral */
+.text-client {
+    color: #fb7185 !important;
+}
+
+/* Mascota: Verde esmeralda */
+.text-pet {
+    color: #34d399 !important;
+}
+
+/* Usuario/System: Gris claro */
+.text-default {
+    color: #cbd5e1 !important;
+}
