@@ -3471,3 +3471,36 @@ span.flatpickr-weekday {
 .text-default {
     color: #cbd5e1 !important;
 }
+
+/* =========================================
+   FIX CALENDARIO FLATPICKR (Definitivo)
+   ========================================= */
+
+/* Forzamos que el input readonly parezca editable */
+.form-control.flatpickr-input[readonly],
+.form-control[readonly].calendar-input-fix {
+    background-color: rgba(2, 6, 23, 0.6) !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    opacity: 1 !important; 
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    pointer-events: auto !important; 
+}
+
+    /* Hover */
+    .form-control.flatpickr-input[readonly]:hover {
+        border-color: var(--primary-color) !important;
+        background-color: rgba(99, 102, 241, 0.1) !important;
+    }
+
+/* Apuntamos al ID específico y a la clase de flatpickr */
+#filtroFecha[readonly],
+#fechaNacimiento[readonly],
+#fechaTurno[readonly],
+input.flatpickr-input[readonly] {
+    cursor: pointer !important; /* FORZAR LA MANITO */
+    background-color: rgba(2, 6, 23, 0.6) !important; /* Fondo oscuro correcto */
+    opacity: 1 !important; /* Que no se vea transparente/deshabilitado */
+    color: #ffffff !important; /* Texto blanco */
+    pointer-events: auto !important; /* Permitir clicks */
+}
