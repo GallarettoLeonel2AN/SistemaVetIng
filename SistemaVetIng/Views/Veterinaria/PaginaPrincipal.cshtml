@@ -474,7 +474,7 @@
             <div class="pagination-wrapper">
                 @if (Model.PaginacionMascotas != null && Model.PaginacionMascotas.PageCount > 1)
                 {
-                    @Html.PagedListPager(Model.PaginacionMascotas, pageMascota => Url.Action("PaginaPrincipal", "Veterinario",
+                    @Html.PagedListPager(Model.PaginacionMascotas, pageMascota => Url.Action("PaginaPrincipal", "Veterinaria",
                         new { 
                             page = Context.Request.Query["page"], 
                             busquedaCliente = Context.Request.Query["busquedaCliente"],
