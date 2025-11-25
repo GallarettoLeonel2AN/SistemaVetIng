@@ -4,9 +4,8 @@
 @using System.Globalization
 
 @{
-    ViewData["Title"] = "Catálogo de Estudios";
+    ViewData["Title"] = "Catálogo de Estudios - VetIng";
     Layout = null;
-
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
@@ -14,148 +13,202 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - VetIng</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          xintegrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
-<body class="dark-mode">
+
+<body>
 
     <header class="main-header">
-        <a href="/@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Panel</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
-        <section id="estudios-catalogo" class="v1-section">
-            <h1 class="v1-section-title">@ViewData["Title"]</h1>
-
-            <div class="v1-section-actions">
-                <a asp-action="Crear" class="v1-btn v1-btn-primary">
+    <main class="main-content">
+        
+        <div class="dash-hero dash-hero--center">
+            <div class="dash-title">
+                <h1>Catálogo de <span>Estudios</span></h1>
+                <p class="dash-subtitle">Gestiona los tipos de estudios complementarios ofrecidos por la clínica.</p>
+            </div>
+            
+            <div class="dash-actions" style="justify-content:center; margin-top:20px;">
+                <a asp-action="Crear" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Agregar Nuevo Estudio
                 </a>
+            </div>
+        </div>
 
-                <form asp-action="Index" method="get" class="v1-search-form">
-                    <div class="v1-input-group">
-                        <i class="fa-solid fa-search v1-input-icon"></i>
-                        <input type="text" name="busqueda" value="@ViewBag.Busqueda" class="v1-input" placeholder="Buscar por Nombre..." />
-                    </div>
-                </form>
+        <div class="search-focus-container">
+            <form asp-action="Index" method="get" class="search-box">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" name="busqueda" class="search-input" 
+                       placeholder="Buscar por Nombre de estudio..." 
+                       value="@ViewBag.Busqueda" autocomplete="off" />
+            </form>
+        </div>
+
+        <div class="list-container">
+            <div class="section-header" style="padding: 20px 30px;">
+                <h3 class="section-heading" style="font-size:1.3rem;">Listado de Servicios</h3>
             </div>
 
-            <div class="v1-card">
-                <div class="v1-card-header">
-                    <h3 class="v1-card-title">Listado de Estudios</h3>
+            @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Estudio</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td data-label="Nombre">
+                                        <div class="d-flex align-center gap-10">
+                                            <i class="fa-solid fa-microscope" style="color:var(--secondary-color); font-size:1.1rem;"></i>
+                                            <span class="text-name">@item.Nombre</span>
+                                        </div>
+                                    </td>
+                                    
+                                    <td data-label="Precio" class="text-center">
+                                        <span class="amount-highlight">
+                                            @item.Precio.ToString("C2", new CultureInfo("es-AR"))
+                                        </span>
+                                    </td>
+                                    
+                                    <td data-label="Acciones" class="text-center">
+                                        <div class="table-actions-center">
+                                            
+                                            <a asp-action="Modificar" asp-route-id="@item.Id" class="btn btn-outline btn-sm" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+
+                                            <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" onsubmit="return confirm('¿Seguro que deseas eliminar este estudio?');">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-outline btn-sm" style="color:var(--error-color); border-color:var(--error-color);" title="Eliminar">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-                <div class="v1-card-content">
-                    @if (Model != null && Model.Any())
+
+                <div class="pagination-wrapper">
+                    @if (Model.PageCount > 1)
                     {
-                        <div class="table-container">
-                            <table class="table responsive-table">
-                                <thead>
-                                    <tr>
-                                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
-                                        <th class="text-right">@Html.DisplayNameFor(model => model.First().Precio)</th>
-                                        <th class="text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td data-label="Nombre:">@Html.DisplayFor(modelItem => item.Nombre)</td>
-                                            <td data-label="Precio:" class="text-right">@item.Precio.ToString("C2", new CultureInfo("es-AR"))</td>
-                                            <td data-label="Acciones:" class="text-center">
-
-                                                <a asp-action="Modificar" asp-route-id="@item.Id" class="v1-btn v1-btn-sm v1-btn-ghost" title="Editar">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-
-                                                <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('¿Está seguro de que desea eliminar este estudio?');">
-                                                    @Html.AntiForgeryToken()
-                                                    <button type="submit" class="v1-btn v1-btn-sm v1-btn-ghost v1-text-danger" title="Eliminar">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, busqueda = ViewBag.Busqueda }),
+                            new PagedListRenderOptions {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" },
+                                ContainerDivClasses = new[] { "pagination" },
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never
+                            })
                     }
                     else
                     {
-                        <div class="v1-empty-state">
-                            @if (!string.IsNullOrEmpty(ViewBag.Busqueda?.ToString()))
-                            {
-                                <span>No se encontraron estudios que coincidan con "@ViewBag.Busqueda".</span>
-                            }
-                            else
-                            {
-                                <span>No hay estudios registrados en el catálogo.</span>
-                            }
-                        </div>
-                    }
-                </div>
-
-                <div class="v1-card-footer pagination-container">
-                    @if (Model != null && Model.PageCount > 1)
-                    {
-                        @Html.PagedListPager(Model, page => Url.Action("Index",
-                        new { page, busqueda = ViewBag.Busqueda }),
-                                        new PagedListRenderOptions
-                                        {
-                                            LiElementClasses = new string[] { "page-item" },
-                                            PageClasses = new string[] { "page-link" },
-                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                                            ContainerDivClasses = new[] { "pagination justify-content-center" }
-                                        })
-                                        }
-                    else if (Model != null)
-                    {
-                        <p class="text-muted text-center" style="margin:0;">
-                            Mostrando @Model.TotalItemCount @(Model.TotalItemCount == 1 ? "estudio" : "estudios")
+                        <p style="color:var(--text-muted); margin:0; font-size:0.9rem;">
+                            Mostrando @Model.TotalItemCount registros.
                         </p>
                     }
                 </div>
+            }
+            else
+            {
+                <div class="empty-state-container">
+                    <div class="empty-search-icon">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    @if (!string.IsNullOrEmpty(ViewBag.Busqueda?.ToString()))
+                    {
+                        <p>No se encontraron estudios para "<strong>@ViewBag.Busqueda</strong>".</p>
+                    }
+                    else
+                    {
+                        <p>No hay estudios registrados en el catálogo.</p>
+                    }
+                </div>
+            }
+        </div>
 
-            </div>
-        </section>
     </main>
 
-    <footer class="main-footer">
+  <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegacion</h4>
+            <ul class="footer-links">
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Técnico</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
+    
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
