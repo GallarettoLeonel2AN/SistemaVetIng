@@ -1,7 +1,7 @@
 ﻿@model SistemaVetIng.ViewsModels.RecuperarContraseñaViewModel
 
 @{
-    ViewData["Title"] = "Recuperar Contraseña";
+    ViewData["Title"] = "Recuperar Contraseña - VetIng";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -9,51 +9,61 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/login-styles.css">
-    <title>VetIng - Recuperar Contraseña</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 
-<div class="login-main">
-    <div class="login-container">
-        <div class="container-img-recuperar"></div>
-        <div class="container-formulario">
-            <div class="ingreso-correo">
-                <h1>Recuperar Contraseña</h1>
-                <p class="login-subtext">
-                    Ingresa tu correo electrónico para recibir un enlace de restablecimiento.
+<body class="auth-body">
+
+    <div class="auth-card">
+
+        <div class="auth-visual" style="background-image: url('@Url.Content("~/css/Img/recuperarpass.jpg")');">
+        </div>
+
+        <div class="auth-form-container">
+
+            <div style="text-align:center; margin-bottom:30px;">
+                <div class="dash-title">
+                    <h1 style="font-size:2rem;">Recuperar <span>Acceso</span></h1>
+                </div>
+                <p class="auth-subtitle" style="color:var(--text-muted);">
+                    Ingresa tu email para restablecer tu contraseña.
                 </p>
             </div>
 
-            <div class="formulario">
-                <form asp-action="ForgotPassword" method="post" class="login-form">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Email"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="button login-button">
-                            Enviar Enlace
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <form asp-action="ForgotPassword" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger" style="margin-bottom:20px; text-align:center;"></div>
 
-            <div class="signup-link">
-                <a asp-action="Login" class="link-secondary">Volver al inicio de sesión</a>
-            </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                    <div style="position:relative;">
+                        <i class="fa-solid fa-envelope" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--primary-color);"></i>
+                        <input asp-for="Email" class="form-control" placeholder="ejemplo@email.com" style="padding-left:40px;" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-register-submit" style="margin-top:20px;">
+                    <i class="fa-regular fa-paper-plane" style="margin-right:10px;"></i> Enviar Enlace
+                </button>
+
+                <div class="auth-footer-links">
+                    <a asp-action="Login" class="link-animated secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Volver al inicio de sesión
+                    </a>
+                </div>
+
+            </form>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @await Component.InvokeAsync("NToastNotify")
+
+</body>
+</html>

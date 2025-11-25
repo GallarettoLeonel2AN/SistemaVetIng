@@ -3578,3 +3578,47 @@ input.flatpickr-input[readonly] {
     .link-animated:hover::after {
         width: 100%; /* Se expande hacia afuera */
     }
+
+/* =========================================
+   PÁGINAS DE ÉXITO / CONFIRMACIÓN
+   ========================================= */
+
+.success-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    background: rgba(16, 185, 129, 0.1); /* Fondo verde suave */
+    color: var(--success-color); /* Verde tema */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    margin: 0 auto 25px auto; /* Centrado */
+    border: 2px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.2); /* Resplandor verde */
+    animation: pulse-green 2s infinite;
+}
+
+/* Animación suave de latido */
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* Ajuste para centrar verticalmente el contenido en la tarjeta de éxito */
+.auth-form-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}

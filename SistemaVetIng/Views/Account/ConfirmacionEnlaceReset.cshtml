@@ -1,6 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Enlace Enviado";
-    Layout = null; 
+    ViewData["Title"] = "Enlace Enviado - VetIng";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -8,33 +8,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/login-styles.css">
-    <title>VetIng - @ViewData["Title"]</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 
-<body>
-    <div class="login-main">
-        <div class="login-container">
-            <div class="container-img-recuperar"></div>
-            <div class="container-formulario">
-                <div class="ingreso-correo">
-                    <i class="fas fa-envelope-open-text fa-5x" style="color: #28a745;"></i>
-                    <h1>¡Enlace Enviado!</h1>
-                    <p class="login-subtext">
-                        Por favor, revisa tu correo electrónico para las instrucciones de restablecimiento de contraseña. Si no lo ves, revisa tu carpeta de spam.
-                    </p>
-                </div>
+<body class="auth-body">
 
-                <div class="signup-link">
-                    <a asp-action="Login" asp-controller="Account" class="link-secondary">Volver al inicio de sesión</a>
-                </div>
+    <div class="auth-card">
+
+        <div class="auth-visual" style="background-image: url('@Url.Content("~/css/Img/recuperarpass.jpg")');">
+        
+        </div>
+
+        <div class="auth-form-container auth-form-center">
+
+            <div class="success-icon-wrapper">
+                <i class="fa-solid fa-envelope-circle-check"></i>
             </div>
+
+            <div class="dash-title">
+                <h1 style="font-size:2.2rem; margin-bottom:10px;">¡Enlace <span>Enviado!</span></h1>
+            </div>
+
+            <p class="auth-subtitle" style="font-size:1.1rem; line-height:1.6; max-width:400px; margin: 0 auto 30px auto;">
+                Hemos enviado las instrucciones de recuperación a tu correo electrónico.
+                <br>
+                <span style="font-size:0.9rem; color:var(--text-muted); display:block; margin-top:10px;">
+                    (Si no lo ves en tu bandeja de entrada, revisa la carpeta de Spam).
+                </span>
+            </p>
+
+            <a asp-action="Login" asp-controller="Account" class="btn btn-primary btn-register-submit" style="max-width:300px; margin:0 auto;">
+                <i class="fa-solid fa-arrow-left" style="margin-right:10px;"></i> Volver al Inicio de Sesión
+            </a>
+
         </div>
     </div>
+
 </body>
 </html>
