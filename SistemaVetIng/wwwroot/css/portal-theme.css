@@ -3090,3 +3090,11 @@ span.flatpickr-weekday {
         width: 100%; 
     }
 }
+
+.table-actions-center {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* ESTO centra horizontalmente */
+    gap: 10px !important;
+    width: 100%;
+}

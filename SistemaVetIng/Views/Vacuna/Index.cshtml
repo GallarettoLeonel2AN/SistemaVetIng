@@ -104,20 +104,22 @@
                                         </span>
                                     </td>
                                     
-                                    <td data-label="Acciones" class="text-center">
-                                        <div class="d-flex justify-content-center gap-10">
-                                            <a asp-action="Modificar" asp-route-id="@item.Id" class="btn btn-outline btn-sm" title="Editar">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                <td data-label="Acciones" class="text-center">
+                                     <div class="table-actions-center">
+        
+                                      <a asp-action="Modificar" asp-route-id="@item.Id" class="btn btn-outline btn-sm" title="Editar">
+                                       <i class="fas fa-edit"></i>
+                                         </a>
 
-                                            <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" onsubmit="return confirm('¿Seguro que deseas eliminar esta vacuna?');">
-                                                @Html.AntiForgeryToken()
-                                                <button type="submit" class="btn btn-outline btn-sm" style="color:var(--error-color); border-color:var(--error-color);" title="Eliminar">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
+                                     <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" onsubmit="return confirm('¿Seguro que deseas eliminar esta vacuna?');">
+                                       @Html.AntiForgeryToken()
+                                          <button type="submit" class="btn btn-outline btn-sm" style="color:var(--error-color); border-color:var(--error-color);" title="Eliminar">
+                                      <i class="fas fa-trash"></i>
+                                     </button>
+                                     </form>
+
+                                               </div>
+                                                </td>
                                 </tr>
                             }
                         </tbody>
