@@ -260,7 +260,14 @@ namespace SistemaVetIng.Controllers
                 await _veterinariaConfigService.Guardar(configParaGuardar);
 
                 _toastNotification.AddSuccessToastMessage("Configuración guardada con éxito.");
-                return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                if (User.IsInRole("Veterinario"))
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinario");
+                }
+                else
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                }
             }
             catch (Exception ex)
             {

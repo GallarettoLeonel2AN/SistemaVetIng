@@ -3004,3 +3004,89 @@ span.flatpickr-weekday {
     font-size: 0.9rem;
     display: inline-block;
 }
+
+/* =========================================
+          MÓDULO CONFIGURACIÓN HORARIOS
+   ========================================= */
+
+/* Lista de días */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Fila de cada día */
+.schedule-item {
+    background: rgba(2, 6, 23, 0.4); 
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns: 150px 1fr; 
+    align-items: center;
+    gap: 20px;
+    transition: 0.3s;
+}
+
+    .schedule-item:hover {
+        border-color: rgba(99, 102, 241, 0.3);
+        background: rgba(2, 6, 23, 0.6);
+    }
+
+/* Nombre del Día y Switch */
+.day-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.day-label {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1rem;
+    text-transform: capitalize;
+    min-width: 80px;
+}
+
+/* Contenedor de Inputs de Hora */
+.time-inputs-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: opacity 0.3s ease;
+}
+
+/* Clase para cuando el día está INACTIVO (Agregada por JS) */
+.schedule-item.disabled-day .time-inputs-wrapper {
+    opacity: 0.2; 
+    pointer-events: none; 
+}
+
+.schedule-item.disabled-day .day-label {
+    color: var(--text-muted); 
+}
+
+/* Separador "a" entre horas */
+.time-separator {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .schedule-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .time-inputs-wrapper {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .form-control[type="time"] {
+        width: 100%; 
+    }
+}
