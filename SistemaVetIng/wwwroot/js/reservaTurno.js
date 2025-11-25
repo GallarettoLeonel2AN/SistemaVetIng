@@ -65,17 +65,31 @@ function initializeReservaTurno(horariosUrl) {
             success: function (horarios) {
                 horariosOpcionesDiv.empty(); // Quitar spinner
 
-                // Filtrar horarios pasados si la fecha es hoy
                 let horariosValidos = horarios;
-                const hoy = new Date();
-                const fechaElegida = new Date(fechaSeleccionada + 'T00:00:00'); // Forzar zona horaria local
 
-                // Comparar solo si es el mismo día
-                if (fechaElegida.setHours(0, 0, 0, 0) === hoy.setHours(0, 0, 0, 0)) {
-                    const horaActual = hoy.getHours();
-                    const minutoActual = hoy.getMinutes();
-                    const horaActualString = String(horaActual).padStart(2, '0') + ':' + String(minutoActual).padStart(2, '0');
+                const ahoraMismo = new Date(); 
 
+                // Creamos objetos fecha limpios para comparar solo AÑO-MES-DIA
+                // Usamos replace(/-/g, '/') para asegurar compatibilidad en todos los navegadores
+                const fechaElegidaObj = new Date(fechaSeleccionada + 'T00:00:00');
+                const fechaHoyObj = new Date();
+
+                // Reseteamos horas solo para la comparación
+                fechaHoyObj.setHours(0, 0, 0, 0);
+                fechaElegidaObj.setHours(0, 0, 0, 0);
+
+                // Si la fecha elegida es HOY
+                if (fechaElegidaObj.getTime() === fechaHoyObj.getTime()) {
+
+                    const hora = ahoraMismo.getHours();
+                    const minutos = ahoraMismo.getMinutes();
+
+                    // Formato HH:mm para comparar strings (ej: "15:30")
+                    const horaActualString = String(hora).padStart(2, '0') + ':' + String(minutos).padStart(2, '0');
+
+                    console.log("Es hoy. Hora actual:", horaActualString); // Para depurar
+
+                    // Filtramos los horarios mayores a la hora actual
                     horariosValidos = horarios.filter(h => h > horaActualString);
                 }
 
@@ -85,7 +99,11 @@ function initializeReservaTurno(horariosUrl) {
                         horariosOpcionesDiv.append(btn);
                     });
                 } else {
-                    horariosOpcionesDiv.html('<div class="alert alert-warning" style="width:100%; text-align:center;">No hay horarios disponibles para esta fecha.</div>');
+                    horariosOpcionesDiv.html(`
+                        <div class="alert alert-warning">
+                           No hay horarios disponibles para esta fecha.
+                        </div>
+                    `);
                 }
             },
             error: function () {

@@ -1,7 +1,6 @@
-﻿
-@{
-    ViewData["Title"] = "VetIng";
-    Layout = null; 
+﻿@{
+    ViewData["Title"] = "VetIng - Software Veterinario";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -9,19 +8,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VetIng - Software Veterinario</title>
-    
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>@ViewData["Title"]</title>
 
-    <link rel="stylesheet" href="~/css/home-styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
+
 <body>
-    <header class="main-header" id="home">
-        <a href="#hero" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+    <header class="main-header">
+        <a href="#hero" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
+            <ul class="nav-list" id="navMenu">
                 <li><a class="nav-link" href="#about">Nosotros</a></li>
                 <li><a class="nav-link" href="#features">Funcionalidades</a></li>
                 <li><a class="nav-link" href="#contact">Contacto</a></li>
@@ -30,140 +30,208 @@
                 {
                     <li>
                         <form asp-controller="Account" asp-action="Logout" method="post">
-                            <button type="submit" class="btn btn-primary nav-button">Cerrar Sesión</button>
+                            <button type="submit" class="btn-logout">
+                                <i class="fa-solid fa-right-from-bracket"></i> Salir
+                            </button>
                         </form>
                     </li>
                 }
                 else
                 {
-                    <li><a class="btn btn-secondary nav-button" asp-controller="Account" asp-action="Login">Iniciar Sesión</a></li>
-                    <li><a class="btn btn-primary nav-button" asp-controller="Cliente" asp-action="RegistrarCliente">Registrarse</a></li>
+                    <li>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-sm btn-outline">
+                            Iniciar Sesión
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Cliente" asp-action="RegistrarCliente" class="btn btn-sm btn-primary">
+                            Registrarse
+                        </a>
+                    </li>
                 }
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">Software Veterinario <span class="highlight-text">Inteligente</span></h1>
-                <p class="hero-subtitle">
-                    Transforma la gestión de tu clínica con VetIng: citas, historiales, reportes y más, todo en un solo lugar.
+
+        <section id="hero" class="landing-hero landing-container">
+            <div class="hero-text-content">
+                <h1>Software Veterinario <span>Inteligente</span></h1>
+                <p>
+                    Transforma la gestión de tu clínica con VetIng. Turnos, historias clínicas, reportes y facturación en una plataforma unificada y moderna.
                 </p>
-                <div class="hero-actions">
-                    <a asp-controller="Cliente" asp-action="RegistrarCliente" class="btn btn-primary hero-btn">Comenzar Gratis</a>
-                    <a href="#features" class="btn btn-secondary hero-btn">Ver Funcionalidades</a>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Cliente" asp-action="RegistrarCliente" class="btn btn-primary">
+                            Comenzar Ahora
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#features" class="btn btn-primary">Explorar Sistema</a>
+                    }
+                    <a href="#features" class="btn btn-outline">Ver Funcionalidades</a>
                 </div>
             </div>
-            <div class="hero-image-container">
-                <img src="~/css/img/hero.jpg" alt="Mascotas felices" class="hero-image">
+
+            <div class="hero-img-wrapper">
+                <img src="~/css/img/hero.jpg" alt="Dashboard VetIng" />
             </div>
         </section>
 
-        <section id="about" class="about-section">
-            <div class="about-content">
-                <h2 class="section-title">Quiénes Somos</h2>
-                <p class="section-description">
-                    En VetIng Software, fusionamos nuestra pasión por los animales con la ingeniería de software para crear soluciones innovadoras. Entendemos los desafíos diarios de las clínicas veterinarias y por ello, hemos desarrollado una plataforma intuitiva y completa que optimiza la gestión, mejora la eficiencia operativa y potencia la atención a las mascotas.
-                </p>
-                <p class="section-description">
-                    Nuestra misión es empoderar a los profesionales veterinarios con tecnología de vanguardia, liberándolos de tareas administrativas para que puedan concentrarse en lo que más importa: la salud y el bienestar animal. Creemos en un futuro donde la tecnología y el cuidado veterinario avancen de la mano, haciendo la vida más fácil para veterinarios, dueños y mascotas por igual.
-                </p>
-                <a href="#features" class="btn btn-secondary">Descubre Más</a>
-            </div>
-            <div class="about-image-container">
-                <img src="~/css/img/vet-cuidado.jpg" alt="Veterinario cuidando un perro" class="about-image">
+        <section id="about" class="landing-section">
+            <div class="landing-container">
+                <div class="split-layout">
+                    <div class="image-col">
+                        <img src="~/css/img/vet-cuidado.jpg" alt="Cuidado veterinario" style="width:100%; border-radius:20px; border:1px solid var(--border-light);">
+                    </div>
+                    <div class="text-content">
+                        <span class="section-tag">Sobre Nosotros</span>
+                        <h2 class="section-heading-landing">Pasión por la Salud Animal</h2>
+                        <p>
+                            En VetIng Software fusionamos tecnología y cuidado veterinario. Entendemos los desafíos diarios de las clínicas y desarrollamos una plataforma intuitiva que optimiza tu gestión.
+                        </p>
+                        <p>
+                            Nuestra misión es liberar a los profesionales de la carga administrativa para que puedan concentrarse en lo más importante: sus pacientes.
+                        </p>
+
+                        <div style="display:flex; gap:30px; margin-top:20px;">
+                            <div>
+                                <h3 style="color:var(--primary-color); font-size:2rem; font-weight:800;">+500</h3>
+                                <small style="color:var(--text-muted);">Clínicas</small>
+                            </div>
+                            <div>
+                                <h3 style="color: white; font-size:2rem; font-weight:800;">+10k</h3>
+                                <small style="color:var(--text-muted);">Pacientes</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="features" class="features-section">
-            <h2 class="section-title">Funcionalidades Destacadas</h2>
-            <p class="section-description">VetIng te ofrece un conjunto de herramientas poderosas para llevar tu clínica al siguiente nivel.</p>
+        <section id="features" class="landing-section" style="background:rgba(0,0,0,0.2);">
+            <div class="landing-container">
+                <div style="text-align:center; max-width:800px; margin:0 auto;">
+                    <span class="section-tag">Características</span>
+                    <h2 class="section-heading-landing">Todo lo que necesitas</h2>
+                    <p style="color:var(--text-muted); font-size:1.1rem;">
+                        Herramientas potentes diseñadas específicamente para el flujo de trabajo veterinario.
+                    </p>
+                </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h3 class="feature-title">Gestión de Turnos</h3>
-                    <p class="feature-info">Agenda citas fácilmente, recibe recordatorios automáticos y reduce las ausencias.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-file-medical"></i></div>
-                    <h3 class="feature-title">Historial Clínico Digital</h3>
-                    <p class="feature-info">Acceso rápido a diagnósticos, tratamientos, vacunas y toda la información relevante de tus pacientes.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3 class="feature-title">Reportes Analíticos</h3>
-                    <p class="feature-info">Obtén métricas clave sobre ingresos, servicios populares y tendencias de salud para decisiones estratégicas.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
-                    <h3 class="feature-title">Pagos Seguros</h3>
-                    <p class="feature-info">Simplifica transacciones con múltiples métodos de pago, facturación electrónica y recibos detallados.</p>
-                </div>
-                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-syringe"></i></div>
-                    <h3 class="feature-title">Recordatorios Automatizados</h3>
-                    <p class="feature-info">Envía alertas personalizadas para vacunas, desparasitaciones y citas pendientes, mejorando la adherencia.</p>
-                </div>
-                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-mobile-alt"></i></div>
-                    <h3 class="feature-title">App Móvil para Clientes</h3>
-                    <p class="feature-info">Permite a tus clientes reservar turnos, ver historiales y recibir notificaciones desde su dispositivo.</p>
+                <div class="features-grid-landing">
+
+                    <div class="feature-card-landing">
+                        <div class="feature-icon-wrapper">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3>Gestión de Turnos</h3>
+                        <p>Agenda inteligente con recordatorios automáticos para reducir el ausentismo.</p>
+                    </div>
+
+                    <div class="feature-card-landing">
+                        <div class="feature-icon-wrapper">
+                            <i class="fa-solid fa-file-medical"></i>
+                        </div>
+                        <h3>Historia Clínica Digital</h3>
+                        <p>Accede al historial completo de tratamientos, vacunas y estudios al instante.</p>
+                    </div>
+
+                    <div class="feature-card-landing">
+                        <div class="feature-icon-wrapper">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3>Reportes Analíticos</h3>
+                        <p>Toma decisiones basadas en datos con dashboards de ingresos y rendimiento.</p>
+                    </div>
+
+                    <div class="feature-card-landing">
+                        <div class="feature-icon-wrapper">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <h3>Control de Pagos</h3>
+                        <p>Gestiona cobros, métodos de pago y facturación de forma sencilla y segura.</p>
+                    </div>
+
+                    <div class="feature-card-landing">
+                        <div class="feature-icon-wrapper">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3>Control de Chips</h3>
+                        <p>Registro especial para razas y control de identificación por microchip.</p>
+                    </div>
+
+                    <div class="feature-card-landing">
+                        <div class="feature-icon-wrapper">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <h3>Portal Pacientes</h3>
+                        <p>Tus clientes pueden reservar turnos y ver el historial de sus mascotas online.</p>
+                    </div>
+
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer id="contact" class="main-footer">
         <div class="footer-col footer-info">
             <div class="footer-logo-container">
-                 <i class="fa-solid fa-paw footer-logo-icon"></i>
-                <h3 class="footer-brand">VetIng Software</h3>
+                <i class="fa-solid fa-paw footer-logo-icon"></i>
+                <h3 class="footer-brand">VetIng</h3>
             </div>
             <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
             <div class="footer-social-icons">
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
             </div>
         </div>
+
         <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
+            <h4 class="footer-heading">Contacto</h4>
             <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
+                <li><i class="fa-solid fa-envelope icon-text"></i> info@veting.com</li>
+                <li><i class="fa-solid fa-phone icon-text"></i> +54 11 1234-5678</li>
+                <li><i class="fa-solid fa-location-dot icon-text"></i> Rosario, Argentina</li>
             </ul>
         </div>
         <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
+            <h4 class="footer-heading">Acceso</h4>
             <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
+                <li><a asp-controller="Account" asp-action="Login">Iniciar Sesión</a></li>
+                <li><a asp-controller="Cliente" asp-action="RegistrarCliente">Registrarme</a></li>
             </ul>
         </div>
-         <div class="footer-col">
+        <div class="footer-col">
             <h4 class="footer-heading">Legal</h4>
             <ul class="footer-links">
                 <li><a href="#">Términos y Condiciones</a></li>
                 <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
+                <li><a href="mailto:soporte@veting.com">Contactar Soporte</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
