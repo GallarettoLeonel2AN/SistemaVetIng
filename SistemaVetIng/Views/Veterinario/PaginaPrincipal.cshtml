@@ -54,7 +54,7 @@
                 <p class="dash-subtitle">Gestión clínica, agenda diaria y administración de pacientes.</p>
             </div>
             
-            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Atenciones.View)).Succeeded)
+            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Atenciones.Create)).Succeeded)
             {
                 <div class="dash-actions">
                     <a asp-controller="HistoriaClinica" asp-action="BuscarClienteParaSeguimiento" class="btn btn-primary">

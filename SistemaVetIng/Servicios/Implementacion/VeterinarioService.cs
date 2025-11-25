@@ -75,8 +75,8 @@ namespace SistemaVetIng.Servicios.Implementacion
 
         public async Task<Veterinario> Modificar(VeterinarioEditarViewModel viewModel)
         {
-  
             var veterinario = await _veterinarioRepository.ObtenerPorId(viewModel.Id);
+
             if (veterinario == null)
             {
                 throw new KeyNotFoundException("Veterinario no encontrado.");
@@ -87,7 +87,28 @@ namespace SistemaVetIng.Servicios.Implementacion
             veterinario.Dni = viewModel.Dni;
             veterinario.Direccion = viewModel.Direccion;
             veterinario.Telefono = viewModel.Telefono;
-            veterinario.Matricula = viewModel.Matricula;
+            veterinario.Matricula = viewModel.Matricula; 
+
+            // ACTUALIZACIÓN DE IDENTITY 
+
+            if (veterinario.UsuarioId > 0)
+            {
+
+                var usuarioIdentity = await _userManager.FindByIdAsync(veterinario.UsuarioId.ToString());
+
+                if (usuarioIdentity != null)
+                {
+
+                    usuarioIdentity.NombreUsuario = $"{viewModel.Nombre} {viewModel.Apellido}";
+
+                    var identityResult = await _userManager.UpdateAsync(usuarioIdentity);
+
+                    if (!identityResult.Succeeded)
+                    {
+                        throw new Exception("Error al actualizar la información de sesión del usuario.");
+                    }
+                }
+            }
 
             _veterinarioRepository.Modificar(veterinario);
             await _veterinarioRepository.Guardar();

@@ -1,10 +1,10 @@
-﻿@model ManageUserPermissionsPageViewModel
+﻿@using SistemaVetIng.ViewsModels
+@model ManageUserPermissionsPageViewModel
 @using System.Globalization
 
 @{
-    ViewData["Title"] = "Gestión de Permisos por Usuario";
-    Layout = null; 
-
+    ViewData["Title"] = "Permisos de Usuario - VetIng";
+    Layout = null;
     string controllerDestino = User.IsInRole("Veterinario") ? "Veterinario" : "Veterinaria";
 }
 
@@ -12,144 +12,226 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - VetIng</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          xintegrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/permisos.css" asp-append-version="true" />
-
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
-<body class="dark-mode">
+<body>
 
     <header class="main-header">
-        <a href="/@controllerDestino/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/@controllerDestino/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Inicio</a></li>
+            <ul class="nav-list" id="navMenu">
+                <li><a class="nav-link" href="/@controllerDestino/PaginaPrincipal">Volver al Panel</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
-    <main class="v1-main-dashboard">
-        <section id="gestion-permisos" class="v1-section">
-            <h1 class="v1-section-title"><i class="fa-solid fa-user-shield"></i> @ViewData["Title"]</h1>
-            <p style="color: var(--history-text-secondary); margin-top: -0.5rem; margin-bottom: 1.5rem;">
-                Selecciona un usuario para ver y modificar sus permisos individuales.
-            </p>
+    <main class="main-content">
 
-            <div class="v1-alert v1-alert-info" style="color: var(--history-text-secondary)">
-                <i class="fas fa-info-circle"></i> Nota: Los permisos mostrados aquí son <strong>adicionales</strong> a los permisos que el usuario ya hereda de sus roles.
+        <div class="dash-hero">
+            <div class="dash-title">
+                <h1>Permisos por <span>Usuario</span></h1>
+                <p class="dash-subtitle">Administra excepciones y accesos especiales para usuarios individuales.</p>
             </div>
+        </div>
 
-        
-            <form asp-action="GestionPermissionsUsuario" method="get" class="v1-filter-bar">
-                <div class="v1-select-container">
-                    <label for="userSelect" class="v1-filter-label">Seleccionar Usuario:</label>
-                    <select asp-for="SelectedUserId" asp-items="Model.UsersList" class="v1-select" id="userSelect" onchange="this.form.submit();">
+        <div class="info-alert">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Importante:</strong> Los permisos configurados aquí son <u>adicionales</u> a los que el usuario ya hereda de sus roles asignados.
+            </div>
+        </div>
+
+        <section class="filter-bar-container">
+            <form asp-action="GestionPermissionsUsuario" method="get" style="width:100%; display:flex; align-items:center; gap:20px;">
+                <label for="userSelect" class="filter-label">
+                    <i class="fa-solid fa-user-gear"></i> Seleccionar Usuario:
+                </label>
+
+                <div class="filter-select-wrapper">
+                    <select asp-for="SelectedUserId" asp-items="Model.UsersList" class="form-control" id="userSelect" onchange="this.form.submit();">
                         <option value="">-- Selecciona un usuario --</option>
                     </select>
                 </div>
             </form>
+        </section>
 
-            <hr style="border-color: var(--history-border); margin: 2rem 0;" />
+        @if (Model.PermissionsForm != null && Model.PermissionsForm.Permissions.Any())
+        {
+            <section class="list-container">
 
-            
-            @if (Model.PermissionsForm != null && Model.PermissionsForm.Permissions.Any())
-            {
-                <div class="v1-card">
-                    <div class="v1-card-header">
-                        <h3 class="v1-card-title">Permisos Individuales para: <span style="color: var(--v1-color-accent)">@Model.PermissionsForm.UserName</span></h3>
-                    </div>
-                    <form asp-action="GestionPermissionsUsuario" method="post">
-                        @Html.AntiForgeryToken()
+                <div class="v1-card-header" style="padding: 0; border-bottom: 1px solid var(--border-light);">
+                    <div class="user-permission-header">
+                        <div class="user-permission-avatar">
+                            @{
+                                // Lógica simple para iniciales
+                                var iniciales = "U";
+                                var nombreCompleto = Model.PermissionsForm.NombreCompleto ?? Model.PermissionsForm.NombreCompleto;
 
-                    
-                        <input type="hidden" asp-for="PermissionsForm.UserId" />
-                        <input type="hidden" asp-for="PermissionsForm.UserName" />
+                                if (!string.IsNullOrEmpty(nombreCompleto))
+                                {
+                                    var partes = nombreCompleto.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                                    if (partes.Length >= 2)
+                                    {
+                                        iniciales = $"{partes[0][0]}{partes[1][0]}";
+                                    }
+                                    else if (partes.Length == 1)
+                                    {
+                                        iniciales = partes[0].Substring(0, 1);
+                                    }
+                                }
+                            }
+                            @iniciales.ToUpper()
+                        </div>
 
-                        <div class="v1-card-content">
-                            <div class="table-container">
-                                <table class="table responsive-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Permiso (Módulo - Acción)</th>
-                                            <th style="width: 120px; text-align: center;">Permitido</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for (int i = 0; i < Model.PermissionsForm.Permissions.Count; i++)
-                                        {
-                                            <tr>
-                                                <td data-label="Permiso:">
-                                                
-                                                    <input type="hidden" asp-for="PermissionsForm.Permissions[i].Type" />
-                                                    <input type="hidden" asp-for="PermissionsForm.Permissions[i].Value" />
-                                                    <input type="hidden" asp-for="PermissionsForm.Permissions[i].DisplayName" />
+                        <div class="user-permission-info">
+                            <h3>@(Model.PermissionsForm.NombreCompleto ?? "Usuario Sin Nombre")</h3>
 
-                                                    <label for="perm-u-@i" style="font-weight: 500; cursor: pointer;">
-                                                        @Model.PermissionsForm.Permissions[i].DisplayName
-                                                    </label>
-                                                </td>
-                                                <td data-label="Permitido:" style="text-align: center;">
-                                              
-                                                    <label class="v1-toggle-switch">
-                                                        <input type="checkbox" asp-for="PermissionsForm.Permissions[i].IsSelected" id="perm-u-@i" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                            <div class="user-permission-meta">
+                                <span>
+                                    <i class="fa-solid fa-envelope" style="color:var(--primary-color);"></i>
+                                    @Model.PermissionsForm.UserName
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-id-badge" style="color:var(--secondary-color);"></i>
+                                    Rol: <span class="role-badge-info">@(Model.PermissionsForm.UserRole ?? "Sin Rol")</span>
+                                </span>
                             </div>
                         </div>
-                        <div class="v1-card-footer v1-form-actions">
-                            <button type="submit" class="v1-btn v1-btn-primary">
-                                <i class="fa-solid fa-save"></i> Guardar Cambios
-                            </button>
-                        </div>
-                  
-                    </form>
+                    </div>
                 </div>
-                
-            }
-            else if (!string.IsNullOrEmpty(Model.SelectedUserId))
-            {
-                <div class="v1-alert v1-alert-warning">No se pudieron cargar los permisos para este usuario.</div>
-            }
-        </section>
+
+                <form asp-action="GestionPermissionsUsuario" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="PermissionsForm.UserId" />
+                    <input type="hidden" asp-for="PermissionsForm.UserName" />
+
+                    <div class="v1-card-content">
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Permiso Especial</th>
+                                        <th class="text-center" style="width: 150px;">Habilitado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.PermissionsForm.Permissions.Count; i++)
+                                    {
+                                        <tr>
+                                            <td data-label="Permiso">
+                                                <input type="hidden" asp-for="PermissionsForm.Permissions[i].Type" />
+                                                <input type="hidden" asp-for="PermissionsForm.Permissions[i].Value" />
+                                                <input type="hidden" asp-for="PermissionsForm.Permissions[i].DisplayName" />
+
+                                                <label for="perm-u-@i" class="permission-label">
+                                                    @Model.PermissionsForm.Permissions[i].DisplayName
+                                                </label>
+                                                <span class="permission-subtext">
+                                                    @Model.PermissionsForm.Permissions[i].Value
+                                                </span>
+                                            </td>
+
+                                            <td data-label="Estado" class="text-center">
+                                                <label class="toggle-switch">
+                                                    <input type="checkbox" asp-for="PermissionsForm.Permissions[i].IsSelected" id="perm-u-@i" />
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-actions" style="padding:30px; display:flex; justify-content:flex-end; border-top:1px solid var(--border-light);">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </section>
+        }
+        else if (!string.IsNullOrEmpty(Model.SelectedUserId))
+        {
+            <div class="empty-state-container">
+                <i class="fa-solid fa-triangle-exclamation empty-icon"></i>
+                <p>No se pudieron cargar los permisos para el usuario seleccionado.</p>
+            </div>
+        }
+        else
+        {
+            <div class="empty-state-container">
+                <i class="fa-solid fa-arrow-pointer empty-icon"></i>
+                <p>Por favor, selecciona un usuario arriba para comenzar.</p>
+            </div>
+        }
+
     </main>
 
     <footer class="main-footer">
+        <div class="footer-col footer-info">
+            <div class="footer-logo-container">
+                <div class="footer-logo-icon"><i class="fa-solid fa-paw"></i></div>
+                <h3 class="footer-brand">VetIng</h3>
+            </div>
+            <p class="footer-description">
+                Portal exclusivo para el personal médico. Gestión eficiente de pacientes y turnos.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegacion</h4>
+            <ul class="footer-links">
+                <li><a href="/@controllerDestino/PaginaPrincipal">Volver al inicio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Soporte Técnico</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:admin@veting.com">Contactar Admin</a></li>
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:0.95em; padding:0; text-decoration:underline;">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
     @await Component.InvokeAsync("NToastNotify")
 
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
         }
-    }
+    </script>
 </body>
 </html>

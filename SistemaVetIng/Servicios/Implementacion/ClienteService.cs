@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SistemaVetIng.Models;
 using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Models.Observer;
@@ -84,18 +86,37 @@ namespace SistemaVetIng.Servicios.Implementacion
         #region MODIFICAR CLIENTE
         public async Task<Cliente> Modificar(ClienteEditarViewModel model)
         {
-
             var cliente = await _clienteRepository.ObtenerPorId(model.Id);
+
             if (cliente == null)
             {
                 throw new KeyNotFoundException("Cliente no encontrado.");
             }
 
+            // Actualizamos los datos del Cliente 
             cliente.Nombre = model.Nombre;
             cliente.Apellido = model.Apellido;
             cliente.Dni = model.Dni;
             cliente.Direccion = model.Direccion;
             cliente.Telefono = model.Telefono;
+
+            // ACTUALIZACION DE IDENTITY 
+            if (cliente.UsuarioId > 0)
+            {
+                var usuarioIdentity = await _userManager.FindByIdAsync(cliente.UsuarioId.ToString());
+
+                if (usuarioIdentity != null)
+                {
+                    usuarioIdentity.NombreUsuario = $"{model.Nombre} {model.Apellido}";
+
+                    var identityResult = await _userManager.UpdateAsync(usuarioIdentity);
+
+                    if (!identityResult.Succeeded)
+                    {
+                        throw new Exception("Error al actualizar la información de sesión del usuario.");
+                    }
+                }
+            }
 
             _clienteRepository.Modificar(cliente);
             await _clienteRepository.Guardar();

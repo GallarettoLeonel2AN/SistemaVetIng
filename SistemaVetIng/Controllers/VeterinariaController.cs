@@ -347,18 +347,30 @@ namespace SistemaVetIng.Controllers
                 Value = u.Id.ToString()
             }).ToList();
 
-            //  cargar sus permisos
+            // Cargar datos si se seleccionó alguien
             if (!string.IsNullOrEmpty(SelectedUserId))
             {
                 model.SelectedUserId = SelectedUserId;
+
                 var userPermissions = await _permissionService.GetUserPermissionsAsync(SelectedUserId);
-                if (userPermissions != null)
+
+                var user = await _userManager.FindByIdAsync(SelectedUserId);
+
+                if (userPermissions != null && user != null)
                 {
+                    // Obtener roles 
+                    var roles = await _userManager.GetRolesAsync(user);
+                    string rolPrincipal = roles.FirstOrDefault() ?? "Sin Rol Asignado";
+
+                    // Asignar al ViewModel
+                    userPermissions.NombreCompleto = $"{user.NombreUsuario}"; 
+                    userPermissions.UserRole = rolPrincipal;
+
                     model.PermissionsForm = userPermissions;
                 }
             }
 
-           
+
             return View("GestionPermissionsUsuario", model);
         }
 

@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\viewsmodels\\userpermissionsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\viewsmodels\\userpermissionsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\veterinaria\\gestionpermissionsusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\veterinaria\\gestionpermissionsusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\controllers\\veterinariacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\controllers\\veterinariacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\servicios\\implementacion\\veterinariaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\veterinariaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\servicios\\implementacion\\veterinarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\veterinarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\servicios\\implementacion\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\wwwroot\\css\\portal-theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\mascota\\modificarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\mascota\\modificarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\cliente\\modificarcliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\cliente\\modificarcliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\mascota\\listarclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\mascota\\listarclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 422,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,57 +53,99 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ModificarMascota.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "RelativeToolTip": "SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGQAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-24T23:43:18.726Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ListarClientes.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Mascota\\ListarClientes.cshtml",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Mascota\\ListarClientes.cshtml",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Mascota\\ListarClientes.cshtml",
-              "RelativeToolTip": "SistemaVetIng\\Views\\Mascota\\ListarClientes.cshtml",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAQwLsAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-24T23:35:28.416Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModificarCliente.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\ModificarCliente.cshtml",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Cliente\\ModificarCliente.cshtml",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\ModificarCliente.cshtml",
-              "RelativeToolTip": "SistemaVetIng\\Views\\Cliente\\ModificarCliente.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-24T23:29:04.915Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserPermissionsViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\ViewsModels\\UserPermissionsViewModel.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\ViewsModels\\UserPermissionsViewModel.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\ViewsModels\\UserPermissionsViewModel.cs",
+              "RelativeToolTip": "SistemaVetIng\\ViewsModels\\UserPermissionsViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T01:05:51.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VeterinariaService.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Servicios\\Implementacion\\VeterinariaService.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\VeterinariaService.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Servicios\\Implementacion\\VeterinariaService.cs",
+              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\VeterinariaService.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T01:00:56.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VeterinarioService.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Servicios\\Implementacion\\VeterinarioService.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\VeterinarioService.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Servicios\\Implementacion\\VeterinarioService.cs",
+              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\VeterinarioService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T00:56:36.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClienteService.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Servicios\\Implementacion\\ClienteService.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\ClienteService.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Servicios\\Implementacion\\ClienteService.cs",
+              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\ClienteService.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAkwGcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T00:50:56.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VeterinariaController.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Controllers\\VeterinariaController.cs",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Controllers\\VeterinariaController.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Controllers\\VeterinariaController.cs",
+              "RelativeToolTip": "SistemaVetIng\\Controllers\\VeterinariaController.cs",
+              "ViewState": "AgIAAIMBAAAAAAAAAAAkwJcBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T00:35:38.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestionPermissionsUsuario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Veterinaria\\GestionPermissionsUsuario.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Veterinaria\\GestionPermissionsUsuario.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Veterinaria\\GestionPermissionsUsuario.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\Veterinaria\\GestionPermissionsUsuario.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T00:29:07.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "portal-theme.css",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeToolTip": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
-              "ViewState": "AgIAAO8KAAAAAAAAAAAAAPwKAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAI4LAAAAAAAAAAAwwJ0LAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-11-24T01:34:12.975Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
