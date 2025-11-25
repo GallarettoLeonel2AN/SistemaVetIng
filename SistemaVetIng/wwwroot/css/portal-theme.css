@@ -2653,7 +2653,7 @@ span.flatpickr-weekday {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.5); /* Oscurece la imagen al 50% */
+        background: rgba(0, 0, 0, 0.25); /* Oscurece la imagen al 25% */
         z-index: -1; /* Se pone detrás del texto */
         border-radius: 24px 0 0 24px; /* Redondea solo la izquierda */
     }
@@ -2734,12 +2734,17 @@ span.flatpickr-weekday {
 
     .signin-text a {
         color: var(--primary-color);
-        font-weight: 600;
+        font-weight: 700;
         text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease;
+        display: inline-block;
+        padding-bottom: 2px;
     }
 
         .signin-text a:hover {
-            text-decoration: underline;
+            color: #a5b4fc;
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
 
 /* Responsive (Columna única en móvil) */
@@ -3504,3 +3509,72 @@ input.flatpickr-input[readonly] {
     color: #ffffff !important; /* Texto blanco */
     pointer-events: auto !important; /* Permitir clicks */
 }
+
+/* =========================================
+         LINKS ANIMADOS LOGIN
+   ========================================= */
+
+.auth-footer-links {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 15px;
+}
+
+.auth-text-muted {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Estilo Base del Link */
+.link-animated {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding-bottom: 2px; 
+}
+
+    /* Variación Secundaria (Olvidé contraseña) */
+    .link-animated.secondary {
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.9rem;
+        display: inline-flex; 
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* EFECTO HOVER */
+    .link-animated:hover {
+        color: #a5b4fc; 
+        text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    }
+
+    .link-animated.secondary:hover {
+        color: #ffffff; 
+    }
+
+    .link-animated::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+      
+        background-color: var(--primary-color);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transform: translateX(-50%);
+    }
+
+    .link-animated:hover::after {
+        width: 100%; /* Se expande hacia afuera */
+    }

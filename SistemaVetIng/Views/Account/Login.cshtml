@@ -1,7 +1,7 @@
-﻿@model SistemaVetIng.ViewModels.LoginViewModel;
+﻿@model SistemaVetIng.ViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Iniciar Sesion";
+    ViewData["Title"] = "Iniciar Sesión - VetIng";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -9,55 +9,76 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/login-styles.css">
-    <title>VetIng - Iniciar Sesión</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 
-<body>
-    <main class="login-main">
-        <div class="login-container">
-            <div class="container-img-login"></div>
-            <div class="container-formulario">
-                <div class="ingreso-correo">
-                    <h1>¡Bienvenido a VetIng!</h1> 
-                    <p class="login-subtext">Ingresa tus credenciales o usa tus redes sociales.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon google"><i class="fa-brands fa-google"></i></a>
-                        <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div class="formulario">
-                    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="login-form">
-                        @Html.AntiForgeryToken()
- 
-                        <div class="form-group">
-                            <label asp-for="UserName"></label>
-                            <input asp-for="UserName" id="name" placeholder="Tu correo electrónico" class="form-control" /> 
-                            <span asp-validation-for="UserName" class="text-danger validation-error"></span> 
-                        </div>
+<body class="auth-body">
 
-                        <div class="form-group">
-                            <label asp-for="Password"></label>
-                            <input asp-for="Password" id="pass" placeholder="Tu contraseña" class="form-control" /> 
-                            <span asp-validation-for="Password" class="text-danger validation-error"></span>
-                        </div>
+    <div class="auth-card">
 
-                        <button type="submit" class="button login-button">Ingresar</button> 
+        <div class="auth-visual" style="background-image: url('@Url.Content("~/css/Img/form10.jpg")');">
 
-                        <p class="signup-link">¿No eres miembro? <a asp-controller="Cliente" asp-action="RegistrarCliente" class="link-secondary"> Registrarme </a></p>
-                        <a asp-controller="Account" asp-action="RecuperarContraseña" class="link-secondary forgot-password">¿Olvidaste tu contraseña?</a>
-                    </form>
-                </div>
-            </div>
         </div>
-    </main>
 
-    
+        <div class="auth-form-container">
+
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div class="dash-title">
+                    <h1 style="margin-bottom: 10px;">Bienvenido a <span>VetIng</span></h1>
+                </div>
+
+                <p class="auth-subtitle" style="color:var(--text-muted); font-size: 1.1rem;">
+                    Completa tus datos para continuar.
+                </p>
+            </div>
+
+            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="UserName" class="form-label">Usuario / Email</label>
+                    <div style="position:relative;">
+                        <i class="fa-solid fa-user" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--primary-color);"></i>
+                        <input asp-for="UserName" class="form-control" placeholder="nombre@email.com" style="padding-left:40px;" />
+                    </div>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label asp-for="Password" class="form-label">Contraseña</label>
+                    <div style="position:relative;">
+                        <i class="fa-solid fa-lock" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--primary-color);"></i>
+                        <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" style="padding-left:40px;" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-register-submit" style="margin-top:20px; width:100%; justify-content:center;">
+                    Ingresar <i class="fa-solid fa-arrow-right-to-bracket" style="margin-left:10px;"></i>
+                </button>
+
+                <div class="auth-footer-links">
+
+                    <p class="auth-text-muted">
+                        ¿Todavía no tienes cuenta? <br>
+                        <a asp-controller="Cliente" asp-action="RegistrarCliente" class="link-animated">
+                            Crear una cuenta nueva
+                        </a>
+                    </p>
+
+                    <a asp-controller="Account" asp-action="RecuperarContraseña" class="link-animated secondary">
+                        <i class="fa-solid fa-key"></i> ¿Olvidaste tu contraseña?
+                    </a>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

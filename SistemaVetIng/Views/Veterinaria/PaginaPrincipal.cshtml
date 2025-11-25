@@ -410,7 +410,7 @@
                     </a>
         
                 
-                <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="search-box">
+                <form asp-controller="Veterinaria" asp-action="PaginaPrincipal" method="get" class="search-box">
                     <i class="fa-solid fa-search search-icon"></i>
                     <input type="text" name="busquedaMascota" class="search-input" placeholder="Buscar mascota..." value="@Context.Request.Query["busquedaMascota"]" />
                 </form>
@@ -491,7 +491,7 @@
                 }
                 else if(Model.PaginacionMascotas != null)
                 {
-                     <p class="text-muted text-center" style="margin:0; font-size:0.9rem;">
+                     <p class="text-muted text-center" style="margin:0;color:white; font-size:0.9rem;">
                         Mostrando @Model.PaginacionMascotas.TotalItemCount @(Model.PaginacionMascotas.TotalItemCount == 1 ? "mascota" : "mascotas")
                      </p>
                 }
