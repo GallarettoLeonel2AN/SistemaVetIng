@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\account\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\account\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\account\\confirmacionenlacereset.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\account\\confirmacionenlacereset.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 422,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,20 +58,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ResetPasswordConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABcAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T17:25:42.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Account\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\Account\\ResetPassword.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAYwBUAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T17:22:00.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ConfirmacionEnlaceReset.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\ConfirmacionEnlaceReset.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Account\\ConfirmacionEnlaceReset.cshtml",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\ConfirmacionEnlaceReset.cshtml",
               "RelativeToolTip": "SistemaVetIng\\Views\\Account\\ConfirmacionEnlaceReset.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAQwBUAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-25T17:16:47.733Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "RecuperarContrase\u00F1a.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\RecuperarContrase\u00F1a.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Account\\RecuperarContrase\u00F1a.cshtml",
@@ -71,12 +105,11 @@
               "RelativeToolTip": "SistemaVetIng\\Views\\Account\\RecuperarContrase\u00F1a.cshtml",
               "ViewState": "AgIAAAQAAAAAAAAAAAAYwBUAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-25T17:12:52.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T17:12:52.597Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "portal-theme.css",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "RelativeDocumentMoniker": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
@@ -84,12 +117,11 @@
               "RelativeToolTip": "SistemaVetIng\\wwwroot\\css\\portal-theme.css",
               "ViewState": "AgIAAPMNAAAAAAAAAAAwwAAOAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-25T17:03:41.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T17:03:41.89Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "RegistrarCliente.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\RegistrarCliente.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Cliente\\RegistrarCliente.cshtml",
@@ -101,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Account\\Login.cshtml",
