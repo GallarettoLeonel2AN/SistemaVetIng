@@ -9,7 +9,9 @@
 @{
     ViewData["Title"] = "Panel Veterinario - VetIng";
     Layout = null;
+    var esVeterinaria = User.IsInRole("Veterinaria");
 }
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -222,7 +224,7 @@
                                 DNI: @cliente.DNI 
                                 &bull; <i class="fa-solid fa-phone icon-text"></i> @cliente.Telefono 
                                 &bull; <i class="fa-solid fa-envelope icon-text"></i> @cliente.NombreUsuario
-</p>
+                                </p>
                             </div>
                         </div>
                         
@@ -375,47 +377,58 @@
     </section>
 }
 
-
- @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded ||
-             (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded ||
-             (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
-        {
-            <section style="margin-bottom: 50px;">
-                <div class="section-header">
-                    <h2 class="section-heading">Panel de Administración</h2>
-                </div>
-                <div class="list-container" style="padding:30px; display:flex; gap:15px; flex-wrap:wrap;">
-                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
-                    {
-                        <a asp-controller="Veterinaria" asp-action="GestionPermissions" class="btn btn-outline btn-sm">
-                            <i class="fa-solid fa-shield-halved"></i> Permisos
-                        </a>
-                    }
-                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
-                    {
-                        <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="btn btn-outline btn-sm">
-                            <i class="fa-solid fa-users-cog"></i> Usuarios
-                        </a>
-                    }
-                    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded)
-                    {
-                        <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="btn btn-outline btn-sm">
-                            <i class="fa-solid fa-user-shield"></i> Roles
-                        </a>
-                    }
-                </div>
-            </section>
-        }
+         @* ==========================================================================
+                      (SOLO SI TIENE PERMISOS DE ROL VETERINARIA/ADMIN)
+           ==========================================================================
+        *@
 
 
+@if (esVeterinaria ||
+     (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded ||
+     (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded ||
+     (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
+{
+    <section style="margin-bottom: 50px;">
+        <div class="section-header">
+            <h2 class="section-heading">Panel de Administración</h2>
+        </div>
+
+        <div class="list-container" style="padding:30px; display:flex; gap:15px; flex-wrap:wrap;">
+
+            @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
+            {
+                <a asp-controller="Veterinaria" asp-action="GestionPermissions" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-shield-halved"></i> Permisos
+                </a>
+            }
+
+            @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewUsers)).Succeeded)
+            {
+                <a asp-controller="Veterinaria" asp-action="GestionPermissionsUsuario" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-users-cog"></i> Usuarios
+                </a>
+            }
+
+            @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ViewRoles)).Succeeded)
+            {
+                <a asp-controller="Veterinaria" asp-action="GestionRolesUsuario" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-user-shield"></i> Roles
+                </a>
+            }
+
+        </div>
+    </section>
+}
 
 
-        @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.View)).Succeeded)
+
+
+        @if (esVeterinaria ||(await AuthorizationService.AuthorizeAsync(User, Permission.Horario.View)).Succeeded)
 {
     <section id="horarios" class="mb-50">
         <div class="section-header">
             <h2 class="section-heading">Horarios de Atención</h2>
-            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Horario.Create)).Succeeded)
+            @if (esVeterinaria ||(await AuthorizationService.AuthorizeAsync(User, Permission.Horario.Create)).Succeeded)
             {
                 <a asp-controller="Veterinaria" asp-action="GuardarConfiguracion" class="btn btn-primary btn-sm">
                     <i class="fas fa-cog"></i> Configurar
@@ -482,44 +495,143 @@
     </section>
 }
 
-       <section id="catalogos" class="catalogs-grid">
-    
-    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.View)).Succeeded)
-    {
-        <div class="stat-card catalog-card">
-            <div class="stat-icon">
-                <i class="fa-solid fa-syringe"></i>
+@if (esVeterinaria ||(await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.View)).Succeeded)
+{
+            <section id="veterinarios">
+                <div class="section-header">
+                    <h2 class="section-heading">Gestión de Veterinarios</h2>
+                    <div style="display:flex; gap:10px;">
+                        @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.Create)).Succeeded)
+                        {
+                            <a asp-controller="Veterinario" asp-action="RegistrarVeterinario" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-plus"></i> Nuevo Veterinario
+                    </a>
+                        }
+                    <form asp-controller="Veterinario" asp-action="PaginaPrincipal" method="get" class="search-box">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" name="busquedaVeterinario" class="search-input" placeholder="Buscar..." value="@Context.Request.Query["busquedaVeterinario"]" />
+                    </form>
+                </div>
             </div>
-            <h3 class="catalog-title">Vacunas</h3>
-            
-            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.Create)).Succeeded)
-            {
-                <a asp-controller="Vacuna" asp-action="Index" class="btn btn-outline btn-sm">
-                    Gestionar Catálogo
-                </a>
-            }
-        </div>
-    }
 
-    @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.View)).Succeeded)
-    {
-        <div class="stat-card catalog-card">
-            <div class="stat-icon icon-green">
-                <i class="fa-solid fa-microscope"></i>
+            <div class="list-container">
+                @if (Model.Veterinarios != null && Model.Veterinarios.Any())
+                {
+                    @foreach (var vet in Model.Veterinarios)
+                    {
+                        <div class="list-item">
+                            <div style="display:flex; align-items:center; gap:15px;">
+                                <div class="avatar-circle" style="background:rgba(255,255,255,0.1); color:white;">
+                                    @(vet.NombreCompleto.Split(' ').FirstOrDefault()?.FirstOrDefault())@(vet.NombreCompleto.Split(' ').LastOrDefault()?.FirstOrDefault())
+                                </div>
+                                <div class="item-info">
+                                    <h4>Dr. @vet.NombreCompleto</h4>
+                                    <p>Matrícula: @vet.Matricula &bull; <i class="fa-solid fa-phone icon-text"></i> @vet.Telefono</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display:flex; gap:10px;">
+                                      @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.Edit)).Succeeded){
+                                <a asp-controller="Veterinario" asp-action="ModificarVeterinario" asp-route-id="@vet.Id" class="btn btn-outline btn-sm">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                }
+                                      @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Veterinario.Delete)).Succeeded){
+                                <form asp-controller="Veterinario" asp-action="EliminarVeterinario" asp-route-id="@vet.Id" method="post" onsubmit="return confirm('¿Eliminar?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-outline btn-sm trash" style="border-color:var(--error-color); color:var(--error-color);">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="empty-state-container">
+                        <p>No se encontraron veterinarios.</p>
+                    </div>
+                }
+                
+                <div class="pagination-wrapper">
+                    @if (Model.PaginacionVeterinarios != null && Model.PaginacionVeterinarios.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.PaginacionVeterinarios, pageVet => Url.Action("PaginaPrincipal", "Veterinario",
+                            new { pageVet, busquedaVeterinario = Context.Request.Query["busquedaVeterinario"] }),
+                            new PagedListRenderOptions {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" },
+                                ContainerDivClasses = new[] { "pagination" },
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never
+                            })
+                    }
+                </div>
             </div>
-            <h3 class="catalog-title">Estudios</h3>
-            
-            @if ((await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.Create)).Succeeded)
-            {
-                <a asp-controller="Estudio" asp-action="Index" class="btn btn-outline btn-sm">
-                    Gestionar Catálogo
-                </a>
-            }
-        </div>
-    }
+        </section>
+}
+        @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.View)).Succeeded
+        || (await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.View)).Succeeded
+        || (await AuthorizationService.AuthorizeAsync(User, Permission.Auditoria.View)).Succeeded
+        || (await AuthorizationService.AuthorizeAsync(User, Permission.Dashboard.View)).Succeeded
+        )
+        {
+            <section id="catalogos" class="mb-50">
+                <div class="section-header">
+                    <h2 class="section-heading">Servicios y Control</h2>
+                </div>
 
-</section>
+                <div class="catalogs-grid">
 
+                    @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.View)).Succeeded)
+                    {
+                        <div class="stat-card catalog-card">
+                            <div class="stat-icon"><i class="fa-solid fa-syringe"></i></div>
+                            <h3 class="catalog-title">Vacunas</h3>
+                            @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Vacuna.Create)).Succeeded)
+                            {
+                                <a asp-controller="Vacuna" asp-action="Index" class="btn btn-outline btn-sm">Gestionar</a>
+                            }
+                        </div>
+                    }
+
+                    @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.View)).Succeeded)
+                    {
+                        <div class="stat-card catalog-card">
+                            <div class="stat-icon icon-green"><i class="fa-solid fa-microscope"></i></div>
+                            <h3 class="catalog-title">Estudios</h3>
+                            @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Estudio.Create)).Succeeded)
+                            {
+                                <a asp-controller="Estudio" asp-action="Index" class="btn btn-outline btn-sm">Gestionar</a>
+                            }
+                        </div>
+                    }
+
+                    @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Auditoria.View)).Succeeded)
+                    {
+                        <div class="stat-card catalog-card">
+                            <div class="stat-icon icon-coral"><i class="fa-solid fa-list-check"></i></div>
+                            <h3 class="catalog-title">Auditoría</h3>
+                            <a asp-controller="Auditoria" asp-action="Index" class="btn btn-outline btn-sm">Visualizar</a>
+                        </div>
+                    }
+
+                    @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Dashboard.View)).Succeeded)
+                    {
+                        <div class="stat-card catalog-card">
+                            <div class="stat-icon" style="color:#fbbf24; background:rgba(251,191,36,0.1);">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="catalog-title">Reportes BI</h3>
+                        <a asp-controller="Dashboard" asp-action="Dashboard" class="btn btn-outline btn-sm">Ver Métricas</a>
+                    </div>
+                }
+
+            </div>
+        </section>
+        }
     </main>
 
    <footer class="main-footer">

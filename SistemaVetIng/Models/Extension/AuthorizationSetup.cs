@@ -100,6 +100,13 @@ namespace SistemaVetIng.Extensions
                 options.AddPolicy(Permission.Vacuna.Delete, policy =>
                     policy.RequireClaim("Permission", Permission.Vacuna.Delete));
 
+                // Auditoria
+                options.AddPolicy(Permission.Auditoria.View, policy =>
+                   policy.RequireClaim("Permission", Permission.Auditoria.View));
+
+                // Reporte
+                options.AddPolicy(Permission.Dashboard.View, policy =>
+                   policy.RequireClaim("Permission", Permission.Dashboard.View));
             });
 
            

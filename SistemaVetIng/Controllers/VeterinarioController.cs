@@ -47,14 +47,17 @@ namespace SistemaVetIng.Controllers
         public async Task<IActionResult> PaginaPrincipal(
             string busquedaCliente = null,
             string busquedaMascota = null,
+            string busquedaVeterinario = null,
             int page = 1,
-            int pageMascota = 1)
+            int pageMascota = 1,
+            int pageVet = 1)
         {
           
 
             var viewModel = new VeterinarioPaginaPrincipalViewModel();
             int pageSizeClientes = 3; 
             int pageSizeMascotas = 3;
+            int pageSizeVeterinarios = 3;
 
             //  Cargar ConfiguracionHoraria SI SE LE DAN PERMISOS
 
@@ -81,6 +84,23 @@ namespace SistemaVetIng.Controllers
             {
                 viewModel.ConfiguracionTurnos = null;
             }
+
+            // Cargar Veterinarios en las tablas
+
+            var veterinariosPaginados = await _veterinarioService.ListarPaginadoAsync(pageVet, pageSizeVeterinarios, busquedaVeterinario);
+
+            viewModel.Veterinarios = veterinariosPaginados.Select(v => new VeterinarioViewModel
+            {
+                Id = v.Id,
+                NombreCompleto = $"{v.Nombre} {v.Apellido}",
+                Telefono = v.Telefono,
+                NombreUsuario = v.Usuario?.Email,
+                Direccion = v.Direccion,
+                Matricula = v.Matricula,
+            }).ToList();
+
+            viewModel.PaginacionVeterinarios = veterinariosPaginados;
+
 
 
             // CARGA DE CLIENTES

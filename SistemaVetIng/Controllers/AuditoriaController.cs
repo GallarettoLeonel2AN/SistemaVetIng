@@ -5,7 +5,7 @@ using SistemaVetIng.ViewsModels;
 
 namespace SistemaVetIng.Controllers
 {
-    [Authorize(Roles = "Veterinaria")]
+    [Authorize(Roles = "Veterinaria,Veterinario")]
     public class AuditoriaController : Controller
     {
         private readonly IAuditoriaService _auditoriaService;

@@ -18,6 +18,17 @@ namespace SistemaVetIng.Models.Extension
             public const string View = "Permission.Pago.View";
 
         }
+
+        public static class Auditoria
+        {
+            public const string View = "Permission.Auditoria.View";
+        }
+
+        public static class Dashboard
+        {
+            public const string View = "Permission.Dashboard.View";
+        }
+
         public static class Horario
         {
             public const string Create = "Permission.Horario.Create";

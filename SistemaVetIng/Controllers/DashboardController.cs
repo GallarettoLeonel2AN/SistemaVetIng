@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaVetIng.Models;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
@@ -7,6 +8,7 @@ using static SistemaVetIng.ViewsModels.DashboardViewModel;
 
 namespace SistemaVetIng.Controllers
 {
+    [Authorize(Roles = "Veterinaria,Veterinario")]
     public class DashboardController : Controller
     {
 
@@ -49,10 +51,6 @@ namespace SistemaVetIng.Controllers
             viewModel.IngresoPromedioPorAtencion = (viewModel.TotalAtencionesRealizadas > 0) ? viewModel.TotalIngresosHistoricos / viewModel.TotalAtencionesRealizadas : 0;
             viewModel.TotalClientes = await _clienteService.ContarTotalClientesAsync();
 
-
-            //  =============
-            //    GRAFICOS
-            //  =============
 
             // GRAFICO 1: Atenciones por Veterinario 
             viewModel.AtencionesPorVeterinario = await _atencionVeterinariaService.ContarAtencionesPorVeterinarioAsync(null, null);
