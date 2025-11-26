@@ -3857,3 +3857,22 @@ input.flatpickr-input[readonly] {
     background-color: #0b1120 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.05); 
 }
+
+/* Checkbox bloqueado (oscuro) */
+.role-locked {
+    opacity: 0.45 !important;
+    cursor: not-allowed !important;
+    filter: grayscale(30%);
+}
+
+/* Checkbox normal */
+.role-normal {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.disabled-switch {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    cursor: not-allowed !important;
+}

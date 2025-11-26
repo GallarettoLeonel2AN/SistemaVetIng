@@ -69,14 +69,32 @@
                 <div class="v1-card-header" style="padding: 0; border-bottom: 1px solid var(--border-light);">
                     <div class="user-permission-header">
                         <div class="user-permission-avatar">
-                            <i class="fa-solid fa-user"></i>
+                            @{
+                                var iniciales = "U";
+                                var nombreCompleto = Model.RolesForm.UserFullName ?? Model.RolesForm.UserName;
+
+                                if (!string.IsNullOrEmpty(nombreCompleto))
+                                {
+                                    var partes = nombreCompleto.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                                    if (partes.Length >= 2) { iniciales = $"{partes[0][0]}{partes[1][0]}"; }
+                                    else if (partes.Length == 1) { iniciales = partes[0].Substring(0, 1); }
+                                }
+                            }
+                            @iniciales.ToUpper()
                         </div>
 
                         <div class="user-permission-info">
-                            <h3>@Model.RolesForm.UserName</h3> <div class="user-permission-meta">
+                            <h3>@(Model.RolesForm.UserFullName ?? "Usuario Sin Nombre")</h3>
+
+                            <div class="user-permission-meta">
                                 <span>
                                     <i class="fa-solid fa-envelope" style="color:var(--primary-color);"></i>
-                                    Usuario del Sistema
+                                    @Model.RolesForm.UserName
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-id-badge" style="color:var(--secondary-color);"></i>
+                                    Rol Actual: <span class="role-badge-info">@(Model.RolesForm.UserRole ?? "Sin Rol")</span>
                                 </span>
                             </div>
                         </div>
@@ -112,7 +130,10 @@
 
                                             <td data-label="Estado" class="text-center">
                                                 <label class="toggle-switch">
-                                                    <input type="checkbox" asp-for="RolesForm.Roles[i].IsSelected" />
+                                                    <input type="checkbox"
+                                                           asp-for="RolesForm.Roles[i].IsSelected"
+                                                           class="role-checkbox"
+                                                           data-role-name="@Model.RolesForm.Roles[i].RoleName" />
                                                     <span class="toggle-slider"></span>
                                                 </label>
                                             </td>
@@ -187,6 +208,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+    <script src="~/js/roles.js" asp-append-version="true"></script> 
     @await Component.InvokeAsync("NToastNotify")
 
     <script>

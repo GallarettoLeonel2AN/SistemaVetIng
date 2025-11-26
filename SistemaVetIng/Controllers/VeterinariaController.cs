@@ -423,23 +423,36 @@ namespace SistemaVetIng.Controllers
         [Authorize(Policy = Permission.Administration.ManageUsers)] 
         public async Task<IActionResult> GestionRolesUsuario(string SelectedUserId)
         {
-            var model = new ManageUserRolesPageViewModel(); 
+            var model = new ManageUserRolesPageViewModel();
 
-            // Obtener todos los usuarios 
-            var allUsers = await _userManager.Users.ToListAsync();
+            // Obtener todos los usuarios EXCEPTO el admin
+            var allUsers = await _userManager.Users
+                .Where(u => u.UserName != "admin")  
+                .ToListAsync();
+
             model.UsersList = allUsers.Select(u => new SelectListItem
             {
                 Text = u.UserName,
                 Value = u.Id.ToString()
             }).ToList();
 
+
             // cargar sus roles
             if (!string.IsNullOrEmpty(SelectedUserId))
             {
                 model.SelectedUserId = SelectedUserId;
+
                 var userRoles = await _permissionService.GetUserRolesAsync(SelectedUserId);
-                if (userRoles != null)
+
+                var user = await _userManager.FindByIdAsync(SelectedUserId);
+
+                if (userRoles != null && user != null)
                 {
+                    userRoles.UserFullName = user.NombreUsuario;
+
+                    var rolesActuales = await _userManager.GetRolesAsync(user);
+                    userRoles.UserRole = rolesActuales.FirstOrDefault() ?? "Sin Rol";
+
                     model.RolesForm = userRoles;
                 }
             }
