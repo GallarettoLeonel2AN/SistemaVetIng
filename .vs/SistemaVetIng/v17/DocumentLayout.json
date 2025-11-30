@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\historiaclinica\\detallehistoriaclinica.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\historiaclinica\\detallehistoriaclinica.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\sistemaveting\\views\\mascota\\detalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\mascota\\detalle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -43,6 +47,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DetalleHistoriaClinica.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
+              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
+              "RelativeToolTip": "SistemaVetIng\\Views\\HistoriaClinica\\DetalleHistoriaClinica.cshtml",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-30T16:41:22.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Detalle.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Mascota\\Detalle.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Mascota\\Detalle.cshtml",
@@ -55,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "VeterinariaController.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Controllers\\VeterinariaController.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Controllers\\VeterinariaController.cs",
@@ -67,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PaginaPrincipal.cshtml",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
               "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
@@ -75,8 +92,7 @@
               "RelativeToolTip": "SistemaVetIng\\Views\\Cliente\\PaginaPrincipal.cshtml",
               "ViewState": "AgIAAEIBAAAAAAAAAAAAAEoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-30T16:16:01.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-30T16:16:01.723Z"
             }
           ]
         }

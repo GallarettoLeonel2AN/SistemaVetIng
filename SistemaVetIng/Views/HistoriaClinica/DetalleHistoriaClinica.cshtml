@@ -107,7 +107,7 @@
             <div class="section-header">
                 <h2 class="section-heading">Atenciones Registradas</h2>
 
-                @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Atenciones.Create))
+                @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Atenciones.Create) && controllerDestino != "Veterinaria")
                 {
                     <a asp-controller="AtencionVeterinaria" asp-action="RegistrarAtencion" asp-route-historiaClinicaId="@Model.HistoriaClinica.Id" class="btn btn-primary btn-outline">
                         <i class="fa-solid fa-plus"></i> Nueva Atención
