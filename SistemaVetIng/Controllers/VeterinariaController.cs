@@ -285,25 +285,54 @@ namespace SistemaVetIng.Controllers
         {
             var model = new ManagePermissionsPageViewModel();
 
-            //  Obtener todos los roles 
-            var allRoles = await _roleManager.Roles.ToListAsync();
+            // Obtener todos los roles excepto Admin
+            var allRoles = await _roleManager.Roles
+                .Where(r => r.Name != "Admin")
+                .ToListAsync();
+
             model.RolesList = allRoles.Select(r => new SelectListItem
             {
                 Text = r.Name,
                 Value = r.Id.ToString()
             }).ToList();
 
-            // cargar sus Permissions
             if (!string.IsNullOrEmpty(SelectedRoleId))
             {
                 model.SelectedRoleId = SelectedRoleId;
-                model.PermissionsForm = await _permissionService.GetRolePermissionsAsync(SelectedRoleId);
+
+                // Permisos actuales del rol seleccionado
+                var permissionsForm = await _permissionService.GetRolePermissionsAsync(SelectedRoleId);
+
+                // Obtener instancia del rol
+                var role = await _roleManager.FindByIdAsync(SelectedRoleId);
+
+                // Filtrar permisos permitidos solo para rol Cliente
+                if (role != null && role.Name == "Cliente")
+                {
+                    var allowedPermissions = new List<string>
+                    {
+                        Permission.Atenciones.View,
+                        Permission.Pago.View,
+                        Permission.Mascota.View,
+                        Permission.Turnos.View,
+                        Permission.Turnos.Create,
+                        Permission.Turnos.Cancel
+                    };
+
+                    // Filtrar la lista de permisos 
+                    permissionsForm.Permissions = permissionsForm.Permissions
+                        .Where(p => allowedPermissions.Contains(p.Value))
+                        .ToList();
+                }
+
+                // Asignamos el formulario filtrado al modelo
+                model.PermissionsForm = permissionsForm;
             }
 
             return View("GestionPermissions", model);
         }
 
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = Permission.Administration.ManageRolePermissions)]
