@@ -393,7 +393,7 @@
             <h2 class="section-heading">Panel de Administración</h2>
         </div>
 
-        <div class="list-container" style="padding:30px; display:flex; gap:15px; flex-wrap:wrap;">
+       <div class="list-container" style="padding:30px; display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
 
             @if (esVeterinaria || (await AuthorizationService.AuthorizeAsync(User, Permission.Administration.ManageRolePermissions)).Succeeded)
             {

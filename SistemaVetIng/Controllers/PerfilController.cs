@@ -24,6 +24,11 @@ namespace SistemaVetIng.Controllers
             var usuario = await _userManager.GetUserAsync(User);
             var roles = await _userManager.GetRolesAsync(usuario);
 
+            if (roles.Contains("Veterinario") && roles.Contains("Veterinaria"))
+            {
+                return RedirectToAction("VeterinarioPerfil");
+            }
+
             if (roles.Contains("Veterinaria"))
                 return RedirectToAction("VeterinariaPerfil");
 
