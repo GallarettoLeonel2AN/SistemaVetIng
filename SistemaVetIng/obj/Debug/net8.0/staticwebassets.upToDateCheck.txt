@@ -34,17 +34,18 @@ wwwroot\css\img\vet-cuidado.jpg
 wwwroot\css\listado-clientes.css
 wwwroot\css\login-styles.css
 wwwroot\css\permisos.css
-wwwroot\js\dashboard.js
+wwwroot\css\portal-theme.css
 wwwroot\css\registrar-cliente-style.css
 wwwroot\css\site.css
 wwwroot\css\veterinario-home.css
 wwwroot\css\veterinary-dashboard.css
 wwwroot\favicon.ico
 wwwroot\js\atencionVeterinaria.js
-wwwroot\js\reservaTurno.js
+wwwroot\js\dashboard.js
 wwwroot\js\menuhamburguesa.js
 wwwroot\js\pagos.js
-wwwroot\css\portal-theme.css
+wwwroot\js\reservaTurno.js
+wwwroot\js\roles.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -102,4 +103,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\js\roles.js

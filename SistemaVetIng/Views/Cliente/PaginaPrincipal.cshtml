@@ -54,12 +54,18 @@
                 <p class="dash-subtitle">Tu espacio personal para gestionar la salud de tus mascotas, turnos y pagos de forma segura.</p>
             </div>
             <div class="dash-actions">
+                   @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Create))
+            {
                 <a asp-controller="Turno" asp-action="ReservarTurno" class="btn btn-primary">
                     <i class="fa-regular fa-calendar-plus"></i> Nuevo Turno
                 </a>
+            }
+           @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Pago.View))
+            {
                 <a asp-controller="Cliente" asp-action="HistorialPagos" class="btn btn-outline">
                     <i class="fa-solid fa-receipt"></i> Ver Historial de Pagos
                 </a>
+            }
             </div>
         </section>
 
@@ -197,9 +203,12 @@
                                         <p>@mascota.Especie &bull; @mascota.Raza</p>
                                     </div>
                                 </div>
+                          @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Atenciones.View))
+                                {
                                 <a asp-controller="Mascota" asp-action="Detalle" asp-route-id="@mascota.Id" class="btn btn-outline btn-sm">
                                     Ver
                                 </a>
+                                }
                             </div>
                         }
                     }
@@ -293,7 +302,10 @@
     <div class="footer-col">
         <h4 class="footer-heading">Mi Cuenta</h4>
         <ul class="footer-links">
-            <li><a asp-controller="Turno" asp-action="ReservarTurno">Reservar Nuevo Turno</a></li>
+            @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Turnos.Create))
+            {
+                    <li><a asp-controller="Turno" asp-action="ReservarTurno">Reservar Nuevo Turno</a></li>
+                }
             <li><a asp-controller="Perfil" asp-action="Index">Mi Perfil</a></li>
             <li><a href="#mascotas">Ver mis Mascotas</a></li>
             <li><a href="#pagos">Pagos Pendientes</a></li>
