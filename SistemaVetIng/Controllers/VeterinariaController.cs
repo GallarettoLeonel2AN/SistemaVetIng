@@ -370,42 +370,56 @@ namespace SistemaVetIng.Controllers
         #region PERMISOS USUARIO
 
         [HttpGet]
-        [Authorize(Policy = Permission.Administration.ManageUsers)] 
+        [Authorize(Policy = Permission.Administration.ManageUsers)]
         public async Task<IActionResult> GestionPermissionsUsuario(string SelectedUserId)
         {
             var model = new ManageUserPermissionsPageViewModel();
 
-            // Obtener todos los usuarios 
+            // Lista de usuarios
             var allUsers = await _userManager.Users.ToListAsync();
             model.UsersList = allUsers.Select(u => new SelectListItem
             {
-                Text = u.UserName, 
+                Text = u.UserName,
                 Value = u.Id.ToString()
             }).ToList();
 
-            // Cargar datos si se seleccionó alguien
             if (!string.IsNullOrEmpty(SelectedUserId))
             {
                 model.SelectedUserId = SelectedUserId;
 
                 var userPermissions = await _permissionService.GetUserPermissionsAsync(SelectedUserId);
-
                 var user = await _userManager.FindByIdAsync(SelectedUserId);
 
-                if (userPermissions != null && user != null)
+                if (user != null && userPermissions != null)
                 {
-                    // Obtener roles 
+                    // Obtener rol principal del usuario
                     var roles = await _userManager.GetRolesAsync(user);
                     string rolPrincipal = roles.FirstOrDefault() ?? "Sin Rol Asignado";
 
-                    // Asignar al ViewModel
-                    userPermissions.NombreCompleto = $"{user.NombreUsuario}"; 
+                    userPermissions.NombreCompleto = user.NombreUsuario;
                     userPermissions.UserRole = rolPrincipal;
+
+                    // Si es cliente, filtramos solamente sus permisos
+                    if (rolPrincipal == "Cliente")
+                    {
+                        var allowedPermissions = new List<string>
+                {
+                    Permission.Atenciones.View,
+                    Permission.Pago.View,
+                    Permission.Mascota.View,
+                    Permission.Turnos.View,
+                    Permission.Turnos.Create,
+                    Permission.Turnos.Cancel
+                };
+
+                        userPermissions.Permissions = userPermissions.Permissions
+                            .Where(p => allowedPermissions.Contains(p.Value))
+                            .ToList();
+                    }
 
                     model.PermissionsForm = userPermissions;
                 }
             }
-
 
             return View("GestionPermissionsUsuario", model);
         }
