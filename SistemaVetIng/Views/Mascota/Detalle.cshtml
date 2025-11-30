@@ -1,7 +1,8 @@
 ﻿@model SistemaVetIng.ViewsModels.MascotaDetalleViewModel
+@using SistemaVetIng.Models.Extension
 
 @{
-    ViewData["Title"] = "Detalles de Mascota";
+    ViewData["Title"] = $"Historia Clínica - {Model.Nombre}";
     Layout = null;
 }
 
@@ -11,129 +12,177 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/veterinario-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/veterinary-dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/administracion-home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/portal-theme.css" asp-append-version="true" />
 </head>
 <body>
 
     <header class="main-header">
-        <a href="/Cliente/PaginaPrincipal" class="logo"><i class="fa-solid fa-paw"></i> VetIng</a>
+        <a href="/Cliente/PaginaPrincipal" class="logo">
+            <i class="fa-solid fa-paw"></i> VetIng
+        </a>
         <nav class="main-nav">
-            <ul class="nav-list">
+            <ul class="nav-list" id="navMenu">
                 <li><a class="nav-link" href="/Cliente/PaginaPrincipal">Volver al Inicio</a></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                        <button type="submit" class="btnlogout btn-primary nav-button">Cerrar Sesión</button>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
+                        </button>
                     </form>
                 </li>
             </ul>
         </nav>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     </header>
 
+    <main class="main-content">
 
-    <main class="v1-main-dashboard">
-        <section class="v1-section">
-            <h1 class="v1-section-title">Historia Clínica de: @Model.Nombre</h1>
-            <h3 class="v1-section-subtitle">Propietario: @Model.PropietarioNombreCompleto</h3>
-
-
-            <div class="table-container">
-                <table class="table responsive-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Especie</th>
-                            <th>Raza</th>
-                            <th>Fecha de Nacimiento</th>
-                            <th>Sexo</th>
-                            <th>Raza Peligrosa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td data-label="Nombre:">@Model.Nombre</td>
-                            <td data-label="Especie:">@Model.Especie</td>
-                            <td data-label="Raza:">@Model.Raza</td>
-                            <td data-label="FechaNacimiento:">@Model.FechaNacimiento.ToShortDateString()</td>
-                            <td data-label="Sexo:">@Model.Sexo</td>
-                            <td data-label="RazaPeligrosa:">@(Model.EsRazaPeligrosa ? "Sí" : "No")</td>
-                        </tr>
-
-                    </tbody>
-                </table>
+        <div class="dash-hero dash-hero--center">
+            <div class="dash-title">
+                <h1>Historia Clínica: <span>@Model.Nombre</span></h1>
+                <p class="dash-subtitle">
+                    Propietario: <strong>@Model.PropietarioNombreCompleto</strong>
+                </p>
             </div>
 
-            <div class="v1-section">
-                <h4 class="v1-section-title">Atenciones Registradas: (@Model.HistorialClinico.Count)</h4>
-                
+            <div class="dash-actions" style="justify-content:center; margin-top:20px;">
+                <a href="/Cliente/PaginaPrincipal#mascotas" class="btn btn-outline">
+                    <i class="fa-solid fa-arrow-left"></i> Volver a mis Mascotas
+                </a>
+            </div>
+        </div>
+
+        <section id="ficha-tecnica" style="margin-bottom: 60px;">
+            <div class="list-container">
+                <div class="section-header" style="padding: 20px 30px;">
+                    <h3 class="section-heading" style="font-size:1.3rem;">Ficha de la Mascota</h3>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Especie</th>
+                                <th>Raza</th>
+                                <th class="text-center">Nacimiento</th>
+                                <th class="text-center">Sexo</th>
+                                <th class="text-center">Raza Peligrosa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Nombre">
+                                    <div class="d-flex align-center gap-15">
+                                        <div class="pet-icon-circle" style="width:35px; height:35px; font-size:1rem;">
+                                            @if (Model.Especie.ToLower().Contains("perro"))
+                                            {
+                                                <i class="fa-solid fa-dog"></i>
+                                            }
+                                            else if (Model.Especie.ToLower().Contains("gato"))
+                                            {
+
+                                                <i class="fa-solid fa-cat"></i>
+                                            }
+                                            else
+                                            {
+
+                                                <i class="fa-solid fa-paw"></i>
+                                            }
+                                        </div>
+                                        <span class="text-name">@Model.Nombre</span>
+                                    </div>
+                                </td>
+                                <td data-label="Especie">@Model.Especie</td>
+                                <td data-label="Raza">@Model.Raza</td>
+                                <td data-label="Nacimiento" class="text-center">@Model.FechaNacimiento.ToShortDateString()</td>
+                                <td data-label="Sexo" class="text-center">@Model.Sexo</td>
+                                <td data-label="RazaPeligrosa:" class="text-center">@(Model.EsRazaPeligrosa ? "Sí" : "No")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="historial">
+            <div class="section-header">
+                <h2 class="section-heading">
+                    Atenciones Registradas (@Model.HistorialClinico.Count)
+                </h2>
             </div>
 
             @if (!Model.HistorialClinico.Any())
             {
-                <div class="empty-state">
-                    <i class="fas fa-file-medical-alt fa-3x"></i>
+                <div class="empty-state-container">
+                    <div class="empty-search-icon">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
                     <h3>Sin Historial</h3>
-                    <p>No hay atenciones registradas para esta mascota.</p>
+                    <p>Aún no hay atenciones registradas para tu mascota.</p>
                 </div>
             }
             else
             {
-                <div class="attention-history">
+                <div class="timeline-container">
                     @foreach (var atencion in Model.HistorialClinico.OrderByDescending(a => a.Fecha))
                     {
                         <div class="history-card">
+
                             <div class="history-header">
-                                <i class="fas fa-calendar-alt"></i>
-                                <div>
-                                    <span class="date">@atencion.Fecha.ToString("dd 'de' MMMM 'de' yyyy")</span>
-                                    <span class="vet">Atendido por: @atencion.VeterinarioNombreCompleto</span>
+                                <div class="history-date">
+                                    <i class="fas fa-calendar-alt" style="color:var(--primary-color);"></i>
+                                    @atencion.Fecha.ToString("dd 'de' MMMM 'de' yyyy")
+                                </div>
+                                <div class="d-flex align-center gap-15">
+                                    <span class="history-vet">
+                                        <i class="fa-solid fa-user-doctor"></i> Dr. @atencion.VeterinarioNombreCompleto
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="history-body">
+
                                 <div class="details-grid">
-                                    <div class="details-item">
-                                        <label>Diagnóstico</label>
-                                        <span>@atencion.Diagnostico</span>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Diagnóstico</span>
+                                        <span class="detail-value">@atencion.Diagnostico</span>
                                     </div>
-                                    <div class="details-item">
-                                        <label>Peso</label>
-                                        <span>@atencion.PesoKg kg</span>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Peso</span>
+                                        <span class="detail-value">@atencion.PesoKg kg</span>
                                     </div>
                                 </div>
 
                                 @if (!string.IsNullOrEmpty(atencion.Medicamento))
                                 {
-                                    <div class="history-section">
-                                        <h4>Tratamiento Indicado</h4>
+                                    <div class="history-subsection">
+                                        <h4 class="history-subtitle"><i class="fa-solid fa-pills"></i> Tratamiento Indicado</h4>
                                         <div class="details-grid">
-                                            <div class="details-item">
-                                                <label>Medicamento</label>
-                                                <span>@atencion.Medicamento</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Medicamento</span>
+                                                <span class="detail-value">@atencion.Medicamento</span>
                                             </div>
-                                            <div class="details-item">
-                                                <label>Dosis</label>
-                                                <span>@atencion.Dosis</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Dosis</span>
+                                                <span class="detail-value">@atencion.Dosis</span>
                                             </div>
-                                            <div class="details-item">
-                                                <label>Frecuencia</label>
-                                                <span>@atencion.Frecuencia</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Frecuencia</span>
+                                                <span class="detail-value">@atencion.Frecuencia</span>
                                             </div>
-                                            <div class="details-item">
-                                                <label>Duración</label>
-                                                <span>@atencion.DuracionDias días</span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Duración</span>
+                                                <span class="detail-value">@atencion.DuracionDias días</span>
                                             </div>
                                             @if (!string.IsNullOrWhiteSpace(atencion.ObservacionesTratamiento))
                                             {
-                                                <div class="details-item full-width">
-                                                    <label>Observaciones</label>
-                                                    <span>@atencion.ObservacionesTratamiento</span>
+                                                <div class="detail-item" style="grid-column: 1 / -1;">
+                                                    <span class="detail-label">Observaciones</span>
+                                                    <span class="detail-value" style="font-style:italic;">@atencion.ObservacionesTratamiento</span>
                                                 </div>
                                             }
                                         </div>
@@ -142,9 +191,9 @@
 
                                 @if (atencion.NombresVacunasConLote.Any())
                                 {
-                                    <div class="history-section">
-                                        <h4> Vacunas Aplicadas</h4>
-                                        <div class="tags-list">
+                                    <div class="history-subsection">
+                                        <h4 class="history-subtitle"><i class="fa-solid fa-syringe"></i> Vacunas Aplicadas</h4>
+                                        <div class="tag-container">
                                             @foreach (var vacuna in atencion.NombresVacunasConLote)
                                             {
                                                 <span class="tag-item">@vacuna</span>
@@ -155,83 +204,50 @@
 
                                 @if (atencion.NombresEstudios.Any())
                                 {
-                                    <div class="history-section">
-                                        <h4>Estudios Complementarios</h4>
-                                        <div class="tags-list">
-                                            @foreach (var estudioNombre in atencion.NombresEstudios)
+                                    <div class="history-subsection">
+                                        <h4 class="history-subtitle"><i class="fa-solid fa-microscope"></i> Estudios Realizados</h4>
+                                        <div class="tag-container">
+                                            @foreach (var estudio in atencion.NombresEstudios)
                                             {
-                                                <span class="tag-item">@estudioNombre</span>
+                                                <span class="tag-item" style="border-color:var(--success-color); color:var(--success-color); background:rgba(16,185,129,0.1);">
+                                                    @estudio
+                                                </span>
                                             }
                                         </div>
                                     </div>
                                 }
                             </div>
 
-                            <div class="history-footer">
-                                <div class="cost-item">
-                                    <label>Costo Total de la Atención</label>
-                                    <span class="primeraCita">$ @atencion.CostoTotal.ToString("N2")</span>
+                            <div class="history-footer" style="justify-content: flex-end;">
+                                <div class="d-flex align-center gap-10">
+                                    <span class="detail-label" style="margin-right:5px;">Costo:</span>
+                                    <span style="color:white; font-weight:700;">$ @atencion.CostoTotal.ToString("N2")</span>
                                 </div>
                             </div>
+
                         </div>
                     }
                 </div>
             }
-
         </section>
+
     </main>
 
-
     <footer class="main-footer">
-        <div class="footer-col footer-info">
-            <div class="footer-logo-container">
-                <i class="fa-solid fa-paw footer-logo-icon"></i>
-                <h3 class="footer-brand">VetIng Software</h3>
-            </div>
-            <p class="footer-description">Soluciones tecnológicas para un cuidado animal excepcional.</p>
-            <div class="footer-social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Acerca de VetIng</h4>
-            <ul class="footer-links">
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Noticias y Blog</a></li>
-                <li><a href="#">Fundación VetIng</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Soporte</h4>
-            <ul class="footer-links">
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Guías de Usuario</a></li>
-                <li><a href="#">Descargar App Móvil</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </div>
         <div class="footer-bottom">
-            <p>&copy; @DateTime.Now.Year VetIng Software. Todos los derechos reservados. | Proyecto de Ulises Sosa y Leonel Gallaretto</p>
+            <p>&copy; @DateTime.Now.Year VetIng Software. Desarrollado por Ulises Sosa y Leonel Gallaretto.</p>
         </div>
     </footer>
 
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    @await Component.InvokeAsync("NToastNotify")
+    <script src="~/js/menuhamburguesa.js" asp-append-version="true"></script>
+
+    <script>
+        const burger = document.getElementById('hamburgerBtn');
+        const nav = document.getElementById('navMenu');
+        if(burger && nav){
+            burger.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
