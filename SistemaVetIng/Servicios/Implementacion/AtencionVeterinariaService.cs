@@ -115,11 +115,10 @@ namespace SistemaVetIng.Servicios.Implementacion
                 {
                     int clienteId = historiaClinica.Mascota.Propietario.Id;
 
-                    // Usamos el método nuevo del repositorio para contar visitas
                     int cantidadVisitas = await _repository.ContarAtencionesHistoricasPorCliente(clienteId);
 
                     // Si vino más de 3 veces, aplicamos descuento
-                    if (cantidadVisitas > 1113)
+                    if (cantidadVisitas > 3)
                     {
                         calculadorCosto = new DescuentoClienteFrecuente(calculadorCosto);
                     }
@@ -127,6 +126,7 @@ namespace SistemaVetIng.Servicios.Implementacion
             }
            
             decimal costoTotalFinal = calculadorCosto.Calcular();
+
             // Crear tratamiento
             Tratamiento? tratamiento = null;
             if (!string.IsNullOrEmpty(model.Medicamento) || !string.IsNullOrEmpty(model.Dosis))
@@ -211,8 +211,39 @@ namespace SistemaVetIng.Servicios.Implementacion
 
                 decimal costoVacunas = vacunasSeleccionadas.Sum(v => v.Precio);
                 decimal costoEstudios = estudiosSeleccionados.Sum(e => e.Precio);
-                decimal costoConsultaBase = 1000;
+                decimal costoConsultaBase = 5000;
                 decimal costoTotal = costoVacunas + costoConsultaBase + costoEstudios;
+
+                ICostoAtencion calculadorCosto = new CostoBaseAtencion(costoConsultaBase, costoVacunas, costoEstudios);
+                calculadorCosto = new RecargoFinDeSemana(calculadorCosto);
+
+                var historiaClinica = await _historiaClinicaService.GetHistoriaClinicaConMascotayPropietario(model.HistoriaClinicaId);
+
+                if (historiaClinica != null)
+                {
+                    // Recargo por Raza Peligrosa
+                    if (historiaClinica.Mascota.RazaPeligrosa)
+                    {
+                        calculadorCosto = new RecargoRazaPeligrosa(calculadorCosto);
+                    }
+
+                    // Descuento por Cliente Frecuente
+                    if (historiaClinica.Mascota.Propietario != null)
+                    {
+                        int clienteId = historiaClinica.Mascota.Propietario.Id;
+
+                        int cantidadVisitas = await _repository.ContarAtencionesHistoricasPorCliente(clienteId);
+
+                        // Si vino más de 3 veces, aplicamos descuento
+                        if (cantidadVisitas > 3)
+                        {
+                            calculadorCosto = new DescuentoClienteFrecuente(calculadorCosto);
+                        }
+                    }
+                }
+
+                decimal costoTotalFinal = calculadorCosto.Calcular();
+
 
                 // Tratamiento
                 Tratamiento tratamiento = null;
@@ -238,7 +269,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                     HistoriaClinicaId = model.HistoriaClinicaId,
                     VeterinarioId = veterinario.Id,
                     Tratamiento = tratamiento,
-                    CostoTotal = costoTotal,
+                    CostoTotal = costoTotalFinal,
                     Vacunas = vacunasSeleccionadas.ToList(),
                     EstudiosComplementarios = estudiosSeleccionados.ToList()
                 };
@@ -309,7 +340,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                 };
 
                 _context.AtencionMementos.Add(memento);
-                await _context.SaveChangesAsync(); // Guardamos el respaldo primero
+                await _context.SaveChangesAsync(); 
 
                 // ACTUALIZAR DATOS BÁSICOS
                 atencionActual.Diagnostico = model.Diagnostico;
@@ -445,6 +476,7 @@ namespace SistemaVetIng.Servicios.Implementacion
 
             return model;
         }
+
         // Metodo para restaurar la version
         public async Task RestaurarVersionAsync(int mementoId)
         {

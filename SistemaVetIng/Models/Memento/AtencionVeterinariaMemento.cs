@@ -4,13 +4,13 @@
     {
         public int Id { get; set; }
 
-        // Relación con la atención original (Para saber de quién es esta copia)
+        // Relación con la atención original
         public int AtencionVeterinariaId { get; set; }
 
-        // Metadatos de la versión
+        // Datos de la version
         public DateTime FechaVersion { get; set; } = DateTime.Now;
         public string UsuarioEditor { get; set; } 
-        public string? MotivoCambio { get; set; } // Ej: "Corregir diagnóstico"
+        public string? MotivoCambio { get; set; }
 
         // Datos historicos
         public string Diagnostico { get; set; }
@@ -22,7 +22,7 @@
         public string? TratamientoDuracion { get; set; }
         public string? TratamientoObservaciones { get; set; }
 
-        // vacunas y estudios
+        // Vacunas y Estudios
         public string? VacunasSnapshot { get; set; } 
         public string? EstudiosSnapshot { get; set; }
     }

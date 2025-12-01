@@ -14,7 +14,8 @@ namespace SistemaVetIng.Models.Observer
         public async Task NotificarClienteRegistradoAsync(Cliente cliente)
         {
             string asunto = "¡Bienvenido a VetIng!";
-            string mensaje = $"Hola {cliente.Nombre}, gracias por registrarte en VetIng. Ya podes gestionar tus turnos y ver la información de tus mascotas.";
+            string mensaje = $"Hola {cliente.Nombre}, gracias por registrarte en VetIng." +
+                $" Ya podes gestionar tus turnos y ver la información de tus mascotas.";
 
             await _emailSender.SendEmailAsync(cliente.Usuario.Email, asunto, mensaje);
         }
