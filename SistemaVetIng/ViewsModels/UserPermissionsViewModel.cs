@@ -10,7 +10,6 @@
         public bool IsSelected { get; set; } //  checkbox
         public UserPermissionsViewModel()
         {
-            // Usamos el mismo PermissionViewModel que ya tenías
             Permissions = new List<PermissionsViewModel>();
         }
 

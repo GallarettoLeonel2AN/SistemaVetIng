@@ -79,7 +79,7 @@ namespace SistemaVetIng.Controllers
         }
 
 
-        #region LISTARCLIENTES
+        #region LISTAR CLIENTES
 
         [HttpGet]
         public async Task<IActionResult> ListarClientes(string busquedaCliente = null, int page = 1)

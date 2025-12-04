@@ -284,7 +284,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                     mascota.Chip = null;
                 }
 
-                // 4. Llamar a la API si es una raza peligrosa.
+                // Llamar a la API si es una raza peligrosa.
                 if (mascota.RazaPeligrosa)
                 {
                     var clienteAsociado = await _clienteRepository.ObtenerPorId(model.ClienteId);

@@ -131,7 +131,7 @@ namespace SistemaVetIng.Tests.Integracion
                 Nombre = "Duplicado",
                 Apellido = "Duplicado",
                 Password = "Password123!",
-                Dni = 99887766, // <--- VALOR QUE YA EXISTE
+                Dni = 99887766, // Ya existe
                 Telefono = 22222222,
                 Direccion = "Dir 2"
             };

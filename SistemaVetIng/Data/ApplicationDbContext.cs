@@ -36,7 +36,8 @@ namespace SistemaVetIng.Data
             base.OnModelCreating(modelBuilder);
 
           
-            // Seed para Estudios
+            // Seeds
+
             modelBuilder.Entity<Estudio>().HasData(
                 new Estudio { Id = 1, Nombre = "Análisis de sangre completo", Precio = 4500.00m},
                 new Estudio { Id = 2, Nombre = "Radiografía de tórax", Precio = 6000.00m },

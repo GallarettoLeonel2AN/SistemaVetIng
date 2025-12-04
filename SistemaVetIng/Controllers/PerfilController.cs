@@ -41,6 +41,8 @@ namespace SistemaVetIng.Controllers
             return Unauthorized();
         }
 
+        #region VETERINARIA
+
         [Authorize(Roles = "Veterinaria")]
         public async Task<IActionResult> VeterinariaPerfil()
         {
@@ -63,6 +65,9 @@ namespace SistemaVetIng.Controllers
 
             return View(veterinaria);
         }
+        #endregion
+
+        #region VETERINARIO
 
         [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> VeterinarioPerfil()
@@ -88,6 +93,9 @@ namespace SistemaVetIng.Controllers
 
             return View(veterinario);
         }
+        #endregion
+
+        #region CLIENTE
 
         [Authorize(Roles = "Cliente")]
         public async Task<IActionResult> ClientePerfil()
@@ -112,5 +120,6 @@ namespace SistemaVetIng.Controllers
 
             return View(cliente);
         }
+        #endregion
     }
 }

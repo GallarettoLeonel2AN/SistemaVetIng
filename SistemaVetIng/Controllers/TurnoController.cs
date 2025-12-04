@@ -31,6 +31,8 @@ namespace SistemaVetIng.Controllers
             _clienteService = clienteService;
         }
 
+        #region RESERVAR TURNO
+
         [HttpGet]
         public async Task<IActionResult> ReservarTurno()
         {
@@ -117,6 +119,9 @@ namespace SistemaVetIng.Controllers
 
         }
 
+        #endregion
+
+        #region OBTENER HORARIOS
         [HttpGet]
         public async Task<IActionResult> ObtenerHorariosDisponibles(string fecha)
         {
@@ -138,6 +143,9 @@ namespace SistemaVetIng.Controllers
             return Json(horarios);
         }
 
+        #endregion
+
+        #region CANCELAR TURNOS
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -177,6 +185,9 @@ namespace SistemaVetIng.Controllers
             return RedirectToAction("PaginaPrincipal", "Veterinario");
         }
 
+        #endregion
+
+        #region MARCAR AUSENCIA
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -213,6 +224,9 @@ namespace SistemaVetIng.Controllers
             return RedirectToAction("PaginaPrincipal", "Veterinario");
         }
 
+        #endregion
+
+        #region OBTENER TURNOS POR DIA SELECCIONADO
 
         [HttpGet]
         public async Task<IActionResult> TurnosPorDiaSeleccionado(DateTime? fechaSeleccionada)
@@ -239,7 +253,8 @@ namespace SistemaVetIng.Controllers
             };
 
             return View(viewModel);
-        } 
+        }
 
+        #endregion
     }
 }

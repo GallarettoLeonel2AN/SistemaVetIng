@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using SistemaVetIng.Models;
-using SistemaVetIng.Servicios.Implementacion;
 using SistemaVetIng.Servicios.Interfaces;
 using SistemaVetIng.ViewsModels;
 using System.Security.Claims;
-using X.PagedList;
-using static SistemaVetIng.Models.Extension.Permission;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SistemaVetIng.Controllers
 {
@@ -52,10 +48,10 @@ namespace SistemaVetIng.Controllers
             int pageMascota = 1,
             int pageVet = 1)
         {
-          
+
 
             var viewModel = new VeterinarioPaginaPrincipalViewModel();
-            int pageSizeClientes = 3; 
+            int pageSizeClientes = 3;
             int pageSizeMascotas = 3;
             int pageSizeVeterinarios = 3;
 
@@ -113,12 +109,12 @@ namespace SistemaVetIng.Controllers
                 Telefono = c.Telefono,
                 NombreUsuario = c.Usuario?.Email,
                 DNI = c.Dni
-            }).ToList(); 
-          
+            }).ToList();
+
             viewModel.PaginacionClientes = clientesPaginados;
 
             // CARGA DE MASCOTAS 
-            
+
             var mascotasPaginadas = await _mascotaService.ListarPaginadoAsync(pageMascota, pageSizeMascotas, busquedaMascota);
 
             viewModel.Mascotas = mascotasPaginadas.Select(m => new MascotaListViewModel
@@ -131,7 +127,7 @@ namespace SistemaVetIng.Controllers
                 EdadAnios = DateTime.Today.Year - m.FechaNacimiento.Year - (DateTime.Today.DayOfYear < m.FechaNacimiento.DayOfYear ? 1 : 0),
                 NombreDueno = $"{m.Propietario?.Nombre} {m.Propietario?.Apellido}",
                 ClienteId = m.Propietario?.Id ?? 0
-            }).ToList(); 
+            }).ToList();
 
 
             viewModel.PaginacionMascotas = mascotasPaginadas;
@@ -168,7 +164,7 @@ namespace SistemaVetIng.Controllers
             {
                 return Unauthorized("No se pudo obtener el ID del usuario.");
             }
-            var veterinarioLogueado = await _veterinarioService.ObtenerPorIdUsuario(usuarioIdNumerico); 
+            var veterinarioLogueado = await _veterinarioService.ObtenerPorIdUsuario(usuarioIdNumerico);
             if (veterinarioLogueado == null)
             {
                 return NotFound("No se encontró un perfil de veterinario para este usuario.");
@@ -186,7 +182,6 @@ namespace SistemaVetIng.Controllers
             return View(viewModel);
         }
         #endregion
-
 
         #region REGISTRAR VETERINARIO
 
@@ -210,7 +205,14 @@ namespace SistemaVetIng.Controllers
             {
                 await _veterinarioService.Registrar(model);
                 _toastNotification.AddSuccessToastMessage("¡Veterinario registrado correctamente!");
-                return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                if (User.IsInRole("Veterinaria"))
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                }
+                else
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinario");
+                }
             }
             catch (Exception ex)
             {
@@ -219,7 +221,6 @@ namespace SistemaVetIng.Controllers
             }
         }
         #endregion
-
 
         #region MODIFICAR VETERINARIO
         [HttpGet]
@@ -261,7 +262,14 @@ namespace SistemaVetIng.Controllers
             {
                 await _veterinarioService.Modificar(model);
                 _toastNotification.AddSuccessToastMessage("¡Veterinario actualizado correctamente!");
-                return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                if (User.IsInRole("Veterinaria"))
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                }
+                else
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinario");
+                }
             }
             catch (KeyNotFoundException)
             {
@@ -275,7 +283,6 @@ namespace SistemaVetIng.Controllers
             }
         }
         #endregion
-
 
         #region ELIMINAR VETERINARIO
         [HttpPost]
@@ -300,10 +307,16 @@ namespace SistemaVetIng.Controllers
                 _toastNotification.AddErrorToastMessage($"Error: {ex.Message}");
             }
 
-            return RedirectToAction("PaginaPrincipal", "Veterinaria");
+            if (User.IsInRole("Veterinaria"))
+            {
+                return RedirectToAction("PaginaPrincipal", "Veterinaria");
+            }
+            else
+            {
+                return RedirectToAction("PaginaPrincipal", "Veterinario");
+            }
         }
         #endregion
-
 
     }
 }

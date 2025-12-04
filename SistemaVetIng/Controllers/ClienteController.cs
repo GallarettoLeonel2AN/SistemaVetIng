@@ -275,6 +275,7 @@ namespace SistemaVetIng.Controllers
         }
         #endregion
 
+
         #region HISTORIAL DE PAGOS
         [HttpGet]
         public async Task<IActionResult> HistorialPagos(int page = 1)

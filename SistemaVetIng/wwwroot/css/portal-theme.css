@@ -3808,8 +3808,7 @@ input.flatpickr-input[readonly] {
    ESTILO HOME: ISLAS FLOTANTES (Specific Fix)
    ========================================= */
 
-/* 1. Hacemos que las secciones sean invisibles/transparentes */
-/* Así se ve el fondo de rayas del body en los márgenes */
+
 #about.landing-section,
 #features.landing-section {
     background-color: transparent !important;
@@ -3826,8 +3825,7 @@ input.flatpickr-input[readonly] {
         display: none !important;
     }
 
-/* 2. Convertimos el CONTENEDOR INTERNO en la "Isla" */
-/* Esto afecta solo al contenido central, creando el efecto tarjeta */
+
 #about .landing-container,
 #features .landing-container {
     /* Fondo Vidrio Oscuro (Dark Glass) */

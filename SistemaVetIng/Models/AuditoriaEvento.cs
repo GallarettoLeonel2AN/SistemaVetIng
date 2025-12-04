@@ -21,7 +21,7 @@ namespace SistemaVetIng.Models
         [StringLength(100)]
         public string TipoEvento { get; set; }
 
-        // La entidad de negocio que fue afectada (ej: "Mascota", "Cliente", "Turno", "Sistema")
+        // El rol que lo realizo (Cliente, Veterinario, Veterinaria)
         [Required]
         [StringLength(100)]
         public string Entidad { get; set; }

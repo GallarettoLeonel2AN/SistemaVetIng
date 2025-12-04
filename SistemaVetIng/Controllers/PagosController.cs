@@ -25,7 +25,7 @@ namespace SistemaVetIng.Controllers
         }
 
 
-
+        #region GENERAR LINK PAGO
         [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> GenerarLinkDePago([FromBody] List<int> atencionesIds) 
@@ -95,6 +95,9 @@ namespace SistemaVetIng.Controllers
             return View("Error", new { Mensaje = "No se pudo generar el link de pago." });
         }
 
+        #endregion
+
+        #region METODO DE PAGOS
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -131,6 +134,8 @@ namespace SistemaVetIng.Controllers
 
             return RedirectToAction("DetalleHistoriaClinica", "HistoriaClinica", new { mascotaId = mascotaId });
         }
+
+        #endregion
 
     }
 }

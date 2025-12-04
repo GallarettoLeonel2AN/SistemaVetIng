@@ -1,0 +1,15 @@
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\administracion-home.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\animaciones.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\configuracion.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\confirmation-styles.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\css-unificado.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\dashboard.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\formularioPagosCliente.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\home-styles.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\listado-clientes.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\login-styles.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\permisos.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\registrar-cliente-style.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\site.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\veterinario-home.css
+C:\Users\Ulises\source\repos\SistemaVetIng\SistemaVetIng\wwwroot\css\veterinary-dashboard.css

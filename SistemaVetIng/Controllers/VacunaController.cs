@@ -30,6 +30,8 @@ public class VacunaController : Controller
         return View(vacunasPaginadas);
     }
 
+    #region CREAR VACUNA
+
     [HttpGet]
     public IActionResult Crear() => View(new VacunaViewModel());
 
@@ -56,8 +58,10 @@ public class VacunaController : Controller
             return View(model);
         }
     }
+    #endregion
 
-   
+    #region MODIFICAR VACUNA
+
     [HttpGet]
     public async Task<IActionResult> Modificar(int id)
     {
@@ -93,8 +97,10 @@ public class VacunaController : Controller
             return View(model);
         }
     }
+    #endregion
 
-    
+    #region ELIMINAR VACUNA
+
     [HttpPost, ActionName("Eliminar")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> EliminarConfirmado(int id)
@@ -112,4 +118,6 @@ public class VacunaController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    #endregion
 }

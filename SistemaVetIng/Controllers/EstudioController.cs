@@ -30,7 +30,9 @@ public class EstudioController : Controller
         return View(estudiosPaginados);
     }
 
-    
+
+    #region CREAR ESTUDIO
+
     [HttpGet]
     public IActionResult Crear() => View(new EstudioViewModel());
 
@@ -58,7 +60,9 @@ public class EstudioController : Controller
         }
     }
 
-   
+    #endregion
+
+    #region MODIFICAR ESTUDIO
     [HttpGet]
     public async Task<IActionResult> Modificar(int id)
     {
@@ -94,7 +98,9 @@ public class EstudioController : Controller
             return View(model);
         }
     }
+    #endregion
 
+    #region ELIMINAR ESTUDIO
     [HttpPost, ActionName("Eliminar")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> EliminarConfirmado(int id)
@@ -112,4 +118,5 @@ public class EstudioController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+    #endregion
 }
