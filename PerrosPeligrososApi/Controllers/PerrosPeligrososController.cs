@@ -73,5 +73,12 @@ namespace PerrosPeligrososApi.Controllers
 
             return Ok(perroDto);
         }
+
+        [HttpGet("buscar")] 
+        public async Task<IActionResult> Buscar([FromQuery] string dniOrcodigo)
+        {
+            var resultados = await _perroPeligrosoService.Buscar(dniOrcodigo);
+            return Ok(resultados);
+        }
     }
 }

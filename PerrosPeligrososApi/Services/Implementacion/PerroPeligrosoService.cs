@@ -153,6 +153,37 @@ namespace PerrosPeligrososApi.Services.Implementacion
             return perro;
         }
 
+        public async Task<IEnumerable<PerroPeligrosoResponseDto>> Buscar(string termino)
+        {
+            if (string.IsNullOrWhiteSpace(termino)) return new List<PerroPeligrosoResponseDto>();
+
+            termino = termino.ToLower().Trim();
+
+            var lista = await _context.PerrosPeligrosos
+                .AsNoTracking()
+                .Where(p =>
+                    p.ClienteDni.ToString().Contains(termino) || // Busca por DNI
+                    (p.Chip != null && p.Chip.Codigo.ToLower().Contains(termino)) // Busca por Chip
+                )
+                .Select(p => new PerroPeligrosoResponseDto
+                {
+                    Id = p.Id,
+                    Nombre = p.Nombre,
+                    Raza = p.Raza,
+                    MascotaIdOriginal = p.MascotaIdOriginal,
+                    ClienteDni = p.ClienteDni,
+                    ClienteNombre = p.ClienteNombre,
+                    ClienteApellido = p.ClienteApellido,
+                    FechaRegistroApi = p.FechaRegistroApi,
+                    Chip = p.Chip != null ? new ChipResponseDto
+                    {
+                        Codigo = p.Chip.Codigo
+                    } : null
+                })
+                .ToListAsync();
+
+            return lista;
+        }
 
     }
 }

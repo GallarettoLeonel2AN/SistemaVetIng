@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "PerrosPeligrososApi.Controllers.PerrosPeligrososController",
+    "Method": "Buscar",
+    "RelativePath": "api/perros-peligrosos/buscar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "termino",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PerrosPeligrososApi.Controllers.PerrosPeligrososController",
     "Method": "ListarTodos",
     "RelativePath": "api/perros-peligrosos/getAll",
     "HttpMethod": "GET",

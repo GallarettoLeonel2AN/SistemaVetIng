@@ -70,6 +70,27 @@
           }
         }
       }
+    },
+    "/api/perros-peligrosos/buscar": {
+      "get": {
+        "tags": [
+          "PerrosPeligrosos"
+        ],
+        "parameters": [
+          {
+            "name": "termino",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
