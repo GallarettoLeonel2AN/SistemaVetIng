@@ -126,9 +126,33 @@ namespace PerrosPeligrososApi.Services.Implementacion
                     })
                     .ToListAsync();
 
-                        return lista;
-                    }
+            return lista;
+        }
+        public async Task<PerroPeligrosoResponseDto> ObtenerPorId(int id)
+        {
+            var perro = await _context.PerrosPeligrosos
+                .AsNoTracking()
+                .Where(p => p.Id == id)
+                .Select(p => new PerroPeligrosoResponseDto
+                {
+                    Id = p.Id,
+                    Nombre = p.Nombre,
+                    Raza = p.Raza,
+                    MascotaIdOriginal = p.MascotaIdOriginal,
+                    ClienteDni = p.ClienteDni,
+                    ClienteNombre = p.ClienteNombre,
+                    ClienteApellido = p.ClienteApellido,
+                    FechaRegistroApi = p.FechaRegistroApi,
+                    Chip = p.Chip != null ? new ChipResponseDto
+                    {
+                        Codigo = p.Chip.Codigo
+                    } : null
+                })
+                .FirstOrDefaultAsync();
+
+            return perro;
         }
 
-    
+
+    }
 }

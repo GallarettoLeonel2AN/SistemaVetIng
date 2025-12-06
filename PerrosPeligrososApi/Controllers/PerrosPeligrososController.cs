@@ -62,5 +62,16 @@ namespace PerrosPeligrososApi.Controllers
                 return StatusCode(500, "Error interno al obtener los datos.");
             }
         }
+
+        [HttpGet("getById/{id}")]
+        public async Task<IActionResult> ObtenerPorId(int id)
+        {
+            var perroDto = await _perroPeligrosoService.ObtenerPorId(id);
+
+            if (perroDto == null)
+                return NotFound(new { message = $"No se encontró el perro con ID {id}" });
+
+            return Ok(perroDto);
+        }
     }
 }

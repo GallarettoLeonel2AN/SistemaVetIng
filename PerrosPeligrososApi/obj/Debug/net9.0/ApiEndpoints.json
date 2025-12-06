@@ -11,6 +11,22 @@
   },
   {
     "ContainingType": "PerrosPeligrososApi.Controllers.PerrosPeligrososController",
+    "Method": "ObtenerPorId",
+    "RelativePath": "api/perros-peligrosos/getById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PerrosPeligrososApi.Controllers.PerrosPeligrososController",
     "Method": "Registrar",
     "RelativePath": "api/perros-peligrosos/registrar",
     "HttpMethod": "POST",

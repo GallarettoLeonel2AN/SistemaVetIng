@@ -7,5 +7,6 @@ namespace PerrosPeligrososApi.Services.Interface
     {
         Task<int> ProcesarRegistro(PerroPeligrosoRegistroDto registroDto);
         Task<IEnumerable<PerroPeligrosoResponseDto>> ObtenerTodos();
+        Task<PerroPeligrosoResponseDto> ObtenerPorId(int id);
     }
 }
