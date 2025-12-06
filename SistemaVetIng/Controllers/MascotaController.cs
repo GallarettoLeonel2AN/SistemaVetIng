@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using SistemaVetIng.Models.Indentity;
 using SistemaVetIng.Servicios.Implementacion;
@@ -16,6 +17,7 @@ namespace SistemaVetIng.Controllers
         private readonly IClienteService _clienteService;
         private readonly IToastNotification _toastNotification;
         private readonly ITurnoService _turnoService;
+        private readonly IChipService _chipService;
         private readonly UserManager<Usuario> _userManager;
 
 
@@ -31,7 +33,8 @@ namespace SistemaVetIng.Controllers
             IClienteService clienteService, 
             IToastNotification toastNotification,
             ITurnoService turnoService,
-            UserManager<Usuario> userManager)
+            UserManager<Usuario> userManager,
+            IChipService chipService)
         {
 
             _mascotaService = mascotaService;
@@ -39,6 +42,7 @@ namespace SistemaVetIng.Controllers
             _toastNotification = toastNotification;
             _turnoService = turnoService;
             _userManager = userManager;
+            _chipService = chipService;
         }
 
 
@@ -211,6 +215,7 @@ namespace SistemaVetIng.Controllers
                 return RedirectToAction(nameof(ListarClientes));
             }
 
+            bool tieneChipReal = await _chipService.PoseeChipMascota(mascota.Id);
 
             var viewModel = new MascotaEditarViewModel
             {
@@ -222,9 +227,8 @@ namespace SistemaVetIng.Controllers
                 FechaNacimiento = mascota.FechaNacimiento,
                 Sexo = mascota.Sexo,
                 RazaPeligrosa = mascota.RazaPeligrosa,
-                Chip = (mascota.Chip != null)
+                Chip = tieneChipReal
             };
-
 
             var cliente = await _clienteService.ObtenerPorId(mascota.ClienteId);
             if (cliente != null)

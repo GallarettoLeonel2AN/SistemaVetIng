@@ -301,7 +301,6 @@ namespace SistemaVetIng.Servicios.Implementacion
                     );
                 }
 
-               
                 _mascotaRepository.Modificar(mascota);
                 await _mascotaRepository.Guardar();
 

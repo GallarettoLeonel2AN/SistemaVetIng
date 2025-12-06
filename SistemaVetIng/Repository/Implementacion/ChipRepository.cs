@@ -2,6 +2,7 @@
 using SistemaVetIng.Data;
 using SistemaVetIng.Models;
 using SistemaVetIng.Repository.Interfaces;
+using static SistemaVetIng.Models.Extension.Permission;
 
 namespace SistemaVetIng.Repository.Implementacion
 {
@@ -21,6 +22,9 @@ namespace SistemaVetIng.Repository.Implementacion
 
         public async Task<Chip> ObtenerPorId(int id)
             => await _context.Chips.FirstOrDefaultAsync(c => c.Id == id);
+
+        public async Task<bool> PoseeChipMascota(int mascotaId)
+           =>  await _context.Chips.AnyAsync(c => c.MascotaId == mascotaId);
 
 
         public async Task Agregar(Chip entity)

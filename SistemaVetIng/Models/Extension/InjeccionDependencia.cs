@@ -60,6 +60,7 @@ namespace SistemaVetIng.Models.Extension
             services.AddScoped<IPagoService, PagoService>();
             services.AddScoped<IAuditoriaService, AuditoriaService>();
             services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IChipService, ChipService>();
 
             return services;
         }
