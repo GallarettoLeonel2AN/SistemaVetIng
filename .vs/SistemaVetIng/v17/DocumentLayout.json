@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\perrospeligrososapi\\services\\implementacion\\perropeligrososervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|solutionrelative:perrospeligrososapi\\services\\implementacion\\perropeligrososervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\perrospeligrososapi\\models\\perropeligroso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|solutionrelative:perrospeligrososapi\\models\\perropeligroso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\perrospeligrososapi\\models\\chipperropeligroso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|solutionrelative:perrospeligrososapi\\models\\chipperropeligroso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\perrospeligrososapi\\controllers\\perrospeligrososcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|solutionrelative:perrospeligrososapi\\controllers\\perrospeligrososcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\perrospeligrososapi\\services\\interface\\iperropeligrososervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|solutionrelative:perrospeligrososapi\\services\\interface\\iperropeligrososervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|c:\\users\\ulises\\source\\repos\\sistemaveting\\perrospeligrososapi\\services\\implementacion\\perropeligrososervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FFD3E0E-99EC-413D-BB3A-86B766BD761D}|PerrosPeligrososApi\\PerrosPeligrososApi.csproj|solutionrelative:perrospeligrososapi\\services\\implementacion\\perropeligrososervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,29 +45,72 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PerroPeligroso.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Models\\PerroPeligroso.cs",
+              "RelativeDocumentMoniker": "PerrosPeligrososApi\\Models\\PerroPeligroso.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Models\\PerroPeligroso.cs",
+              "RelativeToolTip": "PerrosPeligrososApi\\Models\\PerroPeligroso.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwAsAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T16:30:40.172Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ChipPerroPeligroso.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Models\\ChipPerroPeligroso.cs",
+              "RelativeDocumentMoniker": "PerrosPeligrososApi\\Models\\ChipPerroPeligroso.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Models\\ChipPerroPeligroso.cs",
+              "RelativeToolTip": "PerrosPeligrososApi\\Models\\ChipPerroPeligroso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T16:30:36.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PerrosPeligrososController.cs",
+              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Controllers\\PerrosPeligrososController.cs",
+              "RelativeDocumentMoniker": "PerrosPeligrososApi\\Controllers\\PerrosPeligrososController.cs",
+              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Controllers\\PerrosPeligrososController.cs",
+              "RelativeToolTip": "PerrosPeligrososApi\\Controllers\\PerrosPeligrososController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAmwDoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T16:12:54.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "IPerroPeligrosoService.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Services\\Interface\\IPerroPeligrosoService.cs",
               "RelativeDocumentMoniker": "PerrosPeligrososApi\\Services\\Interface\\IPerroPeligrosoService.cs",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Services\\Interface\\IPerroPeligrosoService.cs",
               "RelativeToolTip": "PerrosPeligrososApi\\Services\\Interface\\IPerroPeligrosoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-06T02:23:18.376Z",
+              "WhenOpened": "2025-12-06T16:11:48.478Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "PerroPeligrosoService.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Services\\Implementacion\\PerroPeligrosoService.cs",
               "RelativeDocumentMoniker": "PerrosPeligrososApi\\Services\\Implementacion\\PerroPeligrosoService.cs",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SistemaVetIng\\PerrosPeligrososApi\\Services\\Implementacion\\PerroPeligrosoService.cs",
               "RelativeToolTip": "PerrosPeligrososApi\\Services\\Implementacion\\PerroPeligrosoService.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAmwHgAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-06T02:23:11.428Z",
+              "WhenOpened": "2025-12-06T16:11:29.658Z",
               "EditorCaption": ""
             }
           ]

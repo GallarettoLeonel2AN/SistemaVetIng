@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PerrosPeligrososApi.Data;
 using PerrosPeligrososApi.Models;
+using PerrosPeligrososApi.Models.Dtos;
 using PerrosPeligrososApi.Services.Interface;
+using static PerrosPeligrososApi.Models.Dtos.PerroPeligrosoResponseDto;
 
 namespace PerrosPeligrososApi.Services.Implementacion
 {
@@ -100,6 +102,33 @@ namespace PerrosPeligrososApi.Services.Implementacion
 
             return perroEntidad.Id;
         }
+
+        public async Task<IEnumerable<PerroPeligrosoResponseDto>> ObtenerTodos()
+        {
+            var lista = await _context.PerrosPeligrosos
+                    .AsNoTracking()
+                    .Select(p => new PerroPeligrosoResponseDto
+                    {
+                        Id = p.Id,
+                        Nombre = p.Nombre,
+                        Raza = p.Raza,
+                        MascotaIdOriginal = p.MascotaIdOriginal,
+                        ClienteDni = p.ClienteDni,
+                        ClienteNombre = p.ClienteNombre,
+                        ClienteApellido = p.ClienteApellido,
+                        FechaRegistroApi = p.FechaRegistroApi,
+
+                        // Mapeo manual del chip (si existe)
+                        Chip = p.Chip != null ? new ChipResponseDto
+                        {
+                            Codigo = p.Chip.Codigo
+                        } : null
+                    })
+                    .ToListAsync();
+
+                        return lista;
+                    }
+        }
+
     
-}
 }

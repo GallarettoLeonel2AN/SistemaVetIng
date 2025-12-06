@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PerrosPeligrososApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+874e5d15cf2335708bb98457470aa2c217d1d698")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce8c069299b1414a06a29c32f6742a2b0d26b39a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PerrosPeligrososApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PerrosPeligrososApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

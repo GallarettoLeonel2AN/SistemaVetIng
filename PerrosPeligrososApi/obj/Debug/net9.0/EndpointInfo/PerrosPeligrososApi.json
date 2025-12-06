@@ -35,6 +35,18 @@
           }
         }
       }
+    },
+    "/api/perros-peligrosos/getAll": {
+      "get": {
+        "tags": [
+          "PerrosPeligrosos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

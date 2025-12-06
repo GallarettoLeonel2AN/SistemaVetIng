@@ -1,4 +1,4 @@
-﻿namespace PerrosPeligrososApi.Models
+﻿namespace PerrosPeligrososApi.Models.Dtos
 {
     public class PerroPeligrosoRegistroDto
     {

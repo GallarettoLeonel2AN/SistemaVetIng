@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PerrosPeligrososApi.Models;
+using PerrosPeligrososApi.Models.Dtos;
 using PerrosPeligrososApi.Services.Interface;
 using System.Net;
 
@@ -43,6 +43,23 @@ namespace PerrosPeligrososApi.Controllers
             {
                 _logger.LogError(ex, "Error en el controlador al procesar el registro.");
                 return StatusCode(500, "Error interno al procesar el registro: " + ex.Message);
+            }
+        }
+
+
+        [HttpGet("getAll")] 
+        public async Task<IActionResult> ListarTodos()
+        {
+            try
+            {
+                var listaPerros = await _perroPeligrosoService.ObtenerTodos();
+
+                return Ok(listaPerros);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de perros peligrosos.");
+                return StatusCode(500, "Error interno al obtener los datos.");
             }
         }
     }
