@@ -8,7 +8,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "termino",
+        "Name": "dniOrcodigo",
         "Type": "System.String",
         "IsRequired": false
       }

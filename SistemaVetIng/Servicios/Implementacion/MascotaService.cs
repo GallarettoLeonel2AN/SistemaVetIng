@@ -480,6 +480,10 @@ namespace SistemaVetIng.Servicios.Implementacion
 
             using (var client = new HttpClient())
             {
+
+                // Clave para el Authorize
+                client.DefaultRequestHeaders.Add("PERROPELIGROSO-API-KEY", "AccesoVetIng");
+
                 var jsonContent = new StringContent(
                     JsonSerializer.Serialize(dataToSend),
                     Encoding.UTF8,

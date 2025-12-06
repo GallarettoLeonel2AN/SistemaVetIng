@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.4",
   "info": {
-    "title": "PerrosPeligrososApi",
-    "version": "1.0"
+    "title": "API Gobierno Perros Peligrosos",
+    "version": "v1"
   },
   "paths": {
     "/api/perros-peligrosos/registrar": {
@@ -78,7 +78,7 @@
         ],
         "parameters": [
           {
-            "name": "termino",
+            "name": "dniOrcodigo",
             "in": "query",
             "schema": {
               "type": "string"
@@ -139,6 +139,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "description": "Ingresa la API Key",
+        "name": "PERROPELIGROSO-API-KEY",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "ApiKey": [ ]
+    }
+  ]
 }

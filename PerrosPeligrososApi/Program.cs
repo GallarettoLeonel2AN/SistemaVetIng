@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using PerrosPeligrososApi.Data;
+using PerrosPeligrososApi.Middleware;
 using PerrosPeligrososApi.Services.Implementacion;
 using PerrosPeligrososApi.Services.Interface;
 
@@ -18,7 +20,36 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Gobierno Perros Peligrosos", Version = "v1" });
+
+    // Definimos el esquema de seguridad (API Key)
+    c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+    {
+        Description = "Ingresa la API Key",
+        Name = "PERROPELIGROSO-API-KEY", 
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "ApiKeyScheme"
+    });
+
+    // Establecer Swagger esquema global
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "ApiKey"
+                }
+            },
+            new List<string>()
+        }
+    });
+});
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -35,6 +66,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Authorized
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
