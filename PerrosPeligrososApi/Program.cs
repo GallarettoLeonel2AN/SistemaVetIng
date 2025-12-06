@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using PerrosPeligrososApi.Data;
+using PerrosPeligrososApi.Services.Implementacion;
+using PerrosPeligrososApi.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
+// Services
+builder.Services.AddScoped<IPerroPeligrosoService, PerroPeligrosoService>();
 
 builder.Services.AddCors(options =>
 {

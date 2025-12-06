@@ -41,5 +41,8 @@ namespace SistemaVetIng.Repository.Implementacion
 
         public async Task Guardar()
             => await _context.SaveChangesAsync();
+
+        public async Task<Chip> ObtenerPorMascotaId(int mascotaId)
+            => await _context.Chips.FirstOrDefaultAsync(c => c.MascotaId == mascotaId);
     }
 }

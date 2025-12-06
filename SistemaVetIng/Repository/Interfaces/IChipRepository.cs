@@ -11,5 +11,6 @@ namespace SistemaVetIng.Repository.Interfaces
         void Eliminar(Chip entity);
         Task Guardar();
         Task<bool> PoseeChipMascota(int mascotaId);
+        Task<Chip> ObtenerPorMascotaId(int mascotaId);
     }
 }

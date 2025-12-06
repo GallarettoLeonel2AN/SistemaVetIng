@@ -38,7 +38,7 @@ namespace SistemaVetIng.Servicios.Implementacion
         {
             "pitbull", "rottweiler", "dogo argentino", "fila brasileiro",
             "akita inu", "tosa inu", "doberman", "staffordshire bull terrier",
-            "american staffordshire terrier", "pastor alemán"
+            "american staffordshire terrier", "pastor aleman"
         };
         private bool IsRazaPeligrosa(string especie, string raza)
         {
@@ -249,6 +249,12 @@ namespace SistemaVetIng.Servicios.Implementacion
                 return (false, "La mascota que intenta editar no existe.");
             }
 
+            var chipExistente = await _chipRepository.ObtenerPorMascotaId(mascota.Id);
+
+            if (chipExistente != null)
+            {
+                mascota.Chip = chipExistente;
+            }
 
             mascota.Nombre = model.Nombre;
             mascota.Especie = model.Especie;
@@ -268,7 +274,7 @@ namespace SistemaVetIng.Servicios.Implementacion
                         Codigo = Guid.NewGuid().ToString("N").Substring(0, 16),
                         MascotaId = mascota.Id
                     };
-                    mascota.Chip = nuevoChip;
+
                     await _chipRepository.Agregar(nuevoChip);
                 }
                 else if (mascota.RazaPeligrosa && !model.Chip && mascota.Chip != null)
@@ -303,6 +309,7 @@ namespace SistemaVetIng.Servicios.Implementacion
 
                 _mascotaRepository.Modificar(mascota);
                 await _mascotaRepository.Guardar();
+                await _chipRepository.Guardar();
 
                 return (true, $"Mascota '{mascota.Nombre}' actualizada correctamente.");
             }
