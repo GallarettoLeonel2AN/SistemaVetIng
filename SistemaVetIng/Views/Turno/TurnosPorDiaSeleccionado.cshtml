@@ -144,6 +144,9 @@
                                         </td>
 
                                         <td data-label="Acciones" class="text-center">
+                                          
+                                            @if( User.IsInRole("Veterinario") )
+                                            {
                                             <div class="d-flex justify-content-center gap-10">
                                                 @if (turno.Estado == "Pendiente")
                                                 {
@@ -176,6 +179,14 @@
                                                     </a>
                                                 }
                                             </div>
+                                            }
+                                            else if (User.IsInRole("Veterinaria"))
+                                            {
+                                                <span class="badge bg-secondary text-wrap text-center" style="width: 100%; max-width: 150px;">
+                                                    <i class="fa-solid fa-lock"></i> Solo Veterinarios
+                                                </span>
+
+                                            }
                                         </td>
                                     </tr>
                                 }
