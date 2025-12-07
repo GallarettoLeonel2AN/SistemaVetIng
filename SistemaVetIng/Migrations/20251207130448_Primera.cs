@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaVetIng.Migrations
 {
     /// <inheritdoc />
-    public partial class primera : Migration
+    public partial class Primera : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,6 +56,45 @@ namespace SistemaVetIng.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AtencionMementos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AtencionVeterinariaId = table.Column<int>(type: "int", nullable: false),
+                    FechaVersion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UsuarioEditor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MotivoCambio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Diagnostico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PesoMascota = table.Column<float>(type: "real", nullable: false),
+                    TratamientoMedicamento = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TratamientoDosis = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TratamientoFrecuencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TratamientoDuracion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TratamientoObservaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VacunasSnapshot = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EstudiosSnapshot = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AtencionMementos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Estudios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Estudios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MetodosPago",
                 columns: table => new
                 {
@@ -83,6 +122,21 @@ namespace SistemaVetIng.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tratamientos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vacunas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lote = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vacunas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -491,56 +545,63 @@ namespace SistemaVetIng.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Estudios",
+                name: "AtencionEstudios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AtencionVeterinariaId = table.Column<int>(type: "int", nullable: true)
+                    AtencionVeterinariaId = table.Column<int>(type: "int", nullable: false),
+                    EstudiosComplementariosId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Estudios", x => x.Id);
+                    table.PrimaryKey("PK_AtencionEstudios", x => new { x.AtencionVeterinariaId, x.EstudiosComplementariosId });
                     table.ForeignKey(
-                        name: "FK_Estudios_AtencionesVeterinarias_AtencionVeterinariaId",
+                        name: "FK_AtencionEstudios_AtencionesVeterinarias_AtencionVeterinariaId",
                         column: x => x.AtencionVeterinariaId,
                         principalTable: "AtencionesVeterinarias",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AtencionEstudios_Estudios_EstudiosComplementariosId",
+                        column: x => x.EstudiosComplementariosId,
+                        principalTable: "Estudios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vacunas",
+                name: "AtencionVacunas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Lote = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AtencionVeterinariaId = table.Column<int>(type: "int", nullable: true)
+                    AtencionVeterinariaId = table.Column<int>(type: "int", nullable: false),
+                    VacunasId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vacunas", x => x.Id);
+                    table.PrimaryKey("PK_AtencionVacunas", x => new { x.AtencionVeterinariaId, x.VacunasId });
                     table.ForeignKey(
-                        name: "FK_Vacunas_AtencionesVeterinarias_AtencionVeterinariaId",
+                        name: "FK_AtencionVacunas_AtencionesVeterinarias_AtencionVeterinariaId",
                         column: x => x.AtencionVeterinariaId,
                         principalTable: "AtencionesVeterinarias",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AtencionVacunas_Vacunas_VacunasId",
+                        column: x => x.VacunasId,
+                        principalTable: "Vacunas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Estudios",
-                columns: new[] { "Id", "AtencionVeterinariaId", "Nombre", "Precio" },
+                columns: new[] { "Id", "Nombre", "Precio" },
                 values: new object[,]
                 {
-                    { 1, null, "Análisis de sangre completo", 4500.00m },
-                    { 2, null, "Radiografía de tórax", 6000.00m },
-                    { 3, null, "Análisis de orina", 2000.00m },
-                    { 4, null, "Ecografía abdominal", 7500.00m },
-                    { 5, null, "Estudio parasitológico", 1800.00m }
+                    { 1, "Análisis de sangre completo", 4500.00m },
+                    { 2, "Radiografía de tórax", 6000.00m },
+                    { 3, "Análisis de orina", 2000.00m },
+                    { 4, "Ecografía abdominal", 7500.00m },
+                    { 5, "Estudio parasitológico", 1800.00m }
                 });
 
             migrationBuilder.InsertData(
@@ -555,14 +616,14 @@ namespace SistemaVetIng.Migrations
 
             migrationBuilder.InsertData(
                 table: "Vacunas",
-                columns: new[] { "Id", "AtencionVeterinariaId", "Lote", "Nombre", "Precio" },
+                columns: new[] { "Id", "Lote", "Nombre", "Precio" },
                 values: new object[,]
                 {
-                    { 1, null, "RAB-2024A", "Antirrábica (Perros/Gatos)", 3900.00m },
-                    { 2, null, "DHPPI-101", "Quíntuple Canina (Moquillo/Parvo)", 11250.00m },
-                    { 3, null, "FVRCP-202", "Triple Felina (FVRCP)", 5100.00m },
-                    { 4, null, "FELV-303", "Leucemia Felina (FeLV)", 6400.00m },
-                    { 5, null, "KC-404", "Bordetella (Tos de las Perreras)", 85000.00m }
+                    { 1, "RAB-2024A", "Antirrábica (Perros/Gatos)", 3900.00m },
+                    { 2, "DHPPI-101", "Quíntuple Canina (Moquillo/Parvo)", 11250.00m },
+                    { 3, "FVRCP-202", "Triple Felina (FVRCP)", 5100.00m },
+                    { 4, "FELV-303", "Leucemia Felina (FeLV)", 6400.00m },
+                    { 5, "KC-404", "Bordetella (Tos de las Perreras)", 85000.00m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -605,6 +666,11 @@ namespace SistemaVetIng.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AtencionEstudios_EstudiosComplementariosId",
+                table: "AtencionEstudios",
+                column: "EstudiosComplementariosId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AtencionesVeterinarias_HistoriaClinicaId",
                 table: "AtencionesVeterinarias",
                 column: "HistoriaClinicaId");
@@ -627,6 +693,11 @@ namespace SistemaVetIng.Migrations
                 column: "VeterinarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AtencionVacunas_VacunasId",
+                table: "AtencionVacunas",
+                column: "VacunasId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AuditoriaEventos_UsuarioId",
                 table: "AuditoriaEventos",
                 column: "UsuarioId");
@@ -642,11 +713,6 @@ namespace SistemaVetIng.Migrations
                 table: "ConfiguracionVeterinarias",
                 column: "VeterinariaId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Estudios_AtencionVeterinariaId",
-                table: "Estudios",
-                column: "AtencionVeterinariaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HistoriasClinicas_MascotaId",
@@ -701,11 +767,6 @@ namespace SistemaVetIng.Migrations
                 column: "MascotaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vacunas_AtencionVeterinariaId",
-                table: "Vacunas",
-                column: "AtencionVeterinariaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Veterinarias_UsuarioId",
                 table: "Veterinarias",
                 column: "UsuarioId",
@@ -731,13 +792,19 @@ namespace SistemaVetIng.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "AtencionEstudios");
+
+            migrationBuilder.DropTable(
+                name: "AtencionMementos");
+
+            migrationBuilder.DropTable(
+                name: "AtencionVacunas");
+
+            migrationBuilder.DropTable(
                 name: "AuditoriaEventos");
 
             migrationBuilder.DropTable(
                 name: "Chips");
-
-            migrationBuilder.DropTable(
-                name: "Estudios");
 
             migrationBuilder.DropTable(
                 name: "HorarioDia");
@@ -746,16 +813,19 @@ namespace SistemaVetIng.Migrations
                 name: "Turnos");
 
             migrationBuilder.DropTable(
-                name: "Vacunas");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ConfiguracionVeterinarias");
+                name: "Estudios");
 
             migrationBuilder.DropTable(
                 name: "AtencionesVeterinarias");
+
+            migrationBuilder.DropTable(
+                name: "Vacunas");
+
+            migrationBuilder.DropTable(
+                name: "ConfiguracionVeterinarias");
 
             migrationBuilder.DropTable(
                 name: "HistoriasClinicas");

@@ -117,12 +117,22 @@ namespace SistemaVetIng.Data
                  .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            
             modelBuilder.Entity<AtencionVeterinaria>()
                 .HasOne(a => a.Veterinario)
                 .WithMany()
                 .HasForeignKey(a => a.VeterinarioId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+        
+            modelBuilder.Entity<AtencionVeterinaria>()
+                .HasMany(a => a.Vacunas)
+                .WithMany() 
+                .UsingEntity(j => j.ToTable("AtencionVacunas")); 
+
+            modelBuilder.Entity<AtencionVeterinaria>()
+                .HasMany(a => a.EstudiosComplementarios)
+                .WithMany()
+                .UsingEntity(j => j.ToTable("AtencionEstudios"));
 
             // Chip
             modelBuilder.Entity<Chip>()

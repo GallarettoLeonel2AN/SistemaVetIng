@@ -22,6 +22,36 @@ namespace SistemaVetIng.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AtencionVeterinariaEstudio", b =>
+                {
+                    b.Property<int>("AtencionVeterinariaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EstudiosComplementariosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AtencionVeterinariaId", "EstudiosComplementariosId");
+
+                    b.HasIndex("EstudiosComplementariosId");
+
+                    b.ToTable("AtencionEstudios", (string)null);
+                });
+
+            modelBuilder.Entity("AtencionVeterinariaVacuna", b =>
+                {
+                    b.Property<int>("AtencionVeterinariaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacunasId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AtencionVeterinariaId", "VacunasId");
+
+                    b.HasIndex("VacunasId");
+
+                    b.ToTable("AtencionVacunas", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -301,9 +331,6 @@ namespace SistemaVetIng.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AtencionVeterinariaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -312,8 +339,6 @@ namespace SistemaVetIng.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AtencionVeterinariaId");
 
                     b.ToTable("Estudios");
 
@@ -751,9 +776,6 @@ namespace SistemaVetIng.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AtencionVeterinariaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Lote")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -766,8 +788,6 @@ namespace SistemaVetIng.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AtencionVeterinariaId");
 
                     b.ToTable("Vacunas");
 
@@ -886,6 +906,36 @@ namespace SistemaVetIng.Migrations
                         });
 
                     b.HasDiscriminator().HasValue("Veterinario");
+                });
+
+            modelBuilder.Entity("AtencionVeterinariaEstudio", b =>
+                {
+                    b.HasOne("SistemaVetIng.Models.AtencionVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("AtencionVeterinariaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaVetIng.Models.Estudio", null)
+                        .WithMany()
+                        .HasForeignKey("EstudiosComplementariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AtencionVeterinariaVacuna", b =>
+                {
+                    b.HasOne("SistemaVetIng.Models.AtencionVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("AtencionVeterinariaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaVetIng.Models.Vacuna", null)
+                        .WithMany()
+                        .HasForeignKey("VacunasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1023,13 +1073,6 @@ namespace SistemaVetIng.Migrations
                     b.Navigation("Veterinaria");
                 });
 
-            modelBuilder.Entity("SistemaVetIng.Models.Estudio", b =>
-                {
-                    b.HasOne("SistemaVetIng.Models.AtencionVeterinaria", null)
-                        .WithMany("EstudiosComplementarios")
-                        .HasForeignKey("AtencionVeterinariaId");
-                });
-
             modelBuilder.Entity("SistemaVetIng.Models.HistoriaClinica", b =>
                 {
                     b.HasOne("SistemaVetIng.Models.Mascota", "Mascota")
@@ -1092,13 +1135,6 @@ namespace SistemaVetIng.Migrations
                     b.Navigation("Mascota");
                 });
 
-            modelBuilder.Entity("SistemaVetIng.Models.Vacuna", b =>
-                {
-                    b.HasOne("SistemaVetIng.Models.AtencionVeterinaria", null)
-                        .WithMany("Vacunas")
-                        .HasForeignKey("AtencionVeterinariaId");
-                });
-
             modelBuilder.Entity("SistemaVetIng.Models.Veterinaria", b =>
                 {
                     b.HasOne("SistemaVetIng.Models.Indentity.Usuario", "Usuario")
@@ -1135,13 +1171,6 @@ namespace SistemaVetIng.Migrations
             modelBuilder.Entity("Pago", b =>
                 {
                     b.Navigation("AtencionesCubiertas");
-                });
-
-            modelBuilder.Entity("SistemaVetIng.Models.AtencionVeterinaria", b =>
-                {
-                    b.Navigation("EstudiosComplementarios");
-
-                    b.Navigation("Vacunas");
                 });
 
             modelBuilder.Entity("SistemaVetIng.Models.ConfiguracionVeterinaria", b =>
