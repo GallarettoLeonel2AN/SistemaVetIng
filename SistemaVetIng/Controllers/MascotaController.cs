@@ -256,7 +256,27 @@ namespace SistemaVetIng.Controllers
 
             try
             {
-                var (success, message) = await _mascotaService.Modificar(model);
+
+                // Auditoria
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    // Si no podemos identificar al usuario, no permitimos la acción
+                    _toastNotification.AddErrorToastMessage("Error de autenticación. No se pudo registrar la mascota.");
+                    return View(model);
+                }
+
+                int auditUserId = user.Id;
+                string auditUserName = user.UserName;
+
+                var roles = await _userManager.GetRolesAsync(user);
+                string rolUsuario = roles.FirstOrDefault() ?? "Sin Rol";
+
+
+                var (success, message) = await _mascotaService.Modificar(model,
+                auditUserId,
+                auditUserName,
+                rolUsuario);
 
                 if (success)
                 {

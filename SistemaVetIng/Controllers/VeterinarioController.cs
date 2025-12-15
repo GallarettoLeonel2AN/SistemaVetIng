@@ -205,13 +205,13 @@ namespace SistemaVetIng.Controllers
             {
                 await _veterinarioService.Registrar(model);
                 _toastNotification.AddSuccessToastMessage("¡Veterinario registrado correctamente!");
-                if (User.IsInRole("Veterinaria"))
+                if (User.IsInRole("Veterinario"))
                 {
-                    return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                    return RedirectToAction("PaginaPrincipal", "Veterinario");
                 }
                 else
                 {
-                    return RedirectToAction("PaginaPrincipal", "Veterinario");
+                    return RedirectToAction("PaginaPrincipal", "Veterinaria");
                 }
             }
             catch (Exception ex)

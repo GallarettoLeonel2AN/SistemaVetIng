@@ -130,7 +130,7 @@ namespace SistemaVetIng.Models.Indentity
             {
                 Permission.Atenciones.View,
                
-               
+
                 Permission.Pago.View,
 
                 Permission.Mascota.View,

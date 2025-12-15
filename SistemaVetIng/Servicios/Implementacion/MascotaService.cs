@@ -240,7 +240,11 @@ namespace SistemaVetIng.Servicios.Implementacion
         }
 
 
-        public async Task<(bool success, string message)> Modificar(MascotaEditarViewModel model)
+        public async Task<(bool success, string message)> Modificar(
+            MascotaEditarViewModel model,
+             int auditUserId,
+            string auditUserName,
+            string rolUsuario)
         {
 
             var mascota = await _mascotaRepository.ObtenerPorId(model.Id);
@@ -248,6 +252,8 @@ namespace SistemaVetIng.Servicios.Implementacion
             {
                 return (false, "La mascota que intenta editar no existe.");
             }
+
+            var detalleCambios = CrearDetalleCambios(mascota, model); // Auditoria
 
             var chipExistente = await _chipRepository.ObtenerPorMascotaId(mascota.Id);
 
@@ -307,6 +313,22 @@ namespace SistemaVetIng.Servicios.Implementacion
                     );
                 }
 
+                // Auditoria
+
+                await _auditoriaService.RegistrarEventoAsync(
+                     usuarioId: auditUserId,
+                     nombreUsuario: auditUserName,
+                     tipoEvento: "Modificar",
+                     entidad: rolUsuario,
+                     detalles:
+                         $@"Se modificó la mascota:
+                        Nombre: {mascota.Nombre}
+                        Cliente: {mascota.Propietario.Usuario.Email}
+
+                        Cambios realizados:
+                        {detalleCambios}"
+                 );
+
                 _mascotaRepository.Modificar(mascota);
                 await _mascotaRepository.Guardar();
                 await _chipRepository.Guardar();
@@ -319,6 +341,53 @@ namespace SistemaVetIng.Servicios.Implementacion
                 return (false, $"Error al actualizar la mascota: {ex.Message}");
             }
         }
+
+        private string CrearDetalleCambios(
+         Mascota before,
+         MascotaEditarViewModel after)
+        {
+            var sb = new StringBuilder();
+
+            void Add(string campo, object? antes, object? despues)
+            {
+                if (Equals(antes, despues)) return;
+
+                sb.AppendLine(
+                    $"• {campo}: '{Formatear(antes)}' → '{Formatear(despues)}'"
+                );
+            }
+
+            string Formatear(object? valor)
+            {
+                if (valor == null) return "null";
+
+                return valor switch
+                {
+                    DateTime dt => dt.ToString("dd/MM/yyyy"),
+                    bool b => b ? "Sí" : "No",
+                    _ => valor.ToString()!
+                };
+            }
+
+            // Comparaciones
+            Add("Nombre", before.Nombre, after.Nombre);
+            Add("Especie", before.Especie, after.Especie);
+            Add("Raza", before.Raza, after.Raza);
+            Add("Fecha de nacimiento", before.FechaNacimiento, after.FechaNacimiento);
+            Add("Sexo", before.Sexo, after.Sexo);
+
+            // Chip (estado lógico)
+            Add("Chip", before.Chip != null, after.Chip);
+
+            // Raza peligrosa (derivada)
+            var razaPeligrosaNueva = IsRazaPeligrosa(after.Especie, after.Raza);
+            Add("Raza peligrosa", before.RazaPeligrosa, razaPeligrosaNueva);
+
+            return sb.Length == 0
+                ? "No se detectaron cambios."
+                : sb.ToString().TrimEnd();
+        }
+
         public async Task<(bool success, string message)> Eliminar(int id)
         {
           

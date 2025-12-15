@@ -198,7 +198,6 @@
 
         $(document).ready(function () {
 
-            // INICIALIZAR CALENDARIO
             flatpickr("#fechaNacimiento", {
                 locale: "es",
                 dateFormat: "Y-m-d",
@@ -209,11 +208,10 @@
             });
 
             var vieneConChipDeBD = @(Model.Chip.ToString().ToLower());
-            // Lógica de Raza Peligrosa
-               function gestionarVisibilidad() {
-                var especie = $('#especieMascota').val().toLowerCase();
-                var raza = $('#razaMascota').val().toLowerCase().trim();
-                var tieneChipVisual = $('#tieneChip').is(':checked');
+
+            function gestionarVisibilidad() {
+                var especie = ($('#especieMascota').val() || '').toLowerCase().trim();
+                var raza = ($('#razaMascota').val() || '').toLowerCase().trim();
 
                 var razasPeligrosas = [
                     "pitbull", "rottweiler", "dogo argentino", "fila brasileiro",
@@ -224,9 +222,9 @@
                 var esPerro = (especie === "perro");
                 var esPeligrosa = esPerro && razasPeligrosas.includes(raza);
 
-                if (esPeligrosa || tieneChipVisual) {
+                if (esPeligrosa) {
                     $('#chipGroup').slideDown();
-                    if(esPeligrosa) $('#esRazaPeligrosa').val('true');
+                    $('#esRazaPeligrosa').val('true');
                 } else {
                     $('#chipGroup').slideUp();
                     $('#esRazaPeligrosa').val('false');
@@ -234,12 +232,13 @@
                 }
             }
 
-            // Eventos manuales
             $('#especieMascota, #razaMascota').on('change keyup', function () {
                 gestionarVisibilidad();
             });
+
             gestionarVisibilidad();
         });
     </script>
+
 </body>
 </html>

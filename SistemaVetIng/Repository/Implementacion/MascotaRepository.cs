@@ -34,7 +34,10 @@ namespace SistemaVetIng.Repository.Implementacion
         }
 
         public async Task<Mascota> ObtenerPorId(int id)
-            =>  await _context.Mascotas.FirstOrDefaultAsync(m => m.Id == id);
+            =>  await _context.Mascotas
+                        .Include(x => x.Propietario)
+                        .Include(u => u.Propietario.Usuario)
+                        .FirstOrDefaultAsync(m => m.Id == id);
 
         public void Eliminar(Mascota entity)
             => _context.Mascotas.Remove(entity);
