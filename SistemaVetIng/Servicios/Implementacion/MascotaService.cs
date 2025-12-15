@@ -388,10 +388,16 @@ namespace SistemaVetIng.Servicios.Implementacion
                 : sb.ToString().TrimEnd();
         }
 
-        public async Task<(bool success, string message)> Eliminar(int id)
+        public async Task<(bool success, string message)> Eliminar(
+            int id,
+            int auditUserId,
+            string auditUserName,
+            string rolUsuario)
         {
           
             var mascota = await _context.Mascotas
+                .Include(p=>p.Propietario)
+                .Include(p=>p.Propietario.Usuario)
                 .Include(m => m.HistoriaClinica)
                     .ThenInclude(h => h.Atenciones)
                         .ThenInclude(a => a.Tratamiento)
@@ -439,6 +445,16 @@ namespace SistemaVetIng.Servicios.Implementacion
                 _mascotaRepository.Eliminar(mascota);
 
                 await _mascotaRepository.Guardar();
+
+                // Auditoria
+
+                await _auditoriaService.RegistrarEventoAsync(
+                    usuarioId: auditUserId,
+                    nombreUsuario: auditUserName,
+                    tipoEvento: "Eliminar",
+                    entidad: rolUsuario,
+                    detalles: $"Se elimino la mascota: {mascota.Nombre} (Raza: {mascota.Raza}) al cliente: {mascota.Propietario.Usuario.Email}."
+                );
 
                 return (true, "La mascota ha sido eliminada exitosamente.");
             }

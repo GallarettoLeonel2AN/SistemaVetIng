@@ -3,40 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\repository\\implementacion\\mascotarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\repository\\implementacion\\mascotarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\servicios\\implementacion\\mascotaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\mascotaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\views\\mascota\\modificarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\mascota\\modificarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\servicios\\implementacion\\auditoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\auditoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\viewsmodels\\auditoriaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\viewsmodels\\auditoriaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\controllers\\auditoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\controllers\\auditoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\views\\auditoria\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\views\\auditoria\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\models\\auditoriaevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\models\\auditoriaevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|c:\\users\\ulises\\source\\repos\\sqlveting\\sistemaveting\\servicios\\implementacion\\mascotaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6272BE07-6D0C-44EB-9692-80A19F8F92DB}|SistemaVetIng\\SistemaVetIng.csproj|solutionrelative:sistemaveting\\servicios\\implementacion\\mascotaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 422,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,123 +34,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MascotaRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Repository\\Implementacion\\MascotaRepository.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Repository\\Implementacion\\MascotaRepository.cs",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Repository\\Implementacion\\MascotaRepository.cs",
-              "RelativeToolTip": "SistemaVetIng\\Repository\\Implementacion\\MascotaRepository.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCMAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:53:44.641Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModificarMascota.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "RelativeToolTip": "SistemaVetIng\\Views\\Mascota\\ModificarMascota.cshtml",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAswN8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-15T20:35:25.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MascotaService.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Servicios\\Implementacion\\MascotaService.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\MascotaService.cs",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Servicios\\Implementacion\\MascotaService.cs",
               "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\MascotaService.cs",
-              "ViewState": "AgIAADUBAAAAAAAAAAAlwD0BAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAM8BAAAAAAAAAAAAwIgBAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:35:15.697Z",
+              "WhenOpened": "2025-12-15T21:08:45.796Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuditoriaViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\ViewsModels\\AuditoriaViewModel.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\ViewsModels\\AuditoriaViewModel.cs",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\ViewsModels\\AuditoriaViewModel.cs",
-              "RelativeToolTip": "SistemaVetIng\\ViewsModels\\AuditoriaViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:30:28.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Views\\Auditoria\\Index.cshtml",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Views\\Auditoria\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Views\\Auditoria\\Index.cshtml",
-              "RelativeToolTip": "SistemaVetIng\\Views\\Auditoria\\Index.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABYAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-15T20:29:36.164Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuditoriaService.cs",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Servicios\\Implementacion\\AuditoriaService.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Servicios\\Implementacion\\AuditoriaService.cs",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Servicios\\Implementacion\\AuditoriaService.cs",
-              "RelativeToolTip": "SistemaVetIng\\Servicios\\Implementacion\\AuditoriaService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBoAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:29:17.725Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuditoriaController.cs",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Controllers\\AuditoriaController.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Controllers\\AuditoriaController.cs",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Controllers\\AuditoriaController.cs",
-              "RelativeToolTip": "SistemaVetIng\\Controllers\\AuditoriaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:29:04.942Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "MascotaController.cs",
               "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Controllers\\MascotaController.cs",
               "RelativeDocumentMoniker": "SistemaVetIng\\Controllers\\MascotaController.cs",
               "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Controllers\\MascotaController.cs",
               "RelativeToolTip": "SistemaVetIng\\Controllers\\MascotaController.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAiwBUBAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAE4BAAAAAAAAAAAmwE0BAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:13:58.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AuditoriaEvento.cs",
-              "DocumentMoniker": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Models\\AuditoriaEvento.cs",
-              "RelativeDocumentMoniker": "SistemaVetIng\\Models\\AuditoriaEvento.cs",
-              "ToolTip": "C:\\Users\\Ulises\\source\\repos\\SQLVETING\\SistemaVetIng\\Models\\AuditoriaEvento.cs",
-              "RelativeToolTip": "SistemaVetIng\\Models\\AuditoriaEvento.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAwwCUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T20:13:00.785Z",
+              "WhenOpened": "2025-12-15T21:02:43.702Z",
               "EditorCaption": ""
             }
           ]

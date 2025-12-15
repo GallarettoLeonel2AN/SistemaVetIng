@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MercadoPago.Resource.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -327,7 +328,31 @@ namespace SistemaVetIng.Controllers
                 ;
             }
 
-            var (success, message) = await _mascotaService.Eliminar(id.Value);
+            // Auditoria
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                // Si no podemos identificar al usuario, no permitimos la acción
+                _toastNotification.AddErrorToastMessage("Error de autenticación. No se pudo eliminar la mascota.");
+                if (User.IsInRole("Veterinario"))
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinario");
+                }
+                else
+                {
+                    return RedirectToAction("PaginaPrincipal", "Veterinaria");
+                }
+            }
+
+            int auditUserId = user.Id;
+            string auditUserName = user.UserName;
+
+            var roles = await _userManager.GetRolesAsync(user);
+            string rolUsuario = roles.FirstOrDefault() ?? "Sin Rol";
+
+            var (success, message) = await _mascotaService.Eliminar(id.Value, auditUserId,
+                auditUserName,
+                rolUsuario);
 
             if (success)
             {

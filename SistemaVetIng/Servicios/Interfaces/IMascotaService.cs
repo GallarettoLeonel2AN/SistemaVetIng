@@ -8,7 +8,7 @@ namespace SistemaVetIng.Servicios.Interfaces
     {
         Task<(Mascota? mascota, bool success, string message)> Registrar(MascotaRegistroViewModel model,int auditUserId,string auditUserName,string rolUsuario);
         Task<(bool success, string message)> Modificar(MascotaEditarViewModel model,int auditUserId,string auditUserName,string rolUsuario);
-        Task<(bool success, string message)> Eliminar(int id);
+        Task<(bool success, string message)> Eliminar(int id, int auditUserId,string auditUserName,string rolUsuario);
         Task<Mascota> ObtenerPorId(int id);
         Task<IEnumerable<Mascota>> ListarTodo();
         Task<IEnumerable<Mascota>> FiltrarPorBusqueda(string busqueda);

@@ -328,6 +328,15 @@
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                             }
+                             @if (HttpContextAccessor.HttpContext.User.HasPermission(Permission.Mascota.Delete))
+                            {
+                                <form asp-controller="Mascota" asp-action="EliminarMascota" asp-route-id="@mascota.Id" method="post" onsubmit="return confirm('¿Eliminar mascota?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-outline btn-sm trash" style="border-color:var(--error-color); color:var(--error-color);" title="Eliminar">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            }
                         </div>
                     </div>
                 }
