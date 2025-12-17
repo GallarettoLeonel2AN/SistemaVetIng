@@ -4,7 +4,10 @@
 ### 🗄️ Versión SQL Server (Local)
 
 ---
-> <sub>Versión Cloud (PostgreSQL + Render + Neon): https://github.com/SosaUlises/SistemaVetIng</sub>
+
+> 🔙 **Versión Cloud (PostgreSQL + Render + Neon)**  
+> <sub>https://github.com/SosaUlises/SistemaVetIng</sub>
+
 ---
 
 ### 🎓 Proyecto Académico – Ingeniería en Sistemas Informáticos
